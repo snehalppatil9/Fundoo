@@ -1,0 +1,97 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-11 mx-auto">
+        <div class="card">
+          <div class="card-body">
+              <h3 class="card-title">
+                  <span style="color:#1a73e8">F</span>
+                  <span style="color:red">u</span>
+                  <span style="color:#fbbc05">n</span>
+                  <span style="color:blue">d</span>
+                  <span style="color:#34a853">o</span>
+                  <span style="color:#fbbc05">o</span>
+                  <span style="color:#4285f4">N</span>
+                  <span style="color:#34a853">o</span>
+                  <span style="color:#ea4335">t</span>
+                  <span style="color:blue">e</span>
+                  <span style="color:#fbbc05">s</span>
+                </h3>
+            <h2 class="card-subtitle">Create your Google Account</h2>
+            <h5 class="card-text">to continue to FundooNotes</h5>
+            <br>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field appearance="outline" class="p1">
+                    <mat-label>Firstname</mat-label>
+                    <input matInput placeholder="Firstname">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field appearance="outline" class="p1">
+                    <mat-label>Lastname</mat-label>
+                    <input matInput placeholder="Lastname">
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <br><br>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field appearance="outline" hintLabel="You can use letters,numbers and periods" class="p1">
+                    <mat-label>Username</mat-label>
+                    <input matInput name="password" [type]="!hide ? 'password' : 'text'">
+                  </mat-form-field>
+                </div>
+              </div>
+              <br><br><br>
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field appearance="outline" class="p1">
+                    <mat-label>Password</mat-label>
+                    <input matInput name="password" [type]="!hide ? 'password' : 'text'">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-5">
+                  <mat-form-field appearance="outline" class="p1">
+                    <mat-label>Confirm</mat-label>
+                    <input matInput name="password" [type]="!hide ? 'password' : 'text'">
+                  </mat-form-field>
+                </div>
+                 <div class="visibility">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}
+                  </mat-icon>
+                </div>
+              </div>
+              <br>
+              <label>Use 8 or more characters with a mix of letters, numbers & symbols</label>
+              <br><br><br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="p2">
+                 <button mat-button routerLink="/register"><h6>Sign in instead</h6></button>
+                </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p2">
+                    <button type="button" class="btn btn-primary float-right">Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 float-right">
+
+              <div class="img">
+                <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt width="244" height="244">
+                <h6 class="card-text">One account. All of Google working for you.</h6>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
