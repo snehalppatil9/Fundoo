@@ -17,20 +17,21 @@
           <span class="green">e</span>
           <span class="red">s</span>
         </mat-card-title><br>
-        <mat-card-title fxLayoutAlign="center my-3"><h3>Sign in</h3></mat-card-title>
-        <mat-card-title fxLayoutAlign="center my-3">to continue to FundooNotes</mat-card-title>
+        <mat-card-title fxLayoutAlign="center my-3"><h3>Account recovery</h3></mat-card-title>
+        <mat-card-title fxLayoutAlign="center my-3"><h5>Enter the last password that you remember using with this Google Account</h5></mat-card-title>
         <br>
         <div>
-          <mat-form-field appearance="outline">
-            <mat-label>Email or Phone</mat-label>
+          <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+              <mat-label>Enter Last Password</mat-label>
             <input matInput placeholder="Email or Phone">
           </mat-form-field>
+        </div>
+        <div fxLayoutAlign="end" class="eye">
+          <input matInput name="password"  [type]="!hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </div><br><br><br><br>
-        <div class="size"><button mat-button routerLink="/forgot">Forgot Email?</button></div><br><br>
-        <div class="size"><button mat-button routerLink="/register">
-            <h6>Create Account</h6>
-          </button></div>
-        <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/password">Next</button></div>
+        <div class="size"><button mat-button routerLink="/reset">Forgot Password?</button></div><br><br>
+        <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/">Next</button></div>
         <br><br><br>
       </mat-card>
     </div>

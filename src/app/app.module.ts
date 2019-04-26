@@ -19,6 +19,7 @@ import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatPro
 import {MatFormFieldModule} from '@angular/material/form-field';
 //add FlexLayoutModule into your AppModul
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Forgot1Component } from './component/forgot1/forgot1.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RegistrationComponent,
     ForgotComponent,
     ResetComponent,
-    PasswordComponent
+    PasswordComponent,
+    Forgot1Component
   ],
   imports: [
     BrowserModule,

@@ -1,36 +1,40 @@
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
-        <div class="card my-5 mx-10">
-          <div class="card-body">
-            <h3 class="card-title text-center">
-              <span style="color:#1a73e8">F</span>
-              <span style="color:red">u</span>
-              <span style="color:#fbbc05">n</span>
-              <span style="color:blue">d</span>
-              <span style="color:#34a853">o</span>
-              <span style="color:#fbbc05">o</span>
-              <span style="color:#4285f4">N</span>
-              <span style="color:#34a853">o</span>
-              <span style="color:#ea4335">t</span>
-              <span style="color:blue">e</span>
-              <span style="color:#fbbc05">s</span>
-            </h3>
-            <h3 class="card-subtitle mb-2 text-center my-3">Find your email</h3>
-            <h5 class="card-text text-center my-3">Enter your phone number or recovery email</h5>
-            <div>
-              <mat-form-field appearance="outline" class="p1 my-3">
-                <mat-label>Email or Phone</mat-label>
-                <input matInput placeholder="Email or Phone">
-              </mat-form-field>
-            </div><br><br>
-            <div class="p2 my-4">
-                <button type="button" class="btn btn-primary float-right">Next</button><br><br><br>
-            </div>
+<div fxLayout="column" fxLayoutGap="8%">
+    <div fxFlex.lg="40%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+    <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
+      <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+      <div fxFlex.lg="30%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
+        <mat-card>
+          <mat-card-title fxLayoutAlign="center">
+            <h4>
+            <span class="lightblue">F</span>
+            <span class="red">u</span>
+            <span class="yellow">n</span>
+            <span class="lightblue">d</span>
+            <span class="green">o</span>
+            <span class="blue">o</span>
+            <span class="yellow">N</span>
+            <span class="red">o</span>
+            <span class="lightblue">t</span>
+            <span class="green">e</span>
+            <span class="red">s</span>
+          </h4>
+          </mat-card-title><br>
+          <mat-card-title fxLayoutAlign="center my-3"><h3>Find your email</h3></mat-card-title>
+          <mat-card-title fxLayoutAlign="center my-3">
+            <h5>Enter your phone number or recovery email</h5></mat-card-title>
+          <br>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Phone number or Email</mat-label>
+              <input matInput placeholder="Phone number or Email">
+            </mat-form-field>
           </div>
-        </div>
+          <br><br><br><br><br>
+          <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/password">Next</button></div>
+          <br><br><br><br><br>
+        </mat-card>
       </div>
+      <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
     </div>
+    <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
   </div>
-</body>
