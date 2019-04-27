@@ -1,8 +1,8 @@
-<div fxLayout="column" fxLayoutGap="8%">
+<div fxLayout="column" fxLayoutGap="4%">
         <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
         <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
           <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
-          <div fxFlex.lg="30%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
+          <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
             <mat-card>
               <mat-card-title fxLayoutAlign="center">
                 <span class="lightblue">F</span>
@@ -16,23 +16,38 @@
                 <span class="lightblue">t</span>
                 <span class="green">e</span>
                 <span class="red">s</span>
-              </mat-card-title><br>
-              <mat-card-title fxLayoutAlign="center my-3"><h3>Sign in</h3></mat-card-title><br>
-              <mat-card-title fxLayoutAlign="center my-3"><h5>Enter the last password you remember using with this Google Account</h5></mat-card-title>
-              <br>
+              </mat-card-title>
+              <div style="height:1vh"></div>
+              <mat-card-title fxLayoutAlign="center"><h3>Sign in</h3></mat-card-title>
+              <div style="height:1vh"></div>
+              <mat-card-title fxLayoutAlign="center"><h6>Enter the last password you remember using with this Google Account</h6></mat-card-title>
+              <div style="height:2vh"></div>
               <div>
                 <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
                     <mat-label>Enter Your Password</mat-label>
-                  <input matInput placeholder="Email or Phone">
+                  <input matInput placeholder="Enter Your Password">
                 </mat-form-field>
               </div>
               <div fxLayoutAlign="end" class="eye">
                 <input matInput name="password"  [type]="!hide ? 'password' : 'text'">
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-              </div><br><br><br><br>
-              <div class="size"><button mat-button routerLink="/forgot">Forgot Password?</button></div><br><br>
+              </div> 
+              <div style="height:10vh"></div>
+              <div>
+                  <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+                      <mat-label>Enter Confirm Password</mat-label>
+                    <input matInput placeholder="Enter Confirm Password">
+                  </mat-form-field>
+                </div>
+                <div fxLayoutAlign="end" class="eye">
+                  <input matInput name="password"  [type]="!hide ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </div> 
+                <div style="height:10vh"></div>
+              <div class="size"><button mat-button routerLink="/forgot">Forgot Password?</button></div>
+              <div style="height:5vh"></div>
               <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/">Next</button></div>
-              <br><br><br>
+              <div style="height:5vh"></div>
             </mat-card>
           </div>
           <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>

@@ -1,97 +1,99 @@
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-11 mx-auto">
-        <div class="card">
-          <div class="card-body">
-              <h3 class="card-title">
-                  <span style="color:#1a73e8">F</span>
-                  <span style="color:red">u</span>
-                  <span style="color:#fbbc05">n</span>
-                  <span style="color:blue">d</span>
-                  <span style="color:#34a853">o</span>
-                  <span style="color:#fbbc05">o</span>
-                  <span style="color:#4285f4">N</span>
-                  <span style="color:#34a853">o</span>
-                  <span style="color:#ea4335">t</span>
-                  <span style="color:blue">e</span>
-                  <span style="color:#fbbc05">s</span>
-                </h3>
-            <h2 class="card-subtitle">Create your Google Account</h2>
-            <h5 class="card-text">to continue to FundooNotes</h5>
-            <br>
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field appearance="outline" class="p1">
-                    <mat-label>Firstname</mat-label>
-                    <input matInput placeholder="Firstname">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field appearance="outline" class="p1">
-                    <mat-label>Lastname</mat-label>
-                    <input matInput placeholder="Lastname">
-                  </mat-form-field>
-                </div>
-
-              </div>
-              <br><br>
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field appearance="outline" hintLabel="You can use letters,numbers and periods" class="p1">
-                    <mat-label>Username</mat-label>
-                    <input matInput name="password" [type]="!hide ? 'password' : 'text'">
-                  </mat-form-field>
-                </div>
-              </div>
-              <br><br><br>
-              <div class="row">
-                <div class="col-md-5">
-                  <mat-form-field appearance="outline" class="p1">
-                    <mat-label>Password</mat-label>
-                    <input matInput name="password" [type]="!hide ? 'password' : 'text'">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-5">
-                  <mat-form-field appearance="outline" class="p1">
-                    <mat-label>Confirm</mat-label>
-                    <input matInput name="password" [type]="!hide ? 'password' : 'text'">
-                  </mat-form-field>
-                </div>
-                 <div class="visibility">
-                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}
-                  </mat-icon>
-                </div>
-              </div>
-              <br>
-              <label>Use 8 or more characters with a mix of letters, numbers & symbols</label>
-              <br><br><br>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="p2">
-                 <button mat-button routerLink="/register"><h6>Sign in instead</h6></button>
-                </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="p2">
-                    <button type="button" class="btn btn-primary float-right">Next</button>
-                  </div>
-                </div>
-              </div>
+<div fxLayout="column" fxLayoutGap="3%">
+  <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+  <div fxLayout="row" fxFlex.lg="100%" fxLayoutAlign="center" fxFlex="35">
+    <div fxFlex="100%" fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+    <div fxFlex.lg="96%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
+       <mat-card>
+          <mat-card-title fxLayoutAlign="start">
+            <span class="lightblue">F</span>
+            <span class="red">u</span>
+            <span class="yellow">n</span>
+            <span class="lightblue">d</span>
+            <span class="green">o</span>
+            <span class="blue">o</span>
+            <span class="yellow">N</span>
+            <span class="red">o</span>
+            <span class="lightblue">t</span>
+            <span class="green">e</span>
+            <span class="red">s</span>
+          </mat-card-title>
+          <div style="height:1vh"></div>
+          <mat-card-title fxLayoutAlign="start">
+            <h3>Create your Google Account</h3>
+          </mat-card-title>
+          <div style="height:1vh"></div>
+          <mat-card-title fxLayoutAlign="start my-3">to continue to FundooNotes Account</mat-card-title>
+          <div style="height:1vh"></div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="5%">
+            <div fxFlex="25">
+              <mat-form-field appearance="outline">
+                <mat-label>Firstname</mat-label>
+                <input matInput placeholder="Firstname">
+              </mat-form-field>
             </div>
-            <div class="col-md-4 float-right">
-
-              <div class="img">
-                <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt width="244" height="244">
-                <h6 class="card-text">One account. All of Google working for you.</h6>
-
-              </div>
+            <div fxFlex="25">
+              <mat-form-field appearance="outline">
+                <mat-label>Lastname</mat-label>
+                <input matInput placeholder="Lastname">
+              </mat-form-field>
             </div>
-
           </div>
-        </div>
+          <div style="height:10vh"></div>
+          <div fxLayout="row" fxLayoutAlign="start">
+            <div fxFlex="55">
+              <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Username">
+              </mat-form-field>
+            </div>
+          </div>
+          <div style="height:10vh"></div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
+            <div fxFlex="22">
+              <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password">
+              </mat-form-field>
+            </div>
+            <div fxFlex="22">
+              <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+                <mat-label>Confirm</mat-label>
+                <input matInput placeholder="Confirm">
+              </mat-form-field>
+            </div>
+            <div fxLayoutAlign="end" fxFlex="2" class="p2">
+              <input matInput name="password" [type]="!hide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </div>
+          </div>
+          <div style="height:10vh"></div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
+            <p>
+              <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle value="advanced">Advanced</mat-button-toggle>
+              </mat-button-toggle-group>
+            </p>
+            <p>
+              <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle value="basic">Basic</mat-button-toggle>
+              </mat-button-toggle-group>
+            </p>
+          </div>
+          <div style="height:5vh"></div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="25%">
+            <div class="size"><button mat-button routerLink="/login">Sign in instead</button></div>
+            <div class="p2"><button mat-button routerLink="/login">Next</button></div>
+          </div>
+          <div fxLayoutAlign="end" fxHide fxShow.gt-sm>
+            <div class="img">
+              <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt width="244" height="244">
+              <h6>One account of Google working for you.</h6>
+            </div>
+          </div>
+        </mat-card>
       </div>
-    </div>
+    
+    <div fxFlex.lg="27%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
   </div>
-</body>
+  <div fxFlex.lg="2%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+</div>

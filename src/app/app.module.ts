@@ -10,6 +10,7 @@ import { RegistrationComponent } from './component/registration/registration.com
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
 import { PasswordComponent } from './component/password/password.component'; 
+import { Forgot1Component } from './component/forgot1/forgot1.component';
 //importing angular material 
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 /*API reference for Angular button and checkbox
@@ -19,7 +20,8 @@ import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatPro
 import {MatFormFieldModule} from '@angular/material/form-field';
 //add FlexLayoutModule into your AppModul
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { Forgot1Component } from './component/forgot1/forgot1.component';
+//API reference for Angular Material button-toggle
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { Forgot1Component } from './component/forgot1/forgot1.component';
     MatIconModule,
     MatListModule, 
     MatSidenavModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

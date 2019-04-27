@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forgot1.component.scss']
 })
 export class Forgot1Component implements OnInit {
-
+  hide=true;
   constructor() { }
 
   ngOnInit() {
