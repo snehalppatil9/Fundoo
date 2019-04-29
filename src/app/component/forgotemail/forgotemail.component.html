@@ -25,20 +25,20 @@
           <div>
               <mat-form-field appearance="outline">
                 <mat-label>FirstName</mat-label>
-                <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
-                <input matInput placeholder="Phone number or Email" [formControl]="email">
+                <mat-error *ngIf="firstName.invalid">{{firstValidation()}}</mat-error>
+                <input matInput placeholder="FirstName" [formControl]="firstName">
               </mat-form-field>
             </div>
           <div style="height:10vh"></div>
           <div>
               <mat-form-field appearance="outline">
                 <mat-label>LastName</mat-label>
-                <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
-                <input matInput placeholder="Phone number or Email" [formControl]="email">
+                <mat-error *ngIf="lastName.invalid">{{lastValidation()}}</mat-error>
+                <input matInput placeholder="LastName" [formControl]="lastName">
               </mat-form-field>
             </div>
             <div style="height:15vh"></div>
-            <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/">Next</button></div>
+            <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/" [disabled]="firstName.invalid && lastName.invalid">Next</button></div>
           <div style="height:15vh"></div>
         </mat-card>
       </div>

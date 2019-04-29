@@ -6,11 +6,19 @@ import { Validators, FormControl } from '@angular/forms';
   styleUrls: ['./forgotemail.component.scss']
 })
 export class ForgotemailComponent implements OnInit {
-  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]);
-  emailValidation() {
-    return this.email.hasError('required') ? 'Enter an Email or Phone' :
-      this.email.hasError('email') ? 'Not a valid email' : 
-      this.email.hasError('pattern') ? 'Its not a correct way to write email':'';
+  firstName =new FormControl('', [Validators.required,Validators.minLength(4), Validators.maxLength(20), Validators.pattern('[a-zA-Z]+')]);
+  lastName =new FormControl('', [Validators.required,Validators.minLength(4), Validators.maxLength(20), Validators.pattern('[a-zA-Z]+')]);
+  firstValidation() {
+    return this.firstName.hasError('required') ? 'Enter an FirstName' :
+      this.firstName.hasError('minLength') ? 'firstName must be at least 4 characters long' : 
+      this.firstName.hasError('maxLength') ? 'firstName must 20 characters long' : 
+      this.firstName.hasError('pattern') ? 'firstName contain letters':'';
+  }
+  lastValidation(){
+    return this.lastName.hasError('required') ? 'Enter an FirstName' :
+    this.lastName.hasError('minLength') ? 'lastName must be at least 4 characters long' : 
+    this.lastName.hasError('maxLength') ? 'lastName must 20 characters long' : 
+    this.lastName.hasError('pattern') ? 'lastName contain letters':'';
   }
   constructor() { }
 

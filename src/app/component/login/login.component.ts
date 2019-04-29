@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   emailValidation() {
     return this.email.hasError('required') ? 'Enter an Email or Phone' :
-      this.email.hasError('email') ? 'Not a valid email' : 
+      this.email.hasError('email') ? 'Password must be at least 8 characters long' : 
       this.email.hasError('pattern') ? 'Its not a correct way to write email':'';
   }
   constructor() {
