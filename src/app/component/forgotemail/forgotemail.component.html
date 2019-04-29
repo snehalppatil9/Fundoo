@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutGap="6%">
+<div fxLayout="column" fxLayoutGap="4%">
     <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
     <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
       <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
@@ -18,23 +18,28 @@
             <span class="red">s</span>
           </mat-card-title>
           <div style="height:1vh"></div>
-          <mat-card-title fxLayoutAlign="center"><h3>Welcome</h3></mat-card-title>
+          <mat-card-title fxLayoutAlign="center"><h3>What's your name?</h3></mat-card-title>
           <div style="height:1vh"></div>
-          <mat-card-title fxLayoutAlign="center">to continue to FundooNotes Account</mat-card-title>
-          <div style="height:5vh"></div>
-          <div fxLayoutAlign="end" class="eye">
-              <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
-                <mat-label>Enter your Password</mat-label>
-                <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
-                <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"> 
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-card-title fxLayoutAlign="center"><h6>Enter the name on your FundooNotes Account</h6></mat-card-title>
+          <div style="height:2vh"></div>
+          <div>
+              <mat-form-field appearance="outline">
+                <mat-label>FirstName</mat-label>
+                <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+                <input matInput placeholder="Phone number or Email" [formControl]="email">
+              </mat-form-field>
+            </div>
+          <div style="height:10vh"></div>
+          <div>
+              <mat-form-field appearance="outline">
+                <mat-label>LastName</mat-label>
+                <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+                <input matInput placeholder="Phone number or Email" [formControl]="email">
               </mat-form-field>
             </div>
             <div style="height:15vh"></div>
-          <div class="size"><button mat-button routerLink="/reset">Forgot Password?</button></div>
-          <div style="height:5vh"></div>
-          <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="password.invalid" routerLink="/">Next</button></div>
-          <div style="height:5vh"></div>
+            <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/">Next</button></div>
+          <div style="height:15vh"></div>
         </mat-card>
       </div>
       <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>

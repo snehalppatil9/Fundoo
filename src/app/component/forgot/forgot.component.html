@@ -28,11 +28,12 @@
           <div>
             <mat-form-field appearance="outline">
               <mat-label>Phone number or Email</mat-label>
-              <input matInput placeholder="Phone number or Email">
+              <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+              <input matInput placeholder="Phone number or Email" [formControl]="email">
             </mat-form-field>
           </div>
           <div style="height:15vh"></div>
-          <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/password">Next</button></div>
+          <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="email.invalid" routerLink="/forgotemail">Next</button></div>
           <div style="height:10vh"></div>
         </mat-card>
       </div>

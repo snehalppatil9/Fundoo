@@ -22,6 +22,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 //API reference for Angular Material button-toggle
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+//import {FormControl, Validators} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ForgotemailComponent } from './component/forgotemail/forgotemail.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +35,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     ForgotComponent,
     ResetComponent,
     PasswordComponent,
-    Forgot1Component
+    Forgot1Component,
+    ForgotemailComponent
   ],
   imports: [
     BrowserModule,
@@ -45,11 +51,16 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatInputModule,
     MatProgressSpinnerModule,
     MatMenuModule, 
+    
     MatIconModule,
     MatListModule, 
     MatSidenavModule,
     FlexLayoutModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    FormsModule,
+    ReactiveFormsModule
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

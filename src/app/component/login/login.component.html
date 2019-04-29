@@ -3,39 +3,48 @@
   <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
     <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
     <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
-      <mat-card>
-        <mat-card-title fxLayoutAlign="center">
-          <span class="lightblue">F</span>
-          <span class="red">u</span>
-          <span class="yellow">n</span>
-          <span class="lightblue">d</span>
-          <span class="green">o</span>
-          <span class="blue">o</span>
-          <span class="yellow">N</span>
-          <span class="red">o</span>
-          <span class="lightblue">t</span>
-          <span class="green">e</span>
-          <span class="red">s</span>
-        </mat-card-title><div style="height:1vh"></div>
-        <mat-card-title fxLayoutAlign="center my-3"><h3>Sign in</h3></mat-card-title>
-        <div style="height:1vh"></div>
-        <mat-card-title fxLayoutAlign="center my-3"><h6>to continue to FundooNotes</h6></mat-card-title>
-        <div style="height:5vh"></div>
-        <div>
-          <mat-form-field appearance="outline">
-            <mat-label>Email or Phone</mat-label>
-            <input matInput placeholder="Email or Phone">
-          </mat-form-field>
-        </div><div style="height:10vh"></div>
-        <div class="size"><button mat-button routerLink="/forgot">Forgot Email?</button></div>
-        <div style="height:5vh"></div>
-        <div class="size"><button mat-button routerLink="/register">
-            <h6>Create Account</h6>
-          </button></div>
-        <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/password">Next</button></div>
-        <div style="height:5vh"></div>
+      <form>
+        <mat-card>
+          <mat-card-title fxLayoutAlign="center">
+            <span class="lightblue">F</span>
+            <span class="red">u</span>
+            <span class="yellow">n</span>
+            <span class="lightblue">d</span>
+            <span class="green">o</span>
+            <span class="blue">o</span>
+            <span class="yellow">N</span>
+            <span class="red">o</span>
+            <span class="lightblue">t</span>
+            <span class="green">e</span>
+            <span class="red">s</span>
+          </mat-card-title>
+          <div style="height:1vh"></div>
+          <mat-card-title fxLayoutAlign="center my-3">
+            <h3>Sign in</h3>
+          </mat-card-title>
+          <div style="height:1vh"></div>
+          <mat-card-title fxLayoutAlign="center my-3">
+            <h6>to continue to FundooNotes</h6>
+          </mat-card-title>
+          <div style="height:5vh"></div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Email or Phone</mat-label>
+              <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+              <input matInput placeholder="Email or Phone" [formControl]="email">
+            </mat-form-field>
+          </div>
+          <div style="height:10vh"></div>
+          <div class="size"><button mat-button routerLink="/forgot">Forgot Email?</button></div>
+          <div style="height:5vh"></div>
+          <div class="size"><button mat-button routerLink="/register">
+              <h6>Create Account</h6>
+            </button></div>
+          <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="email.invalid" routerLink="/password">Next</button></div>
+          <div style="height:5vh"></div>
         </mat-card>
-      </div>
+      </form>
+    </div>
     <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
   </div>
   <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetComponent implements OnInit {
   title='FundooNotes';
+  hide=true;
   constructor() { }
 
   ngOnInit() {
