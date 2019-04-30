@@ -100,6 +100,7 @@ export class RegistrationComponent implements OnInit {
 
       this.UserService.postRequest('user/userSignUp', this.register).subscribe(
         data => {
+          console.log("Response================>", this.register);
           console.log("Response================>", data);
           this.snackbar.open('Register successfully......!', 'Continue with Login..!', { duration: 1000 });
           this.router.navigateByUrl('login');
