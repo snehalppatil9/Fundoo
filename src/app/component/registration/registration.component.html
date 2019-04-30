@@ -1,3 +1,13 @@
+ <!-- 
+  Execution       :   1. default node         cmd> registration.component.html
+ 
+   Purpose         : To register for Fundoo Account   
+
+   @file           :registration.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+  -->
 <div fxLayout="column" fxLayoutGap="3%">
   <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
   <div fxLayout="row" fxFlex.lg="100%" fxLayoutAlign="center" fxFlex="35">
@@ -31,14 +41,14 @@
             <mat-form-field appearance="outline">
               <mat-label>Firstname</mat-label>
               <mat-error *ngIf="firstName.invalid">{{firstValidation()}}</mat-error>
-              <input matInput placeholder="FirstName" [formControl]="firstName">
+              <input matInput placeholder="FirstName" [(ngModel)]="register.firstName" [formControl]="firstName">
             </mat-form-field>
           </div>
           <div fxFlex="25">
             <mat-form-field appearance="outline">
               <mat-label>Lastname</mat-label>
               <mat-error *ngIf="lastName.invalid">{{lastValidation()}}</mat-error>
-              <input matInput placeholder="LastName" [formControl]="lastName">
+              <input matInput placeholder="LastName" [(ngModel)]="register.lastName" [formControl]="lastName">
             </mat-form-field>
           </div>
         </div>
@@ -47,8 +57,8 @@
           <div fxFlex="55">
             <mat-form-field appearance="outline">
               <mat-label>Username</mat-label>
-              <mat-error *ngIf="userName.invalid">{{usernameValidation()}}</mat-error>
-              <input matInput placeholder="Username" [formControl]="userName">
+              <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+              <input matInput placeholder="Username" [(ngModel)]="register.email" [formControl]="email">
             </mat-form-field>
           </div>
         </div>
@@ -58,14 +68,14 @@
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Password</mat-label>
               <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
-              <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="password">
+              <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.password" [formControl]="password">
             </mat-form-field>
           </div>
           <div fxFlex="22">
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Confirm</mat-label>
-              <mat-error *ngIf="password.invalid">{{cpassValidation()}}</mat-error>
-              <input matInput placeholder="Confirm" [type]="hide ? 'password' : 'text'" [formControl]="cpassword">  
+              <mat-error *ngIf="cpassword.invalid">{{cpassValidation()}}</mat-error>
+              <input matInput placeholder="Confirm" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.cpassword" [formControl]="cpassword">  
             </mat-form-field>
           </div>
           <div fxLayoutAlign="end" fxFlex="2" class="p2">
@@ -75,13 +85,13 @@
         <div style="height:5vh"></div>
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
           <p>
-            <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" >
+            <mat-button-toggle-group appearance="legacy" name="fontStyle" [(ngModel)]="register.service" aria-label="Font Style" >
               <mat-button-toggle value="advanced" (click)="currentLesson = '1'"
               [disabled]="currentLesson !== '1'" class="primair">Advanced</mat-button-toggle>
             </mat-button-toggle-group>
           </p>
           <p>
-            <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle-group appearance="legacy" [(ngModel)]="register.service" name="fontStyle" aria-label="Font Style">
               <mat-button-toggle value="basic" (click)="currentLesson = '2'"
               [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
             </mat-button-toggle-group>
@@ -90,7 +100,7 @@
         <div style="height:5vh"></div>
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="25%">
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button></div>
-          <div class="p2"><button mat-button routerLink="/login" [disabled]="password.invalid && cpassword.invalid && firstName.invalid && lastName.invalid && userName.invalid">Next</button></div>
+          <div><button mat-button (click)="submit(register)" routerLink="/login">Next</button></div>
         </div>
         <div fxLayoutAlign="end" fxHide fxShow.gt-sm>
           <div class="img">

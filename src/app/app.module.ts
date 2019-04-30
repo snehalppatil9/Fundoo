@@ -1,3 +1,14 @@
+/******************************************************************************
+ *  Execution       :   1. default node         cmd> app.module.ts 
+ *
+ *  Purpose         : To import all the required files  
+ * 
+ *  @file           : reset.component.ts
+ *  @author         : Snehal Patil
+ *  @version        : 1.0
+ *  @since          : 22-04-2019
+ *
+ ******************************************************************************/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //importing the animation package
@@ -9,8 +20,6 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
-import { PasswordComponent } from './component/password/password.component'; 
-import { Forgot1Component } from './component/forgot1/forgot1.component';
 //importing angular material 
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 /*API reference for Angular button and checkbox
@@ -18,14 +27,14 @@ API reference for Angular Material card */
 import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule,MatListModule, MatSidenavModule} from '@angular/material';
 // API reference for Angular Material form-field 
 import {MatFormFieldModule} from '@angular/material/form-field';
-//add FlexLayoutModule into your AppModul
+//add FlexLayoutModule into your AppModule
 import { FlexLayoutModule } from '@angular/flex-layout';
 //API reference for Angular Material button-toggle
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 //import {FormControl, Validators} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ForgotemailComponent } from './component/forgotemail/forgotemail.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -33,10 +42,7 @@ import { ForgotemailComponent } from './component/forgotemail/forgotemail.compon
     LoginComponent,
     RegistrationComponent,
     ForgotComponent,
-    ResetComponent,
-    PasswordComponent,
-    Forgot1Component,
-    ForgotemailComponent
+    ResetComponent
   ],
   imports: [
     BrowserModule,
@@ -51,17 +57,16 @@ import { ForgotemailComponent } from './component/forgotemail/forgotemail.compon
     MatInputModule,
     MatProgressSpinnerModule,
     MatMenuModule, 
-    
     MatIconModule,
     MatListModule, 
     MatSidenavModule,
     FlexLayoutModule,
     MatButtonToggleModule,
     FormsModule,
-    ReactiveFormsModule
-    
-
-  ],
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSnackBarModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

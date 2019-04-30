@@ -1,4 +1,14 @@
-<div fxLayout="column" fxLayoutGap="6%">
+<!-- 
+  Execution       :   1. default node         cmd> login.component.html
+ 
+   Purpose         : To forgot password of your Fundoo Account  
+  
+   @file           : login.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+  -->
+<div fxLayout="column" fxLayoutGap="3%">
   <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
   <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
     <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
@@ -35,13 +45,23 @@
             </mat-form-field>
           </div>
           <div style="height:10vh"></div>
-          <div class="size"><button mat-button routerLink="/forgot">Forgot Email?</button></div>
+          <div fxLayoutAlign="end" class="eye">
+            <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+              <mat-label>Enter your Password</mat-label>
+              <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
+              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"> 
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+          </div>
+          <div style="height:15vh"></div>
+          <div class="size"><button mat-button routerLink="/forgot">Forgot Password?</button></div>
           <div style="height:5vh"></div>
           <div class="size"><button mat-button routerLink="/register">
               <h6>Create Account</h6>
             </button></div>
-          <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="email.invalid" routerLink="/password">Next</button></div>
-          <div style="height:5vh"></div>
+          <div fxLayoutAlign="end" >
+            <button mat-button [disabled]="email.invalid || password.invalid" routerLink="/">Next</button></div>
+          <div style="height:3vh"></div>
         </mat-card>
       </form>
     </div>

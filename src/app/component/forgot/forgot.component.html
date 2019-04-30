@@ -1,11 +1,21 @@
+<!-- 
+   Execution       :   1. default node         cmd> forgot.component.html
+ 
+   Purpose         : To forgot email of your Fundoo Account  
+  
+   @file           : forgot.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+ -->
 <div fxLayout="column" fxLayoutGap="6%">
-    <div fxFlex.lg="40%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
-    <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
-      <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
-      <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
-        <mat-card>
-          <mat-card-title fxLayoutAlign="center">
-            <h4>
+  <div fxFlex.lg="40%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+  <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
+    <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+    <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
+      <mat-card>
+        <mat-card-title fxLayoutAlign="center center">
+          <h4>
             <span class="lightblue">F</span>
             <span class="red">u</span>
             <span class="yellow">n</span>
@@ -18,26 +28,29 @@
             <span class="green">e</span>
             <span class="red">s</span>
           </h4>
-          </mat-card-title>
-          <div style="height:1vh"></div>
-          <mat-card-title fxLayoutAlign="center"><h3>Find your email</h3></mat-card-title>
-          <div style="height:1vh"></div>
-          <mat-card-title fxLayoutAlign="center">
-            <h5>Enter your phone number or recovery email</h5></mat-card-title>
-            <div style="height:5vh"></div>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Phone number or Email</mat-label>
-              <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
-              <input matInput placeholder="Phone number or Email" [formControl]="email">
-            </mat-form-field>
-          </div>
-          <div style="height:15vh"></div>
-          <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="email.invalid" routerLink="/forgotemail">Next</button></div>
-          <div style="height:10vh"></div>
-        </mat-card>
-      </div>
-      <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+        </mat-card-title>
+        <div style="height:1vh"></div>
+        <mat-card-title fxLayoutAlign="center">
+          <h3>Find your email</h3>
+        </mat-card-title>
+        <div style="height:1vh"></div>
+        <mat-card-title fxLayoutAlign="center">
+          <h5>Enter recovery email</h5>
+        </mat-card-title>
+        <div style="height:5vh"></div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Recovery Email</mat-label>
+            <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+            <input matInput placeholder="Recovery Email" [formControl]="email">
+          </mat-form-field>
+        </div>
+        <div style="height:15vh"></div>
+        <div fxLayoutAlign="end"><button mat-button [disabled]="email.invalid" routerLink="/reset">Next</button></div>
+        <div style="height:10vh"></div>
+      </mat-card>
     </div>
-    <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+    <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
   </div>
+  <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+</div>

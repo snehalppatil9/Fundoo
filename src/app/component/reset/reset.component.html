@@ -1,3 +1,13 @@
+<!-- 
+  Execution       :   1. default node         cmd> reset.component.html
+ 
+   Purpose         : To reset password of your Fundoo Account  
+  
+   @file           : reset.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+  -->
 <div fxLayout="column" fxLayoutGap="4%">
         <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
         <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
@@ -40,9 +50,9 @@
                   </mat-form-field>
                 </div>
                 <div style="height:15vh"></div>
-              <div class="size"><button mat-button routerLink="/forgot">Forgot Password?</button></div>
+              <div class="size"><button mat-button routerLink="/login">Sign in</button></div>
               <div style="height:5vh"></div>
-              <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/" [disabled]="password.invalid && cpassword.invalid">Next</button></div>
+              <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/">Next</button></div>
               <div style="height:5vh"></div>
             </mat-card>
           </div>
