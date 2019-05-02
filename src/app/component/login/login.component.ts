@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   submit() {
-    console.log('console@@@@@@@@@@@@@@@@@', this.login);
+    console.log('Login data................', this.login);
     try {
         this.UserService.postRequest('user/login', this.login).subscribe(
         data => {

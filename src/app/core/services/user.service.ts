@@ -9,21 +9,10 @@ export class UserService {
   postRequest(url,data){
     return this.http.post(this.baseUrl + url, data);
   }
-  isAuthenticated() {
-   return !!localStorage.getItem('id')
-  }
-  private loggedInStatus = false
   constructor(private http: HttpClient) { }
-  setLoggedIn(value:boolean){
-    this.loggedInStatus = value;
-  }
-  get isLoggedIn(){
-    return this.loggedInStatus
-  }
-  /**
+  /*
    * @description this method is for convert the data into encoded form
-   * @param toConvert  
-   */
+  */
   getEncodData(toConvert) {
     const formBody = [];
     for (const property in toConvert) {
@@ -33,10 +22,7 @@ export class UserService {
     }
     return formBody.join('&');
   }
-  getRequest(url) {
-    return this.http.get(this.baseUrl + url);
-  }
-  
+    
   post(url, data) {
     const httpOptions = {
       headers: new HttpHeaders({
