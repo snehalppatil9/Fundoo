@@ -86,12 +86,14 @@
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
           <p>
             <mat-button-toggle-group appearance="legacy" name="fontStyle" [(ngModel)]="register.service" aria-label="Font Style" >
+                <mat-error *ngIf="advanced.invalid">{{advancedValidation()}}</mat-error>
               <mat-button-toggle value="advanced" (click)="currentLesson = '1'"
               [disabled]="currentLesson !== '1'" class="primair">Advanced</mat-button-toggle>
             </mat-button-toggle-group>
           </p>
           <p>
             <mat-button-toggle-group appearance="legacy" [(ngModel)]="register.service" name="fontStyle" aria-label="Font Style">
+                <mat-error *ngIf="basic.invalid">{{basicValidation()}}</mat-error>
               <mat-button-toggle value="basic" (click)="currentLesson = '2'"
               [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
             </mat-button-toggle-group>
@@ -100,7 +102,7 @@
         <div style="height:5vh"></div>
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="25%">
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button></div>
-          <div><button mat-button (click)="submit(register)" routerLink="/login">Next</button></div>
+          <div><button mat-button [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid" (click)="submit(register)" routerLink="/login">Next</button></div>
         </div>
         <div fxLayoutAlign="end" fxHide fxShow.gt-sm>
           <div class="img">

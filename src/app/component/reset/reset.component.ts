@@ -11,12 +11,17 @@
  ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
+import { UserService } from '../../core/services/user.service';
+import { Router,ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
   styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit {
+  
   //title='FundooNotes';
   hide=true;
   /*
@@ -37,9 +42,40 @@ export class ResetComponent implements OnInit {
       this.password.hasError('minLength') ? 'Password must be at least 5 characters long' : 
       this.password.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number':'';
   }
-  constructor() { }
-
+  
+  model:any;
+  
+  constructor(private UserService: UserService, private router: Router,private snackbar : MatSnackBar,private activeRoute:ActivatedRoute) { }
+  accessToken=this.activeRoute.snapshot.paramMap.get('token');
   ngOnInit() {
+    console.log(this.accessToken);
+    localStorage.setItem('token',this.accessToken)
+    
+  }
+  
+  reset(){
+   // this.token=this.router.snapshot.paramMap.get('access-token')
+    console.log("model----",this.model);
+    try{
+      if(this.password.value == '') throw "Fields are missing"
+      this.model = {
+      "newPassword":this.password.value,
+      }
+      var data=new FormData();
+      data.append('newPassword',this.password.value);
+      this.UserService.post('user/reset-password',this.model).subscribe(
+      data => {
+      console.log("Response",data);
+      this.snackbar.open('password reset Successfully', 'End now', {duration: 1000});
+      this.router.navigateByUrl('login');
+    },
+    error=> {
+      this.snackbar.open('Not Reset password', 'End now', {duration: 3000});
+      console.log("error: ",error)
+    });
+    }catch(error){
+      this.snackbar.open('error',"", {duration: 3000});
+    }
   }
 
 }

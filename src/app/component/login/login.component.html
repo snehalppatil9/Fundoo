@@ -41,7 +41,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Email or Phone</mat-label>
               <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
-              <input matInput placeholder="Email or Phone" [formControl]="email">
+              <input matInput placeholder="Email or Phone" [(ngModel)]="login.email" [formControl]="email">
             </mat-form-field>
           </div>
           <div style="height:10vh"></div>
@@ -49,7 +49,7 @@
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Enter your Password</mat-label>
               <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
-              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"> 
+              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password" [formControl]="password"> 
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </mat-form-field>
           </div>
@@ -60,7 +60,7 @@
               <h6>Create Account</h6>
             </button></div>
           <div fxLayoutAlign="end" >
-            <button mat-button [disabled]="email.invalid || password.invalid" routerLink="/">Next</button></div>
+            <button mat-button [disabled]="email.invalid || password.invalid" (click)="submit(login)" routerLink="/">Next</button></div>
           <div style="height:3vh"></div>
         </mat-card>
       </form>

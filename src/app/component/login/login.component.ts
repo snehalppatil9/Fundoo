@@ -11,12 +11,18 @@
  ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
+import { UserModel } from '../../core/model/user-model';
+import { UserService } from '../../core/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  login: UserModel = new UserModel();
+  service: any;
   email = new FormControl('', [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]);
   //title = 'FundooNotes';
   /*
@@ -37,11 +43,29 @@ export class LoginComponent implements OnInit {
       this.password.hasError('minLength') ? 'Password must be at least 5 characters long' : 
       this.password.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number':'';
   }
-  constructor() {
+  constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) {
 
   }
 
   ngOnInit() {
+  }
+  submit() {
+    console.log('console@@@@@@@@@@@@@@@@@', this.login);
+    try {
+        this.UserService.postRequest('user/login', this.login).subscribe(
+        data => {
+          console.log("Response================>", this.login);
+          console.log("Response================>", data);
+          this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
+          this.router.navigateByUrl('login');
+        },
+        error => {
+          this.snackbar.open('Login not successfully......!', 'Stop...!', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+      } catch (error) {
+      this.snackbar.open('error occurs in catch block.................', "", { duration: 3000 });
+    }
   }
 
 }

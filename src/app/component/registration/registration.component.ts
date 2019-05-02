@@ -15,6 +15,7 @@ import { UserModel } from '../../core/model/user-model';
 import { UserService } from '../../core/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { log } from 'util';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -73,6 +74,14 @@ export class RegistrationComponent implements OnInit {
       this.cpassword.hasError('minLength') ? 'Password must be at least 5 characters long' :
         this.cpassword.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number' : '';
   }
+  advanced = new FormControl('', [Validators.required]);
+  advancedValidation() {
+    return this.advanced.hasError('required') ? 'choose advance or basic button' :'';
+  }
+  basic = new FormControl('', [Validators.required]);
+  basicValidation() {
+    return this.basic.hasError('required') ? 'choose advance or basic button' :'';
+  }
   /*
   * validation for advanced and basic toggle button
   */
@@ -94,10 +103,9 @@ export class RegistrationComponent implements OnInit {
   submit() {
     console.log('console@@@@@@@@@@@@@@@@@', this.register);
     try {
-      if (this.password.value != this.cpassword.value)
-        throw "password and confirmpassword does not match"
-      // if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.confirmPassword.value == '') throw "Fields are missing"
-
+     //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
+      if (this.password.value == this.cpassword.value){
+      console.log("password and confirmpassword does not match");
       this.UserService.postRequest('user/userSignUp', this.register).subscribe(
         data => {
           console.log("Response================>", this.register);
@@ -109,6 +117,10 @@ export class RegistrationComponent implements OnInit {
           this.snackbar.open('Register not successfully......!', 'Stop...!', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
+      }
+      else{
+        console.log("")
+      }
     } catch (error) {
       this.snackbar.open('error8888888888888888888888888888888', "", { duration: 3000 });
     }

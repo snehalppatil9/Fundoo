@@ -36,7 +36,7 @@
                   <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
                     <mat-label>Enter your new Password</mat-label>
                     <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
-                    <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'" [formControl]="password">
+                    <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'" [(ngModel)]="reset.password" [formControl]="password">
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </mat-form-field>
                 </div>
@@ -45,14 +45,14 @@
                   <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
                     <mat-label>Enter your new confirm Password</mat-label>
                     <mat-error *ngIf="password.invalid">{{cpassValidation()}}</mat-error>
-                    <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'" [formControl]="cpassword">
+                    <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'"  [(ngModel)]="reset.cpassword" [formControl]="cpassword">
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </mat-form-field>
                 </div>
                 <div style="height:15vh"></div>
-              <div class="size"><button mat-button routerLink="/login">Sign in</button></div>
+              <div class="size"><button mat-button routerLink="/login" >Sign in</button></div>
               <div style="height:5vh"></div>
-              <div fxLayoutAlign="end" class="p2"><button mat-button routerLink="/">Next</button></div>
+              <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="password.invalid || cpassword.invalid" (click)="reset()" routerLink="/login">Next</button></div>
               <div style="height:5vh"></div>
             </mat-card>
           </div>

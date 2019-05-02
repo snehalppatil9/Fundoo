@@ -11,12 +11,16 @@
  ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
+import { UserService } from '../../core/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
   styleUrls: ['./forgot.component.scss']
 })
 export class ForgotComponent implements OnInit {
+  model: any;
   email = new FormControl('', [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]);
   //title = 'FundooNotes';
   /*
@@ -27,9 +31,31 @@ export class ForgotComponent implements OnInit {
       this.email.hasError('email') ? 'Password must be at least 8 characters long' : 
       this.email.hasError('pattern') ? 'Its not a correct way to write email':'';
   }
-  constructor() { }
+  constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
   }
-
+  submit(){
+    console.log("model----",this.model);
+    try{
+     
+      if( this.email.value == '') throw "Fields are missing"
+      this.model = {
+      "email":this.email.value
+      }
+      this.UserService.postRequest('user/reset',this.model).subscribe(
+      data => {
+      console.log("Response",data);
+     // localStorage.setItem('access-token',data.token)
+      this.snackbar.open('check ur mail..', 'End now', {duration: 1000});
+      // this.router.navigateByUrl('reset-password');
+    },
+    error=> {
+      this.snackbar.open('invalid email', 'End now', {duration: 3000});
+      console.log("error: ",error)
+    });
+    }catch(error){
+      this.snackbar.open('error',"", {duration: 3000});
+    }
+  }
 }
