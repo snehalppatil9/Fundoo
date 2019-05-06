@@ -50,14 +50,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   submit() {
-    console.log('Login data................', this.login);
+    console.log('console@@@@@@@@@@@@@@@@@', this.login);
     try {
         this.UserService.postRequest('user/login', this.login).subscribe(
         data => {
           console.log("Response================>", this.login);
           console.log("Response================>", data);
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
-          this.router.navigateByUrl('login');
+          this.router.navigateByUrl('register');
         },
         error => {
           this.snackbar.open('Login not successfully......!', 'Stop...!', { duration: 3000 });

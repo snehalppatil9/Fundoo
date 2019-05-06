@@ -20,11 +20,13 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 //importing angular material 
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 /*API reference for Angular button and checkbox
 API reference for Angular Material card */
-import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule,MatListModule, MatSidenavModule} from '@angular/material';
+import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule,MatListModule, MatSidenavModule,  MatSliderModule,
+  MatSlideToggleModule,} from '@angular/material';
 // API reference for Angular Material form-field 
 import {MatFormFieldModule} from '@angular/material/form-field';
 //add FlexLayoutModule into your AppModule
@@ -35,13 +37,15 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
     ForgotComponent,
-    ResetComponent
+    ResetComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSliderModule,
+    MatSlideToggleModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
