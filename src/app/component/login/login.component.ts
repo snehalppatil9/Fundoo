@@ -1,8 +1,8 @@
 /******************************************************************************
- *  Execution       :   1. default node         cmd> login.component.ts 
+ *  Execution       :   1. default node         cmd> login.component.ts
  *
- *  Purpose         : To login to Fundoo Account  
- * 
+ *  Purpose         : To login to Fundoo Account
+ *
  *  @file           : login.component.ts
  *  @author         : Snehal Patil
  *  @version        : 1.0
@@ -10,11 +10,11 @@
  *
  ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl } from '@angular/forms';
-import { UserModel } from '../../core/model/user-model';
-import { UserService } from '../../core/services/user.service';
+import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserModel } from '../../core/model/user-model';
+import { UserService } from '../../core/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,25 +23,25 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   login: UserModel = new UserModel();
   service: any;
-  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]);
-  //title = 'FundooNotes';
+  hide=true;
+  email = new FormControl('', [Validators.required, Validators.email, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]);
+  //  title = 'FundooNotes';
   /*
   * validation for email
   */
   emailValidation() {
     return this.email.hasError('required') ? 'Enter an Email or Phone' :
-      this.email.hasError('email') ? 'Password must be at least 8 characters long' : 
-      this.email.hasError('pattern') ? 'Its not a correct way to write email':'';
+      this.email.hasError('email') ? 'Password must be at least 8 characters long' :
+        this.email.hasError('pattern') ? 'Its not a correct way to write email' : '';
   }
-  hide = true;
-  password = new FormControl('', [Validators.required, Validators.minLength(8),Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$")]);
+  password = new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]);
   /*
   * validation for password
   */
-  passValidation(){
+  passValidation() {
     return this.password.hasError('required') ? 'Password is required' :
-      this.password.hasError('minLength') ? 'Password must be at least 5 characters long' : 
-      this.password.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number':'';
+      this.password.hasError('minLength') ? 'Password must be at least 5 characters long' :
+        this.password.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number' : '';
   }
   constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) {
 
@@ -50,22 +50,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   submit() {
-    console.log('console@@@@@@@@@@@@@@@@@', this.login);
+    //console.log('console@@@@@@@@@@@@@@@@@', this.login);
     try {
-        this.UserService.postRequest('user/login', this.login).subscribe(
+      this.UserService.postRequest('user/login', this.login).subscribe(
         data => {
-          console.log("Response================>", this.login);
-          console.log("Response================>", data);
+          console.log('Response Login Data.......', this.login);
+          console.log('Response data............', data);
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
-          this.router.navigateByUrl('register');
+          this.router.navigateByUrl('dashboard');
         },
         error => {
           this.snackbar.open('Login not successfully......!', 'Stop...!', { duration: 3000 });
-          console.log("Error something wrong: ", error)
+          console.log('Error something went wrong: ', error);
         });
-      } catch (error) {
-      this.snackbar.open('error occurs in catch block.................', "", { duration: 3000 });
+    } catch (error) {
+      this.snackbar.open('error occurs in catch block.................', '', { duration: 3000 });
     }
   }
-
 }

@@ -1,8 +1,8 @@
 /******************************************************************************
- *  Execution       :   1. default node         cmd> app.module.ts 
+ *  Execution       :   1. default node         cmd> app.module.ts
  *
- *  Purpose         : To import all the required files  
- * 
+ *  Purpose         : To import all the required files
+ *
  *  @file           : reset.component.ts
  *  @author         : Snehal Patil
  *  @version        : 1.0
@@ -11,33 +11,44 @@
  ******************************************************************************/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//importing the animation package
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// importing the animation package
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-//importing LoginComponent,RegistrationComponent,ForgotComponent,ResetComponent,PasswordComponent components
+// importing LoginComponent,RegistrationComponent,ForgotComponent,ResetComponent,PasswordComponent components
 import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
-//importing angular material 
-import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+// importing angular material 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 /*API reference for Angular button and checkbox
 API reference for Angular Material card */
-import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule,MatListModule, MatSidenavModule,  MatSliderModule,
-  MatSlideToggleModule,} from '@angular/material';
-// API reference for Angular Material form-field 
-import {MatFormFieldModule} from '@angular/material/form-field';
-//add FlexLayoutModule into your AppModule
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatToolbarModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatCardModule,
+  MatMenuModule,
+  MatIconModule,
+  MatListModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+} from '@angular/material';
+//  API reference for Angular Material form-field 
+import { MatFormFieldModule } from '@angular/material/form-field';
+// add FlexLayoutModule into your AppModule
 import { FlexLayoutModule } from '@angular/flex-layout';
-//API reference for Angular Material button-toggle
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-//import {FormControl, Validators} from '@angular/forms';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// API reference for Angular Material button-toggle
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+// import {FormControl, Validators} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,9 +70,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatToolbarModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatMenuModule, 
+    MatMenuModule,
     MatIconModule,
-    MatListModule, 
+    MatListModule,
     MatSidenavModule,
     FlexLayoutModule,
     MatButtonToggleModule,
@@ -71,9 +82,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSnackBarModule,
     MatSliderModule,
     MatSlideToggleModule,
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
-  
+
 })
 export class AppModule { }

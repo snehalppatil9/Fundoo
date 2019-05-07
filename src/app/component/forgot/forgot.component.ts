@@ -38,8 +38,7 @@ export class ForgotComponent implements OnInit {
   submit(){
     console.log("model----",this.model);
     try{
-     
-      if( this.email.value == '') throw "Fields are missing"
+      if( this.email.value == '') throw "email required........."
       this.model = {
       "email":this.email.value
       }
@@ -47,11 +46,10 @@ export class ForgotComponent implements OnInit {
       data => {
       console.log("Response",data);
      // localStorage.setItem('access-token',data.token)
-      this.snackbar.open('check ur mail..', 'End now', {duration: 1000});
-      // this.router.navigateByUrl('reset-password');
-    },
+      this.snackbar.open('check ur mail..', 'Send Mail Sucessfully', {duration: 1000});
+      },
     error=> {
-      this.snackbar.open('invalid email', 'End now', {duration: 3000});
+      this.snackbar.open('invalid email', 'Send mail Unsucessfully', {duration: 3000});
       console.log("error: ",error)
     });
     }catch(error){

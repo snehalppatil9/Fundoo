@@ -4,8 +4,6 @@
         <mat-toolbar style="height:10vh">
             <div fxFlex="5">
                 <button type="button" mat-button (click)="drawer.toggle()">
-
-
                     <i class="material-icons">
                         view_headline
                     </i>
@@ -22,7 +20,15 @@
             </div>
             <div fxFlex="50" fxLayoutGap="3">
                 <mat-card>
+                    <div fxFlex="5" fxLayoutGap="3">
                     <i class="material-icons">search</i>
+                    </div>
+                    <div fxFlex="95" fxLayoutGap="3">
+                    <!-- Search form -->
+                    <mat-form-field>
+                        <input matInput placeholder="Input">
+                      </mat-form-field>
+                    </div>
                 </mat-card>
             </div>
             <div fxFlex="6">
@@ -40,7 +46,6 @@
                     settings
                 </i>
             </div>
-
             <div fxFlex="6">
                 <i class="material-icons">
                     apps
@@ -52,17 +57,12 @@
                 </i>
             </div>
         </mat-toolbar>
-
     </div>
     <mat-drawer-container class="example-container" autosize>
         <mat-drawer #drawer class="example-sidenav" mode="side">
             <p>Auto-resizing sidenav</p>
-
-
             Toggle extra text
-
         </mat-drawer>
-
         <div class="example-sidenav-content">
             <button type="button" mat-button (click)="drawer.toggle()">
 

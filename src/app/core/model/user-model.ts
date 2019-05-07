@@ -4,7 +4,7 @@ export class UserModel {
         "lastName": string;
         "email": string;
         "password": string;
-        "confirmPassword": string;
+        "cpassword": string;
         "service": string;
     
 }

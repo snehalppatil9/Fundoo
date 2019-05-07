@@ -42,22 +42,19 @@ export class ResetComponent implements OnInit {
       this.password.hasError('minLength') ? 'Password must be at least 5 characters long' : 
       this.password.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number':'';
   }
-  
   model:any;
-  
   constructor(private UserService: UserService, private router: Router,private snackbar : MatSnackBar,private activeRoute:ActivatedRoute) { }
   accessToken=this.activeRoute.snapshot.paramMap.get('token');
   ngOnInit() {
-    console.log(this.accessToken);
+    //console.log(this.accessToken);
     localStorage.setItem('token',this.accessToken)
-    
   }
   
   reset(){
    // this.token=this.router.snapshot.paramMap.get('access-token')
     console.log("model----",this.model);
     try{
-      if(this.password.value == '') throw "Fields are missing"
+      if(this.password.value == '') throw "Password Required........."
       this.model = {
       "newPassword":this.password.value,
       }

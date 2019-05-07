@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
+  // we declare that this service should be created
+  // by the root application injector.
   providedIn: 'root'
 })
 export class UserService {
@@ -13,16 +15,15 @@ export class UserService {
   /*
    * @description this method is for convert the data into encoded form
   */
-  getEncodData(toConvert) {
+  getEncodData(data) {
     const formBody = [];
-    for (const property in toConvert) {
+    for (const property in data) {
       const encodedKey = encodeURIComponent(property);
-      const encodedValue = encodeURIComponent(toConvert[property]);
+      const encodedValue = encodeURIComponent(data[property]);
       formBody.push(encodedKey + '=' + encodedValue);
     }
     return formBody.join('&');
   }
-    
   post(url, data) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -30,7 +31,7 @@ export class UserService {
         'Authorization': localStorage.getItem('token')
       })
     };
-    console.log('token in s',localStorage.getItem('token')
+    console.log('token...............',localStorage.getItem('token')
     );
     return this.http.post(this.baseUrl + url,this.getEncodData(data), httpOptions);
   }
