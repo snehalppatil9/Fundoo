@@ -1,5 +1,5 @@
 <mat-toolbar style="height:10vh">
-    <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50"
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50"
         fxFlex.sm="70">
         <div fxFlex="20" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
             <div fxFlex="25">
@@ -19,6 +19,7 @@
                 <label>Fundoo</label>
             </div>
         </div>
+
         <div fxFlex="50" fxLayoutGap="3" fxShow fxHide.sm fxShow fxHide.xs>
             <mat-card>
                 <div fxFlex="5" fxLayoutGap="3">
@@ -32,82 +33,79 @@
                 </div>
             </mat-card>
         </div>
-        <div fxFlex="30" fxLayoutGap="3" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
-            <div fxFlex="25">
+
+        <div fxFlex="25" fxLayoutGap="5" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
+            <div fxFlex="20">
                 <i class="material-icons">
                     refresh
                 </i>
             </div>
-            <div fxFlex="25">
+            <div fxFlex="20">
                 <i class="material-icons">
                     dashboard
                 </i>
             </div>
-            <div fxFlex="25">
+            <div fxFlex="20">
                 <i class="material-icons">
                     settings
                 </i>
             </div>
-            <div fxFlex="25">
+            <div fxFlex="20">
                 <i class="material-icons">
                     apps
                 </i>
             </div>
-            <div fxFlex="25">
+            <div fxFlex="20">
                 <i class="material-icons">
                     account_circle
                 </i>
             </div>
         </div>
+
     </div>
 </mat-toolbar>
+
+
+
 <mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav-content">
-        <mat-card>
-            <div fxFlex="100">
-                <div fxLayout="row">
-                    <mat-icon>home</mat-icon>
-                    <p> Notes </p>
-                </div>
-                <div fxLayout="row">
-                    <mat-icon>notifications_none</mat-icon>
-                    <p> Reminders </p>
-                </div>
+    <mat-drawer #drawer class="example-sidenav" mode="side" >
+        <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
+            <div class="notes" fxLayout="row" fxLayoutGap="20px">
+                <mat-icon class=label>notes</mat-icon>
+                <h5 class="name">Note</h5>
             </div>
-        </mat-card>
+            <div class="reminder" fxLayout="row" fxLayoutGap="20px">
+                <mat-icon class=label>notifications</mat-icon>
+                <h5 class="name">Reminder</h5>
+            </div>
+        </div>
         <mat-divider></mat-divider>
-        <mat-card>
-            <div fxFlex="100" style="height:10v">
-                <div fxLayout="row">
-                    <p> Labels </p>
-                </div>
-                <div fxLayout="row">
-                    <i class="material-icons">
-                        edit
-                    </i>
-                    <p> Edit Labels </p>
-                </div>
+
+        <div fxLayout="column" fxLayoutGap="10px" style="height:18vh">
+            <div class="label" fxLayout="row" fxLayoutGap="20px">
+                <p class="name">Label</p>
             </div>
-        </mat-card>
+            <mat-icon class=label>label</mat-icon>
+
+            <div class="edit" fxLayout="row" fxLayoutGap="20px">
+                <mat-icon class=label>create</mat-icon>
+                <button mat-button class="name"><h5>Edit Note</h5></button>
+            </div>
+        </div>
         <mat-divider></mat-divider>
-        <mat-card>
-            <div fxFlex="100">
-                <div fxLayout="row">
-                    <mat-icon>home</mat-icon>
-                    <p> Archive </p>
-                </div>
-                <div fxLayout="row">
-                    <i class="material-icons">
-                        delete
-                    </i>
-                    <p> Trash </p>
-                </div>
+
+        <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
+            <div class="archive" fxLayout="row" fxLayoutGap="20px">
+                <mat-icon class=label>archive</mat-icon>
+                <h5 class="name">Archive</h5>
             </div>
-        </mat-card>
+            <div class="delete" fxLayout="row" fxLayoutGap="20px">
+                <mat-icon class=label>delete</mat-icon>
+                <h5 class="name">Delete</h5>
+            </div>
+        </div>
         <mat-divider></mat-divider>
     </mat-drawer>
     <router-outlet></router-outlet>
 </mat-drawer-container>
-
-    
    
