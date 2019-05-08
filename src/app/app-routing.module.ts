@@ -15,16 +15,23 @@ import { RegistrationComponent } from './component/registration/registration.com
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component'
+import { AddNoteComponent } from './component/add-note/add-note.component'
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', 
+   component: DashboardComponent,
+   children: [
+    { path: 'addNote', component: AddNoteComponent},
+  ]
+
+   }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -49,6 +49,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddNoteComponent } from './component/add-note/add-note.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RegistrationComponent,
     ForgotComponent,
     ResetComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddNoteComponent,
+    
   ],
   imports: [
     BrowserModule,

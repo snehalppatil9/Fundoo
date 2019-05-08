@@ -1,76 +1,113 @@
-<div fxLayout="column" fxLayoutGap="3">
+<mat-toolbar style="height:10vh">
     <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50"
         fxFlex.sm="70">
-        <mat-toolbar style="height:10vh">
-            <div fxFlex="5">
+        <div fxFlex="20" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
+            <div fxFlex="25">
                 <button type="button" mat-button (click)="drawer.toggle()">
                     <i class="material-icons">
-                        view_headline
+                        menu
                     </i>
                 </button>
             </div>
-            <div fxFlex="5">
-                <img class="gb_ma gb_Cd" alt="" aria-hidden="true"
+            <div fxFlex="25">
+                <img class="gb_ma gb_Cd" alt="" aria-hidden="true" fxShow fxHide.sm fxShow fxHide.xs
                     src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
                     srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
                     style="width:50px;height:50px">
             </div>
-            <div fxFlex="10">
+            <div fxFlex="50">
                 <label>Fundoo</label>
             </div>
-            <div fxFlex="50" fxLayoutGap="3">
-                <mat-card>
-                    <div fxFlex="5" fxLayoutGap="3">
+        </div>
+        <div fxFlex="50" fxLayoutGap="3" fxShow fxHide.sm fxShow fxHide.xs>
+            <mat-card>
+                <div fxFlex="5" fxLayoutGap="3">
                     <i class="material-icons">search</i>
-                    </div>
-                    <div fxFlex="95" fxLayoutGap="3">
+                </div>
+                <div fxFlex="95" fxLayoutGap="3">
                     <!-- Search form -->
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <input matInput placeholder="Input">
-                      </mat-form-field>
-                    </div>
-                </mat-card>
-            </div>
-            <div fxFlex="6">
+                      </mat-form-field> -->
+                </div>
+            </mat-card>
+        </div>
+        <div fxFlex="30" fxLayoutGap="3" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
+            <div fxFlex="25">
                 <i class="material-icons">
                     refresh
                 </i>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="25">
                 <i class="material-icons">
                     dashboard
                 </i>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="25">
                 <i class="material-icons">
                     settings
                 </i>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="25">
                 <i class="material-icons">
                     apps
                 </i>
             </div>
-            <div fxFlex="6">
+            <div fxFlex="25">
                 <i class="material-icons">
                     account_circle
                 </i>
             </div>
-        </mat-toolbar>
-    </div>
-    <mat-drawer-container class="example-container" autosize>
-        <mat-drawer #drawer class="example-sidenav" mode="side">
-            <p>Auto-resizing sidenav</p>
-            Toggle extra text
-        </mat-drawer>
-        <div class="example-sidenav-content">
-            <button type="button" mat-button (click)="drawer.toggle()">
-
-            </button>
         </div>
+    </div>
+</mat-toolbar>
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav-content">
+        <mat-card>
+            <div fxFlex="100">
+                <div fxLayout="row">
+                    <mat-icon>home</mat-icon>
+                    <p> Notes </p>
+                </div>
+                <div fxLayout="row">
+                    <mat-icon>notifications_none</mat-icon>
+                    <p> Reminders </p>
+                </div>
+            </div>
+        </mat-card>
+        <mat-divider></mat-divider>
+        <mat-card>
+            <div fxFlex="100" style="height:10v">
+                <div fxLayout="row">
+                    <p> Labels </p>
+                </div>
+                <div fxLayout="row">
+                    <i class="material-icons">
+                        edit
+                    </i>
+                    <p> Edit Labels </p>
+                </div>
+            </div>
+        </mat-card>
+        <mat-divider></mat-divider>
+        <mat-card>
+            <div fxFlex="100">
+                <div fxLayout="row">
+                    <mat-icon>home</mat-icon>
+                    <p> Archive </p>
+                </div>
+                <div fxLayout="row">
+                    <i class="material-icons">
+                        delete
+                    </i>
+                    <p> Trash </p>
+                </div>
+            </div>
+        </mat-card>
+        <mat-divider></mat-divider>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+</mat-drawer-container>
 
-    </mat-drawer-container>
-</div>
-<div>
-
-</div>
+    
+   
