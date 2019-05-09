@@ -20,7 +20,6 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
-import { DashboardComponent } from './component/dashboard/dashboard.component';
 // importing angular material 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 /*API reference for Angular button and checkbox
@@ -49,7 +48,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AddNoteComponent } from './component/add-note/add-note.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { NoteComponent } from './component/note/note.component';
+import { ReminderComponent } from './component/reminder/reminder.component';
+import { LabelComponent } from './component/label/label.component';
+import { ArchieveComponent } from './component/archieve/archieve.component';
+import { TrashComponent } from './component/trash/trash.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +62,12 @@ import { AddNoteComponent } from './component/add-note/add-note.component';
     RegistrationComponent,
     ForgotComponent,
     ResetComponent,
-    DashboardComponent,
-    AddNoteComponent,
+    NavbarComponent,
+    NoteComponent,
+    ReminderComponent,
+    LabelComponent,
+    ArchieveComponent,
+    TrashComponent,
     
   ],
   imports: [

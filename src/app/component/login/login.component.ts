@@ -34,14 +34,13 @@ export class LoginComponent implements OnInit {
       this.email.hasError('email') ? 'Password must be at least 8 characters long' :
         this.email.hasError('pattern') ? 'Its not a correct way to write email' : '';
   }
-  password = new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]);
+  password = new FormControl('',[Validators.required,Validators.minLength(8)]);
   /*
   * validation for password
   */
   passValidation() {
     return this.password.hasError('required') ? 'Password is required' :
-      this.password.hasError('minLength') ? 'Password must be at least 5 characters long' :
-        this.password.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number' : '';
+      this.password.hasError('minLength') ? 'Password must be at least 5 characters long' :'';
   }
   constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) {
 

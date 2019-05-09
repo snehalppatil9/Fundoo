@@ -1,6 +1,9 @@
-<mat-toolbar style="height:10vh">
-    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50"
-        fxFlex.sm="70">
+<!-- 
+    Dashboard tool bar
+ -->
+
+ <mat-toolbar style="height:10vh">
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
         <div fxFlex="20" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
             <div fxFlex="25">
                 <button type="button" mat-button (click)="drawer.toggle()">
@@ -34,28 +37,28 @@
             </mat-card>
         </div>
 
-        <div fxFlex="25" fxLayoutGap="5" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
-            <div fxFlex="20">
+        <div fxFlex="25" fxLayoutGap="10" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
+            <!-- <div fxFlex="20">
                 <i class="material-icons">
                     refresh
                 </i>
-            </div>
+            </div> -->
             <div fxFlex="20">
                 <i class="material-icons">
                     dashboard
                 </i>
             </div>
-            <div fxFlex="20">
+            <div fxFlex="25">
                 <i class="material-icons">
                     settings
                 </i>
             </div>
-            <div fxFlex="20">
+            <!-- <div fxFlex="20">
                 <i class="material-icons">
                     apps
                 </i>
-            </div>
-            <div fxFlex="20">
+            </div> -->
+            <div fxFlex="25">
                 <i class="material-icons">
                     account_circle
                 </i>
@@ -65,10 +68,13 @@
     </div>
 </mat-toolbar>
 
+<!-- 
+    Dashboard side nav bar
+ -->
 
-
-<mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav" mode="side" >
+<mat-drawer-container class="example-container" >
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <br><br>
         <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
             <div class="notes" fxLayout="row" fxLayoutGap="20px">
                 <mat-icon class=label>notes</mat-icon>
@@ -80,7 +86,7 @@
             </div>
         </div>
         <mat-divider></mat-divider>
-
+        <br><br>
         <div fxLayout="column" fxLayoutGap="10px" style="height:18vh">
             <div class="label" fxLayout="row" fxLayoutGap="20px">
                 <p class="name">Label</p>
@@ -93,7 +99,7 @@
             </div>
         </div>
         <mat-divider></mat-divider>
-
+        <br><br>
         <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
             <div class="archive" fxLayout="row" fxLayoutGap="20px">
                 <mat-icon class=label>archive</mat-icon>
@@ -106,6 +112,7 @@
         </div>
         <mat-divider></mat-divider>
     </mat-drawer>
+    <div style="height:7vh"></div>
     <router-outlet></router-outlet>
 </mat-drawer-container>
    

@@ -14,8 +14,13 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
-import { DashboardComponent } from './component/dashboard/dashboard.component'
-import { AddNoteComponent } from './component/add-note/add-note.component'
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { NoteComponent } from './component/note/note.component';
+import { ReminderComponent } from './component/reminder/reminder.component';
+import { LabelComponent } from './component/label/label.component';
+import { ArchieveComponent } from './component/archieve/archieve.component';
+import { TrashComponent } from './component/trash/trash.component';
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -23,9 +28,13 @@ const routes: Routes = [
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
   { path: 'dashboard', 
-   component: DashboardComponent,
+   component: NavbarComponent,
    children: [
-    { path: 'addNote', component: AddNoteComponent},
+    { path: 'addNote', component: NoteComponent},
+    { path: 'reminder', component: ReminderComponent},
+    { path: 'label', component: LabelComponent},
+    { path: 'archieve', component: ArchieveComponent},
+    { path: 'trash', component: TrashComponent}
   ]
 
    }

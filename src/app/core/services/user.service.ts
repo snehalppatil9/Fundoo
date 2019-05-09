@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
+import { HttpService } from '../../core/services/http.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   // we declare that this service should be created
@@ -8,13 +9,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   baseUrl = environment.baseUrl
+  
   postRequest(url,data){
     return this.http.post(this.baseUrl + url, data);
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private httpService : HttpService) { }
   /*
    * @description this method is for convert the data into encoded form
   */
+ userRegister(body){
+  return this.httpService.postRequest("/user/userSignUp",body);
+}
   getEncodData(data) {
     const formBody = [];
     for (const property in data) {

@@ -1,0 +1,97 @@
+<div fxLayoutAlign="center" *ngIf="noteCard">
+    <mat-card class="card" (click)="noteCardOpen()" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px"
+      fxFlex.sm="500px" fxFlex.xs="95%">
+      <div fxFlex="100">
+        <div fxFlex="70">
+          <span>Take a note...</span>
+        </div>
+        <div fxLayoutAlign="end" fxFlex="30" fxLayoutGap="5">
+          <div fxFlex="30">
+            <i class="material-icons">
+              assignment_turned_in
+            </i>
+          </div>
+          <div fxFlex="30">
+            <i class="material-icons">
+              brush
+            </i>
+          </div>
+          <div fxFlex="30">
+            <i class="material-icons">
+              crop_original
+            </i>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  
+  
+  <div fxLayoutAlign="center" *ngIf="!noteCard">
+    <mat-card class="card" fxFlex.xl="600px" fxFlex.lg="600px" fxFlex.md="500px" fxFlex.sm="500px" fxFlex.xs="95%">
+      
+      <div fxFlex="30" fxLayout="row">
+        <!-- <div> -->
+          <mat-form-field>
+            <textarea matInput placeholder="Title...."></textarea>
+          </mat-form-field>
+          <div fxLayoutAlign="end">
+          <i class="material-icons">
+              get_app
+              </i>
+            </div>
+        <!-- </div> -->
+         <!-- <div>
+  
+        </div> --> 
+      </div>
+      <div fxFlex="30" fxLayout="row">
+          <!-- <div fxFlex="25"> -->
+            <mat-form-field>
+              <textarea matInput placeholder="Take a Note..."></textarea>
+            </mat-form-field>
+          <!-- </div> -->
+          <!-- <div>
+    
+          </div> -->
+        </div>
+        
+        <div fxLayoutAlign="start" fxFlex="30" fxLayoutGap="5">
+        <div fxFlex="5" fxLayoutGap="20px">
+            <i class="material-icons">
+                add_alert
+                </i>
+                
+                
+        </div>
+        <div fxFlex="5" fxLayoutGap="5">
+          <i class="material-icons">
+            person_add
+          </i>
+        </div>
+        <div fxFlex="5" fxLayoutGap="5">
+          <i class="material-icons">
+            color_lens
+          </i>
+        </div>
+        <div fxFlex="5" fxLayoutGap="5">
+            <i class="material-icons">
+                crop_original
+              </i>
+        </div>
+        <div fxFlex="5" fxLayoutGap="5">
+            <i class="material-icons">
+                archive
+                </i>
+                
+                
+        </div>
+        <div fxFlex="5" fxLayoutGap="5">
+            <i class="material-icons">
+                more_vert
+                </i>
+        </div>
+  
+      </div>
+ </mat-card>
+  </div>
