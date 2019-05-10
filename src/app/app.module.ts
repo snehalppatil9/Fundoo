@@ -54,6 +54,7 @@ import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
+import { IconComponent } from './component/icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { TrashComponent } from './component/trash/trash.component';
     LabelComponent,
     ArchieveComponent,
     TrashComponent,
+    IconComponent,
     
   ],
   imports: [

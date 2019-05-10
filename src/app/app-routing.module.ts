@@ -20,7 +20,7 @@ import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
-
+import { IconComponent } from './component/icon/icon.component'
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -34,7 +34,8 @@ const routes: Routes = [
     { path: 'reminder', component: ReminderComponent},
     { path: 'label', component: LabelComponent},
     { path: 'archieve', component: ArchieveComponent},
-    { path: 'trash', component: TrashComponent}
+    { path: 'trash', component: TrashComponent},
+    { path:'icon', component : IconComponent }
   ]
 
    }

@@ -36,15 +36,14 @@ export class NoteComponent implements OnInit {
     var body = {
       "title": this.title.value,
       "description": this.description.value,
-      // "UserId" : ,
     }
-    console.log('console for this.register @@@@@@@@@@@@@@@@@=======================>', body);
+    console.log('add note data......', body);
     try {
       
         this.noteService.addNote(body).subscribe(
           data => {
-            this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
-            console.log('Register infor ==========>', data);
+            this.snackbar.open('Note added successfully......', '', { duration: 3000 });
+            console.log('add note data..........', data);
           },
           error => {
             this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
