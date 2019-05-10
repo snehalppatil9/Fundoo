@@ -15,7 +15,6 @@ import { UserModel } from '../../core/model/user-model';
 import { UserService } from '../../core/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { log } from 'util';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -106,7 +105,7 @@ export class RegistrationComponent implements OnInit {
      //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
       if (this.password.value == this.cpassword.value){
       console.log("password and confirmpassword does not match");
-      this.UserService.postRequest('user/userSignUp', this.register).subscribe(
+      this.UserService.userRegister(this.register).subscribe(
         data => {
           console.log("Response================>", this.register);
           console.log("Response================>", data);

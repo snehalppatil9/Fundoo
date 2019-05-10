@@ -33,7 +33,7 @@
       <div fxFlex="30" fxLayout="row">
         <!-- <div> -->
           <mat-form-field>
-            <textarea matInput placeholder="Title...."></textarea>
+            <textarea matInput placeholder="Title...." #title></textarea>
           </mat-form-field>
           <div fxLayoutAlign="end">
           <i class="material-icons">
@@ -48,7 +48,7 @@
       <div fxFlex="30" fxLayout="row">
           <!-- <div fxFlex="25"> -->
             <mat-form-field>
-              <textarea matInput placeholder="Take a Note..."></textarea>
+              <textarea matInput *ngIf=!listNote placeholder="Take a Note..." #description></textarea>
             </mat-form-field>
           <!-- </div> -->
           <!-- <div>
@@ -91,7 +91,27 @@
                 more_vert
                 </i>
         </div>
-  
+        <div>
+          <button mat-button  (click)="close()">close</button>
+        </div>
       </div>
+
+      <div *ngIf=listNote>
+        <div *ngFor="let data of listArray" fxLayout=row class=listInput>
+          <div fxFlex=5%><mat-checkbox (click)=checked(data)></mat-checkbox></div>
+          <input fxFlex=85% type=text name=input [(ngModel)]=data.itemName class=input>
+          <div fxFlex=5%><mat-icon class=clear (click)=removeList(data)>clear</mat-icon></div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout=row class=listInput>
+          <div fxFlex=5%><mat-icon class=clear>add</mat-icon></div>
+          <input fxFlex=85% placeholder="List item" #item=ngModel class=input [(ngModel)]="model.item"
+          (keydown.enter)="listitem()">
+          <div fxFlex=5%><mat-icon class=clear (click)=clear()>clear</mat-icon></div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+
+      
  </mat-card>
   </div>

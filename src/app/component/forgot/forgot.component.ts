@@ -42,7 +42,7 @@ export class ForgotComponent implements OnInit {
       this.model = {
       "email":this.email.value
       }
-      this.UserService.postRequest('user/reset',this.model).subscribe(
+      this.UserService.userForgot(this.model).subscribe(
       data => {
       console.log("Response",data);
      // localStorage.setItem('access-token',data.token)

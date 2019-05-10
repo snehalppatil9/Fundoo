@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
-  { path: 'dashboard', 
+  { path: 'navbar', 
    component: NavbarComponent,
    children: [
     { path: 'addNote', component: NoteComponent},

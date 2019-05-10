@@ -51,12 +51,12 @@ export class LoginComponent implements OnInit {
   submit() {
     //console.log('console@@@@@@@@@@@@@@@@@', this.login);
     try {
-      this.UserService.postRequest('user/login', this.login).subscribe(
+      this.UserService.userLogin(this.login).subscribe(
         data => {
           console.log('Response Login Data.......', this.login);
           console.log('Response data............', data);
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
-          this.router.navigateByUrl('dashboard');
+          this.router.navigateByUrl('navbar');
         },
         error => {
           this.snackbar.open('Login not successfully......!', 'Stop...!', { duration: 3000 });

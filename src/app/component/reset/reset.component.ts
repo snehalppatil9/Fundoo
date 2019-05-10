@@ -60,7 +60,7 @@ export class ResetComponent implements OnInit {
       }
       var data=new FormData();
       data.append('newPassword',this.password.value);
-      this.UserService.post('user/reset-password',this.model).subscribe(
+      this.UserService.userReset(this.model).subscribe(
       data => {
       console.log("Response",data);
       this.snackbar.open('password reset Successfully', 'End now', {duration: 1000});
