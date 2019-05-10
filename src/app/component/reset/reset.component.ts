@@ -11,7 +11,7 @@
  ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
-import { UserService } from '../../core/services/user.service';
+import { UserService } from '../../core/services/user/user.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 

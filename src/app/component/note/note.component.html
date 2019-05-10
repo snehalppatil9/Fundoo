@@ -1,117 +1,152 @@
-<div fxLayoutAlign="center" *ngIf="noteCard">
-    <mat-card class="card" (click)="noteCardOpen()" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px"
-      fxFlex.sm="500px" fxFlex.xs="95%">
-      <div fxFlex="100">
-        <div fxFlex="70">
-          <span>Take a note...</span>
-        </div>
-        <div fxLayoutAlign="end" fxFlex="30" fxLayoutGap="5">
-          <div fxFlex="30">
-            <i class="material-icons">
-              assignment_turned_in
-            </i>
-          </div>
-          <div fxFlex="30">
-            <i class="material-icons">
-              brush
-            </i>
-          </div>
-          <div fxFlex="30">
-            <i class="material-icons">
-              crop_original
-            </i>
-          </div>
-        </div>
+<!-- <div fxLayoutAlign="center" *ngIf="noteCard">
+  <mat-card class="card" (click)="noteCardOpen()" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px"
+    fxFlex.sm="500px" fxFlex.xs="95%">
+    <div fxFlex="100">
+      <div fxFlex="70">
+        <span>Take a note...</span>
       </div>
-    </mat-card>
-  </div>
-  
-  
-  <div fxLayoutAlign="center" *ngIf="!noteCard">
-    <mat-card class="card" fxFlex.xl="600px" fxFlex.lg="600px" fxFlex.md="500px" fxFlex.sm="500px" fxFlex.xs="95%">
-      
-      <div fxFlex="30" fxLayout="row">
-        <!-- <div> -->
-          <mat-form-field>
-            <textarea matInput placeholder="Title...." #title></textarea>
-          </mat-form-field>
-          <div fxLayoutAlign="end">
+      <div fxLayoutAlign="end" fxFlex="30" fxLayoutGap="5">
+        <div fxFlex="30">
           <i class="material-icons">
-              get_app
-              </i>
-            </div>
-        <!-- </div> -->
-         <!-- <div>
-  
-        </div> --> 
-      </div>
-      <div fxFlex="30" fxLayout="row">
-          <!-- <div fxFlex="25"> -->
-            <mat-form-field>
-              <textarea matInput *ngIf=!listNote placeholder="Take a Note..." #description></textarea>
-            </mat-form-field>
-          <!-- </div> -->
-          <!-- <div>
-    
-          </div> -->
-        </div>
-        
-        <div fxLayoutAlign="start" fxFlex="30" fxLayoutGap="5">
-        <div fxFlex="5" fxLayoutGap="20px">
-            <i class="material-icons">
-                add_alert
-                </i>
-                
-                
-        </div>
-        <div fxFlex="5" fxLayoutGap="5">
-          <i class="material-icons">
-            person_add
+            assignment_turned_in
           </i>
         </div>
-        <div fxFlex="5" fxLayoutGap="5">
+        <div fxFlex="30">
           <i class="material-icons">
-            color_lens
+            brush
           </i>
         </div>
-        <div fxFlex="5" fxLayoutGap="5">
-            <i class="material-icons">
-                crop_original
-              </i>
-        </div>
-        <div fxFlex="5" fxLayoutGap="5">
-            <i class="material-icons">
-                archive
-                </i>
-                
-                
-        </div>
-        <div fxFlex="5" fxLayoutGap="5">
-            <i class="material-icons">
-                more_vert
-                </i>
-        </div>
-        <div>
-          <button mat-button  (click)="close()">close</button>
+        <div fxFlex="30">
+          <i class="material-icons">
+            crop_original
+          </i>
         </div>
       </div>
+    </div>
+  </mat-card>
+</div>
 
-      <div *ngIf=listNote>
-        <div *ngFor="let data of listArray" fxLayout=row class=listInput>
-          <div fxFlex=5%><mat-checkbox (click)=checked(data)></mat-checkbox></div>
-          <input fxFlex=85% type=text name=input [(ngModel)]=data.itemName class=input>
-          <div fxFlex=5%><mat-icon class=clear (click)=removeList(data)>clear</mat-icon></div>
-        </div>
-        <mat-divider></mat-divider>
-        <div fxLayout=row class=listInput>
-          <div fxFlex=5%><mat-icon class=clear>add</mat-icon></div>
-          <input fxFlex=85% placeholder="List item" #item=ngModel class=input [(ngModel)]="model.item"
-          (keydown.enter)="listitem()">
-          <div fxFlex=5%><mat-icon class=clear (click)=clear()>clear</mat-icon></div>
-        </div>
-        <mat-divider></mat-divider>
+<div fxLayoutAlign="center" *ngIf="!noteCard">
+  <mat-card class="card" fxFlex.xl="600px" fxFlex.lg="600px" fxFlex.md="500px" fxFlex.sm="500px" fxFlex.xs="95%">
+
+      <mat-form-field>
+        <textarea matInput placeholder="Title...." [formControl]="title"></textarea>
+      </mat-form-field>
+      <div fxLayoutAlign="end">
+        <i class="material-icons">
+          get_app
+        </i>
       </div>
 
+    <div fxFlex="30" fxLayout="row">
       
- </mat-card>
-  </div>
+      <mat-form-field>
+        <textarea matInput placeholder="Take a Note..." [formControl]="description"></textarea>
+      </mat-form-field>
+
+     
+    </div>
+    <div fxLayoutAlign="start" fxFlex="30" fxLayoutGap="5">
+      <div fxFlex="5" fxLayoutGap="20px">
+        <i class="material-icons">
+          add_alert
+        </i>
+      </div>
+      <div fxFlex="5" fxLayoutGap="5">
+        <i class="material-icons">
+          person_add
+        </i>
+      </div>
+      <div fxFlex="5" fxLayoutGap="5">
+        <i class="material-icons">
+          color_lens
+        </i>
+      </div>
+      <div fxFlex="5" fxLayoutGap="5">
+        <i class="material-icons">
+          crop_original
+        </i>
+      </div>
+      <div fxFlex="5" fxLayoutGap="5">
+        <i class="material-icons">
+          archive
+        </i>
+      </div>
+      <div fxFlex="5" fxLayoutGap="5">
+        <i class="material-icons">
+          more_vert
+        </i>
+      </div>
+      <div>
+        <button mat-button (click)="close()">close</button>
+      </div>
+    </div>
+  </mat-card>
+</div> -->
+
+
+
+
+
+<!-- Notecard start -->
+<div fxLayoutAlign="center center" *ngIf="notecard">
+  <mat-card class="card" (click)="notecardOpen()" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
+    fxFlex.sm='400px' fxFlex.xs='150px'>
+    <div fxLayoutGap="35px">
+        <span  fxFlex="calc(50% - 25px)" >Take a note...</span>
+        <mat-icon class="icon">panorama</mat-icon>
+        <mat-icon class="icon" (click)="list()">view_list</mat-icon>
+    </div>
+  </mat-card>
+</div>
+<!-- Notecard end -->
+
+<!-- add notecard start -->
+<div fxLayoutAlign="center center" *ngIf="!notecard">
+  <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+    <div>
+      <div>
+        <input fxFlex="calc(50% - 25px)" style="height:10vh; border-style: hidden" [formControl]="title" placeholder="Title">
+        <mat-icon class="icon">mood</mat-icon>
+      </div>
+      <div>
+        <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note...">
+        <div contenteditable="true" role="textbox" spellcheck="true"></div>
+        <div class="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+          <!--1-->
+          <mat-icon class="icon">mood</mat-icon>
+          <!--2-->
+          <mat-icon class="icon">person_add</mat-icon>
+          <!--3-->
+          <mat-icon class="icon">color_lens</mat-icon>
+          <!--4-->
+          <mat-icon class="icon">photo_size_select_actual</mat-icon>
+          <!--5-->
+          <mat-icon class="icon">archive</mat-icon>
+          <!--6-->
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon class="icon">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Add label</span>
+            </button>
+            <button mat-menu-item>
+              <span>Add drawing</span>
+            </button>
+            <button mat-menu-item>
+              <span>Show checkboxes</span>
+            </button>
+          </mat-menu>
+          <!--7-->
+          <mat-icon class="icon">undo</mat-icon>
+          <!--8-->
+          <mat-icon class="icon">redo</mat-icon>
+          <!--9--><button mat-button (click)="addNote()">Close</button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <router-outlet></router-outlet>
+</div>
+<!-- add notecard end -->

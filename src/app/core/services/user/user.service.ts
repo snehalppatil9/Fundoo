@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
-import { HttpService } from '../../core/services/http.service'
+import {environment} from '../../../../environments/environment';
+import { HttpService } from '../../services/http/http.service'
 
 @Injectable({
   // we declare that this service should be created
@@ -23,6 +23,6 @@ export class UserService {
     return this.httpService.postRequest("user/reset", body);
   }
   userReset(body){
-    return this.httpService.post("/user/reset-password",body);
+    return this.httpService.postReset("/user/reset-password",body);
   }
 }

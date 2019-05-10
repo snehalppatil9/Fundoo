@@ -14,7 +14,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserModel } from '../../core/model/user-model';
-import { UserService } from '../../core/services/user.service';
+import { UserService } from '../../core/services/user/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
         data => {
           console.log('Response Login Data.......', this.login);
           console.log('Response data............', data);
+          localStorage.setItem('token',data['id']);
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
           this.router.navigateByUrl('navbar');
         },

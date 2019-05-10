@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,7 +29,7 @@ export class HttpService {
     }
     return formBody.join('&');
   }
-  post(path, body) {
+  postReset(path, body) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -40,4 +40,21 @@ export class HttpService {
     );
     return this.httpclient.post(environment.baseUrl + path,this.getEncodData(body), httpOptions);
   }
+
+  postAddNote(path, body) {
+    console.log(body);
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.httpclient.post(environment.baseUrl + path, body, httpOptions);
+  }
+
 }
+
+
+
