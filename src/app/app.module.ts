@@ -56,7 +56,9 @@ import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
 import { CardsComponent } from './component/cards/cards.component';
-
+import { CardDisplayComponent } from './component/card-display/card-display.component';
+import { AllnoteComponent } from './component/allnote/allnote.component';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +74,8 @@ import { CardsComponent } from './component/cards/cards.component';
     TrashComponent,
     IconComponent,
     CardsComponent,
+    CardDisplayComponent,
+    AllnoteComponent,
     
   ],
   imports: [
@@ -98,6 +102,7 @@ import { CardsComponent } from './component/cards/cards.component';
     MatSnackBarModule,
     MatSliderModule,
     MatSlideToggleModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

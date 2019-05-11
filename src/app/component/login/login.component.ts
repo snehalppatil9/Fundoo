@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   * validation for email
   */
   emailValidation() {
-    return this.email.hasError('required') ? 'Enter an Email or Phone' :
+    return this.email.hasError('required') ? 'Enter an Emailid' :
       this.email.hasError('email') ? 'Password must be at least 8 characters long' :
         this.email.hasError('pattern') ? 'Its not a correct way to write email' : '';
   }
@@ -53,8 +53,8 @@ export class LoginComponent implements OnInit {
     try {
       this.UserService.userLogin(this.login).subscribe(
         data => {
-          console.log('Response Login Data.......', this.login);
-          console.log('Response data............', data);
+         // console.log('Response Login Data.......', this.login);
+         // console.log('Response data............', data);
           localStorage.setItem('token',data['id']);
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
           this.router.navigateByUrl('navbar');

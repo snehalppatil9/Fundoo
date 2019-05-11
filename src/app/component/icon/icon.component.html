@@ -1,41 +1,35 @@
-
-         
+<div  fxLayoutGap="20px">
+<i class="material-icons">
+  add_alert
+</i>
+<i class="material-icons">
+  person_add
+</i>
+<i class="material-icons">
+  color_lens
+</i>
+<i class="material-icons">
+  crop_original
+</i>
+<i class="material-icons">
+  archive
+</i>
+<button mat-icon-button [matMenuTriggerFor]="menu">
   <i class="material-icons">
-    add_alert
+    more_vert
   </i>
-  
-  <i class="material-icons">
-    person_add
-  </i>
-  
-  <i class="material-icons">
-    color_lens
-  </i>
-  <i class="material-icons">
-    crop_original
-  </i>
-  <i class="material-icons">
-    archive
-  </i>
-  
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <i class="material-icons">
-      more_vert
-    </i>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <span>Add label</span>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <span>Add label</span>
-    </button>
-    <button mat-menu-item>
-      <span>Add drawing</span>
-    </button>
-    <button mat-menu-item>
-      <span>Show checkboxes</span>
-    </button>
-  </mat-menu>
-  
-  <mat-icon class="icon">undo</mat-icon>
-
-  <mat-icon class="icon">redo</mat-icon>
-
+  <button mat-menu-item>
+    <span>Add drawing</span>
+  </button>
+  <button mat-menu-item>
+    <span>Show checkboxes</span>
+  </button>
+</mat-menu>
+<mat-icon class="icon">undo</mat-icon>
+<mat-icon class="icon">redo</mat-icon>
+</div>

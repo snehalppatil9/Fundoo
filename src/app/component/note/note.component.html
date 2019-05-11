@@ -29,20 +29,20 @@
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
       <div>
-        <input style="height:5vh; border-style: hidden" [formControl]="title" placeholder="Title">
+        <input style="height:5vh; border-style: hidden" [formControl]="title" placeholder="Title" #title>
         <i class="material-icons">
           add_alert
         </i>
       </div>
       <div>
-        <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note...">
+        <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note..." #description>
         <div contenteditable="true" role="textbox" spellcheck="true"></div>
-        <div class="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+        <div class="row"  fxLayoutAlign="space-evenly center">
           <app-icon></app-icon> 
           <button mat-button (click)="addNote()">Close</button>
         </div>
       </div>
     </div>
   </mat-card>
-  <router-outlet></router-outlet>
+
 </div>

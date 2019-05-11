@@ -15,7 +15,7 @@ import { RegistrationComponent } from './component/registration/registration.com
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { NoteComponent } from './component/note/note.component';
+import { AllnoteComponent } from './component/allnote/allnote.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchieveComponent } from './component/archieve/archieve.component';
@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'navbar', 
    component: NavbarComponent,
    children: [
-    { path: 'addNote', component: NoteComponent},
+    { path: 'addNote', component: AllnoteComponent},
     { path: 'reminder', component: ReminderComponent},
     { path: 'label', component: LabelComponent},
     { path: 'archieve', component: ArchieveComponent},

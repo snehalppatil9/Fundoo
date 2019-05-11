@@ -9,4 +9,7 @@ export class NotesService {
    addNote(body){
     return this.httpservice.postAddNote("notes/addNotes",body);
   }
+  getNoteList(){
+    return this.httpservice.getData2("notes/getNotesList");
+  }
 }

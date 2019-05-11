@@ -21,7 +21,6 @@ export class NoteComponent implements OnInit {
   */
   noteCardOpen(){
     this.notecard=!(this.notecard);
-   
   }
  
   ngOnInit() {

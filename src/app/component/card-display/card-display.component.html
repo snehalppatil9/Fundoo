@@ -1,0 +1,4 @@
+<mat-card [ngStyle]="{'background-color':cardColor}">
+  <div mat-dialog-title contenteditable="true" #title class="input"[innerHTML]=data.noteData.title></div>
+  <div *ngIf="data.noteData.noteCheckLists.length==0" mat-dialog-content contenteditable="true" #description class="input" [innerHTML]=data.noteData.description></div>
+

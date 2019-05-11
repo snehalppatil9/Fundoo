@@ -53,6 +53,15 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.httpclient.post(environment.baseUrl + path, body, httpOptions);
   }
+  getData2(path){
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.get(environment.baseUrl+path,httpAuthOptions);
+  }
 
 }
 
