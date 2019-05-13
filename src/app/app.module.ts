@@ -61,6 +61,7 @@ import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
 import { AllnoteComponent } from './component/allnote/allnote.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { HomeComponent } from './component/home/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +77,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     TrashComponent,
     IconComponent,
     AllnoteComponent,
+    HomeComponent,
     
   ],
   imports: [

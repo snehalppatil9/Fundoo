@@ -1,4 +1,14 @@
-<div fxLayout="column">
+<!-- 
+  Execution       :   1. default node         cmd> navbar.component.html
+ 
+   Purpose         : To add note into the database
+  
+   @file           : navbar.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 28-04-2019
+  -->
+<div fxLayout="column" fxLayoutGap="50px">
 <div fxLayoutAlign="center" *ngIf="notecard">
   <mat-card class="card" (click)="noteCardOpen()" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px"
     fxFlex.sm="500px" fxFlex.xs="95%">
@@ -45,8 +55,7 @@
       </div>
     </div>
   </mat-card>
+  <!-- <router-outlet></router-outlet> -->
 </div>
-
 <app-allnote></app-allnote>
-
 </div>

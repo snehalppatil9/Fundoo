@@ -1,6 +1,7 @@
 /******************************************************************************
  *  Execution       :   1. default node         cmd> app-routing.module.ts 
  *
+ * @description     : Used for the routing
  *  @file           : app-routing.module.ts
  *  @author         : Snehal Patil
  *  @version        : 1.0
@@ -15,34 +16,36 @@ import { RegistrationComponent } from './component/registration/registration.com
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { AllnoteComponent } from './component/allnote/allnote.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { LabelComponent } from './component/label/label.component';
 import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NoteComponent } from './component/note/note.component';
+import { AuthGuardService } from './core/services/authGuard/auth-guard.service'
+import { AllnoteComponent } from './component/allnote/allnote.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
-  { path: 'navbar', 
-   component: NavbarComponent,
-   children: [
-    { path: 'addNote', component: NoteComponent},
-    { path: 'reminder', component: ReminderComponent},
-    { path: 'label', component: LabelComponent},
-    { path: 'archieve', component: ArchieveComponent},
-    { path: 'trash', component: TrashComponent},
-    { path:'icon', component : IconComponent }
-  ]
+  {
+    path: 'navbar',
+    component: NavbarComponent, canActivate: [AuthGuardService],
+    children: [
+      { path: 'addnote', component: NoteComponent },
+      { path: 'reminder', component: ReminderComponent },
+      { path: 'label', component: LabelComponent },
+      { path: 'archieve', component: ArchieveComponent },
+      { path: 'trash', component: TrashComponent },
+      { path: 'icon', component: IconComponent }
+    ]
 
-   }
+  }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes),RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes), RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

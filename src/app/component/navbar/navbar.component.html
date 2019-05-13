@@ -1,28 +1,49 @@
 <!-- 
-    Dashboard tool bar
+  Execution       :   1. default node         cmd> navbar.component.html
+ 
+   Purpose         : To display navigation and side navigation bar
+  
+   @file           : navbar.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 28-04-2019
+  -->
+<!-- 
+    @Description: Dashboard tool bar
  -->
-
- <mat-toolbar style="height:10vh">
-    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
+<mat-toolbar style="height:10vh">
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50"
+        fxFlex.sm="70">
         <div fxFlex="21" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70" fxLayoutGap="4">
             <div fxFlex="25">
+                <!-- 
+                     @Description: Dashboard first icon menu bar
+                 -->
                 <button type="button" mat-button (click)="drawer.toggle()">
                     <i class="material-icons">
                         menu
                     </i>
                 </button>
             </div>
+            <!-- 
+                 @Description: Dashboard second icon image
+             -->
             <div fxFlex="25">
                 <img class="gb_ma gb_Cd" alt="" aria-hidden="true" fxShow fxHide.sm fxShow fxHide.xs
                     src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
                     srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
                     style="width:50px;height:50px">
             </div>
+            <!-- 
+                 @Description: Dashboard Fundoo Label
+             -->
             <div fxFlex="50">
                 <label>Fundoo</label>
             </div>
         </div>
-
+        <!-- 
+            @Description: Dashboard Search Box
+        -->
         <div fxFlex="45" fxLayoutGap="5" fxShow fxHide.sm fxShow fxHide.xs>
             <mat-card>
                 <div fxFlex="5">
@@ -36,7 +57,9 @@
                 </div>
             </mat-card>
         </div>
-
+        <!-- 
+            @Description: Dashboard view-list, settings and account icons  
+        -->
         <div fxFlex="20" fxLayoutGap="5" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
             <!-- <div fxFlex="20">
                 <i class="material-icons">
@@ -44,14 +67,18 @@
                 </i>
             </div> -->
             <div fxFlex="30">
-                <i class="material-icons">
-                    dashboard
-                </i>
+                <button mat-icon-button>
+                    <i class="material-icons">
+                        dashboard
+                    </i>
+                </button>
             </div>
             <div fxFlex="35">
-                <i class="material-icons">
-                    settings
-                </i>
+                <button mat-icon-button>
+                    <i class="material-icons">
+                        settings
+                    </i>
+                </button>
             </div>
             <!-- <div fxFlex="20">
                 <i class="material-icons">
@@ -59,60 +86,69 @@
                 </i>
             </div> -->
             <div fxFlex="35">
-                <i class="material-icons">
-                    account_circle
-                </i>
+                <button mat-icon-button class="materialicons">
+                    <i class="material-icons">
+                        account_circle
+                    </i>
+                </button>
             </div>
         </div>
-
     </div>
 </mat-toolbar>
-
 <!-- 
     Dashboard side nav bar
  -->
-
-<mat-drawer-container class="example-container" >
+<mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <br><br>
-        <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
-            <div class="notes" fxLayout="row" fxLayoutGap="20px">
-                <mat-icon class=label>notes</mat-icon>
-                <h5 class="name">Note</h5>
-            </div>
-            <div class="reminder" fxLayout="row" fxLayoutGap="20px">
-                <mat-icon class=label>notifications</mat-icon>
-                <h5 class="name">Reminder</h5>
-            </div>
+        <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
+            <button type="button" (click)=”handleClick($event)” class="btn" mat-button>
+                <div class="notes" fxLayout="row" fxLayoutGap="20px">
+                    <mat-icon class=label>notes</mat-icon>
+                    <h5 class="name">Notes</h5>
+                </div>
+            </button>
+            <button type="button" class="btn" mat-button>
+                <div class="reminder" fxLayout="row" fxLayoutGap="20px">
+                    <mat-icon class=label>notifications</mat-icon>
+                    <h5 class="name">Reminder</h5>
+                </div>
+            </button>
         </div>
         <mat-divider></mat-divider>
         <br><br>
         <div fxLayout="column" fxLayoutGap="10px" style="height:18vh">
-            <div class="label" fxLayout="row" fxLayoutGap="20px">
-                <p class="name">Label</p>
+            <div class="label" fxLayout="row">
+                <h4>
+                    <p class="name">Label</p>
+                </h4>
             </div>
-            <mat-icon class=label>label</mat-icon>
-
-            <div class="edit" fxLayout="row" fxLayoutGap="20px">
-                <mat-icon class=label>create</mat-icon>
-                <button mat-button class="name"><h5>Edit Note</h5></button>
-            </div>
+            <!-- <mat-icon class=label>label</mat-icon> -->
+            <button type="button" class="btn" mat-button>
+                <div class="edit" fxLayout="row" fxLayoutGap="20px">
+                    <mat-icon class=label>create</mat-icon>
+                    <h5>Edit Note</h5>
+                </div>
+            </button>
         </div>
         <mat-divider></mat-divider>
         <br><br>
-        <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
-            <div class="archive" fxLayout="row" fxLayoutGap="20px">
-                <mat-icon class=label>archive</mat-icon>
-                <h5 class="name">Archive</h5>
-            </div>
-            <div class="delete" fxLayout="row" fxLayoutGap="20px">
-                <mat-icon class=label>delete</mat-icon>
-                <h5 class="name">Delete</h5>
-            </div>
+        <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
+            <button type="button" class="btn" mat-button>
+                <div class="archive" fxLayout="row" fxLayoutGap="20px">
+                    <mat-icon class=label>archive</mat-icon>
+                    <h5 class="name">Archive</h5>
+                </div>
+            </button>
+            <button type="button" class="btn" mat-button>
+                <div class="delete" fxLayout="row" fxLayoutGap="20px">
+                    <mat-icon class=label>delete</mat-icon>
+                    <h5 class="name">Delete</h5>
+                </div>
+            </button>
         </div>
         <mat-divider></mat-divider>
     </mat-drawer>
     <div style="height:7vh"></div>
     <router-outlet></router-outlet>
 </mat-drawer-container>
-   

@@ -1,3 +1,14 @@
+/******************************************************************************
+ *  Execution       :   1. default node         cmd> note.component.ts
+ *
+ *  Purpose         : To add note into the database
+ *
+ *  @file           : note.component.ts
+ *  @author         : Snehal Patil
+ *  @version        : 1.0
+ *  @since          : 28-04-2019
+ *
+ ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { FormControl } from '@angular/forms';

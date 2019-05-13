@@ -23,7 +23,7 @@ import { UserService } from '../../core/services/user/user.service';
 export class LoginComponent implements OnInit {
   login: UserModel = new UserModel();
   service: any;
-  hide=true;
+  hide = true;
   email = new FormControl('', [Validators.required, Validators.email, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]);
   //  title = 'FundooNotes';
   /*
@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
       this.email.hasError('email') ? 'Password must be at least 8 characters long' :
         this.email.hasError('pattern') ? 'Its not a correct way to write email' : '';
   }
-  password = new FormControl('',[Validators.required,Validators.minLength(8)]);
+  password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   /*
   * validation for password
   */
   passValidation() {
     return this.password.hasError('required') ? 'Password is required' :
-      this.password.hasError('minLength') ? 'Password must be at least 5 characters long' :'';
+      this.password.hasError('minLength') ? 'Password must be at least 5 characters long' : '';
   }
   constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) {
 
@@ -53,9 +53,10 @@ export class LoginComponent implements OnInit {
     try {
       this.UserService.userLogin(this.login).subscribe(
         data => {
-         // console.log('Response Login Data.......', this.login);
-         // console.log('Response data............', data);
+          // console.log('Response Login Data.......', this.login);
+          // console.log('Response data............', data);
           localStorage.setItem('token',data['id']);
+          //localStorage.clear();
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
           this.router.navigateByUrl('navbar');
         },

@@ -1,19 +1,29 @@
-<div fxLayout="center">
-    <div *ngFor="let data of notes" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
-        <mat-card>
-            
-            <div>
-                {{data.title}}
-                <i class="material-icons" fxLayoutAlign="end">
-                    person_pin_circle
-                </i>
-            </div>
-            <div>{{data.description }}</div>
-        
-            <div fxLayout="row" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
-                <app-icon></app-icon>
-           
+<!-- 
+  Execution       :   1. default node         cmd> allnote.component.html
+ 
+   Purpose         : To print all the note data
+  
+   @file           : allnote.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+  -->
+<div fxLayoutAlign="center">
+    <div fxLayout="column" fxLayoutAlign="end" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px' fxFlex.sm='400px'
+        fxFlex.xs='150px' fxLayoutGap="50px">
+        <div *ngFor="let data of notes">
+            <mat-card>
+                <div>
+                    {{data.title}}
+                    <i class="material-icons" fxLayoutAlign="end">
+                        person_pin_circle
+                    </i>
+                </div>
+                <div>{{data.description }}</div>
+                <div fxLayout="row" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
+                    <app-icon></app-icon>
+                </div>
+            </mat-card>
         </div>
-        </mat-card>
     </div>
 </div>
