@@ -26,10 +26,6 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
   }
 
-  notecardOpen() {
-    this.notecard = !(this.notecard);
-  }
-
   addNote() {
     this.notecard = !(this.notecard);
     var body = {

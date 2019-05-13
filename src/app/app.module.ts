@@ -24,6 +24,10 @@ import { ResetComponent } from './component/reset/reset.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 /*API reference for Angular button and checkbox
 API reference for Angular Material card */
+import { CommonModule } from '@angular/common';
+
+//import { AllnoteComponent } from '../app/component/allnote/allnote.component';
+
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -55,8 +59,6 @@ import { LabelComponent } from './component/label/label.component';
 import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
-import { CardsComponent } from './component/cards/cards.component';
-import { CardDisplayComponent } from './component/card-display/card-display.component';
 import { AllnoteComponent } from './component/allnote/allnote.component';
 import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
@@ -73,8 +75,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     ArchieveComponent,
     TrashComponent,
     IconComponent,
-    CardsComponent,
-    CardDisplayComponent,
     AllnoteComponent,
     
   ],
@@ -86,6 +86,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
+    CommonModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,

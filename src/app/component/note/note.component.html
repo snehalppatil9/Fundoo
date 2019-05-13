@@ -1,3 +1,4 @@
+<div fxLayout="column">
 <div fxLayoutAlign="center" *ngIf="notecard">
   <mat-card class="card" (click)="noteCardOpen()" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px"
     fxFlex.sm="500px" fxFlex.xs="95%">
@@ -29,13 +30,13 @@
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
       <div>
-        <input style="height:5vh; border-style: hidden" [formControl]="title" placeholder="Title" #title>
+        <input style="height:5vh; border-style: hidden" [formControl]="title" placeholder="Title" >
         <i class="material-icons">
           add_alert
         </i>
       </div>
       <div>
-        <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note..." #description>
+        <input style="border-style: hidden;" [formControl]="description" placeholder="Take a note..." >
         <div contenteditable="true" role="textbox" spellcheck="true"></div>
         <div class="row"  fxLayoutAlign="space-evenly center">
           <app-icon></app-icon> 
@@ -44,5 +45,8 @@
       </div>
     </div>
   </mat-card>
+</div>
+
+<app-allnote></app-allnote>
 
 </div>

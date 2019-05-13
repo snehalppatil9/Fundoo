@@ -1,3 +1,19 @@
-<app-note></app-note>
-<app-cards></app-cards>
-<app-cards></app-cards>
+<div fxLayout="center">
+    <div *ngFor="let data of notes" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
+        <mat-card>
+            
+            <div>
+                {{data.title}}
+                <i class="material-icons" fxLayoutAlign="end">
+                    person_pin_circle
+                </i>
+            </div>
+            <div>{{data.description }}</div>
+        
+            <div fxLayout="row" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
+                <app-icon></app-icon>
+           
+        </div>
+        </mat-card>
+    </div>
+</div>
