@@ -7,7 +7,6 @@ import {environment} from '../../../../environments/environment';
 export class HttpService {
 
   constructor(private httpclient: HttpClient) { }
-
   postDataForEncoded(path,body){
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -36,13 +35,12 @@ export class HttpService {
         'Authorization': localStorage.getItem('token')
       })
     };
-    console.log('token...............',localStorage.getItem('token')
-    );
+    console.log('token...............',localStorage.getItem('token'));
     return this.httpclient.post(environment.baseUrl + path,this.getEncodData(body), httpOptions);
   }
 
   postAddNote(path, body) {
-    console.log(body);
+    //console.log(body);
     
     const httpOptions = {
       headers: new HttpHeaders({
@@ -54,15 +52,23 @@ export class HttpService {
     return this.httpclient.post(environment.baseUrl + path, body, httpOptions);
   }
   getData2(path){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.get(environment.baseUrl+path,httpOptions);
+  }
+  postDataForJSON(path,body){
     let httpAuthOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token')
       })
     };
-    return this.httpclient.get(environment.baseUrl+path,httpAuthOptions);
+    return this.httpclient.post(environment.baseUrl+path,body,httpAuthOptions);
   }
-
 }
 
 

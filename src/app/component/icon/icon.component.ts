@@ -10,17 +10,17 @@
  *
  ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
-
+import { NotesService } from '../../core/services/notes/notes.service'
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent implements OnInit {
-
-  constructor() { }
+  
+  constructor(private noteService : NotesService) { }
 
   ngOnInit() {
   }
-
+ 
 }

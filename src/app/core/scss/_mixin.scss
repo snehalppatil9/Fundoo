@@ -1,0 +1,6 @@
+@mixin color-test($property) {
+    color:$property;
+}
+@mixin back-ground-color($color-value) {
+  background-color: $color-value;
+}

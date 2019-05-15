@@ -21,19 +21,19 @@ import { Router } from '@angular/router';
 })
 
 export class NoteComponent implements OnInit {
-  private notecard: boolean = true;
+  notecard: boolean = true;
   title = new FormControl('')
   description = new FormControl('')
-  constructor(private noteService : NotesService,private snackbar: MatSnackBar,private router:Router) { }
+  constructor(private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) { }
 
   /**
   * 
   * @description opening the notecard for adding
   */
-  noteCardOpen(){
-    this.notecard=!(this.notecard);
+  noteCardOpen() {
+    this.notecard = !(this.notecard);
   }
- 
+
   ngOnInit() {
   }
 
@@ -45,19 +45,19 @@ export class NoteComponent implements OnInit {
     }
     console.log('add note data......', body);
     try {
-      
-        this.noteService.addNote(body).subscribe(
-          data => {
-            this.snackbar.open('Note added successfully......', '', { duration: 3000 });
-            console.log('add note data..........', data);
-          },
-          error => {
-            this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
-            console.log("Error something wrong: ", error)
-          });
-     
+
+      this.noteService.addNote(body).subscribe(
+        data => {
+          this.snackbar.open('Note added successfully.', '', { duration: 3000 });
+          console.log('add note data..........', data);
+        },
+        error => {
+          this.snackbar.open('Error while adding notes!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
   }
-  }
+}

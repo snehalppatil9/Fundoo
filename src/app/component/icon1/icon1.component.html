@@ -1,0 +1,49 @@
+<div fxLayoutGap="15px">
+  <button mat-icon-button>
+  <i class="material-icons">
+    add_alert
+  </i>
+  </button>
+  <button mat-icon-button>
+  <i class="material-icons">
+    person_add
+  </i>
+  </button>
+  <button mat-icon-button (onChangeColor)="onColorChange($event)">
+  <i class="material-icons">
+    color_lens
+  </i>
+  </button>
+  <button mat-icon-button>
+  <i class="material-icons">
+    crop_original
+  </i>
+  </button>
+  <button mat-icon-button>
+  <i class="material-icons">
+    archive
+  </i>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <i class="material-icons">
+      more_vert
+    </i>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+          <span>Delete Note</span>
+    </button>
+    <button mat-menu-item>
+      <span>Add label</span>
+    </button>
+    <button mat-menu-item>
+      <span>Add drawing</span>
+    </button>
+    <button mat-menu-item>
+        <span>Make a Copy</span>
+      </button>
+    <button mat-menu-item>
+      <span>Show checkboxes</span>
+    </button>
+  </mat-menu>
+</div>

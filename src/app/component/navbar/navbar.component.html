@@ -11,10 +11,9 @@
 <!-- 
     @Description: Dashboard tool bar
  -->
-<mat-toolbar style="height:10vh">
-    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-evenly center" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50"
-        fxFlex.sm="70">
-        <div fxFlex="21" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70" fxLayoutGap="4">
+<mat-toolbar class="navbar" style="height:10vh" fxLayoutAlign="space-evenly center">
+    <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
+        <div fxFlex="25" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
             <div fxFlex="25">
                 <!-- 
                      @Description: Dashboard first icon menu bar
@@ -38,40 +37,29 @@
                  @Description: Dashboard Fundoo Label
              -->
             <div fxFlex="50">
-                <label>Fundoo</label>
+                <b><label>Fundoo</label></b>
             </div>
         </div>
         <!-- 
             @Description: Dashboard Search Box
         -->
-        <div fxFlex="45" fxLayoutGap="5" fxShow fxHide.sm fxShow fxHide.xs>
-            <mat-card>
-                <div fxFlex="5">
-                    <i class="material-icons">search</i>
-                </div>
-                <div fxFlex="95">
-                    <!-- Search form -->
-                    <!-- <mat-form-field>
-                        <input matInput placeholder="Input">
-                      </mat-form-field> -->
-                </div>
-            </mat-card>
+        <div fxFlex="50" fxShow fxHide.sm fxShow fxHide.xs>
+            <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
+                <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
+                <input type="text" class="search" placeholder="Search.." ngStyle.md="font-size:13px"
+                    ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
+                    ngStyle.xl="font-size:30px">
+            </div>
         </div>
         <!-- 
             @Description: Dashboard view-list, settings and account icons  
         -->
-        <div fxFlex="20" fxLayoutGap="5" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
-            <!-- <div fxFlex="20">
-                <i class="material-icons">
-                    refresh
-                </i>
-            </div> -->
-            <div fxFlex="30">
-                <button mat-icon-button>
-                    <i class="material-icons">
-                        dashboard
-                    </i>
-                </button>
+        <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
+            <div fxFlex="35">
+                <mat-icon class="material-icons" *ngIf=gridView class="button" ngStyle.md="font-size:25px" ngStyle.lg="font-size:30px"
+                    ngStyle.xl="font-size:50px" (click)=view() matTooltip="list view">view_stream</mat-icon>
+                <mat-icon *ngIf=!gridView class="button" ngStyle.md="font-size:25px" ngStyle.lg="font-size:30px"
+                    ngStyle.xl="font-size:50px" (click)=view() matTooltip="grid view">view_module</mat-icon>
             </div>
             <div fxFlex="35">
                 <button mat-icon-button>
@@ -80,13 +68,8 @@
                     </i>
                 </button>
             </div>
-            <!-- <div fxFlex="20">
-                <i class="material-icons">
-                    apps
-                </i>
-            </div> -->
             <div fxFlex="35">
-                <button mat-icon-button class="materialicons">
+                <button mat-icon-button class="materialicons" (click)=logout()>
                     <i class="material-icons">
                         account_circle
                     </i>
@@ -95,6 +78,7 @@
         </div>
     </div>
 </mat-toolbar>
+
 <!-- 
     Dashboard side nav bar
  -->
@@ -102,7 +86,7 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <br><br>
         <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
-            <button type="button" (click)=”handleClick($event)” class="btn" mat-button>
+            <button type="button" class="btn" mat-button>
                 <div class="notes" fxLayout="row" fxLayoutGap="20px">
                     <mat-icon class=label>notes</mat-icon>
                     <h5 class="name">Notes</h5>
@@ -124,7 +108,7 @@
                 </h4>
             </div>
             <!-- <mat-icon class=label>label</mat-icon> -->
-            <button type="button" class="btn" mat-button>
+            <button type="button" (click)="createLabel()" class="btn" mat-button>
                 <div class="edit" fxLayout="row" fxLayoutGap="20px">
                     <mat-icon class=label>create</mat-icon>
                     <h5>Edit Note</h5>

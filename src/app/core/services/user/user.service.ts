@@ -14,15 +14,15 @@ export class UserService {
    * @description this method is for convert the data into encoded form
   */
   userRegister(body) {
-    return this.httpService.postRequest("/user/userSignUp", body);
+    return this.httpService.postRequest("user/userSignUp", body);
   }
   userLogin(body){
-    return this.httpService.postRequest("/user/login", body);
+    return this.httpService.postRequest("user/login", body);
   }
   userForgot(body){
     return this.httpService.postRequest("user/reset", body);
   }
   userReset(body){
-    return this.httpService.postReset("/user/reset-password",body);
+    return this.httpService.postReset("user/reset-password",body);
   }
 }

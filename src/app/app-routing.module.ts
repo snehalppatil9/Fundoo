@@ -23,15 +23,15 @@ import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NoteComponent } from './component/note/note.component';
 import { AuthGuardService } from './core/services/authGuard/auth-guard.service'
-import { AllnoteComponent } from './component/allnote/allnote.component';
+import { from } from 'rxjs';
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
   {
-    path: 'navbar',
+    path: '',
     component: NavbarComponent, canActivate: [AuthGuardService],
     children: [
       { path: 'addnote', component: NoteComponent },

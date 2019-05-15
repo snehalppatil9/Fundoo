@@ -1,1 +1,6 @@
-// @import "../node_modules/@syncfusion/ej2/material.css";
+@import '../../core/scss/colors';
+@import '../../core/scss/mixin';
+.icon{
+    visibility:hidden;
+    margin-top: 15px;
+}

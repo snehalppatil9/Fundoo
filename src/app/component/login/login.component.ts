@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token',data['id']);
           //localStorage.clear();
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
-          this.router.navigateByUrl('navbar');
+          this.router.navigateByUrl('addnote');
         },
         error => {
           this.snackbar.open('Login not successfully......!', 'Stop...!', { duration: 3000 });
