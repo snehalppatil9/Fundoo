@@ -1,4 +1,6 @@
-<div class=edit_label>Edit label</div>
+<div class=edit_label>
+  <h5 style="height:10vh">Edit Label</h5>
+</div>
 <!-- 
   @description: label create start
 -->
@@ -7,10 +9,13 @@
     <mat-icon class=clear (click)=clear()>clear</mat-icon>
   </div>
   <div fxFlex="80">
-      <input placeholder="Create new label" class="textarea" [(ngModel)]="label.labelName" maxlength=40>
+    <input placeholder="Create new label" class="textarea" [(ngModel)]="label.labelName" maxlength=40>
   </div>
   <div fxFlex="10">
-    <mat-icon class="done" >done</mat-icon>
+    <mat-icon class="done">done</mat-icon>
   </div>
 </div>
-<button mat-button class="done" (click)=addLabel()>Done</button>
+<hr>
+<div fxLayoutAlign="end">
+  <button mat-button class="done1" (click)=addLabel()><b>Done</b></button>
+</div>

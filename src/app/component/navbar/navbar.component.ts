@@ -21,33 +21,61 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   gridView: boolean = true;
-  signoutCard:boolean=false;
-  constructor(private dialog : MatDialog,private noteService : NotesService,private router: Router) { }
+  signoutCard: boolean = false;
+  firstName = localStorage.getItem("Firstname");
+  lastName = localStorage.getItem("Lastname");
+  email = localStorage.getItem("Email");
+  constructor(private dialog: MatDialog, private noteService: NotesService, private router: Router) { }
 
   ngOnInit() {
-    
-  }
-/**
-  * 
-  * @description for logging out from account
-  */
- logout(){
-  this.noteService.logout()
-  .subscribe((response) =>{
-    localStorage.removeItem("token");
-    this.router.navigate(['/login']);
-  },(error) => {
-  });
-}
 
-  view(){
-    this.gridView=!this.gridView;
   }
-   createLabel(): void {
-   this.dialog.open(LabelComponent, {
+  /**
+ * 
+ * @description displaying the signout card
+ */
+  account() {
+    this.signoutCard = !(this.signoutCard);
+  }
+  /**
+    * 
+    * @description add account
+    */
+  addAccount() {
+    this.router.navigateByUrl('/login');
+  }
+  /**
+    * 
+    * @description for logout from fundoo account
+    */
+  logout() {
+    this.noteService.logout()
+      .subscribe((response) => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("Id");
+        localStorage.removeItem("Firstname");
+        localStorage.removeItem("Lastname");
+        localStorage.removeItem("Email");
+        this.router.navigate(['/login']);
+      }, (error) => {
+      });
+  }
+
+  view() {
+    this.gridView = !this.gridView;
+  }
+  createLabel(): void {
+    this.dialog.open(LabelComponent, {
       width: '400px',
     });
 
   }
-  
+  /**
+  * 
+  * @description for refresh of page
+  */
+  refresh() {
+    this.router.navigateByUrl('/addnote');
+  }
+
 }

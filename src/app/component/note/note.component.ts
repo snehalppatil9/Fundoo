@@ -9,7 +9,7 @@
  *  @since          : 28-04-2019
  *
  ******************************************************************************/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,13 +17,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  styleUrls: ['./note.component.scss'],
+  outputs: ['onNewEntry']
 })
 
 export class NoteComponent implements OnInit {
   notecard: boolean = true;
+  listcard: boolean = false;
   title = new FormControl('')
   description = new FormControl('')
+  @Output() onNewEntry= new EventEmitter()
   constructor(private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) { }
 
   /**
@@ -33,7 +36,13 @@ export class NoteComponent implements OnInit {
   noteCardOpen() {
     this.notecard = !(this.notecard);
   }
-
+  /**
+  * 
+  * @description opening the New list card
+  */
+  listCardOpen() {
+    this.listcard = !(this.listcard);
+  }
   ngOnInit() {
   }
 
@@ -45,9 +54,9 @@ export class NoteComponent implements OnInit {
     }
     console.log('add note data......', body);
     try {
-
       this.noteService.addNote(body).subscribe(
         data => {
+          this.onNewEntry.emit({})
           this.snackbar.open('Note added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
         },
@@ -55,7 +64,6 @@ export class NoteComponent implements OnInit {
           this.snackbar.open('Error while adding notes!', 'Error', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
-
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }

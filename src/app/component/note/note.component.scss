@@ -1,0 +1,19 @@
+@import '../../core/scss/mixin';
+.card{
+    @include margin-top(15px);
+    border-radius:7px;
+}
+.icon{
+    float: right;
+    font-size: 30px;
+    padding-left: 5%;
+    cursor: pointer;
+    opacity:0.7;
+}
+.icon1{
+    float: left;
+    font-size: 30px;
+    padding-left: 5%;
+    cursor: pointer;
+    opacity:0.7;
+}

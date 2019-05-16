@@ -62,6 +62,7 @@ import { IconComponent } from './component/icon/icon.component';
 import { AllnoteComponent } from './component/allnote/allnote.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { Icon1Component } from './component/icon1/icon1.component';
+import { NotesComponent } from './component/notes/notes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { Icon1Component } from './component/icon1/icon1.component';
     TrashComponent,
     IconComponent,
     AllnoteComponent,
-    Icon1Component,  
+    Icon1Component,
+    NotesComponent,  
   ],
   imports: [
     BrowserModule,

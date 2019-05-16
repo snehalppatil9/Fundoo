@@ -45,3 +45,53 @@
     opacity:0.7;
     margin-top: 10px;
 }
+.account {
+    margin-bottom:-100%;
+    width:350px;
+    float:right;
+    z-index: 10;
+}
+.signout {
+    padding:3%;
+    border:1px solid rgb(192, 190, 190);
+    background-color: transparent;
+    float:right;
+    border-radius: 5px;
+    @include margin-top(5px)
+}
+.addAccount {
+    padding:3%;
+    border:1px solid rgb(192, 190, 190);
+    background-color: transparent;
+    border-radius: 5px;
+    float:left;
+    @include margin-top(5px)
+}
+.addimage{
+    width: 60px;
+    height: 60px;
+    margin-bottom:5px;
+    border-radius:50%;
+    @include back-ground-color($test-color-aqua);
+}
+.addimage1{
+-webkit-background-size: 96px 96px;
+background-size: 96px 96px;
+border: none;
+vertical-align: top;
+height: 96px;
+width: 96px;
+@include back-ground-color($test-color-aqua);
+}
+.addimage1 .change{
+bottom: 0;
+color: red;
+font-size: 9px;
+font-weight: bold;
+left: 0;
+line-height: 9px;
+position: absolute;
+padding: 7px 0;
+text-align: center;
+width: 96px;
+}

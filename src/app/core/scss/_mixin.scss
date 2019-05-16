@@ -4,3 +4,6 @@
 @mixin back-ground-color($color-value) {
   background-color: $color-value;
 }
+@mixin margin-top($value) {
+  margin-top: $value;  
+}

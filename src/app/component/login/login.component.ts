@@ -55,7 +55,11 @@ export class LoginComponent implements OnInit {
         data => {
           // console.log('Response Login Data.......', this.login);
           // console.log('Response data............', data);
-          localStorage.setItem('token',data['id']);
+          localStorage.setItem("token",data["id"]);
+          localStorage.setItem("Id",data["userId"]);
+          localStorage.setItem("Firstname",data["firstName"]);
+          localStorage.setItem("Lastname",data["lastName"]);
+          localStorage.setItem("Email",data["email"]);
           //localStorage.clear();
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
           this.router.navigateByUrl('addnote');

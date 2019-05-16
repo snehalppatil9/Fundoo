@@ -21,7 +21,7 @@ import { LabelComponent } from './component/label/label.component';
 import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
-import { NoteComponent } from './component/note/note.component';
+import { NotesComponent } from './component/notes/notes.component';
 import { AuthGuardService } from './core/services/authGuard/auth-guard.service'
 import { from } from 'rxjs';
 const routes: Routes = [
@@ -34,7 +34,7 @@ const routes: Routes = [
     path: '',
     component: NavbarComponent, canActivate: [AuthGuardService],
     children: [
-      { path: 'addnote', component: NoteComponent },
+      { path: 'addnote', component: NotesComponent },
       { path: 'reminder', component: ReminderComponent },
       { path: 'label', component: LabelComponent },
       { path: 'archieve', component: ArchieveComponent },

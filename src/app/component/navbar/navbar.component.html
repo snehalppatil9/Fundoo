@@ -56,28 +56,39 @@
         -->
         <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
             <div fxFlex="35">
-                <mat-icon class="material-icons" *ngIf=gridView class="button" ngStyle.md="font-size:25px" ngStyle.lg="font-size:30px"
-                    ngStyle.xl="font-size:50px" (click)=view() matTooltip="list view">view_stream</mat-icon>
-                <mat-icon *ngIf=!gridView class="button" ngStyle.md="font-size:25px" ngStyle.lg="font-size:30px"
-                    ngStyle.xl="font-size:50px" (click)=view() matTooltip="grid view">view_module</mat-icon>
-            </div>
-            <div fxFlex="35">
-                <button mat-icon-button>
-                    <i class="material-icons">
-                        settings
-                    </i>
+                <button mat-icon-button (click)="refresh()">
+                    <i class="material-icons">refresh</i>
                 </button>
             </div>
             <div fxFlex="35">
-                <button mat-icon-button class="materialicons" (click)=logout()>
+                <button mat-icon-button class="materialicons" *ngIf=gridView (click)=view()>
                     <i class="material-icons">
-                        account_circle
-                    </i>
+                        view_stream</i>
+                </button>
+                <button mat-icon-button class="materialicons" *ngIf=!gridView (click)=view()>
+                    <i class="material-icons">view_module</i>
+                </button>
+            </div>
+            <div fxFlex="30">
+                <button mat-icon-button class="addimage" (click)="account()">
+                        <div mat-card-avatar ></div>
                 </button>
             </div>
         </div>
     </div>
 </mat-toolbar>
+<mat-card class="account" *ngIf="signoutCard">
+    <mat-card-header>
+        <div mat-card-avatar class="addimage1" >
+            <span class="change">Change</span>
+        </div>
+        <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
+        <mat-card-subtitle>{{email}}</mat-card-subtitle>
+    </mat-card-header>
+    <hr>
+    <div><button class="addAccount" (click)="addAccount()">Add Account</button></div>
+    <div><button class="signout" (click)="logout()">Sign out</button></div>
+</mat-card>
 
 <!-- 
     Dashboard side nav bar
