@@ -45,13 +45,16 @@
             @Description: Dashboard Search Box
         -->
         <div fxFlex="50" style="margin-top:10px;" fxShow fxHide.sm fxShow fxHide.xs>
-            <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
-                <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
-                <input type="text" [(ngModel)]="searchValue" class="search" (click)="search()" placeholder="Search.." style="width:800px;"
-                    ngStyle.md="font-size:13px" ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
-                    ngStyle.xl="font-size:50px">
-                <mat-icon ngStyle.xl="font-size:20px" class="clear">clear</mat-icon>
-            </div>
+            <div *ngIf=!showSearchBar fxFlex.xs=40% fxFlex.sm="50%" fxFlex.md="50%" fxFlex.lg="55%" fxFlex.xl="56%">
+                <mat-icon ngStyle.xl="font-size:50px" class="searchbutton" matTooltip="search" (click)="showSearchBar=true">search</mat-icon>
+                <input type="text" [(ngModel)]="searchValue" class="search" (click)="search()" (keyup)=newMessage() 
+                placeholder="Search.." ngStyle.md="font-size:13px" ngStyle.lg="font-size:16px" ngStyle.sm="font-style:10px;margin-top:2px;" 
+                fxHide.xs=true ngStyle.xl="font-size:30px">
+              </div>
+              <div *ngIf=showSearchBar fxFlex.xs="40%" fxHide.sm=true fxHide.md=true fxHide.lg=true fxHide.xl=true>
+                <input type="text" [(ngModel)]="searchValue" class="search2" (click)="search()" (keyup)=newMessage() 
+                placeholder="Search.." (keydown.enter)="hideSearch()">
+              </div>
         </div>
         <!-- 
             @Description: Dashboard view-list, settings and account icons  

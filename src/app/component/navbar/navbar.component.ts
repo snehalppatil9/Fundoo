@@ -14,7 +14,7 @@ import { LabelComponent } from '../label/label.component';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-
+import { DataService } from '../../core/services/data/data.service'
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -26,11 +26,12 @@ export class NavbarComponent implements OnInit {
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
-  
-  constructor(private dialog: MatDialog, private noteService: NotesService, private router: Router) { }
+  searchValue: any;
+  showSearchBar: boolean = false;
+  constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-   
+
   }
   /**
   * @description displaying the signout card
@@ -74,15 +75,24 @@ export class NavbarComponent implements OnInit {
   * @description :  Add Label 
   */
   createLabel(): void {
-   this.dialog.open(LabelComponent, {
+    this.dialog.open(LabelComponent, {
       width: '400px',
     });
   }
-   /*
+  /*
   * @description for refresh of page
   */
   refresh() {
     this.router.navigateByUrl('/addnote');
   }
-
+  search() {
+    this.router.navigateByUrl('/search');
+  }
+  newMessage() {
+    this.dataService.changeMessageSearch(this.searchValue)
+  }
+  hideSearch(){
+    this.showSearchBar=false;
+    this.dataService.changeMessageSearch('');
+  }
 }

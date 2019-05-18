@@ -64,6 +64,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { Icon1Component } from './component/icon1/icon1.component';
 import { PipePipe } from './pipe/pipe.pipe';
 import { FilterpipePipe } from './filterpipe/filterpipe.pipe';
+import { SearchNoteComponent } from './component/search-note/search-note.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +83,8 @@ import { FilterpipePipe } from './filterpipe/filterpipe.pipe';
     AllnoteComponent,
     Icon1Component,
     PipePipe,
-    FilterpipePipe
+    FilterpipePipe,
+    SearchNoteComponent
   ],
   imports: [
     BrowserModule,

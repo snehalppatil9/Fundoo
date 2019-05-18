@@ -22,7 +22,8 @@ import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NoteComponent } from './component/note/note.component';
-import { AuthGuardService } from './core/services/authGuard/auth-guard.service'
+import { AuthGuardService } from './core/services/authGuard/auth-guard.service';
+import { SearchNoteComponent } from './component/search-note/search-note.component'
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
@@ -38,7 +39,8 @@ const routes: Routes = [
       { path: 'label', component: LabelComponent },
       { path: 'archieve', component: ArchieveComponent },
       { path: 'trash', component: TrashComponent },
-      { path: 'icon', component: IconComponent }
+      { path: 'icon', component: IconComponent },
+      { path: 'search', component: SearchNoteComponent}
     ]
 
   }

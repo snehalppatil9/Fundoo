@@ -64,6 +64,6 @@ export class NoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() =>this.dataService.getAllNote(),3000);
+    setTimeout(() =>this.dataService.getAllNote(),0);
   }
 }

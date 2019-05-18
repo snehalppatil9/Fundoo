@@ -14,7 +14,7 @@
         <!-- 
             @Description    :   Displaying the cards
          -->
-        <div *ngFor="let data of notes | pipe ">
+        <div *ngFor="let data of notes | pipe  | filterpipe : searchItem">
             <mat-card>
                 <div>
                     {{data.title}}
