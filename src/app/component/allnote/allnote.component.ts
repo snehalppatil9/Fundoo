@@ -9,7 +9,7 @@
  *  @since          : 28-04-2019
  *
  ******************************************************************************/
-import { Component, OnInit,Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../../core/services/data/data.service'
 import { Note } from '../../core/model/user-model'
 import { takeUntil } from 'rxjs/operators';
@@ -22,9 +22,9 @@ import { EventEmitter } from 'events';
 })
 export class AllnoteComponent implements OnInit {
   notes: Note[] = [];
-  message : string;
+  message: string;
   destory$: Subject<boolean> = new Subject<boolean>();
-  view :boolean;
+  view: boolean;
   @Input() note;
   @Input() searchItem;
   @Output() anyChanges = new EventEmitter();
@@ -32,12 +32,12 @@ export class AllnoteComponent implements OnInit {
   constructor(private dataService: DataService) { }
   ngOnInit() {
     this.dataService.allNote
-    .pipe(takeUntil(this.destory$))
-    .subscribe(data => this.notes = data);
-    console.log('all note -->',this.notes);
+      .pipe(takeUntil(this.destory$))
+      .subscribe(data => this.notes = data);
+    console.log('all note -->', this.notes);
     this.dataService.currentMessageView.pipe(takeUntil(this.destory$))
-    .subscribe(message =>{
-      this.view = message
-    })
+      .subscribe(message => {
+        this.view = message
+      })
   }
 }

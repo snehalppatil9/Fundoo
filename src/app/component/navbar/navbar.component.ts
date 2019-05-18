@@ -69,7 +69,7 @@ export class NavbarComponent implements OnInit {
   * @description :  Grid and List View
   */
   view() {
-    this.gridView = !this.gridView;
+    this.gridView=!this.gridView;
   }
   /**
   * @description :  Add Label 
@@ -90,9 +90,5 @@ export class NavbarComponent implements OnInit {
   }
   newMessage() {
     this.dataService.changeMessageSearch(this.searchValue)
-  }
-  hideSearch(){
-    this.showSearchBar=false;
-    this.dataService.changeMessageSearch('');
   }
 }

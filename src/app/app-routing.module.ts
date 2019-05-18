@@ -24,6 +24,7 @@ import { IconComponent } from './component/icon/icon.component';
 import { NoteComponent } from './component/note/note.component';
 import { AuthGuardService } from './core/services/authGuard/auth-guard.service';
 import { SearchNoteComponent } from './component/search-note/search-note.component'
+
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
