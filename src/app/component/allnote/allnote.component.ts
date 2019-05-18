@@ -10,8 +10,10 @@
  *
  ******************************************************************************/
 import { Component, OnInit } from '@angular/core';
-import { NotesService } from '../../core/services/notes/notes.service'
+import { DataService } from '../../core/services/data/data.service'
 import { Note } from '../../core/model/user-model'
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-allnote',
   templateUrl: './allnote.component.html',
@@ -19,19 +21,12 @@ import { Note } from '../../core/model/user-model'
 })
 export class AllnoteComponent implements OnInit {
   notes: Note[] = [];
-  constructor(private noteService: NotesService) { }
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  constructor(private dataService: DataService) { }
   ngOnInit() {
-    this.getNotes();
-  }
-  /*
- * @Description  : Getting note data 
- */
-  getNotes() {
-    this.noteService.getNoteList()
-      .subscribe((response: any) => {
-        this.notes = response.data.data
-        // console.log("SCCCCCCCCCCCCCCCCCCCCCCC=====>", response.data.data);
-      }, (error) => {
-      });
+    this.dataService.allNote
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(data => this.notes = data);
+    console.log('all note -->',this.notes);
   }
 }

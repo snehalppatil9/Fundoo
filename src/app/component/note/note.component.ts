@@ -14,6 +14,7 @@ import { NotesService } from '../../core/services/notes/notes.service'
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/core/services/data/data.service';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
@@ -22,11 +23,10 @@ import { Router } from '@angular/router';
 })
 export class NoteComponent implements OnInit {
   notecard: boolean = true;
-  listcard: boolean = false;
+  listcard: boolean = true;
   title = new FormControl('')
   description = new FormControl('')
-  @Output() onNewEntry = new EventEmitter()
-  constructor(private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) { }
+  constructor(private noteService: NotesService,private dataService : DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
   * @description :  opening the notecard for adding
   */
@@ -52,9 +52,8 @@ export class NoteComponent implements OnInit {
     }
     console.log('add note data......', body);
     try {
-      this.noteService.addNote(body).subscribe(
+     this.noteService.addNote(body).subscribe(
         data => {
-          this.onNewEntry.emit({})
           this.snackbar.open('Note added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
         },
@@ -65,5 +64,6 @@ export class NoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+    setTimeout(() =>this.dataService.getAllNote(),3000);
   }
 }

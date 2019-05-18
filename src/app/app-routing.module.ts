@@ -21,10 +21,8 @@ import { LabelComponent } from './component/label/label.component';
 import { ArchieveComponent } from './component/archieve/archieve.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
-import { NotesComponent } from './component/notes/notes.component';
+import { NoteComponent } from './component/note/note.component';
 import { AuthGuardService } from './core/services/authGuard/auth-guard.service'
-import { from } from 'rxjs';
-import { CanActivate } from '@angular/router/src/utils/preactivation';
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
@@ -35,7 +33,7 @@ const routes: Routes = [
     path: '',
     component: NavbarComponent,  canActivate: [AuthGuardService],
     children: [
-      { path: 'addnote', component: NotesComponent },
+      { path: 'addnote', component: NoteComponent },
       { path: 'reminder', component: ReminderComponent },
       { path: 'label', component: LabelComponent },
       { path: 'archieve', component: ArchieveComponent },
