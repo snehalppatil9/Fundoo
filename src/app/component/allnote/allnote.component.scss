@@ -2,5 +2,12 @@
 @import '../../core/scss/mixin';
 .icon{
     visibility:hidden;
-    margin-top: 15px;
+    @include margin-top(15px);
+}
+.icon{
+    float: right;
+    font-size: 30px;
+    padding-left: 5%;
+    cursor: pointer;
+    opacity:0.7;
 }

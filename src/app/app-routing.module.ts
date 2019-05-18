@@ -24,6 +24,7 @@ import { IconComponent } from './component/icon/icon.component';
 import { NotesComponent } from './component/notes/notes.component';
 import { AuthGuardService } from './core/services/authGuard/auth-guard.service'
 import { from } from 'rxjs';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: 'resetpassword/:token', component: ResetComponent },
   {
     path: '',
-    component: NavbarComponent, canActivate: [AuthGuardService],
+    component: NavbarComponent,  canActivate: [AuthGuardService],
     children: [
       { path: 'addnote', component: NotesComponent },
       { path: 'reminder', component: ReminderComponent },

@@ -14,6 +14,7 @@
 }
 .material-icons{
     font-size: 30px;
+    height: 25px;
 }
 .materialicons .material-icons{
     font-size: 50px;
@@ -75,23 +76,39 @@
     @include back-ground-color($test-color-aqua);
 }
 .addimage1{
--webkit-background-size: 96px 96px;
-background-size: 96px 96px;
-border: none;
-vertical-align: top;
-height: 96px;
-width: 96px;
-@include back-ground-color($test-color-aqua);
+    -webkit-background-size: 96px 96px;
+    background-size: 96px 96px;
+    border: none;
+    vertical-align: top;
+    height: 96px;
+    width: 96px;
+    @include back-ground-color($test-color-aqua);
 }
 .addimage1 .change{
-bottom: 0;
-color: red;
-font-size: 9px;
-font-weight: bold;
-left: 0;
-line-height: 9px;
-position: absolute;
-padding: 7px 0;
-text-align: center;
-width: 96px;
+    bottom: 0;
+    color: red;
+    font-size: 9px;
+    font-weight: bold;
+    left: 0;
+    line-height: 9px;
+    position: absolute;
+    padding: 7px 0;
+    text-align: center;
+    width: 96px;
+}
+.clear {
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    float: right;
+    margin-top: 10px;
+    margin-left: -25px;
+}
+.buttonicon {
+    width:95%;
+    text-align: start;
+    margin-left:10%;
+    text-decoration-line: none;
+    color:black;
+    opacity:0.7;
 }

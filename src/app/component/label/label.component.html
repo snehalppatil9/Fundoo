@@ -1,5 +1,5 @@
 <div class=edit_label>
-  <h5 style="height:10vh">Edit Label</h5>
+  <h5 style="height:7vh">Edit Label</h5>
 </div>
 <!-- 
   @description: label create start
@@ -14,6 +14,15 @@
   <div fxFlex="10">
     <mat-icon class="done">done</mat-icon>
   </div>
+  <a *ngFor="let data of label1" class=buttonicon>
+    <div fxLayout=row class="side_label">
+      <div fxFlex="10%"></div>
+      <div fxFlex="20%">
+        <mat-icon class="label">label</mat-icon>
+      </div>
+      <div fxFlex="60%" class=label>{{data.label}}</div>
+    </div>
+  </a>
 </div>
 <hr>
 <div fxLayoutAlign="end">

@@ -9,54 +9,67 @@
    @since          : 22-04-2019
   -->
 <div fxLayout="column" fxLayoutGap="4%">
-        <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
-        <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
-          <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
-          <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
-            <mat-card>
-              <mat-card-title fxLayoutAlign="center">
-                <span class="lightblue">F</span>
-                <span class="red">u</span>
-                <span class="yellow">n</span>
-                <span class="lightblue">d</span>
-                <span class="green">o</span>
-                <span class="blue">o</span>
-                <span class="yellow">N</span>
-                <span class="red">o</span>
-                <span class="lightblue">t</span>
-                <span class="green">e</span>
-                <span class="red">s</span>
-              </mat-card-title>
-              <div style="height:1vh"></div>
-              <mat-card-title fxLayoutAlign="center"><h3>Sign in</h3></mat-card-title>
-              <div style="height:1vh"></div>
-              <mat-card-title fxLayoutAlign="center"><h6>Enter the last password you remember using with this FundooNotes Account</h6></mat-card-title>
-              <div style="height:2vh"></div>
-              <div fxLayoutAlign="end" class="eye">
-                  <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
-                    <mat-label>Enter your new Password</mat-label>
-                    <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
-                    <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'" [(ngModel)]="reset.password" [formControl]="password">
-                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </mat-form-field>
-                </div>
-              <div style="height:15vh"></div>
-              <div fxLayoutAlign="end" class="eye">
-                  <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
-                    <mat-label>Enter your new confirm Password</mat-label>
-                    <mat-error *ngIf="password.invalid">{{cpassValidation()}}</mat-error>
-                    <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'"  [(ngModel)]="reset.cpassword" [formControl]="cpassword">
-                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </mat-form-field>
-                </div>
-                <div style="height:15vh"></div>
-              <div class="size"><button mat-button routerLink="/login" >Sign in</button></div>
-              <div style="height:5vh"></div>
-              <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="password.invalid || cpassword.invalid" (click)="reset()">Next</button></div>
-              <div style="height:5vh"></div>
-            </mat-card>
-          </div>
-          <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+  <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+  <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center" fxFlex="35">
+    <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+    <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
+      <mat-card>
+        <!--         
+          @Description  : Fundoo Notes Title
+        -->
+        <mat-card-title fxLayoutAlign="center">
+          <span class="lightblue">F</span>
+          <span class="red">u</span>
+          <span class="yellow">n</span>
+          <span class="lightblue">d</span>
+          <span class="green">o</span>
+          <span class="blue">o</span>
+          <span class="yellow">N</span>
+          <span class="red">o</span>
+          <span class="lightblue">t</span>
+          <span class="green">e</span>
+          <span class="red">s</span>
+        </mat-card-title>
+        <div style="height:1vh"></div>
+        <mat-card-title fxLayoutAlign="center">
+          <h3>Sign in</h3>
+        </mat-card-title>
+        <div style="height:1vh"></div>
+        <mat-card-title fxLayoutAlign="center">
+          <h6>Enter the last password you remember using with this FundooNotes Account</h6>
+        </mat-card-title>
+        <div style="height:2vh"></div>
+         <!-- 
+            @Description  : Validating Password and displaying the error message 
+        -->
+        <div fxLayoutAlign="end" class="eye">
+          <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+            <mat-label>Enter your new Password</mat-label>
+            <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
+            <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'"
+              [(ngModel)]="reset.password" [formControl]="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
         </div>
-        <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
-      </div>
+        <div style="height:15vh"></div>
+        <div fxLayoutAlign="end" class="eye">
+          <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+            <mat-label>Enter your new confirm Password</mat-label>
+            <mat-error *ngIf="password.invalid">{{cpassValidation()}}</mat-error>
+            <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'"
+              [(ngModel)]="reset.cpassword" [formControl]="cpassword">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+        <div style="height:15vh"></div>
+        <div class="size"><button mat-button routerLink="/login">Sign in</button></div>
+        <div style="height:5vh"></div>
+        <div fxLayoutAlign="end" class="p2"><button mat-button [disabled]="password.invalid || cpassword.invalid"
+            (click)="reset()">Next</button></div>
+        <div style="height:5vh"></div>
+      </mat-card>
+    </div>
+    <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+  </div>
+  <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
+</div>

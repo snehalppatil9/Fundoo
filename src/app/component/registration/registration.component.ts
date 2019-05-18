@@ -29,7 +29,7 @@ export class RegistrationComponent implements OnInit {
   lastName = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern('[a-zA-Z]+')]);
   email = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25), Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])
   /*
-  * validation for first Name
+  *  @Description  : validation for first Name
   */
   firstValidation() {
     return this.firstName.hasError('required') ? 'Enter an FirstName' :
@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit {
           this.firstName.hasError('pattern') ? 'firstName contain letters' : '';
   }
   /*
-  * validation for Last Name
+  *  @Description  : validation for Last Name
   */
   lastValidation() {
     return this.lastName.hasError('required') ? 'Enter an FirstName' :
@@ -47,7 +47,7 @@ export class RegistrationComponent implements OnInit {
           this.lastName.hasError('pattern') ? 'lastName contain letters' : '';
   }
   /*
-  * validation for UserName
+  *  @Description  : validation for UserName
   */
  emailValidation() {
     return this.email.hasError('required') ? 'Enter an userName' :
@@ -56,7 +56,7 @@ export class RegistrationComponent implements OnInit {
           this.email.hasError('pattern') ? 'Its not a correct way to write userName' : '';
   }
   /*
-  * validation for password
+  *  @Description  : validation for password
   */
   password = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$")]);
   passValidation() {
@@ -65,7 +65,7 @@ export class RegistrationComponent implements OnInit {
         this.password.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number' : '';
   }
   /*
-  * validation for confirm password
+  *  @Description  : validation for confirm password
   */
   cpassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$")]);
   cpassValidation() {
@@ -75,14 +75,14 @@ export class RegistrationComponent implements OnInit {
   }
   advanced = new FormControl('', [Validators.required]);
   advancedValidation() {
-    return this.advanced.hasError('required') ? 'choose advance or basic button' :'';
+    return this.advanced.hasError('required') ? '' :'';
   }
   basic = new FormControl('', [Validators.required]);
   basicValidation() {
-    return this.basic.hasError('required') ? 'choose advance or basic button' :'';
+    return this.basic.hasError('required') ? '' :'';
   }
   /*
-  * validation for advanced and basic toggle button
+  *  @Description  : validation for advanced and basic toggle button
   */
   currentLesson: string;
   classes = [
@@ -99,6 +99,9 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
   }
+  /*
+  * @Description  :  Sending data to database
+  */
   submit() {
     console.log('console@@@@@@@@@@@@@@@@@', this.register);
     try {

@@ -14,6 +14,9 @@
     <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
     <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
       <mat-card>
+        <!--         
+         @Description  : Fundoo Notes Title
+        -->
         <mat-card-title fxLayoutAlign="center center">
           <h4>
             <span class="lightblue">F</span>
@@ -39,6 +42,9 @@
         </mat-card-title>
         <div style="height:5vh"></div>
         <div>
+          <!--         
+         @Description  : Validating Email and displaying the error message
+         -->
           <mat-form-field appearance="outline">
             <mat-label>Recovery Email</mat-label>
             <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>

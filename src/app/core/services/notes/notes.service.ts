@@ -21,4 +21,7 @@ export class NotesService {
   deleteNote(body){
     return this.httpservice.postDataForJSON("notes/trashNotes",body);
   }
+  showNoteLabels(){
+    return this.httpservice.getData2("noteLabels/getNoteLabelList");
+  }
 }

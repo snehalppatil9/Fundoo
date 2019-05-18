@@ -17,10 +17,10 @@ import { NotesService } from '../../core/services/notes/notes.service'
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent implements OnInit {
-  
-  constructor(private noteService : NotesService) { }
+
+  constructor(private noteService: NotesService) { }
 
   ngOnInit() {
   }
- 
+
 }

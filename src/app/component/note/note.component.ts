@@ -20,32 +20,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./note.component.scss'],
   outputs: ['onNewEntry']
 })
-
 export class NoteComponent implements OnInit {
   notecard: boolean = true;
   listcard: boolean = false;
   title = new FormControl('')
   description = new FormControl('')
-  @Output() onNewEntry= new EventEmitter()
+  @Output() onNewEntry = new EventEmitter()
   constructor(private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) { }
-
   /**
-  * 
-  * @description opening the notecard for adding
+  * @description :  opening the notecard for adding
   */
   noteCardOpen() {
     this.notecard = !(this.notecard);
   }
   /**
-  * 
-  * @description opening the New list card
+  * @description :  opening the New list card
   */
   listCardOpen() {
     this.listcard = !(this.listcard);
   }
   ngOnInit() {
   }
-
+  /**
+  * @description :  Adding note in database
+  */
   addNote() {
     this.notecard = !(this.notecard);
     var body = {

@@ -1,3 +1,5 @@
+@import '../../core/scss/colors';
+@import '../../core/scss/mixin';
 .clear{
     font-size: 20px;
     opacity:0.7;
@@ -18,4 +20,13 @@
     outline: none;
     border:none;
     width:100%;
+}
+.side_label{
+    padding:2%;
+    width:90%;
+    cursor: pointer;
+}
+.label{
+    font-weight: 500;
+    @include color-test(rgb(73, 73, 73));
 }

@@ -14,6 +14,7 @@ import { LabelComponent } from '../label/label.component';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -25,29 +26,32 @@ export class NavbarComponent implements OnInit {
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
+  
   constructor(private dialog: MatDialog, private noteService: NotesService, private router: Router) { }
 
   ngOnInit() {
-
+   
   }
   /**
- * 
- * @description displaying the signout card
- */
+  * @description displaying the signout card
+  */
   account() {
     this.signoutCard = !(this.signoutCard);
   }
   /**
-    * 
-    * @description add account
-    */
+  * @description :  add account
+  */
   addAccount() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("Id");
+    localStorage.removeItem("Firstname");
+    localStorage.removeItem("Lastname");
+    localStorage.removeItem("Email");
     this.router.navigateByUrl('/login');
   }
   /**
-    * 
-    * @description for logout from fundoo account
-    */
+  * @description :  for logout from fundoo account
+  */
   logout() {
     this.noteService.logout()
       .subscribe((response) => {
@@ -60,18 +64,21 @@ export class NavbarComponent implements OnInit {
       }, (error) => {
       });
   }
-
+  /**
+  * @description :  Grid and List View
+  */
   view() {
     this.gridView = !this.gridView;
   }
+  /**
+  * @description :  Add Label 
+  */
   createLabel(): void {
-    this.dialog.open(LabelComponent, {
+   this.dialog.open(LabelComponent, {
       width: '400px',
     });
-
   }
-  /**
-  * 
+   /*
   * @description for refresh of page
   */
   refresh() {

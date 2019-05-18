@@ -6,13 +6,13 @@
   padding-left: 40px;
 }
 .mat-form-field input{
-border-radius: 4px;
-color: #202124;
-font-size: 16px;
-height: 28px;
-margin: 1px 1px 1px 1px;
-padding: 13px 15px;
-z-index: 1;
+  border-radius: 4px;
+  color: #202124;
+  font-size: 16px;
+  height: 28px;
+  margin: 1px 1px 1px 1px;
+  padding: 13px 15px;
+  z-index: 1;
 }
 .mat-button{
   width: 30%;
@@ -21,13 +21,13 @@ z-index: 1;
   color: white;
 }
 .mat-card-title .red{
-color: red;
+  color: red;
 }
 .mat-card-title .blue{
   color: blue;
 }
 .mat-card-title .lightblue{
-    color: #4285f4;
+  color: #4285f4;
 }
 .mat-card-title .yellow{
   color: #fbbc05;
@@ -40,20 +40,20 @@ color: red;
 }
 .mat-form-field{
   -webkit-box-flex: 1;
-    box-flex: 1;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-    -webkit-flex-shrink: 1;
-    flex-shrink: 1;
-    background-color: transparent;
-    border: none;
-    display: block;
-    font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-    height: 24px;
-    line-height: 24px;
-    margin: 0;
-    min-width: 0%;
-    outline: none;
-    padding: 0;
-    z-index: 0;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+  background-color: transparent;
+  border: none;
+  display: block;
+  font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  height: 24px;
+  line-height: 24px;
+  margin: 0;
+  min-width: 0%;
+  outline: none;
+  padding: 0;
+  z-index: 0;
 }

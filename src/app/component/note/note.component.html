@@ -11,10 +11,16 @@
 <div fxLayoutAlign="center" *ngIf="notecard">
   <mat-card class="card" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px" fxFlex.sm="500px" fxFlex.xs="95%">
     <div fxFlex="100">
+      <!-- 
+       @description: Take Note Card
+      -->
       <div fxFlex="70" (click)="noteCardOpen()">
         <span>Take a note...</span>
       </div>
       <div fxLayoutAlign="end" fxFlex="30">
+        <!-- 
+            @description: New List Button
+          -->
         <div fxFlex="35">
           <abbr title="New List">
             <button type="button" mat-button (click)="listCardOpen()">
@@ -24,6 +30,9 @@
             </button>
           </abbr>
         </div>
+        <!-- 
+          @description: New Note With Drawing Button
+         -->
         <div fxFlex="30">
           <abbr title="New Note With Drawing">
             <button type="button" mat-button>
@@ -33,6 +42,9 @@
             </button>
           </abbr>
         </div>
+        <!-- 
+           @description: New Note With Image Button
+          -->
         <div fxFlex="35">
           <abbr title="New Note With Image">
             <button type="button" mat-button>
@@ -46,6 +58,9 @@
     </div>
   </mat-card>
 </div>
+<!-- 
+  @description: Opening Note Card
+-->
 <div fxLayoutAlign="center center" *ngIf="!notecard">
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
@@ -71,20 +86,27 @@
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
       <div>
-        <input style="height:5vh; border-style: hidden" [formControl]="title" placeholder="Title">
+        <input style="height:8vh; border-style: hidden; font-size: 20px;" [formControl]="title" placeholder="Title">
         <button type="button" class="icon" mat-button>
           <i class="material-icons">
             add_alert
           </i>
         </button>
       </div>
-      <hr>
+      <mat-divider></mat-divider>
       <div>
-        <i class="material-icons">
-          add
-        </i>
-        <input style="height:5vh; border-style: hidden" placeholder="List Item">
-        <hr>
+        <div>
+        <button type="button" mat-button>
+          <i class="material-icons">
+            add
+          </i>
+        </button>
+        <input style="height:4vh; border-style: hidden" placeholder="List Item">
+      </div>
+      <mat-divider></mat-divider>
+        <!-- 
+           @description: Icon List
+        -->
         <div class="row" fxLayoutAlign="space-evenly center">
           <app-icon></app-icon>
           <button mat-button (click)="addNote()">Close</button>
@@ -93,4 +115,3 @@
     </div>
   </mat-card>
 </div>
-

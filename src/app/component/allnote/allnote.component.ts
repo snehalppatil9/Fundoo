@@ -23,6 +23,9 @@ export class AllnoteComponent implements OnInit {
   ngOnInit() {
     this.getNotes();
   }
+  /*
+ * @Description  : Getting note data 
+ */
   getNotes() {
     this.noteService.getNoteList()
       .subscribe((response: any) => {

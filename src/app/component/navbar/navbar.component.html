@@ -13,12 +13,12 @@
  -->
 <mat-toolbar class="navbar" style="height:10vh" fxLayoutAlign="space-evenly center">
     <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
-        <div fxFlex="25" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
-            <div fxFlex="25">
+        <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
+            <div fxFlex="30">
                 <!-- 
                      @Description: Dashboard first icon menu bar
                  -->
-                <button type="button" mat-button (click)="drawer.toggle()">
+                <button type="button" style="margin-top:10px;" mat-button (click)="drawer.toggle()">
                     <i class="material-icons">
                         menu
                     </i>
@@ -27,28 +27,30 @@
             <!-- 
                  @Description: Dashboard second icon image
              -->
-            <div fxFlex="25">
+            <div fxFlex="30">
                 <img class="gb_ma gb_Cd" alt="" aria-hidden="true" fxShow fxHide.sm fxShow fxHide.xs
                     src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
                     srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
-                    style="width:50px;height:50px">
+                    style="width:50px;height:50px; margin-top:8px;">
             </div>
             <!-- 
                  @Description: Dashboard Fundoo Label
              -->
-            <div fxFlex="50">
-                <b><label>Fundoo</label></b>
+            <div fxFlex="40" style="margin-top:15px;" ngStyle.md="font-size:10px" ngStyle.lg="font-size:30px"
+                ngStyle.sm="font-style:15px;" ngStyle.xl="font-size:30px">
+                <b>Fundoo</b>
             </div>
         </div>
         <!-- 
             @Description: Dashboard Search Box
         -->
-        <div fxFlex="50" fxShow fxHide.sm fxShow fxHide.xs>
+        <div fxFlex="50" style="margin-top:10px;" fxShow fxHide.sm fxShow fxHide.xs>
             <div fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80">
                 <mat-icon ngStyle.xl="font-size:50px" class="searchbutton">search</mat-icon>
-                <input type="text" class="search" placeholder="Search.." ngStyle.md="font-size:13px"
-                    ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
-                    ngStyle.xl="font-size:30px">
+                <input type="text" class="search" placeholder="Search.." style="width:800px;"
+                    ngStyle.md="font-size:13px" ngStyle.lg="font-size:20px" ngStyle.sm="font-style:20px;margin-top:1px;"
+                    ngStyle.xl="font-size:50px">
+                <mat-icon ngStyle.xl="font-size:20px" class="clear">clear</mat-icon>
             </div>
         </div>
         <!-- 
@@ -56,31 +58,34 @@
         -->
         <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
             <div fxFlex="35">
-                <button mat-icon-button (click)="refresh()">
+                <button style="margin-top:10px;" mat-icon-button (click)="refresh()">
                     <i class="material-icons">refresh</i>
                 </button>
             </div>
             <div fxFlex="35">
-                <button mat-icon-button class="materialicons" *ngIf=gridView (click)=view()>
+                <button mat-icon-button style="margin-top:10px;" class="materialicons" *ngIf=gridView (click)=view()>
                     <i class="material-icons">
                         view_stream</i>
                 </button>
-                <button mat-icon-button class="materialicons" *ngIf=!gridView (click)=view()>
+                <button mat-icon-button style="margin-top:10px;" class="materialicons" *ngIf=!gridView (click)=view()>
                     <i class="material-icons">view_module</i>
                 </button>
             </div>
             <div fxFlex="30">
                 <button mat-icon-button class="addimage" (click)="account()">
-                        <div mat-card-avatar ></div>
+                    <div mat-card-avatar></div>
                 </button>
             </div>
         </div>
     </div>
 </mat-toolbar>
+<!-- 
+  @Description  : Logout Card
+-->
 <mat-card class="account" *ngIf="signoutCard">
     <mat-card-header>
-        <div mat-card-avatar class="addimage1" >
-            <span class="change">Change</span>
+        <div mat-card-avatar class="addimage1">
+            <!-- <span class="change">Change</span> -->
         </div>
         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
         <mat-card-subtitle>{{email}}</mat-card-subtitle>
@@ -89,17 +94,15 @@
     <div><button class="addAccount" (click)="addAccount()">Add Account</button></div>
     <div><button class="signout" (click)="logout()">Sign out</button></div>
 </mat-card>
-
 <!-- 
-    Dashboard side nav bar
- -->
+@Description    :  Dashboard side nav bar
+-->
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" mode="side">
-        <br><br>
-        <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
+        <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
             <button type="button" class="btn" mat-button>
                 <div class="notes" fxLayout="row" fxLayoutGap="20px">
-                    <mat-icon class=label>notes</mat-icon>
+                    <mat-icon>notes</mat-icon>
                     <h5 class="name">Notes</h5>
                 </div>
             </button>
@@ -111,8 +114,7 @@
             </button>
         </div>
         <mat-divider></mat-divider>
-        <br><br>
-        <div fxLayout="column" fxLayoutGap="10px" style="height:18vh">
+        <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
             <div class="label" fxLayout="row">
                 <h4>
                     <p class="name">Label</p>
@@ -126,9 +128,8 @@
                 </div>
             </button>
         </div>
-        <mat-divider></mat-divider>
-        <br><br>
-        <div fxLayout="column" fxLayoutGap="20px" style="height:18vh">
+        <hr>
+        <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
             <button type="button" class="btn" mat-button>
                 <div class="archive" fxLayout="row" fxLayoutGap="20px">
                     <mat-icon class=label>archive</mat-icon>

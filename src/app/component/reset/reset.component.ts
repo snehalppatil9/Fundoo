@@ -49,7 +49,9 @@ export class ResetComponent implements OnInit {
     //console.log(this.accessToken);
     localStorage.setItem('token',this.accessToken)
   }
-  
+   /*
+  * @Description  : Sending data to database
+  */
   reset(){
    // this.token=this.router.snapshot.paramMap.get('access-token')
     console.log("model----",this.model);

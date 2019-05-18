@@ -1,4 +1,4 @@
- <!-- 
+<!-- 
   Execution       :   1. default node         cmd> registration.component.html
  
    Purpose         : To register for Fundoo Account   
@@ -14,6 +14,9 @@
     <div fxFlex="100%" fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
     <div fxFlex.lg="96%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
       <mat-card>
+        <!--         
+         @Description  : Fundoo Notes Title
+        -->
         <mat-card-title fxLayoutAlign="start">
           <span class="lightblue">F</span>
           <span class="red">u</span>
@@ -37,6 +40,9 @@
         </mat-card-title>
         <div style="height:1vh"></div>
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="5%">
+          <!--         
+         @Description  : Validating First Name and displaying the error message
+        -->
           <div fxFlex="25">
             <mat-form-field appearance="outline">
               <mat-label>Firstname</mat-label>
@@ -44,6 +50,9 @@
               <input matInput placeholder="FirstName" [(ngModel)]="register.firstName" [formControl]="firstName">
             </mat-form-field>
           </div>
+          <!-- 
+            @Description  : Validating Last Name and displaying the error message 
+          -->
           <div fxFlex="25">
             <mat-form-field appearance="outline">
               <mat-label>Lastname</mat-label>
@@ -54,6 +63,9 @@
         </div>
         <div style="height:1vh"></div>
         <div fxLayout="row" fxLayoutAlign="start">
+          <!-- 
+            @Description  : Validating User Name and displaying the error message 
+          -->
           <div fxFlex="55">
             <mat-form-field appearance="outline">
               <mat-label>Username</mat-label>
@@ -64,18 +76,26 @@
         </div>
         <div style="height:1vh"></div>
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
+          <!-- 
+            @Description  : Validating Password and displaying the error message 
+          -->
           <div fxFlex="22">
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Password</mat-label>
               <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
-              <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.password" [formControl]="password">
+              <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.password"
+                [formControl]="password">
             </mat-form-field>
           </div>
+          <!-- 
+            @Description  : Validating Confirm Password and displaying the error message 
+          -->
           <div fxFlex="22">
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Confirm</mat-label>
               <mat-error *ngIf="cpassword.invalid">{{cpassValidation()}}</mat-error>
-              <input matInput placeholder="Confirm" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.cpassword" [formControl]="cpassword">  
+              <input matInput placeholder="Confirm" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.cpassword"
+                [formControl]="cpassword">
             </mat-form-field>
           </div>
           <div fxLayoutAlign="end" fxFlex="2" class="p2">
@@ -83,26 +103,33 @@
           </div>
         </div>
         <div style="height:5vh"></div>
+        <!-- 
+            @Description  : Validating advance and basic button and displaying the error message 
+        -->
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
-          <p>
-            <mat-button-toggle-group appearance="legacy" name="fontStyle" [(ngModel)]="register.service" aria-label="Font Style" >
-                <mat-error *ngIf="advanced.invalid">{{advancedValidation()}}</mat-error>
-              <mat-button-toggle value="advanced" (click)="currentLesson = '1'"
-              [disabled]="currentLesson !== '1'" class="primair">Advanced</mat-button-toggle>
+          <div fxFlex="20">
+            <mat-button-toggle-group appearance="legacy" name="fontStyle" [(ngModel)]="register.service"
+              aria-label="Font Style">
+              <mat-error *ngIf="advanced.invalid">{{advancedValidation()}}</mat-error>
+              <mat-button-toggle value="advanced" (click)="currentLesson = '1'" [disabled]="currentLesson !== '1'"
+                class="primair">Advanced</mat-button-toggle>
             </mat-button-toggle-group>
-          </p>
-          <p>
-            <mat-button-toggle-group appearance="legacy" [(ngModel)]="register.service" name="fontStyle" aria-label="Font Style">
-                <mat-error *ngIf="basic.invalid">{{basicValidation()}}</mat-error>
-              <mat-button-toggle value="basic" (click)="currentLesson = '2'"
-              [disabled]="currentLesson !== '2'" class="primair">Basic</mat-button-toggle>
+          </div>
+          <div fxFlex="15">
+            <mat-button-toggle-group appearance="legacy" [(ngModel)]="register.service" name="fontStyle"
+              aria-label="Font Style">
+              <mat-error *ngIf="basic.invalid">{{basicValidation()}}</mat-error>
+              <mat-button-toggle value="basic" (click)="currentLesson = '2'" [disabled]="currentLesson !== '2'"
+                class="primair">Basic</mat-button-toggle>
             </mat-button-toggle-group>
-          </p>
+          </div>
         </div>
         <div style="height:5vh"></div>
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="25%">
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button></div>
-          <div><button mat-button [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid" (click)="submit(register)" routerLink="/login">Next</button></div>
+          <div><button mat-button
+              [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid"
+              (click)="submit(register)" routerLink="/login">Next</button></div>
         </div>
         <div fxLayoutAlign="end" fxHide fxShow.gt-sm>
           <div class="img">
