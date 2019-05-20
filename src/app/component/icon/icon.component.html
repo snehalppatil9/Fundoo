@@ -32,26 +32,18 @@
   <!-- 
   @description: matmenu for color start
  -->
-  <mat-menu #menuColor="matMenu">
+ <mat-menu #menuColor="matMenu" [overlapTrigger]="false">
+  <ng-template matMenuContent>
     <div>
-      <abbr title="white"><span class=border></span></abbr>
-      <abbr title="salmon"><span class=salmon></span></abbr>
-      <abbr title="orange"><span class=orange></span></abbr>
-      <abbr title="yellow"><span class=yellow_color></span></abbr>
+      <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 3px" *ngFor="let colors of arrayOfColors">
+        <div *ngFor="let color of colors">
+          <button [ngStyle]="{ 'background-color': color.hexcode }" (click)="setColor(color.hexcode)"
+            matTooltip="{{ color.name }}" mat-mini-fab></button>
+        </div>
+      </div>
     </div>
-    <div>
-      <abbr title="green"><span class=green_color></span></abbr>
-      <abbr title="teal"><span class=teal></span></abbr>
-      <abbr title="blue"><span class=blue></span></abbr>
-      <abbr title="aqua"><span class=aqua></span></abbr>
-    </div>
-    <div>
-      <abbr title="purple"><span class=purple></span></abbr>
-      <abbr title="pink"><span class=pink></span></abbr>
-      <abbr title="red"><span class=red></span></abbr>
-      <abbr title="gray"><span class=gray></span></abbr>
-    </div>
-  </mat-menu>
+  </ng-template>
+</mat-menu>
   <!-- 
   @description: Add Image Button
  -->
@@ -73,3 +65,9 @@
     </button>
   </abbr>
 </div>
+
+
+
+  
+ 
+  

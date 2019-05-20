@@ -25,6 +25,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 /*API reference for Angular button and checkbox
 API reference for Angular Material card */
 import { CommonModule } from '@angular/common';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 //import { AllnoteComponent } from '../app/component/allnote/allnote.component';
 
@@ -108,7 +109,8 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
     MatSnackBarModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

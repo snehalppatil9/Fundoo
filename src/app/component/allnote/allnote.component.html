@@ -14,8 +14,8 @@
         <!-- 
             @Description    :   Displaying the cards
          -->
-        <div *ngFor="let data of notes | pipe  | filterpipe : searchItem">
-            <mat-card>
+        <div *ngFor="let data of notes | pipe | filterpipe : searchItem">
+            <mat-card [ngStyle]="{'background-color':data.color}">
                 <div>
                     <div>
                         {{data.title}}
@@ -25,10 +25,10 @@
                             </i>
                         </button>
                     </div>
-                    <div>{{data.description }}</div>
+                    <div>{{data.description}}</div>
                 </div>
                 <div fxLayout="row" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
-                    <app-icon></app-icon>
+                    <app-icon [card]='data' (setColor)=entry($event)></app-icon>
                     <!-- 
                         @description: More Button
                     -->
