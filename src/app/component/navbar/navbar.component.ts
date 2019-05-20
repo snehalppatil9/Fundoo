@@ -14,7 +14,7 @@ import { LabelComponent } from '../label/label.component';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { DataService } from '../../core/services/data/data.service'
+import { DataService } from '../../core/services/data/data.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

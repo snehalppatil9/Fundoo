@@ -12,10 +12,12 @@
     <input placeholder="Create new label" class="textarea" [(ngModel)]="label.labelName" maxlength=40>
   </div>
   <div fxFlex="10">
-    <mat-icon class="done">done</mat-icon>
+    <mat-icon class="done" (click)=showLabel()>done</mat-icon>
   </div>
-  <a *ngFor="let data of label1" class=buttonicon>
-    <div fxLayout=row class="side_label">
+</div>
+<div>
+  <a *ngFor="let data of label1 | pipe" class=buttonicon>
+    <div fxLayout=row class="label">
       <div fxFlex="10%"></div>
       <div fxFlex="20%">
         <mat-icon class="label">label</mat-icon>

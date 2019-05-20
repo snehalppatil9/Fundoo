@@ -21,13 +21,14 @@ export class NotesService {
   createLabel(body){
     return this.httpservice.postDataForJSON("noteLabels",body);
   }
+  showNoteLabels(){
+    return this.httpservice.getData2("noteLabels/getNoteLabelList");
+  }
   logout(){
     return this.httpservice.postDataForJSON("user/logout",{});
   }
   deleteNote(body){
     return this.httpservice.postDataForJSON("notes/trashNotes",body);
   }
-  showNoteLabels(){
-    return this.httpservice.getData2("noteLabels/getNoteLabelList");
-  }
+ 
 }

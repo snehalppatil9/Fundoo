@@ -14,11 +14,9 @@
         <!-- 
             @Description    :   Displaying the cards
          -->
-        <div *ngFor="let data of notes | pipe  | filterpipe : searchItem" class="div" [ngClass.xl]="view ? 'list' : 'grid'" 
-        [ngClass.lg]="view ? 'list' : 'grid'" [ngClass.md]="view ? 'list' : 'grid'" [ngClass.sm]="view ? 'list' : 'grid2'"
-        [ngClass.xs]="view ? 'list' : 'list'" >
+        <div *ngFor="let data of notes | pipe  | filterpipe : searchItem">
             <mat-card>
-                <div (click)="openDialog(data)">
+                <div>
                     <div>
                         {{data.title}}
                         <button class="icon" type="button" mat-button>
@@ -30,7 +28,37 @@
                     <div>{{data.description }}</div>
                 </div>
                 <div fxLayout="row" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
-                    <app-icon1></app-icon1>
+                    <app-icon></app-icon>
+                    <!-- 
+                        @description: More Button
+                    -->
+                    <abbr title="More">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <i class="material-icons">
+                                more_vert
+                            </i>
+                        </button>
+                    </abbr>
+                    <!-- 
+                        @description: MatMenu button for more Button
+                    -->
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <span>Delete Note</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Add label</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Add drawing</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Make a Copy</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Show checkboxes</span>
+                        </button>
+                    </mat-menu>
                 </div>
             </mat-card>
         </div>

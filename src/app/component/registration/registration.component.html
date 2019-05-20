@@ -39,7 +39,7 @@
           <h6>to continue to FundooNotes Account</h6>
         </mat-card-title>
         <div style="height:1vh"></div>
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="5%">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="5%">
           <!--         
          @Description  : Validating First Name and displaying the error message
         -->
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div style="height:1vh"></div>
-        <div fxLayout="row" fxLayoutAlign="start">
+        <div fxLayout="row" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column">
           <!-- 
             @Description  : Validating User Name and displaying the error message 
           -->
@@ -75,27 +75,27 @@
           </div>
         </div>
         <div style="height:1vh"></div>
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="4%">
           <!-- 
             @Description  : Validating Password and displaying the error message 
           -->
-          <div fxFlex="22">
+          <div fxFlex="20">
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Password</mat-label>
               <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
               <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.password"
-                [formControl]="password">
+                [formControl]="password" maxlength="16">
             </mat-form-field>
           </div>
           <!-- 
             @Description  : Validating Confirm Password and displaying the error message 
           -->
-          <div fxFlex="22">
+          <div fxFlex="18">
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Confirm</mat-label>
               <mat-error *ngIf="cpassword.invalid">{{cpassValidation()}}</mat-error>
               <input matInput placeholder="Confirm" [type]="hide ? 'password' : 'text'" [(ngModel)]="register.cpassword"
-                [formControl]="cpassword">
+                maxlength="16" [formControl]="cpassword">
             </mat-form-field>
           </div>
           <div fxLayoutAlign="end" fxFlex="2" class="p2">
@@ -106,8 +106,8 @@
         <!-- 
             @Description  : Validating advance and basic button and displaying the error message 
         -->
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4%">
-          <div fxFlex="20">
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4">
+          <div fxFlex="45">
             <mat-button-toggle-group appearance="legacy" name="fontStyle" [(ngModel)]="register.service"
               aria-label="Font Style">
               <mat-error *ngIf="advanced.invalid">{{advancedValidation()}}</mat-error>
@@ -125,8 +125,9 @@
           </div>
         </div>
         <div style="height:5vh"></div>
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="25%">
-          <div class="size"><button mat-button routerLink="/login">Sign in instead</button></div>
+        <div fxLayout="row" fxLayoutGap="25" fxLayoutAlign.md="start end">
+          <div class="size"><button mat-button routerLink="/login">Sign in instead</button>
+          </div>
           <div><button mat-button
               [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid"
               (click)="submit(register)" routerLink="/login">Next</button></div>

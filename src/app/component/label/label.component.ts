@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { Label } from '../../core/model/user-model'
+import { DataService } from '../../core/services/data/data.service'
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
@@ -9,19 +10,18 @@ import { Label } from '../../core/model/user-model'
 })
 export class LabelComponent implements OnInit {
   label: any = {
-    "labelName": ""
+    "labelName": ''
   }
-  id = localStorage.getItem('token');
+  id = localStorage.getItem('Id');
   label1: Label[] = [];
-  
-  constructor(private noteService: NotesService, private snackbar: MatSnackBar) { 
-    console.log("@@@@@@@@@@@@@@@@",this.label1);
-    
+
+  constructor(private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar) {
+    console.log("@@@@@@@@@@@@@@@@", this.label1);
   }
 
   ngOnInit() {
     this.showLabel();
-   }
+  }
   clear() {
     this.label.labelName = null;
   }
@@ -31,18 +31,20 @@ export class LabelComponent implements OnInit {
   */
   addLabel() {
     let label = this.label.labelName;
-    console.log("@@@@@@@@@@@@@@@@@@@@@@",label);
-    
+    console.log("@@@@@@@@@@@@@@@@@@@@@@", label);
+
     var body = {
+        //"userId": "id",
       "label": this.label.labelName,
-      "isDeleted": true,
-      "userId": "id"
+      "isDeleted": false,
+      "userId":  this.id
     }
     console.log('add note data......', body);
     try {
       this.noteService.createLabel(body).subscribe(
         data => {
           // this.label.labelName = null;
+          //console.log("=====================>",data);
           this.snackbar.open('Label added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
         },
@@ -54,6 +56,7 @@ export class LabelComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+    setTimeout(() =>this.dataService.getAllLabel(),0); 
   }
   /*
    * @Description  : Getting label data 

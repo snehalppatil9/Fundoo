@@ -76,6 +76,46 @@
         <input style="height:5vh; border-style: hidden" [formControl]="description" placeholder="Take a note...">
         <div class="row" fxLayoutAlign="space-evenly center">
           <app-icon></app-icon>
+          <!-- 
+            @description: More Button
+          -->
+          <abbr title="More">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <i class="material-icons">
+                more_vert
+              </i>
+            </button>
+          </abbr>
+          <!-- 
+            @description: MatMenu button for more Button
+          -->
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Add label</span>
+            </button>
+            <button mat-menu-item>
+              <span>Add drawing</span>
+            </button>
+            <button mat-menu-item>
+              <span>Show checkboxes</span>
+            </button>
+          </mat-menu>
+          <!-- 
+            @description: Undo Button
+          -->
+          <abbr title="Undo">
+            <button mat-icon-button>
+              <mat-icon class="icon">undo</mat-icon>
+            </button>
+          </abbr>
+          <!-- 
+            @description: Redo Button
+          -->
+          <abbr title="Redo">
+            <button mat-icon-button>
+              <mat-icon class="icon">redo</mat-icon>
+            </button>
+          </abbr>
           <button mat-button (click)="addNote()">Close</button>
         </div>
       </div>
@@ -96,19 +136,59 @@
       <mat-divider></mat-divider>
       <div>
         <div>
-        <button type="button" mat-button>
-          <i class="material-icons">
-            add
-          </i>
-        </button>
-        <input style="height:4vh; border-style: hidden" placeholder="List Item">
-      </div>
-      <mat-divider></mat-divider>
+          <button type="button" mat-button>
+            <i class="material-icons">
+              add
+            </i>
+          </button>
+          <input style="height:4vh; border-style: hidden" placeholder="List Item">
+        </div>
+        <mat-divider></mat-divider>
         <!-- 
            @description: Icon List
         -->
         <div class="row" fxLayoutAlign="space-evenly center">
           <app-icon></app-icon>
+          <!-- 
+            @description: More Button
+          -->
+          <abbr title="More">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <i class="material-icons">
+                more_vert
+              </i>
+            </button>
+          </abbr>
+          <!-- 
+            @description: MatMenu button for more Button
+          -->
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Add label</span>
+            </button>
+            <button mat-menu-item>
+              <span>Add drawing</span>
+            </button>
+            <button mat-menu-item>
+              <span>Show checkboxes</span>
+            </button>
+          </mat-menu>
+          <!-- 
+            @description: Undo Button
+          -->
+          <abbr title="Undo">
+            <button mat-icon-button>
+              <mat-icon class="icon">undo</mat-icon>
+            </button>
+          </abbr>
+          <!-- 
+            @description: Redo Button
+          -->
+          <abbr title="Redo">
+            <button mat-icon-button>
+              <mat-icon class="icon">redo</mat-icon>
+            </button>
+          </abbr>
           <button mat-button (click)="addNote()">Close</button>
         </div>
       </div>

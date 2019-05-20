@@ -19,7 +19,7 @@ import { DataService } from 'src/app/core/services/data/data.service';
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss'],
-  outputs: ['onNewEntry']
+  
 })
 export class NoteComponent implements OnInit {
   notecard: boolean = true;

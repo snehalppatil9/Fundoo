@@ -6,8 +6,8 @@ title : string
 description : string
 }
 export interface Label{
-    id: string
-    label: string
-    isDeleted: boolean
-    userId: string
+    "id": string
+    "label": string
+    "isDeleted": boolean
+    "userId": string
 }

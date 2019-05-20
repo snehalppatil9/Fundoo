@@ -61,7 +61,6 @@ import { TrashComponent } from './component/trash/trash.component';
 import { IconComponent } from './component/icon/icon.component';
 import { AllnoteComponent } from './component/allnote/allnote.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { Icon1Component } from './component/icon1/icon1.component';
 import { PipePipe } from './pipe/pipe.pipe';
 import { FilterpipePipe } from './filterpipe/filterpipe.pipe';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
@@ -80,7 +79,6 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
     TrashComponent,
     IconComponent,
     AllnoteComponent,
-    Icon1Component,
     PipePipe,
     FilterpipePipe,
     SearchNoteComponent

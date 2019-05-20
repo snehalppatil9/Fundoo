@@ -1,3 +1,4 @@
+@import '../../core/scss/colors';
 @import '../../core/scss/mixin';
 .card{
     @include margin-top(10px);
@@ -16,4 +17,7 @@
     padding-left: 5%;
     cursor: pointer;
     opacity:0.7;
+}
+.material-icons{
+    font-size: 30px;
 }
