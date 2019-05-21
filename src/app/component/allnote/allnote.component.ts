@@ -34,9 +34,9 @@ export class AllnoteComponent implements OnInit {
     this.dataService.allNote
       .pipe(takeUntil(this.destory$))
       .subscribe(data => this.notes = data);
-       console.log('all note -->', this.notes);
+    console.log('all note ==================>', this.notes);
 
-    
+
     this.dataService.currentMessageView.pipe(takeUntil(this.destory$))
       .subscribe(message => {
         this.view = message

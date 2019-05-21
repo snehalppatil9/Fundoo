@@ -27,11 +27,9 @@ export class NavbarComponent implements OnInit {
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
   searchValue: any;
-  showSearchBar: boolean = false;
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-
   }
   /**
   * @description displaying the signout card
@@ -69,7 +67,7 @@ export class NavbarComponent implements OnInit {
   * @description :  Grid and List View
   */
   view() {
-    this.gridView=!this.gridView;
+    this.gridView = !this.gridView;
   }
   /**
   * @description :  Add Label 
@@ -80,11 +78,14 @@ export class NavbarComponent implements OnInit {
     });
   }
   /*
-  * @description for refresh of page
+  * @description :  for refresh of page
   */
   refresh() {
     this.router.navigateByUrl('/addnote');
   }
+  /*
+  * @description :  for search note
+  */
   search() {
     this.router.navigateByUrl('/search');
   }

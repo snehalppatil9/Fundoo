@@ -11,29 +11,27 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class SearchNoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor(private dataService: DataService, private searchService: NotesService) { }
+  constructor(private dataService: DataService) { }
   notes: Note[] = [];
   message: string
   notesArray = [];
-
   ngOnInit() {
     this.getNotes()
-    this.dataService.currentMessageSearch.pipe(takeUntil(this.destroy$))
-    .subscribe(message=>{
-      this.message = message
-    })
-  
+    this.dataService.currentMessageSearch
+    .pipe(takeUntil(this.destroy$))
+      .subscribe(message => {
+        this.message = message
+      })
   }
-
-  getNotes(){
+  getNotes() {
     this.dataService.allNote.
-    pipe(takeUntil(this.destroy$))
-    .subscribe( (response) =>{
-      this.notes = response["data"].data
-      this.notesArray=[];
-    },(error)=>{
-      console.log("Error:",error); 
-    });
+      pipe(takeUntil(this.destroy$))
+      .subscribe((response: any) => {
+        this.notes = response["data"].data
+        this.notesArray = [];
+      }, (error) => {
+        console.log("Error:", error);
+      });
   }
 
 }

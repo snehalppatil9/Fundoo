@@ -13,22 +13,22 @@ export class NotesService {
    * @Purpose : Get Note without refresh
    **/
   getNotes():any{
-    return this.httpservice.getData2("notes/getNotesList")
+    return this.httpservice.getData("notes/getNotesList")
   }
   getNoteList(){
-    return this.httpservice.getData2("notes/getNotesList");
+    return this.httpservice.getData("notes/getNotesList");
   }
   createLabel(body){
-    return this.httpservice.postDataForJSON("noteLabels",body);
+    return this.httpservice.postData("noteLabels",body);
   }
   showNoteLabels(){
-    return this.httpservice.getData2("noteLabels/getNoteLabelList");
+    return this.httpservice.getData("noteLabels/getNoteLabelList");
   }
   logout(){
-    return this.httpservice.postDataForJSON("user/logout",{});
+    return this.httpservice.postData("user/logout",{});
   }
   deleteNote(body){
-    return this.httpservice.postDataForJSON("notes/trashNotes",body);
+    return this.httpservice.postData("notes/trashNotes",body);
   }
  
 }

@@ -19,7 +19,7 @@ export class IconComponent implements OnInit {
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   constructor() { }
-  arrayOfColors = [
+  colorsArray = [
     [
       { name: "white", hexcode: "#FFFFFF" },
       { name: "salmon", hexcode: "#fa8072" },

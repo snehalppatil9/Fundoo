@@ -45,15 +45,13 @@
             @Description: Dashboard Search Box
         -->
         <div fxFlex="50" fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80" fxShow fxHide.sm
-            fxShow fxHide.xs style="margin-top : 10px;">
-            <div *ngIf=!showSearchBar>
-                <mat-icon class="searchbutton">search</mat-icon>
-                <input type="text" class="search" [(ngModel)]="searchValue" class="search" (click)="search()"
-                    (keyup)=newMessage() placeholder="Search..">
-            </div>
+            fxShow fxHide.xs style="margin-top : 7px;">
+            <mat-icon class="searchbutton">search</mat-icon>
+            <input type="text" class="search" [(ngModel)]="searchValue" class="search" (click)="search()"
+                (keyup)=newMessage() placeholder="Search..">
         </div>
         <!-- 
-            @Description: Dashboard view-list, settings and account icons  
+            @Description: Dashboard view-list, settings and logout account icons  
         -->
         <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
             <div fxFlex="35">
@@ -115,7 +113,7 @@
         <mat-divider></mat-divider>
         <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
             <div class="label" fxLayout="row">
-                <h4>
+                <h4 style="margin-left:20px; margin-top:20px;">
                     <p class="name">Label</p>
                 </h4>
             </div>

@@ -31,19 +31,17 @@ export class LabelComponent implements OnInit {
   */
   addLabel() {
     let label = this.label.labelName;
-    console.log("@@@@@@@@@@@@@@@@@@@@@@", label);
-
+    //console.log("@@@@@@@@@@@@@@@@@@@@@@", label);
     var body = {
-        //"userId": "id",
       "label": this.label.labelName,
       "isDeleted": false,
-      "userId":  this.id
+      "userId": this.id
     }
-    console.log('add note data......', body);
+    //console.log('add note data......', body);
     try {
       this.noteService.createLabel(body).subscribe(
         data => {
-          // this.label.labelName = null;
+          this.label.labelName = null;
           //console.log("=====================>",data);
           this.snackbar.open('Label added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
@@ -56,7 +54,7 @@ export class LabelComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() =>this.dataService.getAllLabel(),0); 
+    setTimeout(() => this.dataService.getAllLabel(), 0);
   }
   /*
    * @Description  : Getting label data 
