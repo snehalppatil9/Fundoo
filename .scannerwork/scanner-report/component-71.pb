@@ -1,0 +1,1 @@
+Gsrc/app/component/allnote :EI

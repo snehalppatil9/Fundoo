@@ -73,9 +73,9 @@ export class RegistrationComponent implements OnInit {
       this.cpassword.hasError('minLength') ? 'Password must be at least 5 characters long' :
         this.cpassword.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number' : '';
   }
-  advanced = new FormControl('', [Validators.required]);
+  advance = new FormControl('',Validators.required);
   advancedValidation() {
-    return this.advanced.hasError('required') ? '' :'';
+    return this.advance.hasError('required') ? '' :'';
   }
   basic = new FormControl('', [Validators.required]);
   basicValidation() {

@@ -1,0 +1,1 @@
+ *src/app/component/label/label.component.ts 2tsXUh

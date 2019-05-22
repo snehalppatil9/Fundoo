@@ -32,18 +32,48 @@
   <!-- 
   @description: matmenu for color start
  -->
- <mat-menu #menuColor="matMenu" [overlapTrigger]="false">
-  <ng-template matMenuContent>
-    <div>
-      <div fxLayout="row" fxLayoutGap="5px" style="margin-top: 2px" *ngFor="let colors of colorsArray">
-        <div *ngFor="let color of colors">
-          <button [ngStyle]="{ 'background-color': color.hexcode }" (click)="setColor(color.hexcode)"
-            matTooltip="{{ color.name }}" mat-mini-fab></button>
+  <mat-menu #menuColor="matMenu" [overlapTrigger]="false">
+    <ng-template matMenuContent>
+      <div>
+        <div fxLayout="row" fxLayoutGap="5px" style="margin-top: 2px" *ngFor="let colors of colorsArray">
+          <div *ngFor="let color of colors">
+            <button [ngStyle]="{ 'background-color': color.hexcode }" (click)="setColor(color.hexcode)"
+              matTooltip="{{ color.name }}" mat-mini-fab></button>
+          </div>
         </div>
       </div>
-    </div>
-  </ng-template>
-</mat-menu>
+    </ng-template>
+  </mat-menu>
+  <!-- 
+  @description: More Button
+  -->
+  <abbr title="More">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <i class="material-icons">
+        more_vert
+      </i>
+    </button>
+  </abbr>
+  <!-- 
+  @description: MatMenu button for more Button
+  -->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)=deleteNotes(note)>
+      <span>Delete Note</span>
+    </button>
+    <button mat-menu-item>
+      <span>Add label</span>
+    </button>
+    <button mat-menu-item>
+      <span>Add drawing</span>
+    </button>
+    <button mat-menu-item>
+      <span>Make a Copy</span>
+    </button>
+    <button mat-menu-item>
+      <span>Show checkboxes</span>
+    </button>
+  </mat-menu>
   <!-- 
   @description: Add Image Button
  -->
@@ -65,9 +95,3 @@
     </button>
   </abbr>
 </div>
-
-
-
-  
- 
-  

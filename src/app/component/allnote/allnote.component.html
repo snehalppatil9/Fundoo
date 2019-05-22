@@ -9,8 +9,8 @@
    @since          : 22-04-2019
   -->
 <div fxLayoutAlign="center">
-    <div fxLayout="column" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'
-        fxLayoutGap="50px">
+    <div fxLayout="row wrap" class="allnote" fxLayoutAlign="space-around end" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px'
+        fxFlex.sm='400px' fxFlex.xs='150px' fxLayoutGap="50px">
         <!-- 
             @Description    :   Displaying the cards
          -->
@@ -28,37 +28,8 @@
                     <div>{{data.description}}</div>
                 </div>
                 <div fxLayout="row" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
-                    <app-icon [card]='data' (setColor)=entry($event)></app-icon>
-                    <!-- 
-                        @description: More Button
-                    -->
-                    <abbr title="More">
-                        <button mat-icon-button [matMenuTriggerFor]="menu">
-                            <i class="material-icons">
-                                more_vert
-                            </i>
-                        </button>
-                    </abbr>
-                    <!-- 
-                        @description: MatMenu button for more Button
-                    -->
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="deleteNotes()">
-                            <span>Delete Note</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Add label</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Add drawing</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Make a Copy</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Show checkboxes</span>
-                        </button>
-                    </mat-menu>
+                    <app-icon  [card]='data' (setColor)=entry($event) (onChangeColor)=changeColor(data,$event)
+                        (onChangeDelete)=deleteNote(data,$event)></app-icon>
                 </div>
             </mat-card>
         </div>

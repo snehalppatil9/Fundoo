@@ -110,8 +110,8 @@
           <div fxFlex="45">
             <mat-button-toggle-group appearance="legacy" name="fontStyle" [(ngModel)]="register.service"
               aria-label="Font Style">
-              <mat-error *ngIf="advanced.invalid">{{advancedValidation()}}</mat-error>
-              <mat-button-toggle value="advanced" (click)="currentLesson = '1'" [disabled]="currentLesson !== '1'"
+              <mat-error *ngIf="advance.invalid">{{advancedValidation()}}</mat-error>
+              <mat-button-toggle value="advance" (click)="currentLesson = '1'" [disabled]="currentLesson !== '1'"
                 class="primair">Advanced</mat-button-toggle>
             </mat-button-toggle-group>
           </div>

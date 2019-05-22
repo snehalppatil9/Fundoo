@@ -102,7 +102,8 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <div class="sidebutton">
             <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
-                <button type="button" class="btn" mat-button routerLink="/addnote" (click)="searchValue==null">                   <div class="notes" fxLayout="row" fxLayoutGap="20px">
+                <button type="button" class="btn" mat-button routerLink="/addnote" (click)="searchValue==null">                  
+                     <div class="notes" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon>notes</mat-icon>
                         <h5 class="name">Notes</h5>
                     </div>
@@ -118,7 +119,7 @@
             <div fxLayout="column" class="edit">
                 <div fxFlex=5></div>
                 <div fxFlex=40 class="edit" style="margin-top:20px;">
-                    <h4>Labels</h4>
+                    <h4>LABELS</h4>
                 </div>
                 <a *ngFor="let data of labelList" class=buttonicon>
                     <div fxLayout=row class="side_label">

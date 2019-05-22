@@ -1,0 +1,1 @@
+E.src/app/component/allnote/allnote.component.ts 2tsX`h

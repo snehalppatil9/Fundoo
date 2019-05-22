@@ -1,0 +1,1 @@
+1,src/app/component/forgot/forgot.component.ts 2tsX?h
