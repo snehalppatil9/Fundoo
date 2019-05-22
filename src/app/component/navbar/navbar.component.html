@@ -60,13 +60,17 @@
                 </button>
             </div>
             <div fxFlex="35">
-                <button mat-icon-button style="margin-top:10px;" class="materialicons" *ngIf=gridView (click)=view()>
+                <div *ngIf=gridView>
+                <button mat-icon-button style="margin-top:10px;" class="materialicons" (click)=view() matTooltip="grid view">
                     <i class="material-icons">
                         view_stream</i>
                 </button>
-                <button mat-icon-button style="margin-top:10px;" class="materialicons" *ngIf=!gridView (click)=view()>
+            </div>
+            <div *ngIf=!gridView>
+                <button mat-icon-button style="margin-top:10px;" class="materialicons" (click)=view() matTooltip="list view">
                     <i class="material-icons">view_module</i>
                 </button>
+            </div>
             </div>
             <div fxFlex="30">
                 <button mat-icon-button class="addimage" (click)="account()">
@@ -81,7 +85,7 @@
 -->
 <mat-card class="account" *ngIf="signoutCard">
     <mat-card-header>
-        <div mat-card-avatar class="addimage1">
+        <div mat-card-avatar class="addimage1" (click)="changeProfile()">
             <!-- <span class="change">Change</span> -->
         </div>
         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
@@ -96,51 +100,59 @@
 -->
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" mode="side">
-        <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
-            <button type="button" class="btn" mat-button>
-                <div class="notes" fxLayout="row" fxLayoutGap="20px">
-                    <mat-icon>notes</mat-icon>
-                    <h5 class="name">Notes</h5>
-                </div>
-            </button>
-            <button type="button" class="btn" mat-button>
-                <div class="reminder" fxLayout="row" fxLayoutGap="20px">
-                    <mat-icon class=label>notifications</mat-icon>
-                    <h5 class="name">Reminder</h5>
-                </div>
-            </button>
-        </div>
-        <mat-divider></mat-divider>
-        <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
-            <div class="label" fxLayout="row">
-                <h4 style="margin-left:20px; margin-top:20px;">
-                    <p class="name">Label</p>
-                </h4>
+        <div class="sidebutton">
+            <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
+                <button type="button" class="btn" mat-button routerLink="/addnote" (click)="searchValue==null">                   <div class="notes" fxLayout="row" fxLayoutGap="20px">
+                        <mat-icon>notes</mat-icon>
+                        <h5 class="name">Notes</h5>
+                    </div>
+                </button>
+                <button type="button" class="btn" mat-button>
+                    <div class="reminder" fxLayout="row" fxLayoutGap="20px">
+                        <mat-icon class=label>notifications</mat-icon>
+                        <h5 class="name">Reminder</h5>
+                    </div>
+                </button>
             </div>
-            <!-- <mat-icon class=label>label</mat-icon> -->
-            <button type="button" (click)="createLabel()" class="btn" mat-button>
-                <div class="edit" fxLayout="row" fxLayoutGap="20px">
-                    <mat-icon class=label>create</mat-icon>
-                    <h5>Edit Note</h5>
+            <mat-divider></mat-divider>
+            <div fxLayout="column" class="edit">
+                <div fxFlex=5></div>
+                <div fxFlex=40 class="edit" style="margin-top:20px;">
+                    <h4>Labels</h4>
                 </div>
-            </button>
+                <a *ngFor="let data of labelList" class=buttonicon>
+                    <div fxLayout=row class="side_label">
+                        <div fxFlex="10"></div>
+                        <div fxFlex="20">
+                            <mat-icon class=label>label</mat-icon>
+                        </div>
+                        <div fxFlex="60" class=label>{{data}}</div>
+                    </div>
+                </a>
+                <button type="button" (click)="createLabel()" class="btn" mat-button>
+                    <div class="edit" fxLayout="row" fxLayoutGap="20px">
+                        <mat-icon class=label>create</mat-icon>
+                        <h5>Edit Note</h5>
+                    </div>
+                </button>
+            </div>
+            <hr>
+            <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
+                <button type="button" class="btn" mat-button>
+                    <div class="archive" fxLayout="row" fxLayoutGap="20px">
+                        <mat-icon class=label>archive</mat-icon>
+                        <h5 class="name">Archive</h5>
+                    </div>
+                </button>
+                <button type="button" class="btn" mat-button>
+                    <div class="delete" fxLayout="row" fxLayoutGap="20px">
+                        <mat-icon class=label>delete</mat-icon>
+                        <h5 class="name">Trash</h5>
+                    </div>
+                </button>
+            </div>
+            <mat-divider></mat-divider>
         </div>
-        <hr>
-        <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
-            <button type="button" class="btn" mat-button>
-                <div class="archive" fxLayout="row" fxLayoutGap="20px">
-                    <mat-icon class=label>archive</mat-icon>
-                    <h5 class="name">Archive</h5>
-                </div>
-            </button>
-            <button type="button" class="btn" mat-button>
-                <div class="delete" fxLayout="row" fxLayoutGap="20px">
-                    <mat-icon class=label>delete</mat-icon>
-                    <h5 class="name">Delete</h5>
-                </div>
-            </button>
-        </div>
-        <mat-divider></mat-divider>
     </mat-drawer>
     <div style="height:7vh"></div>
     <router-outlet></router-outlet>

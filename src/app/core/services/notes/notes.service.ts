@@ -30,5 +30,14 @@ export class NotesService {
   deleteNote(body){
     return this.httpservice.postData("notes/trashNotes",body);
   }
- 
+ /**
+   * @Purpose : Add label
+   **/
+  addLabel(body){
+    return this.httpservice.postDataForEdit("noteLabels",body)
+  }
+
+  showNoteLabel(){
+    return this.httpservice.postDataForShowLabel("noteLabels/getNoteLabelList")
+  }
 }

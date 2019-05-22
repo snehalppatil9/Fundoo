@@ -41,7 +41,7 @@ import {
   MatListModule,
   MatSidenavModule,
   MatSliderModule,
-  MatSlideToggleModule,
+  MatSlideToggleModule
 } from '@angular/material';
 //  API reference for Angular Material form-field 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -110,7 +110,8 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
     MatSliderModule,
     MatSlideToggleModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

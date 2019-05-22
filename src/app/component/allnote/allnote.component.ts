@@ -15,6 +15,8 @@ import { Note } from '../../core/model/user-model'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { EventEmitter } from 'events';
+import { NotesService } from '../../core/services/notes/notes.service';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-allnote',
   templateUrl: './allnote.component.html',
@@ -29,7 +31,8 @@ export class AllnoteComponent implements OnInit {
   @Input() searchItem;
   @Output() anyChanges = new EventEmitter();
   destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor(private dataService: DataService) { }
+  isDelete = false;
+  constructor(private dataService: DataService, private noteService: NotesService, private snackBar: MatSnackBar) { }
   ngOnInit() {
     this.dataService.allNote
       .pipe(takeUntil(this.destory$))
@@ -42,4 +45,5 @@ export class AllnoteComponent implements OnInit {
         this.view = message
       })
   }
+  
 }

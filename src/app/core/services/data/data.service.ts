@@ -5,11 +5,13 @@ import { NotesService } from '../notes/notes.service';
   providedIn: 'root'
 })
 export class DataService {
-
   constructor(private noteService: NotesService) {
     this.getAllNote();
     this.getAllLabel();
   }
+  /*
+  * @Description  : Show note
+  */
   private assignData = new BehaviorSubject<any[]>([]);
   allNote = this.assignData.asObservable();
   getAllNote() {
@@ -19,6 +21,9 @@ export class DataService {
     })
   }
 
+  /*
+  * @Description  : Show Label
+  */
   private assignLabel = new BehaviorSubject('default');
   allLabel = this.assignLabel.asObservable();
   getAllLabel() {
@@ -27,13 +32,21 @@ export class DataService {
       this.assignLabel.next(data["data"].details);
     })
   }
-
+  /*
+  * @Description  : Search message note 
+  */
   private messageSearch = new BehaviorSubject('default');
   currentMessageSearch = this.messageSearch.asObservable();
 
   private viewSource = new BehaviorSubject(false);
   currentMessageView = this.viewSource.asObservable();
+
   changeMessageSearch(message: string) {
     this.messageSearch.next(message)
   }
+
+  changeView(message: boolean) {
+    this.viewSource.next(message)
+  }
+
 }

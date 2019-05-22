@@ -69,6 +69,28 @@ export class HttpService {
     };
     return this.httpclient.post(environment.baseUrl + path, body, httpAuthOptions);
   }
+  /**
+   * @Purpose : Edit label
+   **/
+  postDataForEdit(path, body) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.httpclient.post(environment.baseUrl + path, body, httpAuthOptions);
+  }
+
+  postDataForShowLabel(path) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.httpclient.get(environment.baseUrl + path, httpAuthOptions);
+  }
 }
 
 

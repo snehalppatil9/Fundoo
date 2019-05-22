@@ -15,21 +15,29 @@ import { NotesService } from '../../core/services/notes/notes.service'
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { DataService } from '../../core/services/data/data.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Label } from '../../core/model/user-model';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  destroy$: Subject<boolean> = new Subject<boolean>();
   gridView: boolean = true;
   signoutCard: boolean = false;
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
   searchValue: any;
+  label: Label[] = [];
+  private labelList = [];
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
+    this.showLabel();
   }
   /**
   * @description displaying the signout card
@@ -68,14 +76,32 @@ export class NavbarComponent implements OnInit {
   */
   view() {
     this.gridView = !this.gridView;
+    this.dataService.changeView(this.gridView);
   }
   /**
   * @description :  Add Label 
   */
-  createLabel(): void {
-    this.dialog.open(LabelComponent, {
-      width: '400px',
+  createLabel() {
+    const dialogRef = this.dialog.open(LabelComponent, {
+      width: '430px',
+      height: '250px'
     });
+    dialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        this.showLabel();
+      })
+  }
+  showLabel() {
+    this.noteService.showNoteLabel()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.label = response["data"].details;
+        this.labelList = [];
+        for (let i = 0; i < this.label.length; i++) {
+          this.labelList.push(this.label[i].label);
+        }
+      })
   }
   /*
   * @description :  for refresh of page

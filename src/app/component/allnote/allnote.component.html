@@ -43,7 +43,7 @@
                         @description: MatMenu button for more Button
                     -->
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="deleteNotes()">
                             <span>Delete Note</span>
                         </button>
                         <button mat-menu-item>

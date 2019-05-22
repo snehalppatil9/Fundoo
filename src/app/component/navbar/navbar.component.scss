@@ -11,6 +11,13 @@
 }
 .example-sidenav{
     width: 400px;  
+    overflow: hidden;
+  }
+.sidebutton button:focus { 
+    background-color: #feefc3;
+}
+.sidebutton button:hover{
+    background-color: white;
 }
 .material-icons{
     font-size: 30px;
@@ -112,4 +119,12 @@
     text-decoration-line: none;
     color:black;
     opacity:0.7;
+}
+.label{
+    font-weight: 500;
+    @include color-test(rgb(73, 73, 73));
+    //@include overflowText;  
+}
+.labelCreate{
+    width:95%;
 }

@@ -12,7 +12,7 @@
     <input placeholder="Create new label" class="textarea" [(ngModel)]="label.labelName" maxlength=40>
   </div>
   <div fxFlex="10">
-    <mat-icon class="done" (click)=showLabel()>done</mat-icon>
+    <mat-icon class="done" (click)=done()>done</mat-icon>
   </div>
 </div>
 <div>
@@ -28,5 +28,5 @@
 </div>
 <hr>
 <div fxLayoutAlign="end">
-  <button mat-button class="done1" (click)=done()><b>Done</b></button>
+  <button mat-button class="done1" (click)=addLabel()><b>Done</b></button>
 </div>
