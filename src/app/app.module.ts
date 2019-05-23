@@ -65,6 +65,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { PipePipe } from './pipe/pipe.pipe';
 import { FilterpipePipe } from './filterpipe/filterpipe.pipe';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+// import { MatDatepickerModule } from 'saturn-datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,7 +115,9 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
     MatSlideToggleModule,
     MatDialogModule,
     MatTooltipModule,
-
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

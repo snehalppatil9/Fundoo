@@ -101,7 +101,7 @@
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <div class="sidebutton">
-            <div fxLayout="column" fxLayoutGap="10px" style="height:15vh">
+            <div fxLayout="column" fxLayoutGap="5px" style="height:15vh; margin-top:20px;">
                 <button type="button" class="btn" mat-button routerLink="/addnote" (click)="searchValue==null">                  
                      <div class="notes" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon>notes</mat-icon>
@@ -116,15 +116,15 @@
                 </button>
             </div>
             <mat-divider></mat-divider>
-            <div fxLayout="column" class="edit">
+            <div fxLayout="column" class="edit" >
                 <div fxFlex=5></div>
-                <div fxFlex=40 class="edit" style="margin-top:20px;">
-                    <h4>LABELS</h4>
+                <div fxFlex=40 class="edit" style="margin-top:20px; margin-left: 18px;">
+                    <h5>LABELS</h5>
                 </div>
                 <a *ngFor="let data of labelList" class=buttonicon>
                     <div fxLayout=row class="side_label">
-                        <div fxFlex="10"></div>
-                        <div fxFlex="20">
+                        <!-- <div fxFlex="10"></div> -->
+                        <div fxFlex="10">
                             <mat-icon class=label>label</mat-icon>
                         </div>
                         <div fxFlex="60" class=label>{{data}}</div>
@@ -138,7 +138,7 @@
                 </button>
             </div>
             <hr>
-            <div fxLayout="column" fxLayoutGap="20px" style="height:15vh">
+            <div fxLayout="column" fxLayoutGap="5px" style="height:15vh">
                 <button type="button" class="btn" mat-button>
                     <div class="archive" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon class=label>archive</mat-icon>

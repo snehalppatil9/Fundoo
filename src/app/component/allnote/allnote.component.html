@@ -8,8 +8,8 @@
    @version        : 1.0
    @since          : 22-04-2019
   -->
-<div fxLayoutAlign="center">
-    <div fxLayout="row wrap" class="allnote" fxLayoutAlign="space-around end" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px'
+<div fxLayoutAlign="center" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between end" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px'
         fxFlex.sm='400px' fxFlex.xs='150px' fxLayoutGap="50px">
         <!-- 
             @Description    :   Displaying the cards
@@ -17,19 +17,19 @@
         <div *ngFor="let data of notes | pipe | filterpipe : searchItem">
             <mat-card [ngStyle]="{'background-color':data.color}">
                 <div>
-                    <div>
+                    <div class="title">
                         {{data.title}}
-                        <button class="icon" type="button" mat-button>
-                            <i class="material-icons" fxLayoutAlign="end">
-                                person_pin_circle
+                        <button type="button" class="icon" mat-button>
+                            <i class="material-icons">
+                                    person_pin_circle
                             </i>
                         </button>
                     </div>
-                    <div>{{data.description}}</div>
+                    <div class="description">{{data.description}}</div>
                 </div>
-                <div fxLayout="row" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
-                    <app-icon  [card]='data' (setColor)=entry($event) (onChangeColor)=changeColor(data,$event)
-                        (onChangeDelete)=deleteNote(data,$event)></app-icon>
+                <div fxLayout="row" class="iconButton" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
+                    <app-icon class="icon1" [card]='data' (setColor)=entry($event)
+                        (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)></app-icon>
                 </div>
             </mat-card>
         </div>

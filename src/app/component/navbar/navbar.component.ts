@@ -79,7 +79,7 @@ export class NavbarComponent implements OnInit {
     this.dataService.changeView(this.gridView);
   }
   /**
-  * @description :  Add Label 
+  * @description :  Create Label 
   */
   createLabel() {
     const dialogRef = this.dialog.open(LabelComponent, {

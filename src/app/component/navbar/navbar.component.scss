@@ -115,14 +115,15 @@
 .buttonicon {
     width:95%;
     text-align: start;
-    margin-left:10%;
+    margin-left:15px;
     text-decoration-line: none;
     color:black;
     opacity:0.7;
 }
 .label{
     font-weight: 500;
-    @include color-test(rgb(73, 73, 73));
+    color: black;
+    // @include color-test(rgb(73, 73, 73));
     //@include overflowText;  
 }
 .labelCreate{

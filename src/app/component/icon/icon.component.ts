@@ -10,16 +10,24 @@
  *
  ******************************************************************************/
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent implements OnInit {
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
   colorsArray = [
     [
       { name: "white", hexcode: "#FFFFFF" },

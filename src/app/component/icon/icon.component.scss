@@ -3,6 +3,9 @@
 .material-icons{
     font-size: 30px;
 }
+.remindeicon .material-icons{
+    font-size: 20px;
+}
 div{
     margin: 2px;
     padding: 7px;
@@ -48,4 +51,42 @@ span{
 }
 .border{
     border:1px solid gray;
+}
+.menu{
+    cursor: pointer;
+    color: black;
+    font-size: 15px;
+    overflow: hidden;
+}
+.menu1{
+    font-size: 15px;
+}
+.button{
+    width:200px;
+}
+.reminder{
+    width: 260px;
+    z-index: 5003;
+    background-color: #fff;
+}
+.menu:focus { 
+    background-color:white;
+}
+.menu:hover{
+    background-color: white;
+}
+.mat-form-field .input{
+    width:100%;
+    height: 20;
+}
+.btn button{
+   margin-right: 10px;
+}
+.save{
+    // padding:3%;
+    border:1px solid rgb(192, 190, 190);
+    background-color: transparent;
+    float:right;
+    border-radius: 5px;
+    // @include margin-top(5px)
 }

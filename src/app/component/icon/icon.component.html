@@ -3,7 +3,7 @@
   @description: Reminder Button
  -->
   <abbr title="Remind Me">
-    <button mat-icon-button>
+    <button mat-icon-button [matMenuTriggerFor]="menuRemindme">
       <i class="material-icons">
         add_alert
       </i>
@@ -23,7 +23,7 @@
   @description: Color Button
  -->
   <abbr title="Change color">
-    <button mat-icon-button [matMenuTriggerFor]=menuColor>
+    <button mat-icon-button [matMenuTriggerFor]="menuColor">
       <i class="material-icons">
         palette
       </i>
@@ -95,3 +95,96 @@
     </button>
   </abbr>
 </div>
+<!-- 
+  @description: Remind Me start
+ -->
+<mat-menu #menuRemindme="matMenu" [overlapTrigger]="false">
+  <ng-template matMenuContent>
+    <div class="reminder">
+      <div>Reminder:</div>
+      <div mat-menu-item class="menu" fxLayout="row">
+        <div fxFlex="60">Later today</div>
+        <div fxFlex="40" fxLayoutAlign="end">8:00 PM</div>
+      </div>
+      <div mat-menu-item class="menu" fxLayout="row">
+        <div fxFlex="60">Tomorrow</div>
+        <div fxFlex="40" fxLayoutAlign="end">8:00 AM</div>
+      </div>
+      <div mat-menu-item class="menu" fxLayout="row">
+        <div fxFlex="50">Next week</div>
+        <div fxFlex="50" fxLayoutAlign="end">Mon, 8:00 AM</div>
+      </div>
+      <div mat-menu-item class="menu" [matMenuTriggerFor]=pickdatetime>
+        <button mat-icon-button class="remindeicon">
+          <i class="material-icons">
+            access_time
+          </i>
+        </button>
+        Pick date & time
+      </div>
+    </div>
+  </ng-template>
+</mat-menu>
+<!-- 
+  @description: Pick Date And Time
+ -->
+<mat-menu #pickdatetime="matMenu" [overlapTrigger]="false">
+  <ng-template matMenuContent>
+    <div class="reminder">
+      <div>
+      <button mat-icon-button>
+        <i class="material-icons">
+          keyboard_backspace
+        </i>
+      </button>
+      Pick date & time
+    </div>
+      <hr>
+      <div mat-menu-item class="menu" fxLayout="row">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div mat-menu-item class="menu" fxLayout="row">
+        <mat-form-field>
+          <mat-label>8:30 PM</mat-label>
+          <mat-select [matMenuTriggerFor]="menuTime">
+            <input matInput>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div><button class="save">Save</button></div>
+    </div>
+  </ng-template>
+</mat-menu>
+<mat-menu #menuTime="matMenu" [overlapTrigger]=false>
+  <ng-template matMenuContent>
+    <button class="button" mat-button>
+      <div fxLayout="row">
+        <div fxFlex=60%>Morning</div>
+        <div fxFlex="40%">8:00 AM</div>
+      </div>
+    </button>
+    <button class="button" mat-button>
+      <div fxLayout="row">
+        <div fxFlex=60%>Afternoon</div>
+        <div fxFlex="40%">1:00 PM</div>
+      </div>
+    </button>
+    <button class="button" mat-button>
+      <div fxLayout="row">
+        <div fxFlex=60%>Evening</div>
+        <div fxFlex="40%">6:00 PM</div>
+      </div>
+    </button>
+    <button class="button" mat-button>
+      <div fxLayout="row">
+        <div fxFlex=60%>Night</div>
+        <div fxFlex="40%">8:00 PM</div>
+      </div>
+    </button>
+    <button mat-button class="button">Custom</button>
+  </ng-template>
+</mat-menu>
