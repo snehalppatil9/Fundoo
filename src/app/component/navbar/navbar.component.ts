@@ -116,7 +116,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/search');
   }
   newMessage() {
-    this.dataService.changeMessageSearch(this.searchValue)
+    this.dataService.MessageSearch(this.searchValue)
   }
   
 }

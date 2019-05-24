@@ -16,7 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { EventEmitter } from 'events';
 import { NotesService } from '../../core/services/notes/notes.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatCard } from '@angular/material';
 @Component({
   selector: 'app-allnote',
   templateUrl: './allnote.component.html',
@@ -33,6 +33,7 @@ export class AllnoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   isDelete = false;
   setColor: any;
+  reminder: any;
   constructor(private dataService: DataService, private noteService: NotesService, private snackbar: MatSnackBar, private snackBar: MatSnackBar) { }
   ngOnInit() {
     this.dataService.allNote
@@ -40,7 +41,13 @@ export class AllnoteComponent implements OnInit {
       .subscribe(data => this.notes = data);
     console.log('all note ==================>', this.notes);
 
-    this.dataService.currentMessageView.pipe(takeUntil(this.destory$))
+    this.dataService.allReminder
+      .pipe(takeUntil(this.destory$))
+      .subscribe(data => this.notes = data);
+    console.log('all Reminder ==================>', this.notes);
+
+    this.dataService.currentMessageView
+    .pipe(takeUntil(this.destory$))
       .subscribe(message => {
         this.view = message
       })
@@ -91,6 +98,7 @@ export class AllnoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-     setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.dataService.getAllNote(), 30);
   }
+  
 }

@@ -90,8 +90,6 @@ export class HttpService {
     }
     return this.httpclient.get(environment.baseUrl + path, httpAuthOptions);
   }
-
-
 }
 
 

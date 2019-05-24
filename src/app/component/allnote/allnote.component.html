@@ -21,15 +21,24 @@
                         {{data.title}}
                         <button type="button" class="icon" mat-button>
                             <i class="material-icons">
-                                    person_pin_circle
+                                person_pin_circle
                             </i>
                         </button>
                     </div>
                     <div class="description">{{data.description}}</div>
+                    <div class="description">{{data.reminder}}</div>
                 </div>
+                <!-- <mat-chip-list>
+                    <div [card]='data' >
+                    <mat-chip ></mat-chip>
+                </div>
+                </mat-chip-list> -->
                 <div fxLayout="row" class="iconButton" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
                     <app-icon class="icon1" [card]='data' (setColor)=entry($event)
-                        (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)></app-icon>
+                        (onChangeDate)=entry($event)
+                        (onChangeColor)=changeColor(data,$event) 
+                        (onChangeDelete)=deleteNote(data,$event)
+                        ></app-icon>
                 </div>
             </mat-card>
         </div>

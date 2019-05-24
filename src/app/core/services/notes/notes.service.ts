@@ -46,4 +46,13 @@ export class NotesService {
   changeColor(data){
     return this.httpservice.postData("notes/changesColorNotes",data)
   }
+  /**
+  * @description : add Update Reminder
+  */
+addUpdateReminder(body){
+  return this.httpservice.postData("notes/addUpdateReminderNotes",body);
+}
+getReminderNotesList(){
+  return this.httpservice.getData("notes/getNotesList");
+}
 }

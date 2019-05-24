@@ -56,7 +56,8 @@ export class LabelComponent implements OnInit {
     }
     console.log('Data after edit label', body);
     try {
-      this.noteService.addLabel(body).pipe(takeUntil(this.destroy$))
+      this.noteService.addLabel(body)
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         (response) => {
           console.log("Response ====>", response);

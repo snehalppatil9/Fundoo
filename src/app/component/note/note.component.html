@@ -76,9 +76,9 @@
       </div>
       <div>
         <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor"
-          [(ngModel)]="coloradd.description" [formControl]="description" placeholder="Take a note...">
+          [(ngModel)]="coloradd.description"  [formControl]="description" placeholder="Take a note...">
         <div class="row" fxLayoutAlign="space-evenly center">
-          <app-icon (onChangeColor)="receivecolor($event)"></app-icon>
+          <app-icon (onChangeColor)="receivecolor($event)" (onChangeDate)="changeDate($event)"></app-icon>
           <!-- 
             @description: More Button
           -->

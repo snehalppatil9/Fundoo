@@ -26,9 +26,11 @@ export class NoteComponent implements OnInit {
   notecard: boolean = true;
   listcard: boolean = true;
   coloradd: Note = new Note();
+  reminderadd: Note = new Note();
   title = new FormControl('')
   description = new FormControl('')
   setColor: any;
+  reminder:any;
   // addNotes: Note = new Note();
   constructor(private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
@@ -51,10 +53,12 @@ export class NoteComponent implements OnInit {
   addNote() {
     this.notecard = !(this.notecard);
     this.coloradd.color = this.setColor;
+    this.reminderadd.reminder=this.reminder; 
     var body = {
       "title": this.title.value,
       "description": this.description.value,
-      "color": this.coloradd.color
+      "color": this.coloradd.color,
+      "reminder": this.reminderadd.reminder
     }
     console.log('add note data......', body);
     try {
@@ -74,5 +78,8 @@ export class NoteComponent implements OnInit {
   }
   receivecolor($event) {
     this.setColor = $event
+  }
+  changeDate($event){
+    this.reminder=$event;
   }
 }

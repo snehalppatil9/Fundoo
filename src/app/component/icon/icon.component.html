@@ -102,7 +102,7 @@
   <ng-template matMenuContent>
     <div class="reminder">
       <div>Reminder:</div>
-      <div mat-menu-item class="menu" fxLayout="row">
+      <div mat-menu-item class="menu" fxLayout="row" (click)=today()>
         <div fxFlex="60">Later today</div>
         <div fxFlex="40" fxLayoutAlign="end">8:00 PM</div>
       </div>
@@ -132,13 +132,13 @@
   <ng-template matMenuContent>
     <div class="reminder">
       <div>
-      <button mat-icon-button>
-        <i class="material-icons">
-          keyboard_backspace
-        </i>
-      </button>
-      Pick date & time
-    </div>
+        <button mat-icon-button>
+          <i class="material-icons">
+            keyboard_backspace
+          </i>
+        </button>
+        Pick date & time
+      </div>
       <hr>
       <div mat-menu-item class="menu" fxLayout="row">
         <mat-form-field>
@@ -150,16 +150,18 @@
       <div mat-menu-item class="menu" fxLayout="row">
         <mat-form-field>
           <mat-label>8:30 PM</mat-label>
-          <mat-select [matMenuTriggerFor]="menuTime">
-            <input matInput>
-          </mat-select>
+          <div mat-menu-item [matMenuTriggerFor]="menuTime">
+            <mat-select>
+              <input matInput>
+            </mat-select>
+          </div>
         </mat-form-field>
       </div>
       <div><button class="save">Save</button></div>
     </div>
   </ng-template>
 </mat-menu>
-<mat-menu #menuTime="matMenu" [overlapTrigger]=false>
+<mat-menu #menuTime="matMenu" [overlapTrigger]="false">
   <ng-template matMenuContent>
     <button class="button" mat-button>
       <div fxLayout="row">

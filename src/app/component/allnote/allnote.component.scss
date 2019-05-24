@@ -1,6 +1,7 @@
 @import '../../core/scss/colors';
 @import '../../core/scss/mixin';
 .icon{
+    visibility:hidden;
     float: right;
     font-size: 30px;
     padding-left: 5%;
@@ -29,6 +30,10 @@ mat-card{
     border-radius: 10px;
 }
 .iconButton:hover .icon1 {
+    visibility: visible;
+    border : hidden;
+ }
+ .title:hover .icon {
     visibility: visible;
  }
 .title{

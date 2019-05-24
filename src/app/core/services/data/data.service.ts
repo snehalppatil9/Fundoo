@@ -8,6 +8,7 @@ export class DataService {
   constructor(private noteService: NotesService) {
     this.getAllNote();
     this.getAllLabel();
+    this.getReminderNotesList();
   }
   /*
   * @Description  : Show note
@@ -40,13 +41,25 @@ export class DataService {
 
   private viewSource = new BehaviorSubject(false);
   currentMessageView = this.viewSource.asObservable();
-
-  changeMessageSearch(message: string) {
-    this.messageSearch.next(message)
+  MessageSearch(message: string) {
+    // this.messageSearch.next(message)
   }
-
   changeView(message: boolean) {
     this.viewSource.next(message)
   }
 
+  private messageReminder = new BehaviorSubject('default');
+  currentMessageReminder = this.messageReminder.asObservable();
+  changeMessageReminder(message: string) {
+    this.messageReminder.next(message)
+  }
+
+  private assignReminder = new BehaviorSubject<any[]>([]);
+  allReminder = this.assignReminder.asObservable();
+  getReminderNotesList() {
+    this.noteService.getReminderNotesList().subscribe(data => {
+      console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$",data["data"].data);
+      this.assignLabel.next(data["data"].data);
+    })
+  }
 }
