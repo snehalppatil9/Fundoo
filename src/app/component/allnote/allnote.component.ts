@@ -30,24 +30,23 @@ export class AllnoteComponent implements OnInit {
   @Input() note;
   @Input() searchItem;
   @Output() onChangeColor = new EventEmitter();
+  @Output() onChangeDate = new EventEmitter();
   destroy$: Subject<boolean> = new Subject<boolean>();
   isDelete = false;
+  isArchived = false;
   setColor: any;
   reminder: any;
-  constructor(private dataService: DataService, private noteService: NotesService, private snackbar: MatSnackBar, private snackBar: MatSnackBar) { }
+  constructor(private dataService: DataService, private noteService: NotesService, private snackbar: MatSnackBar, private snackBar: MatSnackBar) {
+       
+   }
   ngOnInit() {
     this.dataService.allNote
       .pipe(takeUntil(this.destory$))
       .subscribe(data => this.notes = data);
     console.log('all note ==================>', this.notes);
-
-    this.dataService.allReminder
-      .pipe(takeUntil(this.destory$))
-      .subscribe(data => this.notes = data);
-    console.log('all Reminder ==================>', this.notes);
-
+    
     this.dataService.currentMessageView
-    .pipe(takeUntil(this.destory$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.view = message
       })
@@ -100,5 +99,57 @@ export class AllnoteComponent implements OnInit {
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
   }
-  
+  /**
+  * @description : Add reminder in Note
+  */
+
+  addReminder(data, $event) {
+    this.reminder = $event;
+    var body = {
+      "reminder": this.reminder,
+      "noteIdList": [data.id]
+    }
+    console.log('Add update Reminder......', body);
+    try {
+      this.noteService.addUpdateReminder(body).subscribe(
+        data => {
+          this.snackbar.open('Add update Reminder Successfully.', '', { duration: 3000 });
+          console.log('Add update Reminder successfully..........', data);
+        },
+        error => {
+          this.snackbar.open('Error while Add update Reminder!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    setTimeout(() => this.dataService.getReminderNotesList(), 30);
+  }
+  showReminder(data) {
+    this.dataService.changeMessageReminder(data)
+  }
+  /**
+  * @description : Archive Note
+  */
+  archiveNote(data, $event) {
+    var body = {
+      "isArchived": this.isArchived,
+      "noteIdList": [data.id]
+    }
+    console.log('Archive Note......', body);
+    try {
+      this.noteService.archiveNote(body).subscribe(
+        data => {
+          this.snackbar.open('Archive Note Successfully.', '', { duration: 3000 });
+          console.log('Archive Note successfully..........', data);
+        },
+        error => {
+          this.snackbar.open('Error while Archive Note!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    setTimeout(() => this.dataService.getAllNote(), 30);
+  }
 }

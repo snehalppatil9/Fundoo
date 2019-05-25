@@ -14,20 +14,30 @@ import { MatDialog } from '@angular/material';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
 import { DataService } from 'src/app/core/services/data/data.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent implements OnInit {
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
-  private currentDate=new Date();
+  message: String
+  isArchive:boolean=false;
+  currentDate = new Date();
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
   @Output() onChangeDate = new EventEmitter()
-  constructor(private dialog: MatDialog ,private noteService: NotesService, private snackbar: MatSnackBar,private dataService : DataService) { }
+  @Output() onArchiveEntry = new EventEmitter()
+  constructor(private dialog: MatDialog, private noteService: NotesService,private dataService: DataService,private snackBar : MatSnackBar) {
+
+  }
   colorsArray = [
     [
       { name: "white", hexcode: "#FFFFFF" },
@@ -52,41 +62,57 @@ export class IconComponent implements OnInit {
     ]
   ]
   ngOnInit() {
+    if(this.card){
+      if(this.card.isArchived==true){
+        this.isArchive=true;
+      }}
   }
+
   setColor(color) {
     this.onChangeColor.emit(color);
   }
   deleteNotes(note) {
     this.onChangeDelete.emit(note);
   }
-  today(){
-    let date=new Date(this.currentDate.getFullYear(),this.currentDate.getMonth(),this.currentDate.getDate()+0,20,0,0);
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@",date);
-   this.addReminder(date);
-   this.onChangeDate.emit(date);
+  today() {
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 20, 0, 0);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
+    this.onChangeDate.emit(date);
+    console.log("sfdsdf", this.onChangeDate.emit(date));
+
   }
-  addReminder(date){
-    let id=[];
-    id.push(this.card.id);
-    var body = {
-       "reminder": date,
-       "noteIdList": id
-     }
-     console.log('Add update Reminder......', body);
-     try {
-       this.noteService.addUpdateReminder(body).subscribe(
-         data => {
-          this.onChangeDate.emit({"body":date})
-           this.snackbar.open('Add update Reminder Successfully.', '', { duration: 3000 });
-           console.log('Add update Reminder successfully..........', data);
-         },
-         error => {
-           this.snackbar.open('Error while Add update Reminder!', 'Error', { duration: 3000 });
-           console.log("Error something wrong: ", error)
-         });
-     } catch (error) {
-       this.snackbar.open('error', "", { duration: 3000 });
-     }
-      setTimeout(() => this.dataService.getReminderNotesList(), 30);
+  onArchive(note) {
+    this.onArchiveEntry.emit(note);
   }
+  /**
+  * 
+  * @description archive the particular note
+  */
+ archive(){
+  if(this.card){
+    let string;
+    let body={
+      "isArchived":!this.card.isArchived,
+      "noteIdList":this.card.id
+    }
+    console.log("Archive Body@@@@@@@@@@@@@@@.........",body);
+    
+    this.noteService.archiveNote(body)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((response) =>{
+      this.onArchiveEntry.emit({})
+      if(this.card.isArchived==false)  
+        string="Note Archived";
+      else  
+        string="Note Unarchived";
+      this.snackBar.open( string ,"undo", {
+        duration: 2000,
+      });
+    },(error) =>{
+    });
+  }
+  else{
+    this.onArchiveEntry.emit({})
+  }
+}
 }

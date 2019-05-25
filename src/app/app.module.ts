@@ -69,6 +69,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 // import { MatDatepickerModule } from 'saturn-datepicker';
+import {MatChipsModule} from '@angular/material/chips';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +88,9 @@ import { MatSelectModule } from '@angular/material';
     AllnoteComponent,
     PipePipe,
     FilterpipePipe,
-    SearchNoteComponent
+    SearchNoteComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -117,7 +121,8 @@ import { MatSelectModule } from '@angular/material';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -87,10 +87,17 @@
   <!-- 
   @description: Archieve Button
  -->
-  <abbr title="Archive">
-    <button mat-icon-button>
+  <abbr title="Archive" *ngIf="!isArchive">
+    <button mat-icon-button (click)="archive()">
       <i class="material-icons">
         archive
+      </i>
+    </button>
+  </abbr>
+  <abbr title="Unarchive" *ngIf="isArchive">
+    <button mat-icon-button (click)="archive()">
+      <i class="material-icons">
+        unarchive
       </i>
     </button>
   </abbr>

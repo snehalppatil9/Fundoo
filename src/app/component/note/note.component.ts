@@ -25,12 +25,12 @@ import { Note } from '../../core/model/user-model'
 export class NoteComponent implements OnInit {
   notecard: boolean = true;
   listcard: boolean = true;
+  isAchive: boolean=  false;
   coloradd: Note = new Note();
-  reminderadd: Note = new Note();
   title = new FormControl('')
   description = new FormControl('')
   setColor: any;
-  reminder:any;
+  today: any;
   // addNotes: Note = new Note();
   constructor(private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
@@ -53,12 +53,13 @@ export class NoteComponent implements OnInit {
   addNote() {
     this.notecard = !(this.notecard);
     this.coloradd.color = this.setColor;
-    this.reminderadd.reminder=this.reminder; 
+    this.coloradd.reminder = this.today;
     var body = {
       "title": this.title.value,
       "description": this.description.value,
       "color": this.coloradd.color,
-      "reminder": this.reminderadd.reminder
+      "reminder": this.coloradd.reminder,
+      "isArchived":this.isAchive
     }
     console.log('add note data......', body);
     try {
@@ -79,7 +80,16 @@ export class NoteComponent implements OnInit {
   receivecolor($event) {
     this.setColor = $event
   }
-  changeDate($event){
-    this.reminder=$event;
+  changeDate($event) {
+    this.today = $event;
   }
+  /**
+  * 
+  * @description archive the new note
+  */
+ onArchive(event){
+  if(event){
+    this.isAchive=!this.isAchive;
+   }
+}
 }

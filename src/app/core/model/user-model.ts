@@ -5,9 +5,8 @@ title : string
 description : string
 color : string
 id : string
-reminder : [
-    string
-  ]
+reminder: [Date]
+isArchived: boolean
 }
 export interface Label{
     "id": string

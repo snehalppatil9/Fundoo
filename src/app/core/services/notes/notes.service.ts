@@ -55,4 +55,14 @@ addUpdateReminder(body){
 getReminderNotesList(){
   return this.httpservice.getData("notes/getNotesList");
 }
+
+/**
+ * Archive
+ */
+archiveNote(body){
+  return this.httpservice.postData("notes/archiveNotes",body);
+}
+getArchivedList(){
+  return this.httpservice.getData("notes/getArchiveNotesList");
+}
 }
