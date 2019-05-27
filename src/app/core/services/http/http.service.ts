@@ -101,6 +101,23 @@ export class HttpService {
         'Authorization': localStorage.getItem('token')
       })
     }
+    return this.httpclient.delete(environment.baseUrl + path, httpAuthOptions);
+  }
+
+
+  /**
+   * @Purpose : UpdateNote
+   **/ 
+  postDataForUpdateNote(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    console.log('token ==================>', localStorage.getItem('token'));
+    return this.httpclient.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
 }
 

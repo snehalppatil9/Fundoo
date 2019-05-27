@@ -6,75 +6,85 @@ import { HttpService } from '../../services/http/http.service';
 export class NotesService {
 
   constructor(private httpservice: HttpService) { }
-  addNote(body){
-    return this.httpservice.postAddNote("notes/addNotes",body);
+  addNote(body) {
+    return this.httpservice.postAddNote("notes/addNotes", body);
   }
-    /**
-   * @Purpose : Get Note without refresh
-   **/
-  getNotes():any{
+  /**
+ * @Purpose : Get Note without refresh
+ **/
+  getNotes(): any {
     return this.httpservice.getData("notes/getNotesList")
   }
-  getNoteList(){
+  getNoteList() {
     return this.httpservice.getData("notes/getNotesList");
   }
-  createLabel(body){
-    return this.httpservice.postData("noteLabels",body);
+  createLabel(body) {
+    return this.httpservice.postData("noteLabels", body);
   }
-  showNoteLabels(){
+  showNoteLabels() {
     return this.httpservice.getData("noteLabels/getNoteLabelList");
   }
-   /**
-   * @Purpose: Delete Note
-   **/
+  /**
+  * @Purpose: Delete Note
+  **/
   deleteNoteLabel(labelId) {
     return this.httpservice.postDataForDeleteLabel("/noteLabels/" + labelId + "/deleteNoteLabel")
   }
   /**
    * @Purpose: Update Note
    **/
-  updateNoteLabel(labelId,body) {
-    return this.httpservice.postData("/noteLabels/" + labelId + "/updateNoteLabel",body)
+  updateNoteLabel(labelId, body) {
+    return this.httpservice.postData("/noteLabels/" + labelId + "/updateNoteLabel", body)
   }
-  logout(){
-    return this.httpservice.postData("user/logout",{});
+  logout() {
+    return this.httpservice.postData("user/logout", {});
   }
-  deleteNote(body){
-    return this.httpservice.postData("notes/deleteForeverNotes",body);
+  deleteNote(body) {
+    return this.httpservice.postData("notes/deleteForeverNotes", body);
   }
- /**
-   * @Purpose : Add label
+  /**
+   * @Purpose: Update Note
    **/
-  addLabel(body){
-    return this.httpservice.postDataForEdit("noteLabels",body)
+  updateNote(body) {
+    return this.httpservice.postDataForUpdateNote("/notes/updateNotes", body)
+  }
+  /**
+    * @Purpose : Add label
+    **/
+  addLabel(body) {
+    return this.httpservice.postDataForEdit("noteLabels", body)
   }
 
-  showNoteLabel(){
+  showNoteLabel() {
     return this.httpservice.postDataForShowLabel("noteLabels/getNoteLabelList")
   }
   /**
   * @description : change note Color 
   */
-  changeColor(data){
-    return this.httpservice.postData("notes/changesColorNotes",data)
+  changeColor(data) {
+    return this.httpservice.postData("notes/changesColorNotes", data)
   }
   /**
   * @description : add Update Reminder
   */
-addUpdateReminder(body){
-  return this.httpservice.postData("notes/addUpdateReminderNotes",body);
-}
-getReminderNotesList(){
-  return this.httpservice.getData("notes/getNotesList");
-}
+  addUpdateReminder(body) {
+    return this.httpservice.postData("notes/addUpdateReminderNotes", body);
+  }
+  getReminderNotesList() {
+    return this.httpservice.getData("notes/getNotesList");
+  }
 
-/**
- * Archive
- */
-archiveNote(body){
-  return this.httpservice.postData("notes/archiveNotes",body);
-}
-getArchivedList(){
-  return this.httpservice.getData("notes/getArchiveNotesList");
-}
+  /**
+   * Archive
+   */
+  archiveNote(body) {
+    return this.httpservice.postData("notes/archiveNotes", body);
+  }
+  getArchivedList() {
+    return this.httpservice.getData("notes/getArchiveNotesList");
+  }
+
+
+
+
 }

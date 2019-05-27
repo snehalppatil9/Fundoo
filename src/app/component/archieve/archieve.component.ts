@@ -28,7 +28,7 @@ export class ArchieveComponent implements OnInit {
     this.notes=response["data"].data;
     this.archiveList=[];
     for(let i=this.notes.length;i>0;i--){
-      if(this.notes[i-1]["isDeleted"] == false)
+      if(this.notes[i-1]["isDeleted"] == false && this.notes[i-1]["isArchived"]==false)
       this.archiveList.push(this.notes[i-1])
     }
   },(error) =>{

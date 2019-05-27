@@ -8,57 +8,47 @@
    @version        : 1.0
    @since          : 22-04-2019
   -->
-<div fxLayoutAlign="center" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100">
-    <div fxLayout="row wrap" fxLayoutAlign="space-between end" fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px'
-        fxFlex.sm='400px' fxFlex.xs='150px' fxLayoutGap="50px">
-        <!-- 
-            @Description    :   Displaying the cards
-         -->
-        <div *ngFor="let data of notes | pipe | filterpipe : searchItem">
-            <mat-card [ngStyle]="{'background-color':data.color}">
-                <div  (click)="openDialog(data)">
-                    <div class="title">
-                        {{data.title}}
-                        <button type="button" class="icon" mat-button>
-                            <i class="material-icons">
-                                person_pin_circle
-                            </i>
-                        </button>
+<!-- 
+    @Description    :   Dispaly data into the card after add
+ -->
+<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center" fxLayoutGap="3%">
+    <!-- 
+         @Description    :   ngClass for grid and list view
+    -->
+    <div class="cardSub" fxLayoutAlign="center center" *ngFor="let data of notes | pipe | filterpipe : searchItem "
+        [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
+        <!-- <div *ngIf="data.isArchived==false" > -->
+        <mat-card [ngStyle]="{'background-color':data.color}">
+            <!--
+                 @Description    :    openDialog for dialog 
+            -->
+            <div (click)="openDialog(data)">
+                <div class="title">{{data.title}}</div>
+                <div class="description"> {{data.description }}</div>
+                <!-- <mat-chip-list style="padding-top:10px;">
+                    <div *ngFor="let cardData of data.reminder">
+                        <mat-chip (click)=showReminder(data.id)>
+                            <button class="icon" type="button" mat-button>
+                                <i class="material-icons">
+                                    access_time
+                                </i>
+                            </button>
+                            {{cardData}}
+                            <button class="icon" type="button" mat-button>
+                                <i class="material-icons">
+                                    cancel
+                                </i>
+                            </button>
+                        </mat-chip>
                     </div>
-                    <div class="description">{{data.description}}</div>
-                    <mat-chip-list style="padding-top:10px">
-                        <div *ngFor="let cardData of data.reminder">
-                            <mat-chip (click)=showReminder(data.id)>
-                                <button class="icon" type="button" mat-button>
-                                    <i class="material-icons">
-                                        access_time
-                                    </i>
-                                </button>
-
-                                {{cardData}}
-                                <button class="icon" type="button" mat-button>
-                                    <i class="material-icons">
-                                        cancel
-                                    </i>
-                                </button>
-                            </mat-chip>
-                        </div>
-                    </mat-chip-list>
-                </div>
-
-                <div fxLayout="row" class="iconButton" fxLayoutGap="4" fxLayoutAlign="space-evenly center">
-                    <app-icon class="icon1" [card]='data' (setColor)=entry($event) 
-                        (reminder)=entry($event)
-                        (onArchiveEntry)="archiveNote(data,$event)"
-                        (onChangeDate)=addReminder(data,$event) 
-                        (onChangeColor)=changeColor(data,$event)
-                        (onChangeDelete)=deleteNote(data,$event)></app-icon>
-                </div>
-            </mat-card>
-        </div>
+                </mat-chip-list> -->
+            </div>
+            <div  class="icon" >
+                <app-icon class="iconButton" [card]='data' (setColor)=entry($event) (reminder)=entry($event)
+                    (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
+                    (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)></app-icon>
+            </div>
+        </mat-card>
+    <!-- </div> -->
     </div>
 </div>
-
-
-
-

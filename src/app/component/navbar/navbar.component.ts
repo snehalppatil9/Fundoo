@@ -24,9 +24,9 @@ import { Label } from '../../core/model/user-model';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit { 
+export class NavbarComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
-  labelName : string;
+  labelName: string;
   gridView: boolean = true;
   signoutCard: boolean = false;
   firstName = localStorage.getItem("Firstname");
@@ -44,18 +44,18 @@ export class NavbarComponent implements OnInit {
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    this.labelName= "Fundoo";
+    this.labelName = "Fundoo";
     this.showLabel();
-     /*For gridView and ListView*/
-     this.dataService.getView().subscribe((response) => {
+    /*For gridView and ListView*/
+    this.dataService.getView().subscribe((response) => {
       this.view = response;
       this.direction = this.view.data;
     });
   }
- /**
-  * @description displaying the sidenavbar notes button functunality
-  */
-  addNote(){
+  /**
+   * @description displaying the sidenavbar notes button functunality
+   */
+  addNote() {
     this.labelName = "Notes";
     this.dataService.allNote.subscribe((response) => {
       console.log("response of Notes sidenav bar ======>", response);
@@ -64,12 +64,12 @@ export class NavbarComponent implements OnInit {
   /**
   * @description displaying the sidenavbar reminder button functunality
   */
-  reminder(){
+  reminder() {
     this.labelName = "Reminder";
   }
-   /**
-   * @description displaying the sidenavbar Archive button functunality
-   **/
+  /**
+  * @description displaying the sidenavbar Archive button functunality
+  **/
   archive() {
     this.labelName = "Archive";
   }
@@ -124,7 +124,7 @@ export class NavbarComponent implements OnInit {
       this.grid = false;
     }
     this.dataService.gridView();
-    }
+  }
   /**
   * @description :  Create Label 
   */
@@ -163,8 +163,11 @@ export class NavbarComponent implements OnInit {
   search() {
     this.router.navigateByUrl('/search');
   }
+  /*
+  * @description :  for search note
+  */
   newMessage() {
     this.dataService.MessageSearch(this.searchValue)
   }
-  
+
 }

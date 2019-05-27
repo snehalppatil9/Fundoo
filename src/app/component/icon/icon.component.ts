@@ -36,7 +36,7 @@ export class IconComponent implements OnInit {
   @Output() onChangeDate = new EventEmitter()
   @Output() onArchiveEntry = new EventEmitter()
   constructor(private dialog: MatDialog, private noteService: NotesService,private dataService: DataService,private snackBar : MatSnackBar) {
-
+  
   }
   colorsArray = [
     [

@@ -16,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {  MatDialog } from '@angular/material'
 import { EventEmitter } from 'events';
+import { DialogComponent } from '../dialog/dialog.component'
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
 import { NoteComponent } from '../note/note.component';
@@ -38,6 +39,12 @@ export class AllnoteComponent implements OnInit {
   isArchived = false;
   setColor: any;
   reminder: any;
+
+   /* Grid View*/ 
+   direction: String = "row";
+   wrap : string = "wrap";
+   view1: any;
+   
   constructor(private dataService: DataService, 
     private noteService: NotesService, 
     private snackbar: MatSnackBar,
@@ -56,6 +63,13 @@ export class AllnoteComponent implements OnInit {
       .subscribe(message => {
         this.view = message
       })
+
+      /* Grid View*/ 
+    this.dataService.getView().subscribe((response) => {
+      this.view1 = response;
+      this.direction = this.view1.data
+    });
+    
   }
   /**
    * @description : change note Color 
@@ -163,8 +177,8 @@ export class AllnoteComponent implements OnInit {
    * @Purpose : Open dialog nad edit it
    **/
   openDialog(data: any): void {
-    const dialogRef = this.dialog.open(NoteComponent, {
-      width: '700px',
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '600px',
       height: '200px',
       data: {
         'title': data.title,

@@ -62,8 +62,9 @@ export class DataService {
 
   private viewSource = new BehaviorSubject(false);
   currentMessageView = this.viewSource.asObservable();
+  
   MessageSearch(message: string) {
-    // this.messageSearch.next(message)
+     this.messageSearch.next(message)
   }
   changeView(message: boolean) {
     this.viewSource.next(message)
