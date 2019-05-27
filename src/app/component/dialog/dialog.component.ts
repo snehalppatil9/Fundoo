@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Note } from '../../core/model/user-model'
-import { MAT_DIALOG_DATA,MatSnackBar, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA ,MatSnackBar, MatDialogRef } from '@angular/material';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { DataService } from '../../core/services/data/data.service' 
 @Component({

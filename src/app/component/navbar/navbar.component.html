@@ -103,7 +103,7 @@
     <mat-drawer #drawer class="example-sidenav" [mode]="width > 0?'side':'side'" closed>
         <div class="sidebutton">
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh; margin-top:20px;">
-                <button type="button" class="btn" mat-button routerLink="/addnote" (click)="addNote()">
+                <button type="button" class="btn" mat-button routerLink="/addnote"  (click)="addNote()">
                     <div class="notes" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon>notes</mat-icon>
                         <h5 class="name">Notes</h5>
@@ -140,13 +140,13 @@
             </div>
             <hr>
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh">
-                <button type="button" class="btn" mat-button (click)="archive()">
+                <button type="button" class="btn" mat-button routerLink="/archive" (click)="archive()">
                     <div class="archive" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon class=label>archive</mat-icon>
                         <h5 class="name">Archive</h5>
                     </div>
                 </button>
-                <button type="button" class="btn" mat-button (click)="trash()">
+                <button type="button" class="btn" mat-button routerLink="/trash" (click)="trash()">
                     <div class="delete" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon class=label>delete</mat-icon>
                         <h5 class="name">Trash</h5>

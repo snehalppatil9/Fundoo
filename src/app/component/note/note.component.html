@@ -79,8 +79,7 @@
           [(ngModel)]="coloradd.description"  [formControl]="description" placeholder="Take a note...">
         <div class="row" fxLayoutAlign="space-evenly center">
           <app-icon (onChangeColor)="receivecolor($event)" 
-          (onArchiveEntry)="onArchive($event)"
-          (onChangeDate)="changeDate($event)"></app-icon>
+               (onChangeDate)="changeDate($event)"></app-icon>
           <!-- 
             @description: More Button
           -->

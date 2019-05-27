@@ -14,7 +14,7 @@ import { DataService } from '../../core/services/data/data.service'
 import { Note } from '../../core/model/user-model'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {  MatDialog } from '@angular/material'
+import { MatDialog } from '@angular/material'
 import { EventEmitter } from 'events';
 import { DialogComponent } from '../dialog/dialog.component'
 import { NotesService } from '../../core/services/notes/notes.service';
@@ -36,40 +36,41 @@ export class AllnoteComponent implements OnInit {
   @Output() onChangeDate = new EventEmitter();
   destroy$: Subject<boolean> = new Subject<boolean>();
   isDelete = false;
-  isArchived = false;
+  isArchived = true;
   setColor: any;
   reminder: any;
 
-   /* Grid View*/ 
-   direction: String = "row";
-   wrap : string = "wrap";
-   view1: any;
-   
-  constructor(private dataService: DataService, 
-    private noteService: NotesService, 
+  /* Grid View*/
+  direction: String = "row";
+  wrap: string = "wrap";
+  view1: any;
+  archive: any;
+
+  constructor(private dataService: DataService,
+    private noteService: NotesService,
     private snackbar: MatSnackBar,
-    public dialog: MatDialog, 
+    public dialog: MatDialog,
     private snackBar: MatSnackBar) {
-       
-   }
+
+  }
   ngOnInit() {
     this.dataService.allNote
       .pipe(takeUntil(this.destory$))
       .subscribe(data => this.notes = data);
     console.log('all note ==================>', this.notes);
-    
+
     this.dataService.currentMessageView
       .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.view = message
       })
 
-      /* Grid View*/ 
+    /* Grid View*/
     this.dataService.getView().subscribe((response) => {
       this.view1 = response;
       this.direction = this.view1.data
     });
-    
+
   }
   /**
    * @description : change note Color 
@@ -101,7 +102,8 @@ export class AllnoteComponent implements OnInit {
   */
   deleteNote(data, $event) {
     var body = {
-      "noteIdList": [data.id]
+      "isDeleted":!this.isDelete,
+      "noteIdList":[data.id]
     }
     console.log('Delete Note......', body);
     try {
@@ -122,7 +124,6 @@ export class AllnoteComponent implements OnInit {
   /**
   * @description : Add reminder in Note
   */
-
   addReminder(data, $event) {
     this.reminder = $event;
     var body = {
@@ -152,11 +153,12 @@ export class AllnoteComponent implements OnInit {
   * @description : Archive Note
   */
   archiveNote(data, $event) {
+    this.archive = $event;
     var body = {
       "isArchived": this.isArchived,
       "noteIdList": [data.id]
     }
-    console.log('Archive Note......', body);
+    console.log('#########Archive Note###########', body);
     try {
       this.noteService.archiveNote(body).subscribe(
         data => {
@@ -172,14 +174,13 @@ export class AllnoteComponent implements OnInit {
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
   }
-
   /**
    * @Purpose : Open dialog nad edit it
    **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '600px',
-      height: '200px',
+      width: '800px',
+      height: '300px',
       data: {
         'title': data.title,
         'description': data.description,

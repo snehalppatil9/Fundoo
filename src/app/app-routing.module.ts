@@ -41,7 +41,8 @@ const routes: Routes = [
       { path: 'trash', component: TrashComponent },
       { path: 'icon', component: IconComponent },
       { path: 'search', component: SearchNoteComponent},
-      { path: 'archive',  component : ArchieveComponent }
+      { path: 'archive',  component : ArchieveComponent },
+      { path: 'trash' , component : TrashComponent }
     ]
 
   }

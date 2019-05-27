@@ -1,7 +1,17 @@
+<!-- 
+  Execution       :   1. default node         cmd> dialog.component.html
+ 
+   Purpose         : To edit the note data
+  
+   @file           : dialog.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+  -->
 <div fxLayoutAlign="center center" >
   <div class="card" fxLayoutGap='30px' fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px'
       fxFlex.xs='150px'>
-      <div fxLayout='column' fxLayoutGap='20px'>
+      <div fxLayoutGap='20px'>
           <input class="title" placeholder="Title" [formControl]="title">
           <input class="description" placeholder="Take a note..." [formControl]="description">
       </div>

@@ -1,1 +1,47 @@
-<app-allnote [note]="archiveList"></app-allnote>
+<!-- 
+  Execution       :   1. default node         cmd> archive.component.html
+ 
+   Purpose         : To archive note
+  
+   @file           : archive.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+  -->
+<!-- 
+    @Description    :   Dispaly data into the card after add
+ -->
+ <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center" fxLayoutGap="3%">
+  <!-- 
+       @Description    :   ngClass for grid and list view
+  -->
+  <div class="cardSub" fxLayoutAlign="center center" *ngFor="let data of notes">
+      <mat-card [ngStyle]="{'background-color':data.color}">
+      
+              <div class="title">{{data.title}}</div>
+              <div class="description"> {{data.description }}</div>
+              <mat-chip-list style="padding-top:10px;">
+                  <div *ngFor="let cardData of data.reminder">
+                      <mat-chip (click)=showReminder(data.id)>
+                          <button class="icon" type="button" mat-button>
+                              <i class="material-icons">
+                                  access_time
+                              </i>
+                          </button>
+                          {{cardData}}
+                          <button class="icon" type="button" mat-button>
+                              <i class="material-icons">
+                                  cancel
+                              </i>
+                          </button>
+                      </mat-chip>
+                  </div>
+              </mat-chip-list>
+          
+          <div class="icon">
+              <app-icon class="iconButton"></app-icon>
+          </div>
+
+      </mat-card>
+  </div>
+</div>

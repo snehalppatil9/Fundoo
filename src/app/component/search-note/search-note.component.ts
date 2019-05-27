@@ -16,7 +16,7 @@ export class SearchNoteComponent implements OnInit {
   message: string
   notesArray = [];
   ngOnInit() {
-    this.getNotes()
+    this.getNotes();
     this.dataService.currentMessageSearch
     .pipe(takeUntil(this.destroy$))
       .subscribe(message => {

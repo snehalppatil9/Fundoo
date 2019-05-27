@@ -1,3 +1,13 @@
+<!-- 
+  Execution       :   1. default node         cmd> icon.component.html
+ 
+   Purpose         : To print all the ions
+  
+   @file           : icon.component.html
+   @author         : Snehal Patil
+   @version        : 1.0
+   @since          : 22-04-2019
+  -->
 <div fxLayoutGap="10px">
   <!-- 
   @description: Reminder Button
@@ -87,20 +97,20 @@
   <!-- 
   @description: Archieve Button
  -->
-  <abbr title="Archive" *ngIf="!isArchive">
-    <button mat-icon-button (click)="archive()">
+  <abbr title="Archive">
+    <button mat-icon-button (click)=archive(note)>
       <i class="material-icons">
         archive
       </i>
     </button>
   </abbr>
-  <abbr title="Unarchive" *ngIf="isArchive">
-    <button mat-icon-button (click)="archive()">
+  <!-- <abbr title="Unarchive" *ngIf="isArchive">
+    <button mat-icon-button (click)="archive(note)">
       <i class="material-icons">
         unarchive
       </i>
     </button>
-  </abbr>
+  </abbr> -->
 </div>
 <!-- 
   @description: Remind Me start

@@ -17,7 +17,7 @@
     -->
     <div class="cardSub" fxLayoutAlign="center center" *ngFor="let data of notes | pipe | filterpipe : searchItem "
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2' ">
-        <!-- <div *ngIf="data.isArchived==false" > -->
+        <div *ngIf="data.isArchived==false">
         <mat-card [ngStyle]="{'background-color':data.color}">
             <!--
                  @Description    :    openDialog for dialog 
@@ -25,7 +25,7 @@
             <div (click)="openDialog(data)">
                 <div class="title">{{data.title}}</div>
                 <div class="description"> {{data.description }}</div>
-                <!-- <mat-chip-list style="padding-top:10px;">
+                <mat-chip-list style="padding-top:10px;">
                     <div *ngFor="let cardData of data.reminder">
                         <mat-chip (click)=showReminder(data.id)>
                             <button class="icon" type="button" mat-button>
@@ -41,14 +41,14 @@
                             </button>
                         </mat-chip>
                     </div>
-                </mat-chip-list> -->
+                </mat-chip-list>
             </div>
-            <div  class="icon" >
+            <div class="icon">
                 <app-icon class="iconButton" [card]='data' (setColor)=entry($event) (reminder)=entry($event)
                     (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
                     (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)></app-icon>
             </div>
         </mat-card>
-    <!-- </div> -->
+    </div>
     </div>
 </div>

@@ -11,27 +11,24 @@ import { Note } from '../../core/model/user-model'
 export class ArchieveComponent implements OnInit {
   destory$: Subject<boolean> = new Subject<boolean>();
   notes: Note[] = [];
-  archiveList =[];
+
   constructor(private noteService: NotesService) { }
 
   ngOnInit() {
     this.getArchiveList();
   }
-/** 
-  * 
-  * @description getting the archieved note list
-  */
- getArchiveList(){
-  this.noteService.getArchivedList()
-  .pipe(takeUntil(this.destory$))
-  .subscribe((response) =>{
-    this.notes=response["data"].data;
-    this.archiveList=[];
-    for(let i=this.notes.length;i>0;i--){
-      if(this.notes[i-1]["isDeleted"] == false && this.notes[i-1]["isArchived"]==false)
-      this.archiveList.push(this.notes[i-1])
-    }
-  },(error) =>{
-  });
-}
+  /** 
+    * 
+    * @description getting the archieved note list
+    */
+  getArchiveList() {
+    this.noteService.getArchivedList()
+      .pipe(takeUntil(this.destory$))
+      .subscribe((response) => {
+        this.notes = response["data"].data;
+        console.log("get archive note ===============>", this.notes);
+
+      }, (error) => {
+      });
+  }
 }

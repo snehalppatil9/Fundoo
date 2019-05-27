@@ -40,7 +40,7 @@ export class NotesService {
     return this.httpservice.postData("user/logout", {});
   }
   deleteNote(body) {
-    return this.httpservice.postData("notes/deleteForeverNotes", body);
+    return this.httpservice.postData("/notes/trashNotes", body);
   }
   /**
    * @Purpose: Update Note
@@ -78,13 +78,15 @@ export class NotesService {
    * Archive
    */
   archiveNote(body) {
-    return this.httpservice.postData("notes/archiveNotes", body);
+    return this.httpservice.postData("/notes/archiveNotes", body);
   }
   getArchivedList() {
-    return this.httpservice.getData("notes/getArchiveNotesList");
+    return this.httpservice.getData("/notes/getArchiveNotesList");
   }
 
-
+  getTrashNotes(){
+    return this.httpservice.getData("/notes/getTrashNotesList");
+  }
 
 
 }

@@ -28,15 +28,16 @@ export class IconComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
   message: String
-  isArchive:boolean=false;
+  // isArchive : boolean = false;
   currentDate = new Date();
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
   @Output() onChangeDate = new EventEmitter()
   @Output() onArchiveEntry = new EventEmitter()
-  constructor(private dialog: MatDialog, private noteService: NotesService,private dataService: DataService,private snackBar : MatSnackBar) {
-  
+
+  constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackBar: MatSnackBar) {
+
   }
   colorsArray = [
     [
@@ -62,12 +63,7 @@ export class IconComponent implements OnInit {
     ]
   ]
   ngOnInit() {
-    if(this.card){
-      if(this.card.isArchived==true){
-        this.isArchive=true;
-      }}
   }
-
   setColor(color) {
     this.onChangeColor.emit(color);
   }
@@ -79,40 +75,8 @@ export class IconComponent implements OnInit {
     console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
     this.onChangeDate.emit(date);
     console.log("sfdsdf", this.onChangeDate.emit(date));
-
   }
-  onArchive(note) {
+  archive(note) {
     this.onArchiveEntry.emit(note);
   }
-  /**
-  * 
-  * @description archive the particular note
-  */
- archive(){
-  if(this.card){
-    let string;
-    let body={
-      "isArchived":!this.card.isArchived,
-      "noteIdList":this.card.id
-    }
-    console.log("Archive Body@@@@@@@@@@@@@@@.........",body);
-    
-    this.noteService.archiveNote(body)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((response) =>{
-      this.onArchiveEntry.emit({})
-      if(this.card.isArchived==false)  
-        string="Note Archived";
-      else  
-        string="Note Unarchived";
-      this.snackBar.open( string ,"undo", {
-        duration: 2000,
-      });
-    },(error) =>{
-    });
-  }
-  else{
-    this.onArchiveEntry.emit({})
-  }
-}
 }

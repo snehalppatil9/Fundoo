@@ -31,7 +31,7 @@ export class NoteComponent implements OnInit {
   description = new FormControl('')
   setColor: any;
   today: any;
-  // addNotes: Note = new Note();
+  
   constructor(private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
   * @description :  opening the notecard for adding
@@ -83,13 +83,5 @@ export class NoteComponent implements OnInit {
   changeDate($event) {
     this.today = $event;
   }
-  /**
-  * 
-  * @description archive the new note
-  */
- onArchive(event){
-  if(event){
-    this.isAchive=!this.isAchive;
-   }
-}
+ 
 }
