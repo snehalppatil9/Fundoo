@@ -14,9 +14,11 @@ import { DataService } from '../../core/services/data/data.service'
 import { Note } from '../../core/model/user-model'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {  MatDialog } from '@angular/material'
 import { EventEmitter } from 'events';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
+import { NoteComponent } from '../note/note.component';
 @Component({
   selector: 'app-allnote',
   templateUrl: './allnote.component.html',
@@ -36,7 +38,11 @@ export class AllnoteComponent implements OnInit {
   isArchived = false;
   setColor: any;
   reminder: any;
-  constructor(private dataService: DataService, private noteService: NotesService, private snackbar: MatSnackBar, private snackBar: MatSnackBar) {
+  constructor(private dataService: DataService, 
+    private noteService: NotesService, 
+    private snackbar: MatSnackBar,
+    public dialog: MatDialog, 
+    private snackBar: MatSnackBar) {
        
    }
   ngOnInit() {
@@ -151,5 +157,24 @@ export class AllnoteComponent implements OnInit {
       this.snackbar.open('error', "", { duration: 3000 });
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
+  }
+
+  /**
+   * @Purpose : Open dialog nad edit it
+   **/
+  openDialog(data: any): void {
+    const dialogRef = this.dialog.open(NoteComponent, {
+      width: '700px',
+      height: '200px',
+      data: {
+        'title': data.title,
+        'description': data.description,
+        'id': data.id,
+      }
+    });
+    /* Close the dialog*/
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed: ${result}`);
+    });
   }
 }

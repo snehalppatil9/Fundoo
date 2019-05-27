@@ -15,18 +15,31 @@
     <mat-icon class="done" (click)=done()>done</mat-icon>
   </div>
 </div>
-<div>
-  <a *ngFor="let data of label1 | pipe" class=buttonicon>
-    <div fxLayout=row class="label">
-      <div fxFlex="10%"></div>
-      <div fxFlex="20%">
-        <mat-icon class="label">label</mat-icon>
-      </div>
-      <div fxFlex="60%" class=label>{{data.label}}</div>
+<div *ngFor="let label of labels | pipe" style="height:6vh">
+    <div fxLayout=row>
+        <div fxFlex="100" fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
+            <div fxFlex="20">
+                <mat-icon *ngIf="!changeText">label</mat-icon>
+                <mat-icon *ngIf="changeText" (click)="deleteLabel(label.id)">delete</mat-icon>
+            </div>
+            <div fxFlex="80">
+                <p>{{label.label}}</p>
+            </div>
+            <div fxFlex="20">
+                <div fxLayoutAlign="end end" *ngIf="labelId != label.id" (click)="editIcon(label.id,label.label)">
+                    <mat-icon class="doneIcon" (click)="editIcon(label.id,label.label)">edit</mat-icon>
+                </div>
+                <div fxLayoutAlign="end end" *ngIf="labelId == label.id">
+                    <input style="margin-right: 19px;" class="textarea" [(ngModel)]="model.newName" maxlength=40>
+                    <mat-icon class="doneIcon" (click)=editLabel(label.id)>done</mat-icon>
+                </div>
+            </div>
+        </div>
     </div>
-  </a>
 </div>
 <hr>
-<div fxLayoutAlign="end">
-  <button mat-button class="done1" (click)=addLabel()><b>Done</b></button>
+<div fxLayout="row" fxLayoutAlign="end end">
+    <abbr title="Save Label">
+        <button mat-button class="done1" (click)=addLabel()><b>Done</b></button>
+    </abbr>
 </div>

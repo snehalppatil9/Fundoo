@@ -24,6 +24,18 @@ export class NotesService {
   showNoteLabels(){
     return this.httpservice.getData("noteLabels/getNoteLabelList");
   }
+   /**
+   * @Purpose: Delete Note
+   **/
+  deleteNoteLabel(labelId) {
+    return this.httpservice.postDataForDeleteLabel("/noteLabels/" + labelId + "/deleteNoteLabel")
+  }
+  /**
+   * @Purpose: Update Note
+   **/
+  updateNoteLabel(labelId,body) {
+    return this.httpservice.postData("/noteLabels/" + labelId + "/updateNoteLabel",body)
+  }
   logout(){
     return this.httpservice.postData("user/logout",{});
   }

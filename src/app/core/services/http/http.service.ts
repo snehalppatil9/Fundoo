@@ -90,6 +90,18 @@ export class HttpService {
     }
     return this.httpclient.get(environment.baseUrl + path, httpAuthOptions);
   }
+
+   /**
+   * @Purpose : Delete Label
+   **/ 
+  postDataForDeleteLabel(path) {
+    let httpAuthOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+  }
 }
 
 

@@ -24,8 +24,9 @@ import { Label } from '../../core/model/user-model';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit { 
   destroy$: Subject<boolean> = new Subject<boolean>();
+  labelName : string;
   gridView: boolean = true;
   signoutCard: boolean = false;
   firstName = localStorage.getItem("Firstname");
@@ -34,10 +35,50 @@ export class NavbarComponent implements OnInit {
   searchValue: any;
   label: Label[] = [];
   private labelList = [];
+  /*Grid*/
+  list: boolean = true;
+  grid: boolean = false;
+  view: any;
+  direction: string;
+
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
+    this.labelName= "Fundoo";
     this.showLabel();
+     /*For gridView and ListView*/
+     this.dataService.getView().subscribe((response) => {
+      this.view = response;
+      this.direction = this.view.data;
+    });
+  }
+ /**
+  * @description displaying the sidenavbar notes button functunality
+  */
+  addNote(){
+    this.labelName = "Notes";
+    this.dataService.allNote.subscribe((response) => {
+      console.log("response of Notes sidenav bar ======>", response);
+    });
+  }
+  /**
+  * @description displaying the sidenavbar reminder button functunality
+  */
+  reminder(){
+    this.labelName = "Reminder";
+  }
+   /**
+   * @description displaying the sidenavbar Archive button functunality
+   **/
+  archive() {
+    this.labelName = "Archive";
+  }
+
+  /**
+   *  @description displaying the sidenavbar Trash button functunality
+   **/
+  trash() {
+    this.labelName = "Trash";
   }
   /**
   * @description displaying the signout card
@@ -74,14 +115,21 @@ export class NavbarComponent implements OnInit {
   /**
   * @description :  Grid and List View
   */
-  view() {
-    this.gridView = !this.gridView;
-    this.dataService.changeView(this.gridView);
-  }
+  View() {
+    if (this.list) {
+      this.grid = true;
+      this.list = false;
+    } else {
+      this.list = true;
+      this.grid = false;
+    }
+    this.dataService.gridView();
+    }
   /**
   * @description :  Create Label 
   */
   createLabel() {
+    this.labelName = "Labels";
     const dialogRef = this.dialog.open(LabelComponent, {
       width: '430px',
       height: '250px'

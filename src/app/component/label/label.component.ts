@@ -14,12 +14,14 @@ import {MatDialogRef} from "@angular/material";
 })
 export class LabelComponent implements OnInit {
   label: any = {
-    "labelName": ''
+    "labelName": '',
+    "newName": ""
   }
   id = localStorage.getItem('Id');
+  changeText: boolean;
   label1: Label[] = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
-  private labelList =[]
+  private labelList = []
   constructor(private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private dialogRef : MatDialogRef<NavbarComponent>) {
     console.log("@@@@@@@@@@@@@@@@", this.label1);
   }
@@ -29,6 +31,46 @@ export class LabelComponent implements OnInit {
   clear() {
     this.label.labelName = null;
   }
+  //   /**
+  //  * @Purpose  : Delete Label 
+  //  */
+  // deleteLabel(labelId)
+  // {
+  //   this.noteService.deleteNoteLabel(labelId)
+  //   .pipe(takeUntil(this.destroy$))
+  //     .subscribe((response) => {
+  //       console.log("deleteLabel response ===>", response);
+  //       this.showLabel();
+  //     }, (error) => {
+  //       console.log("deleteLabel error ===>", error);
+  //     });
+  // }
+   /**
+   * @Purpose  : Edit Label 
+   */
+  editLabel(labelId) {
+    let label = this.label.newName;
+    let body = {
+      "label": label
+    }
+    this.noteService.updateNoteLabel(labelId, body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        console.log("deleteLabel response ===>", response);
+        this.dialogRef.close();
+      }, (error) => {
+        console.log("deleteLabel error ===>", error);
+      });
+  }
+
+  /* Open and Close editIcon*/ 
+  private labelId
+  editIcon(id, labelName) {
+    this.labelId = [];
+    this.labelId = id;
+    this.label.newName = labelName
+  }
+
   /*
    * @Description  : Getting label data 
    */
@@ -44,15 +86,15 @@ export class LabelComponent implements OnInit {
       });
   }
   done() {
-    let label=this.label.labelName;
-    if(label== " "){
-      this.dialogRef.close();
-      return false;
-    }
-    var body = {
-      "label": label,
+  var body = {
+      "label": this.label.label,
       "isDeleted": false,
       "userId": this.id
+    }
+    const label = this.label.label
+    if (label == " ") {
+      this.dialogRef.close();
+      return false;
     }
     console.log('Data after edit label', body);
     try {

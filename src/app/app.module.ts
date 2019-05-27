@@ -70,6 +70,7 @@ import {MatNativeDateModule} from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 // import { MatDatepickerModule } from 'saturn-datepicker';
 import {MatChipsModule} from '@angular/material/chips';
+import { DialogComponent } from './component/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import {MatChipsModule} from '@angular/material/chips';
     PipePipe,
     FilterpipePipe,
     SearchNoteComponent,
+    DialogComponent,
     
     
   ],

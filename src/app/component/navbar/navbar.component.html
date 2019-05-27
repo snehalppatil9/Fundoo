@@ -11,7 +11,7 @@
 <!-- 
     @Description: Dashboard tool bar
  -->
-<mat-toolbar class="navbar" style="height:10vh" fxLayoutAlign="space-evenly center">
+ <mat-toolbar class="navbar" style="height:10vh" fxLayoutAlign="space-evenly center">
     <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
         <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
             <div fxFlex="30" fxFlex.md="20" fxFlex.xs="20" fxFlex.sm="20">
@@ -36,9 +36,9 @@
             <!-- 
                  @Description: Dashboard Fundoo Label
              -->
-            <div fxFlex="40" style="margin-top:15px;" ngStyle.md="font-size:10px" ngStyle.lg="font-size:30px"
-                ngStyle.sm="font-style:15px;" ngStyle.xl="font-size:30px">
-                <b>Fundoo</b>
+            <div fxFlex="40" style="margin-top:15px;" ngStyle.md="font-size:10px" ngStyle.lg="font-size:25px"
+                ngStyle.sm="font-style:15px;" ngStyle.xl="font-size:25px">
+                <b>{{labelName}}</b>
             </div>
         </div>
         <!-- 
@@ -60,17 +60,19 @@
                 </button>
             </div>
             <div fxFlex="35">
-                <div *ngIf=gridView>
-                <button mat-icon-button style="margin-top:10px;" class="materialicons" (click)=view() matTooltip="grid view">
+                    <abbr title="List">
+                <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=list (click)=View()
+                    matTooltip="grid view" fxShow="true">
                     <i class="material-icons">
                         view_stream</i>
                 </button>
-            </div>
-            <div *ngIf=!gridView>
-                <button mat-icon-button style="margin-top:10px;" class="materialicons" (click)=view() matTooltip="list view">
+                <!-- </abbr>
+                <abbr title="Grid"> -->
+                <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=grid (click)=View()
+                    matTooltip="list view" fxShow="true">
                     <i class="material-icons">view_module</i>
                 </button>
-            </div>
+                </abbr>
             </div>
             <div fxFlex="30">
                 <button mat-icon-button class="addimage" (click)="account()">
@@ -99,16 +101,16 @@
 @Description    :  Dashboard side nav bar
 -->
 <mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0?'side':'side'" closed>
         <div class="sidebutton">
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh; margin-top:20px;">
-                <button type="button" class="btn" mat-button routerLink="/addnote">                  
-                     <div class="notes" fxLayout="row" fxLayoutGap="20px">
+                <button type="button" class="btn" mat-button (click)="addNote()">
+                    <div class="notes" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon>notes</mat-icon>
                         <h5 class="name">Notes</h5>
                     </div>
                 </button>
-                <button type="button" class="btn" mat-button>
+                <button type="button" class="btn" mat-button (click)="reminder()">
                     <div class="reminder" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon class=label>notifications</mat-icon>
                         <h5 class="name">Reminder</h5>
@@ -116,7 +118,7 @@
                 </button>
             </div>
             <mat-divider></mat-divider>
-            <div fxLayout="column" class="edit" >
+            <div fxLayout="column" class="edit">
                 <div fxFlex=5></div>
                 <div fxFlex=40 class="edit" style="margin-top:20px; margin-left: 18px;">
                     <h5>LABELS</h5>
@@ -139,13 +141,13 @@
             </div>
             <hr>
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh">
-                <button type="button" class="btn" mat-button routerLink="/archive">
+                <button type="button" class="btn" mat-button (click)="archive()">
                     <div class="archive" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon class=label>archive</mat-icon>
                         <h5 class="name">Archive</h5>
                     </div>
                 </button>
-                <button type="button" class="btn" mat-button>
+                <button type="button" class="btn" mat-button (click)="trash()">
                     <div class="delete" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon class=label>delete</mat-icon>
                         <h5 class="name">Trash</h5>
