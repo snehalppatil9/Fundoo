@@ -71,6 +71,7 @@ import { MatSelectModule } from '@angular/material';
 // import { MatDatepickerModule } from 'saturn-datepicker';
 import {MatChipsModule} from '@angular/material/chips';
 import { DialogComponent } from './component/dialog/dialog.component';
+import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { DialogComponent } from './component/dialog/dialog.component';
     FilterpipePipe,
     SearchNoteComponent,
     DialogComponent,
+    CollaboratorComponent,
     
     
   ],

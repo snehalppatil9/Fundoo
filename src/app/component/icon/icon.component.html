@@ -13,7 +13,7 @@
   @description: Reminder Button
  -->
   <abbr title="Remind Me">
-    <button mat-icon-button [matMenuTriggerFor]="menuRemindme" >
+    <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menuRemindme" >
       <i class="material-icons">
         add_alert
       </i>
@@ -22,8 +22,8 @@
   <!-- 
   @description: Collaborator Button
  -->
-  <abbr title="Collaborator">
-    <button mat-icon-button>
+  <abbr title="Collaborator" >
+    <button style="outline: none;" mat-icon-button (click)="addCollaborator()">
       <i class="material-icons">
         person_add
       </i>
@@ -33,7 +33,7 @@
   @description: Color Button
  -->
   <abbr title="Change color">
-    <button mat-icon-button [matMenuTriggerFor]="menuColor">
+    <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menuColor">
       <i class="material-icons">
         palette
       </i>
@@ -45,7 +45,7 @@
   <mat-menu #menuColor="matMenu" [overlapTrigger]="false">
     <ng-template matMenuContent>
       <div>
-        <div fxLayout="row" fxLayoutGap="5px" style="margin-top: 2px" *ngFor="let colors of colorsArray">
+        <div fxLayout="row" fxLayoutGap="3px" style="margin-top: 2px" *ngFor="let colors of colorsArray">
           <div *ngFor="let color of colors">
             <button [ngStyle]="{ 'background-color': color.hexcode }" (click)="setColor(color.hexcode)"
               matTooltip="{{ color.name }}" mat-mini-fab></button>
@@ -58,7 +58,7 @@
   @description: More Button
   -->
   <abbr title="More">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menu">
       <i class="material-icons">
         more_vert
       </i>
@@ -88,7 +88,7 @@
   @description: Add Image Button
  -->
   <abbr title="Add Image">
-    <button mat-icon-button>
+    <button style="outline: none;" mat-icon-button>
       <i class="material-icons">
         crop_original
       </i>
@@ -98,19 +98,12 @@
   @description: Archieve Button
  -->
   <abbr title="Archive">
-    <button mat-icon-button (click)=archive(note)>
+    <button style="outline: none;" mat-icon-button (click)=archive(note)>
       <i class="material-icons">
         archive
       </i>
     </button>
   </abbr>
-  <!-- <abbr title="Unarchive" *ngIf="isArchive">
-    <button mat-icon-button (click)="archive(note)">
-      <i class="material-icons">
-        unarchive
-      </i>
-    </button>
-  </abbr> -->
 </div>
 <!-- 
   @description: Remind Me start
@@ -123,11 +116,11 @@
         <div fxFlex="60">Later today</div>
         <div fxFlex="40" fxLayoutAlign="end">8:00 PM</div>
       </div>
-      <div mat-menu-item class="menu" fxLayout="row">
+      <div mat-menu-item class="menu" fxLayout="row"  (click)=tomorrow()>
         <div fxFlex="60">Tomorrow</div>
         <div fxFlex="40" fxLayoutAlign="end">8:00 AM</div>
       </div>
-      <div mat-menu-item class="menu" fxLayout="row">
+      <div mat-menu-item class="menu" fxLayout="row" (click)=nextweek()>
         <div fxFlex="50">Next week</div>
         <div fxFlex="50" fxLayoutAlign="end">Mon, 8:00 AM</div>
       </div>

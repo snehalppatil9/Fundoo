@@ -81,7 +81,7 @@ export class DataService {
   getReminderNotesList() {
     this.noteService.getReminderNotesList().subscribe(data => {
       console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$",data["data"].data);
-      this.assignLabel.next(data["data"].data);
+      this.assignReminder.next(data["data"].data);
     })
   }
 }

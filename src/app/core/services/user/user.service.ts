@@ -25,4 +25,10 @@ export class UserService {
   userReset(body){
     return this.httpService.postReset("user/reset-password",body);
   }
+  /**
+   * @Purpose : Search userList for collaborator
+   **/
+  searchUserList(body){
+    return this.httpService.postDataForSearchUser("/user/searchUserList",body)
+  }
 }

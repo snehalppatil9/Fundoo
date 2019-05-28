@@ -66,6 +66,10 @@ export class NavbarComponent implements OnInit {
   */
   reminder() {
     this.labelName = "Reminder";
+    this.dataService.allReminder
+    .subscribe((response) => {
+      console.log("response of reminder sidenav bar ======>", response);
+    });
   }
   /**
   * @description displaying the sidenavbar Archive button functunality

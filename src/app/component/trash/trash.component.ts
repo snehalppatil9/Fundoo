@@ -12,15 +12,17 @@ export class TrashComponent implements OnInit {
 
   constructor(private noteService: NotesService) { }
   destroy$: Subject<boolean> = new Subject<boolean>();
-  private notes:Note[]=[];
+  notes:Note[]=[];
   ngOnInit() {
+    this.getTrashList();
   }
   getTrashList(){
     this.noteService.getTrashNotes()
     .pipe(takeUntil(this.destroy$))
     .subscribe((response) =>{
       this.notes=response["data"].data;
-   
+      console.log("trash data=====================>",this.notes);
+      
     },(error) =>{
     });
   }

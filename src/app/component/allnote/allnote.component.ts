@@ -18,8 +18,7 @@ import { MatDialog } from '@angular/material'
 import { EventEmitter } from 'events';
 import { DialogComponent } from '../dialog/dialog.component'
 import { NotesService } from '../../core/services/notes/notes.service';
-import { MatSnackBar, MatCard } from '@angular/material';
-import { NoteComponent } from '../note/note.component';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-allnote',
   templateUrl: './allnote.component.html',
@@ -35,17 +34,17 @@ export class AllnoteComponent implements OnInit {
   @Output() onChangeColor = new EventEmitter();
   @Output() onChangeDate = new EventEmitter();
   destroy$: Subject<boolean> = new Subject<boolean>();
-  isDelete = false;
-  isArchived = true;
+  isDelete = true;
+  isArchived = false;
   setColor: any;
-  reminder: any;
+  reminder: [];
 
   /* Grid View*/
   direction: String = "row";
   wrap: string = "wrap";
   view1: any;
   archive: any;
-
+  delete:any;
   constructor(private dataService: DataService,
     private noteService: NotesService,
     private snackbar: MatSnackBar,
@@ -101,8 +100,9 @@ export class AllnoteComponent implements OnInit {
   * @description : Delete Note
   */
   deleteNote(data, $event) {
+    this.delete = $event;
     var body = {
-      "isDeleted":!this.isDelete,
+      "isDeleted": this.isDelete,
       "noteIdList":[data.id]
     }
     console.log('Delete Note......', body);
@@ -146,9 +146,6 @@ export class AllnoteComponent implements OnInit {
     }
     setTimeout(() => this.dataService.getReminderNotesList(), 30);
   }
-  showReminder(data) {
-    this.dataService.changeMessageReminder(data)
-  }
   /**
   * @description : Archive Note
   */
@@ -179,8 +176,8 @@ export class AllnoteComponent implements OnInit {
    **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '800px',
-      height: '300px',
+      width: '600px',
+      height: '',
       data: {
         'title': data.title,
         'description': data.description,

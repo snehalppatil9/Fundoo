@@ -1,5 +1,7 @@
 .title{
-    border-style: hidden; 
+    width: 100%;
+    border-style: hidden;
+    font-size: 20px; 
     outline: none;  
     word-break: break-all;
     font-weight: bold;
@@ -8,6 +10,7 @@
 .description{
     border-style: hidden; 
     outline: none;
+    font-size: 20px;
     margin-bottom: 20px;
     word-break: break-all;
 }

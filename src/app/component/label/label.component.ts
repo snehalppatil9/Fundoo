@@ -25,9 +25,8 @@ export class LabelComponent implements OnInit {
   }
   /* Get Id from localstorage*/
   id = localStorage.getItem('Id');
-
+  changeText1:boolean;
   changeText: boolean;
-
   constructor(
     private note: NotesService,
     private snackbar: MatSnackBar,
@@ -35,7 +34,8 @@ export class LabelComponent implements OnInit {
     private dialogRef: MatDialogRef<NavbarComponent>
   ) {
     this.changeText = false;
-  }
+    this.changeText1 =false;
+   }
 
   ngOnInit() {
     /* Show label*/
@@ -43,7 +43,7 @@ export class LabelComponent implements OnInit {
   }
 
   /**
-   * @purpose : Add Label
+   * @description  :   Add Label
    **/
   done() {
     var body = {
@@ -74,7 +74,7 @@ export class LabelComponent implements OnInit {
   }
 
   /**
-   * @Purpose  : Getting label data 
+   * @description  :  Getting label data 
    */
   showLabel() {
     this.note.showNoteLabel()
@@ -89,7 +89,7 @@ export class LabelComponent implements OnInit {
   }
 
   /**
-   * @Purpose : ShowLabel in sideNavbar
+   * @description  :  ShowLabel in sideNavbar
    **/
   add() {
     this.done();
@@ -97,14 +97,15 @@ export class LabelComponent implements OnInit {
   }
 
   /**
-   * @Purpose  : Clear Label 
+   * @description  :  Clear Label 
    */
   clear() {
     this.labels.label = null;
+    this.changeText1=true;
   }
 
   /**
-   * @Purpose  : Delete Label 
+   * @description  :  Delete Label 
    */
   deleteLabel(labelId) {
     this.note.deleteNoteLabel(labelId)
@@ -118,7 +119,7 @@ export class LabelComponent implements OnInit {
       }
 
   /**
-   * @Purpose  : Edit Label 
+   * @description  :  Edit Label 
    */
   editLabel(labelId) {
     let label = this.model.newName;

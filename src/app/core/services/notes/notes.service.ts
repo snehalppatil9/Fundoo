@@ -25,36 +25,39 @@ export class NotesService {
     return this.httpservice.getData("noteLabels/getNoteLabelList");
   }
   /**
-  * @Purpose: Delete Note
+  * @Purpose: Delete Note Label
   **/
   deleteNoteLabel(labelId) {
-    return this.httpservice.postDataForDeleteLabel("/noteLabels/" + labelId + "/deleteNoteLabel")
+    return this.httpservice.postDataForDeleteLabel("noteLabels/" + labelId + "/deleteNoteLabel")
+  }
+  /**
+   * @Purpose : add collaborator note
+  **/
+  addColNote(body) {
+    return this.httpservice.postDataForSearchUser("notes/{id}/AddcollaboratorsNotes", body)
   }
   /**
    * @Purpose: Update Note
    **/
   updateNoteLabel(labelId, body) {
-    return this.httpservice.postData("/noteLabels/" + labelId + "/updateNoteLabel", body)
+    return this.httpservice.postData("noteLabels/" + labelId + "/updateNoteLabel", body)
   }
   logout() {
     return this.httpservice.postData("user/logout", {});
   }
-  deleteNote(body) {
-    return this.httpservice.postData("/notes/trashNotes", body);
-  }
+
   /**
-   * @Purpose: Update Note
+   * @Description : Update Note
    **/
   updateNote(body) {
-    return this.httpservice.postDataForUpdateNote("/notes/updateNotes", body)
+    return this.httpservice.postDataForUpdateNote("notes/updateNotes", body)
   }
   /**
-    * @Purpose : Add label
+    * @description  :  Add label and show label
     **/
   addLabel(body) {
-    return this.httpservice.postDataForEdit("noteLabels", body)
+    return this.httpservice.postData("noteLabels", body)
   }
-
   showNoteLabel() {
     return this.httpservice.postDataForShowLabel("noteLabels/getNoteLabelList")
   }
@@ -71,21 +74,26 @@ export class NotesService {
     return this.httpservice.postData("notes/addUpdateReminderNotes", body);
   }
   getReminderNotesList() {
-    return this.httpservice.getData("notes/getNotesList");
+    return this.httpservice.getData("notes/getReminderNotesList");
   }
 
   /**
-   * Archive
+   *  @description  : Archive
    */
   archiveNote(body) {
-    return this.httpservice.postData("/notes/archiveNotes", body);
+    return this.httpservice.postData("notes/archiveNotes", body);
   }
   getArchivedList() {
-    return this.httpservice.getData("/notes/getArchiveNotesList");
+    return this.httpservice.getData("notes/getArchiveNotesList");
   }
-
-  getTrashNotes(){
-    return this.httpservice.getData("/notes/getTrashNotesList");
+  /**
+  * @description  : Trash
+  */
+  deleteNote(body) {
+    return this.httpservice.postData("notes/trashNotes", body);
+  }
+  getTrashNotes() {
+    return this.httpservice.getData("notes/getTrashNotesList");
   }
 
 

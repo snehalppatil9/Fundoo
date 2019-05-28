@@ -26,12 +26,12 @@ export class NoteComponent implements OnInit {
   notecard: boolean = true;
   listcard: boolean = true;
   isAchive: boolean=  false;
-  coloradd: Note = new Note();
+  isDeleted: boolean=  false;
   title = new FormControl('')
   description = new FormControl('')
   setColor: any;
   today: any;
-  
+  addNotes: Note = new Note();
   constructor(private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
   * @description :  opening the notecard for adding
@@ -52,14 +52,15 @@ export class NoteComponent implements OnInit {
   */
   addNote() {
     this.notecard = !(this.notecard);
-    this.coloradd.color = this.setColor;
-    this.coloradd.reminder = this.today;
+    this.addNotes.color = this.setColor;
+    this.addNotes.reminder = this.today;
     var body = {
-      "title": this.title.value,
-      "description": this.description.value,
-      "color": this.coloradd.color,
-      "reminder": this.coloradd.reminder,
-      "isArchived":this.isAchive
+      "title": this.addNotes.title,
+      "description": this.addNotes.description,
+      "color": this.addNotes.color,
+      "reminder": this.addNotes.reminder,
+      "isArchived":this.isAchive,
+      "isDeleted": this.isDeleted,
     }
     console.log('add note data......', body);
     try {

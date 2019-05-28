@@ -1,0 +1,38 @@
+<div class="Collaborators">Collaborators</div>
+<mat-divider></mat-divider>
+<div fxLayoutGap='35px'>
+  <div class="margin">
+    <mat-card-header>
+      <div mat-card-avatar class="addPerson">
+        <mat-icon class=icon>person_add</mat-icon>
+      </div>
+      <mat-card-title>{{firstName}} {{lastName}} (Owner)</mat-card-title>
+      <mat-card-subtitle>{{email}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-header>
+      <div mat-card-avatar class="addPerson">
+        <mat-icon class=icon>person_add</mat-icon>
+      </div>
+      <input placeholder="person or email to share with" [(ngModel)]="searchValue" (keyup)="searchUser()" matInput
+        [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let data of userList" [value]='data.email'>
+          <button mat-button class=button (click)="addCol(data)">
+            {{data.firstName}} {{data.lastName}} [{{data.email}}]
+          </button>
+        </mat-option>
+      </mat-autocomplete>
+      <div class="clear">
+        <button class="iconcorner" type="button" mat-button (click)=clearbutton()>
+          <i class="material-icons">
+            clear
+          </i>
+        </button>
+      </div>
+    </mat-card-header>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap='25px' class="btns">
+  <button mat-button (click)=cancel()>Cancel</button>
+  <button mat-button (click)="save()">Save</button>
+</div>

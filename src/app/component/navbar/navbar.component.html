@@ -18,7 +18,7 @@
                 <!-- 
                      @Description: Dashboard first icon menu bar
                  -->
-                <button type="button" style="margin-top:10px; outline: none" mat-button (click)="drawer.toggle()">
+                <button type="button" style="margin-top:10px; outline: none;" mat-button (click)="drawer.toggle()">
                     <i class="material-icons">
                         menu
                     </i>
@@ -100,7 +100,7 @@
 @Description    :  Dashboard side nav bar
 -->
 <mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0?'side':'side'" closed>
+    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0 ?'side':'side'" closed>
         <div class="sidebutton">
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh; margin-top:20px;">
                 <button type="button" class="btn" mat-button routerLink="/addnote"  (click)="addNote()">
@@ -109,7 +109,7 @@
                         <h5 class="name">Notes</h5>
                     </div>
                 </button>
-                <button type="button" class="btn" mat-button (click)="reminder()">
+                <button type="button" class="btn" mat-button routerLink="/reminder" (click)="reminder()">
                     <div class="reminder" fxLayout="row" fxLayoutGap="20px">
                         <mat-icon class=label>notifications</mat-icon>
                         <h5 class="name">Reminder</h5>

@@ -15,7 +15,6 @@ export class HttpService {
     };
     return this.httpclient.post(environment.baseUrl + path, body, httpAuthOptions);
   }
-
   postRequest(path, body) {
     return this.httpclient.post(environment.baseUrl + path, body, {});
   }
@@ -38,7 +37,6 @@ export class HttpService {
     console.log('token...............', localStorage.getItem('token'));
     return this.httpclient.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
-
   postAddNote(path, body) {
     //console.log(body);
     const httpOptions = {
@@ -68,19 +66,6 @@ export class HttpService {
     };
     return this.httpclient.post(environment.baseUrl + path, body, httpAuthOptions);
   }
-  /**
-   * @Purpose : Edit label
-   **/
-  postDataForEdit(path, body) {
-    let httpAuthOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      })
-    }
-    return this.httpclient.post(environment.baseUrl + path, body, httpAuthOptions);
-  }
-
   postDataForShowLabel(path) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -90,10 +75,9 @@ export class HttpService {
     }
     return this.httpclient.get(environment.baseUrl + path, httpAuthOptions);
   }
-
-   /**
-   * @Purpose : Delete Label
-   **/ 
+  /**
+  * @Descrption : Delete Label
+  **/
   postDataForDeleteLabel(path) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -103,11 +87,9 @@ export class HttpService {
     }
     return this.httpclient.delete(environment.baseUrl + path, httpAuthOptions);
   }
-
-
   /**
-   * @Purpose : UpdateNote
-   **/ 
+   * @Descrption : UpdateNote
+   **/
   postDataForUpdateNote(path, body) {
     console.log(body);
     const httpOptions = {
@@ -119,6 +101,19 @@ export class HttpService {
     console.log('token ==================>', localStorage.getItem('token'));
     return this.httpclient.post(environment.baseUrl + path, this.getEncodData(body), httpOptions);
   }
+  /**
+   * @Descrption : Collabarator
+   **/
+  postDataForSearchUser(path, body) {
+    console.log(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.post(environment.baseUrl + path, body, httpOptions);
+  }
+
 }
 
 

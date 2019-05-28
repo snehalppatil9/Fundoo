@@ -13,3 +13,18 @@ export class Label{
     "isDeleted": false;
     "userId": string;
 }
+export class User {
+    "id":string;
+    "firstName": string;
+    "lastName": string;
+    "email": string;
+    "password": string;
+    "confirmPassword": string;
+    "service": string;
+}
+export class Collaborator {
+    "firstName" :string;
+    "lastName" : string;
+    "email" :string;
+    "id":string;
+}

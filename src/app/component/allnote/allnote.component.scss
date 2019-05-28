@@ -1,7 +1,7 @@
 @import '../../core/scss/colors';
 @import '../../core/scss/mixin';
 .cardMain{
-    margin-left: 45px;
+    margin-left: 65px;
     margin-right: 45px;
 }
 .cardSub{
@@ -9,9 +9,10 @@
     width: 385px;
     padding: 6px;
 }
-mat-chip-list{
-    width: 50px;
-}
+// mat-chip-list{
+//     width: 20px;
+//     height: 50px;
+// }
 .cardSub2{
     border-radius: 5;
     width: 385px;
@@ -42,4 +43,11 @@ mat-card{
 }
 .description{
     word-break: break-all;
+}
+.iconcorner{
+    float: right;
+    font-size: 30px;
+    padding-left: 5%;
+    cursor: pointer;
+    opacity:0.7;
 }

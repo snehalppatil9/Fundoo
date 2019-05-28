@@ -15,8 +15,7 @@ import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
 import { DataService } from 'src/app/core/services/data/data.service';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-
+import { CollaboratorComponent } from '../collaborator/collaborator.component'
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
@@ -25,17 +24,19 @@ import { takeUntil } from 'rxjs/operators';
 export class IconComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
+   message: String
+  /**
+   * @description : change date variables
+   */
+  currentDate = new Date();
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
-  message: String
-  // isArchive : boolean = false;
-  currentDate = new Date();
+  isArchive = true;
   @Input() card;
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
   @Output() onChangeDate = new EventEmitter()
   @Output() onArchiveEntry = new EventEmitter()
-
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackBar: MatSnackBar) {
 
   }
@@ -70,8 +71,29 @@ export class IconComponent implements OnInit {
   deleteNotes(note) {
     this.onChangeDelete.emit(note);
   }
+  /**
+   * @description : Remind today date
+   */
   today() {
     let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 20, 0, 0);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
+    this.onChangeDate.emit(date);
+    console.log("sfdsdf", this.onChangeDate.emit(date));
+  }
+  /**
+   * @description : Remind tomorrow date
+   */
+  tomorrow(){
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 1, 20, 0, 0);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
+    this.onChangeDate.emit(date);
+    console.log("sfdsdf", this.onChangeDate.emit(date));
+  }
+  /**
+   * @description : Remind nextweek date
+   */
+  nextweek(){
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 7, 20, 0, 0);
     console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
     this.onChangeDate.emit(date);
     console.log("sfdsdf", this.onChangeDate.emit(date));
@@ -79,4 +101,15 @@ export class IconComponent implements OnInit {
   archive(note) {
     this.onArchiveEntry.emit(note);
   }
+
+   /* addCollaborator */
+   addCollaborator() {
+    const dialogRef = this.dialog.open(CollaboratorComponent , {
+     
+     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed');
+    });
+  }
+  
 }
