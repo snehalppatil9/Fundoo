@@ -24,7 +24,7 @@ import { CollaboratorComponent } from '../collaborator/collaborator.component'
 export class IconComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-   message: String
+  message: String
   /**
    * @description : change date variables
    */
@@ -75,7 +75,7 @@ export class IconComponent implements OnInit {
    * @description : Remind today date
    */
   today() {
-    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 20, 0, 0);
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 0, 8, 0, 0);
     console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
     this.onChangeDate.emit(date);
     console.log("sfdsdf", this.onChangeDate.emit(date));
@@ -83,8 +83,8 @@ export class IconComponent implements OnInit {
   /**
    * @description : Remind tomorrow date
    */
-  tomorrow(){
-    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 1, 20, 0, 0);
+  tomorrow() {
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 1, 8, 0, 0);
     console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
     this.onChangeDate.emit(date);
     console.log("sfdsdf", this.onChangeDate.emit(date));
@@ -92,8 +92,8 @@ export class IconComponent implements OnInit {
   /**
    * @description : Remind nextweek date
    */
-  nextweek(){
-    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 7, 20, 0, 0);
+  nextweek() {
+    let date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate() + 7, 8, 0, 0);
     console.log("@@@@@@@@@@@@@@@@@@@@@@@", date);
     this.onChangeDate.emit(date);
     console.log("sfdsdf", this.onChangeDate.emit(date));
@@ -102,14 +102,14 @@ export class IconComponent implements OnInit {
     this.onArchiveEntry.emit(note);
   }
 
-   /* addCollaborator */
-   addCollaborator() {
-    const dialogRef = this.dialog.open(CollaboratorComponent , {
-     
-     });
+  /* addCollaborator */
+  addCollaborator() {
+    const dialogRef = this.dialog.open(CollaboratorComponent, {
+
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed');
     });
   }
-  
+
 }

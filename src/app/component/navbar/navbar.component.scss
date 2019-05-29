@@ -43,10 +43,11 @@
     width:100%;
     color:black;
     @include back-ground-color($test-color-light-gray);
-    font-size: 25px;
+    font-size: 20px;
     border: none;
     margin:-1% -3% 0% -3%;
     border-radius: 7px;
+    height: 63px;
 } 
 .searchbutton {
     background-color: transparent;
@@ -106,6 +107,18 @@
     text-align: center;
     width: 96px;
 }
+.edit{
+    color: #5f6368;
+    cursor: default;
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    padding: 10px 14px 10px;
+    margin-left: 12px;
+}
 .clear {
     background-color: transparent;
     cursor: pointer;
@@ -130,4 +143,27 @@
 }
 .labelCreate{
     width:95%;
+}
+.side_label{
+    padding-left: 32px;
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: top;
+    width: 176px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #202124; 
+    margin-left: 12px;
+}
+.label-icon{
+    height: 24px;
+    width: 24px;
+    float: left;
+    margin-top: 8px;
+    vertical-align: middle;
+    margin-left: 12px;
+}
+.sideicon{
+    margin-left: 12px;
 }

@@ -8,7 +8,7 @@
    @version        : 1.0
    @since          : 22-04-2019
   -->
-<div fxLayoutAlign="center center" >
+<div fxLayoutAlign="center center" class="cardMain">
   <div class="card" fxLayoutGap='30px' fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px' fxFlex.sm='400px'
       fxFlex.xs='150px'>
       <div fxLayoutGap='20px'>
@@ -16,9 +16,9 @@
           <input class="description" placeholder="Take a note..." [formControl]="description">
       </div>
       <div>
-          <div fxLayout='row'>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5">
               <app-icon></app-icon>
-               <button style="margin-left: 100px;" mat-button (click)="updateNote(data)"
+               <button  mat-button (click)="updateNote(data)"
                   (click)="onNoClick()">Close</button>
           </div>
       </div>

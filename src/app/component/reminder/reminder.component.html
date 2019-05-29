@@ -3,16 +3,16 @@
         <mat-card [ngStyle]="{'background-color':data.color}">
             <div class="title">{{data.title}}</div>
             <div class="description"> {{data.description }}</div>
-            <mat-chip-list style="padding-top:10px;">
-                <div *ngFor="let cardData of data.reminder">
-                    <mat-chip (click)=showReminder(data.id)>
-                        <button class="icon" type="button" mat-button>
+            <mat-chip-list>
+                <div *ngFor="let cardData of data.reminder" class="reminder">
+                    <mat-chip>
+                        <button type="button" mat-button>
                             <i class="material-icons">
                                 access_time
                             </i>
                         </button>
-                        {{cardData}}
-                        <button class="icon" type="button" mat-button>
+                        {{cardData | date : 'MMM d, y h:mm a'}}
+                        <button type="button" mat-button (click)=removeReminder(data,$event)>
                             <i class="material-icons">
                                 cancel
                             </i>
@@ -21,7 +21,7 @@
                 </div>
             </mat-chip-list>
             <div class="icon">
-                <app-icon class="iconButton" ></app-icon>
+                <app-icon class="iconButton"></app-icon>
             </div>
         </mat-card>
     </div>

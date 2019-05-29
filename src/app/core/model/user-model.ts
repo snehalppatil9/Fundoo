@@ -7,6 +7,7 @@ export class Note {
     id : string
     reminder: [Date]
     isArchived: boolean
+    isDeleted : boolean
 }
 export class Label{
     "label": string;

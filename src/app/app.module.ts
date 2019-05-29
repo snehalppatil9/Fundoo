@@ -72,7 +72,8 @@ import { MatSelectModule } from '@angular/material';
 import {MatChipsModule} from '@angular/material/chips';
 import { DialogComponent } from './component/dialog/dialog.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
-
+import { ImageCropComponent } from './component/image-crop/image-crop.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +94,7 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
     SearchNoteComponent,
     DialogComponent,
     CollaboratorComponent,
+    ImageCropComponent,
     
     
   ],
@@ -126,7 +128,8 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    ImageCropperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

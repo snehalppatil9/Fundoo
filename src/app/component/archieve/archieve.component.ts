@@ -13,13 +13,18 @@ import { DataService } from 'src/app/core/services/data/data.service';
 export class ArchieveComponent implements OnInit {
   destory$: Subject<boolean> = new Subject<boolean>();
   notes: Note[] = [];
-  archive: any;
   @Output() onChangeColor = new EventEmitter();
   setColor: any;
-  isArchived : false;
+  direction: String = "row";
+  wrap: string = "wrap";
+  view1: any;
   constructor(private noteService: NotesService,private snackbar: MatSnackBar,private dataService : DataService) { }
   ngOnInit() {
     this.getArchiveList();
+    this.dataService.getView().subscribe((response) => {
+      this.view1 = response;
+      this.direction = this.view1.data
+    });
   }
   /** 
     * 
@@ -62,30 +67,29 @@ export class ArchieveComponent implements OnInit {
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
   }
-
-   /**
+/**
   * @description : Archive Note
   */
- archiveNote(data, $event) {
-  this.archive = $event;
-  var body = {
-    "isArchived": !this.isArchived,
-    "noteIdList": [data.id]
-  }
-  console.log('#########Archive Note###########', body);
-  try {
-    this.noteService.archiveNote(body).subscribe(
-      data => {
-        this.snackbar.open('Archive Note Successfully.', '', { duration: 3000 });
-        console.log('Archive Note successfully..........', data);
-      },
-      error => {
-        this.snackbar.open('Error while Archive Note!', 'Error', { duration: 3000 });
-        console.log("Error something wrong: ", error)
-      });
-  } catch (error) {
-    this.snackbar.open('error', "", { duration: 3000 });
-  }
-  setTimeout(() => this.dataService.getAllNote(), 30);
-}
+ isArchived = false;
+ unArchiveNote(data) {
+    var body = {
+     "isArchived": this.isArchived,
+     "noteIdList": [data.id]
+   }
+   console.log('#########Archive Note###########', body);
+   try {
+     this.noteService.archiveNote(body).subscribe(
+       data => {
+         this.snackbar.open('Archive Note Successfully.', '', { duration: 3000 });
+         console.log('Archive Note successfully..........', data);
+       },
+       error => {
+         this.snackbar.open('Error while Archive Note!', 'Error', { duration: 3000 });
+         console.log("Error something wrong: ", error)
+       });
+   } catch (error) {
+     this.snackbar.open('error', "", { duration: 3000 });
+   }
+  //  setTimeout(() => this.dataService.getAllNote(), 30);
+ }
 }

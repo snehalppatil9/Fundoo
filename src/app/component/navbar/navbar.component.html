@@ -18,7 +18,7 @@
                 <!-- 
                      @Description: Dashboard first icon menu bar
                  -->
-                <button type="button" style="margin-top:10px; outline: none;" mat-button (click)="drawer.toggle()">
+                <button class="menubutton" type="button" style="margin-top:10px; margin-left: 0px; outline: none;" mat-button (click)="drawer.toggle()">
                     <i class="material-icons">
                         menu
                     </i>
@@ -45,7 +45,7 @@
             @Description: Dashboard Search Box
         -->
         <div fxFlex="50" fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80" fxShow fxHide.sm
-            fxShow fxHide.xs style="margin-top : 7px;">
+            fxShow fxHide.xs style="margin-top : 9px;" fxLayoutGap=15px>
             <mat-icon style="outline: none;" class="searchbutton">search</mat-icon>
             <input type="text" class="search" [(ngModel)]="searchValue" class="search" (click)="search()"
                 (keyup)=newMessage() placeholder="Search..">
@@ -53,7 +53,8 @@
         <!-- 
             @Description: Dashboard view-list, settings and logout account icons  
         -->
-        <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
+        <div fxFlex="5"></div>
+        <div fxFlex="20" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
             <div fxFlex="35">
                 <button style="margin-top:10px; outline: none" mat-icon-button (click)="refresh()">
                     <i class="material-icons">refresh</i>
@@ -75,8 +76,8 @@
                 </abbr>
             </div>
             <div fxFlex="30">
-                <button mat-icon-button class="addimage" style="outline: none" (click)="account()">
-                </button>
+                <div  mat-card-avatar [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'60px','height':'60px'}" 
+                class="addimage1" (click)="account()" ngStyle.xl="width:60px;height:60px"></div>
             </div>
         </div>
     </div>
@@ -86,12 +87,12 @@
 -->
 <mat-card class="account" *ngIf="signoutCard">
     <mat-card-header>
-        <div mat-card-avatar class="addimage1" (click)="changeProfile()">
-            <!-- <span class="change">Change</span> -->
-        </div>
+        <div mat-card-avatar [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover',
+        'width':'60px','height':'60px','margin-bottom':'10px'}" class="addimage1" (click)=image.click()></div>
         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
         <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>
+    <input type=file class="fileSelect" (change)=profileImage($event) #image>
     <hr>
     <div><button class="addAccount" (click)="addAccount()">Add Account</button></div>
     <div><button class="signout" (click)="logout()">Sign out</button></div>
@@ -103,37 +104,37 @@
     <mat-drawer #drawer class="example-sidenav" [mode]="width > 0 ?'side':'side'" closed>
         <div class="sidebutton">
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh; margin-top:20px;">
-                <button type="button" class="btn" mat-button routerLink="/addnote"  (click)="addNote()">
-                    <div class="notes" fxLayout="row" fxLayoutGap="20px">
-                        <mat-icon>notes</mat-icon>
+                <button type="button" class="btn" mat-button routerLink="/addnote" (click)="addNote()">
+                    <div class="sideicon" fxLayout="row" fxLayoutGap="20px">
+                        <img src="../../../assets/images/notes.svg">
                         <h5 class="name">Notes</h5>
                     </div>
                 </button>
                 <button type="button" class="btn" mat-button routerLink="/reminder" (click)="reminder()">
-                    <div class="reminder" fxLayout="row" fxLayoutGap="20px">
-                        <mat-icon class=label>notifications</mat-icon>
+                    <div class="sideicon" fxLayout="row" fxLayoutGap="20px">
+                        <img src="../../../assets/images/reminder.svg">
                         <h5 class="name">Reminder</h5>
                     </div>
                 </button>
             </div>
             <mat-divider></mat-divider>
-            <div fxLayout="column" class="edit">
+            <div fxLayout="column">
                 <div fxFlex=5></div>
-                <div fxFlex=40 class="edit" style="margin-top:20px; margin-left: 18px;">
-                    <h5>LABELS</h5>
+                <div fxFlex=40>
+                    <div class="edit">LABELS</div>
                 </div>
                 <a *ngFor="let data of labelList" class=buttonicon>
-                    <div fxLayout=row class="side_label">
+                    <div fxLayout=row >
                         <!-- <div fxFlex="10"></div> -->
-                        <div fxFlex="10">
-                            <mat-icon class=label>label</mat-icon>
+                        <div fxFlex="10" class="label-icon">
+                            <img src="../../../assets/images/label1.svg">
                         </div>
-                        <div fxFlex="60" class=label>{{data}}</div>
+                        <div fxFlex="60" class="side_label">{{data}}</div>
                     </div>
                 </a>
                 <button type="button" (click)="createLabel()" class="btn" mat-button>
-                    <div class="edit" fxLayout="row" fxLayoutGap="20px">
-                        <mat-icon class=label>create</mat-icon>
+                    <div class="sideicon" fxLayout="row" fxLayoutGap="20px">
+                        <img src="../../../assets/images/editlabel.svg">
                         <h5>Edit Note</h5>
                     </div>
                 </button>
@@ -141,14 +142,14 @@
             <hr>
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh">
                 <button type="button" class="btn" mat-button routerLink="/archive" (click)="archive()">
-                    <div class="archive" fxLayout="row" fxLayoutGap="20px">
-                        <mat-icon class=label>archive</mat-icon>
+                    <div class="sideicon" fxLayout="row" fxLayoutGap="20px">
+                        <img src="../../../assets/images/archive.svg">
                         <h5 class="name">Archive</h5>
                     </div>
                 </button>
                 <button type="button" class="btn" mat-button routerLink="/trash" (click)="trash()">
-                    <div class="delete" fxLayout="row" fxLayoutGap="20px">
-                        <mat-icon class=label>delete</mat-icon>
+                    <div class="sideicon" fxLayout="row" fxLayoutGap="20px">
+                        <img src="../../../assets/images/trash.svg">
                         <h5 class="name">Trash</h5>
                     </div>
                 </button>

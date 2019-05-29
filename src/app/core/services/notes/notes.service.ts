@@ -9,6 +9,7 @@ export class NotesService {
   addNote(body) {
     return this.httpservice.postAddNote("notes/addNotes", body);
   }
+  
   /**
  * @Purpose : Get Note without refresh
  **/
@@ -76,6 +77,9 @@ export class NotesService {
   getReminderNotesList() {
     return this.httpservice.getData("notes/getReminderNotesList");
   }
+  removeReminder(body){
+    return this.httpservice.postData("notes/removeReminderNotes", body);
+  }
 
   /**
    *  @description  : Archive
@@ -95,6 +99,8 @@ export class NotesService {
   getTrashNotes() {
     return this.httpservice.getData("notes/getTrashNotesList");
   }
-
+  deleteforeverNote(body){
+    return this.httpservice.postData("notes/deleteForeverNotes", body);
+  }
 
 }

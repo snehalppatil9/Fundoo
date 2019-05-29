@@ -29,6 +29,9 @@ export class UserService {
    * @Purpose : Search userList for collaborator
    **/
   searchUserList(body){
-    return this.httpService.postDataForSearchUser("/user/searchUserList",body)
+    return this.httpService.postDataForSearchUser("user/searchUserList",body)
+  }
+  addProfileImage(body){
+    return this.httpService.updateProfile('user/uploadProfileImage',body);
   }
 }

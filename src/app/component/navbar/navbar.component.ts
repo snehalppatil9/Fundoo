@@ -18,7 +18,8 @@ import { DataService } from '../../core/services/data/data.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Label } from '../../core/model/user-model';
-
+import { environment } from '../../../environments/environment';
+import { ImageCropComponent } from '../image-crop/image-crop.component'
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit {
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
+  private image = localStorage.getItem("userImage");
   searchValue: any;
   label: Label[] = [];
   private labelList = [];
@@ -40,7 +42,8 @@ export class NavbarComponent implements OnInit {
   grid: boolean = false;
   view: any;
   direction: string;
-
+  private img;
+  private width;
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
@@ -51,6 +54,11 @@ export class NavbarComponent implements OnInit {
       this.view = response;
       this.direction = this.view.data;
     });
+    this.img = environment.Url + this.image;
+    this.isLargeScreen();
+  }
+  isLargeScreen() {
+    this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
   /**
    * @description displaying the sidenavbar notes button functunality
@@ -67,9 +75,9 @@ export class NavbarComponent implements OnInit {
   reminder() {
     this.labelName = "Reminder";
     this.dataService.allReminder
-    .subscribe((response) => {
-      console.log("response of reminder sidenav bar ======>", response);
-    });
+      .subscribe((response) => {
+        console.log("response of reminder sidenav bar ======>", response);
+      });
   }
   /**
   * @description displaying the sidenavbar Archive button functunality
@@ -166,6 +174,7 @@ export class NavbarComponent implements OnInit {
   */
   search() {
     this.router.navigateByUrl('/search');
+    this.searchValue == null;
   }
   /*
   * @description :  for search note
@@ -173,5 +182,16 @@ export class NavbarComponent implements OnInit {
   newMessage() {
     this.dataService.MessageSearch(this.searchValue)
   }
-
+  profileImage(event):void {
+    const dialogRef = this.dialog.open(ImageCropComponent, {
+      width: '400px',
+      data: event 
+    });
+    dialogRef.afterClosed()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => {
+    this.img=  environment.Url+localStorage.getItem("userImage")
+    });
+    
+  }
 }

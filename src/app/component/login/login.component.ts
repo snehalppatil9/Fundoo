@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("Firstname",data["firstName"]);
           localStorage.setItem("Lastname",data["lastName"]);
           localStorage.setItem("Email",data["email"]);
+          localStorage.setItem("userImage",data["imageUrl"]);
           //localStorage.clear();
           this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
           this.router.navigateByUrl('addnote');

@@ -35,9 +35,9 @@ export class AllnoteComponent implements OnInit {
   @Output() onChangeDate = new EventEmitter();
   destroy$: Subject<boolean> = new Subject<boolean>();
   isDelete = true;
-  isArchived = false;
+  
   setColor: any;
-  reminder: [];
+  reminder: any;
 
   /* Grid View*/
   direction: String = "row";
@@ -49,7 +49,7 @@ export class AllnoteComponent implements OnInit {
     private noteService: NotesService,
     private snackbar: MatSnackBar,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar) {
+    ) {
 
   }
   ngOnInit() {
@@ -147,8 +147,35 @@ export class AllnoteComponent implements OnInit {
     setTimeout(() => this.dataService.getReminderNotesList(), 30);
   }
   /**
+  * @description : Remove reminder in Note
+  */
+  removeReminder(data, $event) {
+  this.reminder = $event;
+  var body = {
+    "reminder": this.reminder,
+    "noteIdList": [data.id]
+  }
+  console.log('Remove reminder Reminder......', body);
+  try {
+    this.noteService.removeReminder(body)
+    .subscribe(
+      data => {
+        this.snackbar.open('Remove reminder Reminder Successfully.', '', { duration: 3000 });
+        console.log('Remove reminder successfully..........', data);
+      },
+      error => {
+        this.snackbar.open('Error while Remove reminder!', 'Error', { duration: 3000 });
+        console.log("Error something wrong: ", error)
+      });
+  } catch (error) {
+    this.snackbar.open('error', "", { duration: 3000 });
+  }
+  setTimeout(() => this.dataService.getReminderNotesList(), 30);
+}
+  /**
   * @description : Archive Note
   */
+  isArchived = true;
   archiveNote(data, $event) {
     this.archive = $event;
     var body = {

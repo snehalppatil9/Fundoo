@@ -113,7 +113,14 @@ export class HttpService {
     };
     return this.httpclient.post(environment.baseUrl + path, body, httpOptions);
   }
-
+updateProfile(path,body){
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': localStorage.getItem('token')
+    })
+  };
+  return this.httpclient.post(environment.baseUrl + path, body,httpOptions);
+}
 }
 
 

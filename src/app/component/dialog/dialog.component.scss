@@ -21,6 +21,10 @@ button{
 }
 
 .card{
-    outline: none;
+    // outline: none;
     border-style: hidden; 
+    border-radius: 5;
+}
+.cardMain{
+    border-radius: 5;
 }

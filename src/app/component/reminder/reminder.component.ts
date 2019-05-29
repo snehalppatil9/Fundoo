@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Note } from '../../core/model/user-model'
 import { NotesService } from 'src/app/core/services/notes/notes.service';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-reminder',
   templateUrl: './reminder.component.html',
@@ -12,13 +13,27 @@ import { NotesService } from 'src/app/core/services/notes/notes.service';
 export class ReminderComponent implements OnInit {
   destory$: Subject<boolean> = new Subject<boolean>();
   notes: Note[] = [];
-  constructor(private dataService : DataService,private noteService : NotesService) { }
+
+  /* Grid View*/
+  direction: String = "row";
+  view1: any;
+  constructor(private dataService : DataService,
+    private noteService : NotesService,
+    private snackbar : MatSnackBar 
+    ) { }
 
   ngOnInit() {
     this.dataService.allReminder
     .pipe(takeUntil(this.destory$))
     .subscribe(data => this.notes = data);
   console.log('all reminder note ==================>', this.notes);
+
+
+   /* Grid View*/
+   this.dataService.getView().subscribe((response) => {
+    this.view1 = response;
+    this.direction = this.view1.data
+  });
   }
    /** 
     * 
@@ -34,4 +49,31 @@ export class ReminderComponent implements OnInit {
       }, (error) => {
       });
   }
+   /**
+  * @description : Remove reminder in Note
+  */
+ reminder: any;
+ removeReminder(data, $event) {
+  this.reminder = $event;
+  var body = {
+    "reminder": this.reminder,
+    "noteIdList": [data.id]
+  }
+  console.log('Remove reminder Reminder......', body);
+  try {
+    this.noteService.removeReminder(body)
+    .subscribe(
+      data => {
+        this.snackbar.open('Remove reminder Reminder Successfully.', '', { duration: 3000 });
+        console.log('Remove reminder successfully..........', data);
+      },
+      error => {
+        this.snackbar.open('Error while Remove reminder!', 'Error', { duration: 3000 });
+        console.log("Error something wrong: ", error)
+      });
+  } catch (error) {
+    this.snackbar.open('error', "", { duration: 3000 });
+  }
+  setTimeout(() => this.dataService.getReminderNotesList(), 30);
+}
 }

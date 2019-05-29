@@ -14,14 +14,16 @@
         <mat-icon class=icon>person_add</mat-icon>
       </div>
       <input placeholder="person or email to share with" [(ngModel)]="searchValue" (keyup)="searchUser()" matInput
-        [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
+        [matMenuTriggerFor]="menu">
+      <!-- <mat-autocomplete #auto="matAutocomplete"> -->
+      <mat-menu #menu="matMenu">
         <mat-option *ngFor="let data of userList" [value]='data.email'>
           <button mat-button class=button (click)="addCol(data)">
             {{data.firstName}} {{data.lastName}} [{{data.email}}]
           </button>
         </mat-option>
-      </mat-autocomplete>
+      </mat-menu>
+      <!-- </mat-autocomplete> -->
       <div class="clear">
         <button class="iconcorner" type="button" mat-button (click)=clearbutton()>
           <i class="material-icons">

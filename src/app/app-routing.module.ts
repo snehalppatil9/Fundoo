@@ -26,6 +26,7 @@ import { AuthGuardService } from './core/services/authGuard/auth-guard.service';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import { DialogComponent } from './component/dialog/dialog.component';
+import { ImageCropComponent } from './component/image-crop/image-crop.component';
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
@@ -47,7 +48,8 @@ const routes: Routes = [
       { path: 'trash' , component : TrashComponent },
       { path: 'dialog', component: DialogComponent},
       { path: 'collaborator', component: CollaboratorComponent},
-      { path: 'reminder', component: CollaboratorComponent}
+      { path: 'reminder', component: ReminderComponent},
+      { path: 'imagecrop', component: ImageCropComponent}
     ]
 
   }
