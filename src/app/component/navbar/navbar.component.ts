@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
-  private image = localStorage.getItem("userImage");
+  image = localStorage.getItem("userImage");
   searchValue: any;
   label: Label[] = [];
   private labelList = [];
@@ -190,7 +190,7 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed()
     .pipe(takeUntil(this.destroy$))
     .subscribe(result => {
-    this.img=  environment.Url+localStorage.getItem("userImage")
+    this.img = environment.Url+localStorage.getItem("userImage")
     });
     
   }

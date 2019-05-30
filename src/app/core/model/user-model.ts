@@ -8,6 +8,7 @@ export class Note {
     reminder: [Date]
     isArchived: boolean
     isDeleted : boolean
+    image :string
 }
 export class Label{
     "label": string;

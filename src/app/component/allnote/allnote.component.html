@@ -11,26 +11,22 @@
 <!-- 
     @Description    :   Dispaly data into the card after add
  -->
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center" fxLayoutGap="5">
+<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
     <!-- 
          @Description    :   ngClass for grid and list view
     -->
-    <div class="cardSub" fxFlex.md="200px" fxFlex.sm="100px" fxFlex.lg="380px" fxFlex.xl="400px"
-        fxLayoutAlign="center center" *ngFor="let data of notes | pipe | filterpipe : searchItem"
+    <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
+        *ngFor="let data of notes | pipe | filterpipe : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false">
-            <mat-card [ngStyle]="{'background-color':data.color}">
+            <mat-card [ngStyle]="{'background-image':'url(' +data.image+ ')','background-color':data.color}">
                 <!--
                  @Description    :    openDialog for dialog 
                  -->
                 <div (click)="openDialog(data)">
                     <div>
                         {{data.title}}
-                        <button class="iconcorner" style="outline : none;" type="button" mat-button>
-                            <i class="material-icons">
-                                add_alert
-                            </i>
-                        </button>
+                        <app-pin class=pin [card]=data (onChange)="entry($event)"></app-pin>
                     </div>
                     <div class="description"> {{data.description }}</div>
                     <mat-chip-list>
@@ -52,14 +48,16 @@
                     </mat-chip-list>
                 </div>
                 <div class="icon">
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="2">
-                        <app-icon class="iconButton" [card]='data' (setColor)=entry($event) (reminder)=entry($event)
+                    <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
+                        <app-icon [card]='data' (setColor)=entry($event) (reminder)=entry($event)
                             (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
                             (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
                     </div>
                 </div>
             </mat-card>
+            <div style="height:5vh;"></div>
         </div>
     </div>
+
 </div>

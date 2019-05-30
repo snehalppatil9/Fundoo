@@ -8,7 +8,7 @@
    @version        : 1.0
    @since          : 28-04-2019
   -->
-<div fxLayoutAlign="center"  *ngIf="notecard">
+<div fxLayoutAlign="center" *ngIf="notecard">
   <mat-card class="card" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px" fxFlex.sm="500px" fxFlex.xs="95%">
     <div fxFlex="100">
       <!-- 
@@ -47,10 +47,9 @@
           -->
         <div fxFlex="35">
           <abbr title="New Note With Image">
-            <button type="button" mat-button>
-              <i class="material-icons">
-                crop_original
-              </i>
+            <button type="button" mat-button >
+              <mat-icon class="icon" (click)=image.click()>insert_photo</mat-icon>
+              <input style="display: none;" type="file" #image (change)="onSelectImage($event,'01')" />
             </button>
           </abbr>
         </div>
@@ -65,21 +64,18 @@
   <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
     fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
+        <div [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover',
+        'width':'570px','height':'460px','margin-bottom':'10px'}"> </div>
       <div>
-        <input style="height:5vh; border-style: hidden"  [style.backgroundColor]="setColor" [(ngModel)]="addNotes.title"
+        <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor" [(ngModel)]="addNotes.title"
           [formControl]="title" placeholder="Title">
-        <button class="icon" type="button" mat-button>
-          <i class="material-icons">
-            add_alert
-          </i>
-        </button>
+          <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
       </div>
       <div>
         <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor"
-          [(ngModel)]="addNotes.description"  [formControl]="description" placeholder="Take a note...">
+          [(ngModel)]="addNotes.description" [formControl]="description" placeholder="Take a note...">
         <div class="row" fxLayoutAlign="space-evenly center">
-          <app-icon (onChangeColor)="receivecolor($event)" 
-               (onChangeDate)="changeDate($event)"></app-icon>
+          <app-icon (onChangeColor)="receivecolor($event)" (onChangeDate)="changeDate($event)"></app-icon>
           <!-- 
             @description: More Button
           -->
@@ -94,7 +90,7 @@
             @description: MatMenu button for more Button
           -->
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button  mat-menu-item class="menu" [matMenuTriggerFor]="labelmenu" (click)="showLabel()">
               <span>Add label</span>
             </button>
             <button mat-menu-item>
@@ -103,6 +99,33 @@
             <button mat-menu-item>
               <span>Show checkboxes</span>
             </button>
+          </mat-menu>
+          <!-- 
+            @description: add Label menu starts
+          -->
+          <mat-menu #labelmenu="matMenu" class="addlabel">
+            <div style="margin-left: 20px; margin-right:20px; height: 5vh;">Label note</div>
+            <div fxLayout="row" style="margin-left: 20px; margin-right:20px; height: 5vh;" fxFlex="100">
+              <div fxFlex=80>
+                <input type=text class=input placeholder="Enter label name" [(ngModel)]="searchLabel" >
+              </div>
+              <div fxFlex=20>
+                <mat-icon><small>search</small></mat-icon>
+              </div>
+            </div>
+            <!-- <div> -->
+            <a *ngFor="let data of labelList" class=buttonicon>
+              <div fxLayout=row>
+                <!-- <div fxFlex="10"></div> -->
+                <div fxFlex="10" style="margin-left: 20px; margin-right:20px; height: 5vh;" class="label-icon">
+                  <i class="material-icons">
+                    check_box_outline_blank
+                  </i>
+                </div>
+                <div fxFlex="60" class="side_label">{{data}}</div>
+              </div>
+            </a>
+            <!-- </div> -->
           </mat-menu>
           <!-- 
             @description: Undo Button
@@ -133,7 +156,7 @@
         <input style="height:8vh; border-style: hidden; font-size: 20px;" [formControl]="title" placeholder="Title">
         <button type="button" class="icon" mat-button>
           <i class="material-icons">
-              person_pin_circle
+            person_pin_circle
           </i>
         </button>
       </div>
@@ -199,4 +222,7 @@
     </div>
   </mat-card>
 </div>
-<app-allnote></app-allnote>
+<div style="height:10vh;"></div>
+<div fxLayoutAlign="center center">
+  <app-allnote></app-allnote>
+</div>

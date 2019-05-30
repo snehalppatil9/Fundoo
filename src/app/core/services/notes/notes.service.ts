@@ -102,5 +102,7 @@ export class NotesService {
   deleteforeverNote(body){
     return this.httpservice.postData("notes/deleteForeverNotes", body);
   }
-
+  pinChange(body){
+    return this.httpservice.postDataforPin("notes/pinUnpinNotes",body);
+  }
 }

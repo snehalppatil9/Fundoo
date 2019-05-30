@@ -18,7 +18,8 @@
                 <!-- 
                      @Description: Dashboard first icon menu bar
                  -->
-                <button class="menubutton" type="button" style="margin-top:10px; margin-left: 0px; outline: none;" mat-button (click)="drawer.toggle()">
+                <button class="menubutton" type="button" style="margin-top:10px; margin-left: 0px; outline: none;"
+                    mat-button (click)="drawer.toggle()">
                     <i class="material-icons">
                         menu
                     </i>
@@ -61,23 +62,20 @@
                 </button>
             </div>
             <div fxFlex="35">
-                <abbr title="Grid">
-                    <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=list
-                        (click)=View() matTooltip="grid view" fxShow="true">
-                        <i class="material-icons">
-                            view_stream</i>
-                    </button>
-                    <!-- </abbr>
-                <abbr title="Grid"> -->
-                    <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=grid
-                        (click)=View() matTooltip="list view" fxShow="true">
-                        <i class="material-icons">view_module</i>
-                    </button>
-                </abbr>
+                <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=list
+                    (click)=View() matTooltip="grid view" fxShow="true">
+                    <i class="material-icons">
+                        view_stream</i>
+                </button>
+                <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=grid
+                    (click)=View() matTooltip="list view" fxShow="true">
+                    <i class="material-icons">view_module</i>
+                </button>
             </div>
             <div fxFlex="30">
-                <div  mat-card-avatar [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'60px','height':'60px'}" 
-                class="addimage1" (click)="account()" ngStyle.xl="width:60px;height:60px"></div>
+                <div mat-card-avatar
+                    [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'60px','height':'60px'}"
+                    class="addimage1" (click)="account()" ngStyle.xl="width:60px;height:60px"></div>
             </div>
         </div>
     </div>
@@ -92,7 +90,7 @@
         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
         <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>
-    <input type=file class="fileSelect" (change)=profileImage($event) #image>
+    <input type=file class="fileselection" (change)=profileImage($event) #image>
     <hr>
     <div><button class="addAccount" (click)="addAccount()">Add Account</button></div>
     <div><button class="signout" (click)="logout()">Sign out</button></div>
@@ -124,7 +122,7 @@
                     <div class="edit">LABELS</div>
                 </div>
                 <a *ngFor="let data of labelList" class=buttonicon>
-                    <div fxLayout=row >
+                    <div fxLayout=row>
                         <!-- <div fxFlex="10"></div> -->
                         <div fxFlex="10" class="label-icon">
                             <img src="../../../assets/images/label1.svg">

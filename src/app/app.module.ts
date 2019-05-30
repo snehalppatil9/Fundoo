@@ -74,6 +74,8 @@ import { DialogComponent } from './component/dialog/dialog.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { SearchlabelComponent } from './component/searchlabel/searchlabel.component';
+import { PinComponent } from './component/pin/pin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +97,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     DialogComponent,
     CollaboratorComponent,
     ImageCropComponent,
+    SearchlabelComponent,
+    PinComponent,
     
     
   ],

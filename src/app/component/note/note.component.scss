@@ -23,5 +23,15 @@
 }
 .mainCard{
     width: 1000px;
-    margin-left: 340px;
+    margin-left: 240px;
+}
+.menu:hover{
+    @include back-ground-color(rgb(219, 219, 219))  
+}
+.input{
+    outline: none;
+    border: none;
+}
+.pin{
+float: right;
 }

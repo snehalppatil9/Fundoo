@@ -55,7 +55,12 @@ export class AllnoteComponent implements OnInit {
   ngOnInit() {
     this.dataService.allNote
       .pipe(takeUntil(this.destory$))
-      .subscribe(data => this.notes = data);
+      .subscribe(data => {
+        this.notes = data
+        this.notes = this.notes.filter(function (el) {
+          return (el.isArchived === false && el.isDeleted === false);
+          });
+        });
     console.log('all note ==================>', this.notes);
 
     this.dataService.currentMessageView

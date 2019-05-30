@@ -37,7 +37,7 @@ export class ImageCropComponent implements OnInit {
     .pipe(takeUntil(this.destroy$))
     .subscribe(res => {
       this.dialogRef.close();
-      localStorage.setItem("fundooUserImage",res['status'].imageUrl);
+      localStorage.setItem("userImage",res['status'].imageUrl);
     }, error => {
     })
   }
