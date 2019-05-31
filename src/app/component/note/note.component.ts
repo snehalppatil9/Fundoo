@@ -31,23 +31,23 @@ import { Label } from '../../core/model/user-model';
 export class NoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   notecard: boolean = true;
-  labelcard: boolean =true;
+  labelcard: boolean = true;
   listcard: boolean = true;
-  isAchive: boolean=  false;
-  isPin: boolean=  false;
-  isDeleted: boolean=  false;
+  isAchive: boolean = false;
+  isPin: boolean = false;
+  isDeleted: boolean = false;
   title = new FormControl('')
   description = new FormControl('')
   image = localStorage.getItem("userImage");
   setColor: any;
   @Input() Note;
-  today: any;
+  reminder: any;
   addNotes: Note = new Note();
   searchLabel: any;
-  private img;
+  img : any;
   private width;
   // private imageId;
-  constructor(private dialog: MatDialog,private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
+  constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
   * @description :  opening the notecard for adding
   */
@@ -62,25 +62,26 @@ export class NoteComponent implements OnInit {
   }
   ngOnInit() {
   }
-      isLargeScreen() {
-        this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      }
+  isLargeScreen() {
+    this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  }
   /**
   * @description :  Adding note in database
   */
   addNote() {
     this.notecard = !(this.notecard);
     this.addNotes.color = this.setColor;
-    this.addNotes.reminder = this.today;
-    this.addNotes.image = this.img;
+    this.addNotes.reminder = this.reminder;
+    // this.addNotes.imageUrl = this.img;
     var body = {
       "title": this.addNotes.title,
       "description": this.addNotes.description,
       "color": this.addNotes.color,
       "reminder": this.addNotes.reminder,
-      "isArchived":this.isAchive,
+      "isArchived": this.isAchive,
       "isDeleted": this.isDeleted,
-      "isPined"	: this.isPin,
+      "isPined": this.isPin,
+      // "imageUrl":  this.addNotes.imageUrl
     }
     console.log('add note data......', body);
     try {
@@ -97,48 +98,36 @@ export class NoteComponent implements OnInit {
       this.snackbar.open('error', "", { duration: 3000 });
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
+    this.addNotes.title=null;
+    this.addNotes.description=null;
   }
+ 
   receivecolor($event) {
     this.setColor = $event
   }
   changeDate($event) {
-    this.today = $event;
+    this.reminder = $event;
   }
-  
+
   imageId
-  onSelectImage(event,noteId):void {
-    this.imageId=noteId
+  onSelectImage(event, noteId): void {
+    this.imageId = noteId
     const dialogRef = this.dialog.open(ImageCropComponent, {
       width: '400px',
-      data: event 
+      data: event
     });
     dialogRef.afterClosed()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(result => {
-    this.img = environment.Url+localStorage.getItem("userImage")
-    });
-    
-  }
-  
-  label: Label[] = [];
-  private labelList = [];
-
-  showLabel() {
-    this.noteService.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => {
-        this.label = response["data"].details;
-        this.labelList = [];
-        for (let i = 0; i < this.label.length; i++) {
-          this.labelList.push(this.label[i].label);
-        }
-      })
+      .subscribe(result => {
+        this.img = environment.Url + localStorage.getItem("userImage");
+      });
+
   }
   /**
   * 
   * @description pin change on note
   */
- onPinChange(event){
-  this.isPin=event;
-}
+  onPinChange(event) {
+    this.isPin = event;
+  }
 }

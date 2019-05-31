@@ -1,32 +1,83 @@
+// @import '../../core/scss/colors';
+// @import '../../core/scss/mixin';
+// .cardMain{
+//     display: flex;
+//     // margin-left: 13%;
+//     //    position: fixed;
+//       width: 71vw;
+// }
+// .cardSub{
+//     border-radius: 5;
+//     width: 85px;
+//     // padding: 6px;
+// }
+// .mat-card{
+//     width: 18vw;
+// }
+// .cardSub2{
+//     border-radius: 5;
+//     width: 385px;
+//     // padding: 6px;
+// }
+// .material-icons{
+//     font-size: 20px;
+// }
+// .icon{
+//     visibility:hidden;
+// }
+// .iconButton{
+//     opacity:0.7;
+//     cursor: pointer;
+// }
+// .iconButton:hover{
+//     opacity:1;
+// } 
+// .cardSub:hover .icon {
+//     visibility: visible;
+// }
+// .title{
+//     word-break: break-all;
+//     font-weight: bold;
+// }
+// .description{
+//     word-break: break-all;
+// }
+
+
+
+
 @import '../../core/scss/colors';
 @import '../../core/scss/mixin';
 .cardMain{
-    margin-left: 45px;
-    margin-right: 45px;
+    display: flex;
+    // margin-left: 13%;
+    //    position: fixed;
+      width: 71vw;
 }
 .cardSub{
     border-radius: 5;
-    width: 385px;
-    padding: 6px;
+    width: 85px;
+    // padding: 6px;
 }
-mat-chip-list{
-    width: 50px;
+.mat-card{
+    width: 18vw;
 }
 .cardSub2{
     border-radius: 5;
     width: 385px;
-    padding: 6px;
+    // padding: 6px;
 }
 mat-card{
     border-radius: 10px;
 }
-.material-icons{
-    font-size: 20px;
+.iconButton .material-icons{
+    font-size: 15px;
 }
 .icon{
     visibility:hidden;
 }
 .iconButton{
+    font-size: 15px;
     opacity:0.7;
     cursor: pointer;
 }
@@ -37,9 +88,47 @@ mat-card{
     visibility: visible;
 }
 .title{
+    width: 100%;
+    border-style: hidden;
+    font-size: 20px; 
+    outline: none;  
     word-break: break-all;
     font-weight: bold;
 }
+
 .description{
+    border-style: hidden; 
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 20px;
     word-break: break-all;
+}
+
+.iconcorner{
+    visibility:hidden;
+    float: right;
+    font-size: 30px;
+    padding-left: 5%;
+    cursor: pointer;
+    opacity:0.7;
+}
+.iconcorner:hover{
+    opacity:1;
+    visibility:visible;
+} 
+.pin{
+    float: right;
+    visibility:hidden;
+}
+.pin:hover{
+    opacity:1;
+    visibility:visible;
+}
+.pin{
+    float: right;
+}
+.datetime{
+    @include back-ground-color(rgba(135, 167, 159, 0.465));    
+    font-size: 11px;
+    color:rgba(0, 0, 0,0.4);
 }

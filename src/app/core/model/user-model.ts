@@ -6,9 +6,10 @@ export class Note {
     color : string
     id : string
     reminder: [Date]
+    collaberators	:[{}]
     isArchived: boolean
     isDeleted : boolean
-    image :string
+    imageUrl : string
 }
 export class Label{
     "label": string;

@@ -39,7 +39,8 @@ export class DataService {
   getAllNote() {
     this.noteService.getNotes().subscribe(data => {
       console.log(data.data.data);
-      this.assignData.next(data.data.data);
+     return  this.assignData.next(data.data.data);
+      
     })
   }
 

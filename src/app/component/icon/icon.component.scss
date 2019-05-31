@@ -90,3 +90,6 @@ span{
     border-radius: 5px;
     // @include margin-top(5px)
 }
+.menu:hover{
+    @include back-ground-color(rgb(219, 219, 219))  
+}

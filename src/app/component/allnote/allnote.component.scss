@@ -79,3 +79,8 @@ mat-card{
 .pin{
     float: right;
 }
+.datetime{
+    @include back-ground-color(rgba(135, 167, 159, 0.465));    
+    font-size: 11px;
+    color:rgba(0, 0, 0,0.4);
+}

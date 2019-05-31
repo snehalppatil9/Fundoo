@@ -27,6 +27,7 @@ import { SearchNoteComponent } from './component/search-note/search-note.compone
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import { DialogComponent } from './component/dialog/dialog.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
+import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component'
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
@@ -49,7 +50,8 @@ const routes: Routes = [
       { path: 'dialog', component: DialogComponent},
       { path: 'collaborator', component: CollaboratorComponent},
       { path: 'reminder', component: ReminderComponent},
-      { path: 'imagecrop', component: ImageCropComponent}
+      { path: 'imagecrop', component: ImageCropComponent},
+      { path: 'searchmatcards', component: SearchmatcardsComponent}
     ]
 
   }

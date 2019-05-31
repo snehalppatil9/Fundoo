@@ -10,9 +10,9 @@ export class NotesService {
     return this.httpservice.postAddNote("notes/addNotes", body);
   }
   
-  /**
- * @Purpose : Get Note without refresh
- **/
+  addLabelToNotes(cardId,labelId){
+    return this.httpservice.postData("notes/"+cardId+"addLabelToNotes/"+labelId+"add",{});
+  }
   getNotes(): any {
     return this.httpservice.getData("notes/getNotesList")
   }

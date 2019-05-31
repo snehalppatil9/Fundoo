@@ -1,8 +1,9 @@
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center" fxLayoutGap="3%">
+<div fxLayoutAlign="center center">
+<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
     <!-- 
        @Description    :   ngClass for grid and list view
   -->
-    <div class="cardSub" fxLayoutAlign="center center" *ngFor="let data of notes">
+    <div class="cardSub" fxFlex="27" fxLayoutAlign="center center" *ngFor="let data of notes">
         <mat-card [ngStyle]="{'background-color':data.color}">
             <div *ngIf="data.isDeleted === true">
                 <div class="title">{{data.title}}</div>
@@ -51,4 +52,5 @@
             </div>
         </mat-card>
     </div>
+</div>
 </div>

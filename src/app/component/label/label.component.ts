@@ -28,7 +28,7 @@ export class LabelComponent implements OnInit {
   changeText1:boolean;
   changeText: boolean;
   constructor(
-    private note: NotesService,
+    private noteService: NotesService,
     private snackbar: MatSnackBar,
     private router: Router,
     private dialogRef: MatDialogRef<NavbarComponent>
@@ -58,7 +58,7 @@ export class LabelComponent implements OnInit {
     }
     console.log('Data after edit label', body);
     try {
-      this.note.addLabel(body).pipe(takeUntil(this.destroy$))
+      this.noteService.addLabel(body).pipe(takeUntil(this.destroy$))
         .subscribe(
           (response) => {
             console.log("Response ====>", response);
@@ -77,7 +77,7 @@ export class LabelComponent implements OnInit {
    * @description  :  Getting label data 
    */
   showLabel() {
-    this.note.showNoteLabel()
+    this.noteService.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.labels = response.data.details
@@ -108,7 +108,7 @@ export class LabelComponent implements OnInit {
    * @description  :  Delete Label 
    */
   deleteLabel(labelId) {
-    this.note.deleteNoteLabel(labelId)
+    this.noteService.deleteNoteLabel(labelId)
      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         console.log("deleteLabel response ===>", response);
@@ -126,7 +126,7 @@ export class LabelComponent implements OnInit {
     let body = {
       "label": label
     }
-    this.note.updateNoteLabel(labelId, body)
+    this.noteService.updateNoteLabel(labelId, body)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         console.log("deleteLabel response ===>", response);

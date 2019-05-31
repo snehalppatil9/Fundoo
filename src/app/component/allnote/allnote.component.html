@@ -19,37 +19,29 @@
         *ngFor="let data of notes | pipe | filterpipe : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false">
-            <mat-card [ngStyle]="{'background-image':'url(' +data.image+ ')','background-color':data.color}">
+            <mat-card>
                 <!--
                  @Description    :    openDialog for dialog 
                  -->
                 <div (click)="openDialog(data)">
                     <div>
                         {{data.title}}
-                        <app-pin class=pin [card]=data (onChange)="entry($event)"></app-pin>
+                        <app-pin class=pin [card]='data' (onChange)="entry($event)"></app-pin>
                     </div>
                     <div class="description"> {{data.description }}</div>
                     <mat-chip-list>
                         <div *ngFor="let cardData of data.reminder" class="reminder">
-                            <mat-chip>
-                                <button type="button" mat-button>
-                                    <i class="material-icons">
-                                        access_time
-                                    </i>
-                                </button>
+                            <mat-chip class="datetime">
+                                <mat-icon>access_time</mat-icon>
                                 {{cardData | date : 'MMM d, y h:mm a'}}
-                                <button type="button" mat-button (click)=removeReminder(data,$event)>
-                                    <i class="material-icons">
-                                        cancel
-                                    </i>
-                                </button>
+                                <mat-icon (click)=removeReminder(data,$event)> cancel</mat-icon>
                             </mat-chip>
                         </div>
                     </mat-chip-list>
                 </div>
                 <div class="icon">
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
-                        <app-icon [card]='data' (setColor)=entry($event) (reminder)=entry($event)
+                        <app-icon [card]='data' (setColor)=entry($event) (onChangeAddLabel)=addLabeltoNotes(data,$event) (reminder)=entry($event)
                             (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
                             (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
@@ -61,3 +53,8 @@
     </div>
 
 </div>
+
+
+
+
+

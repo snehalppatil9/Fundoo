@@ -20,7 +20,7 @@ export class SearchNoteComponent implements OnInit {
     this.dataService.currentMessageSearch
     .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
-        this.message = message
+        this.message = message;
       })
   }
   getNotes() {
@@ -32,6 +32,6 @@ export class SearchNoteComponent implements OnInit {
       }, (error) => {
         console.log("Error:", error);
       });
-  }
+   }
 
 }

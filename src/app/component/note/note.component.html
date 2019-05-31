@@ -47,7 +47,7 @@
           -->
         <div fxFlex="35">
           <abbr title="New Note With Image">
-            <button type="button" mat-button >
+            <button type="button" mat-button>
               <mat-icon class="icon" (click)=image.click()>insert_photo</mat-icon>
               <input style="display: none;" type="file" #image (change)="onSelectImage($event,'01')" />
             </button>
@@ -64,69 +64,17 @@
   <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
     fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
-        <div [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover',
-        'width':'570px','height':'460px','margin-bottom':'10px'}"> </div>
+      <div [ngStyle]="{'background-size':'cover'}"> </div>
       <div>
         <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor" [(ngModel)]="addNotes.title"
           [formControl]="title" placeholder="Title">
-          <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
+        <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
       </div>
       <div>
         <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor"
           [(ngModel)]="addNotes.description" [formControl]="description" placeholder="Take a note...">
         <div class="row" fxLayoutAlign="space-evenly center">
           <app-icon (onChangeColor)="receivecolor($event)" (onChangeDate)="changeDate($event)"></app-icon>
-          <!-- 
-            @description: More Button
-          -->
-          <abbr title="More">
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <i class="material-icons">
-                more_vert
-              </i>
-            </button>
-          </abbr>
-          <!-- 
-            @description: MatMenu button for more Button
-          -->
-          <mat-menu #menu="matMenu">
-            <button  mat-menu-item class="menu" [matMenuTriggerFor]="labelmenu" (click)="showLabel()">
-              <span>Add label</span>
-            </button>
-            <button mat-menu-item>
-              <span>Add drawing</span>
-            </button>
-            <button mat-menu-item>
-              <span>Show checkboxes</span>
-            </button>
-          </mat-menu>
-          <!-- 
-            @description: add Label menu starts
-          -->
-          <mat-menu #labelmenu="matMenu" class="addlabel">
-            <div style="margin-left: 20px; margin-right:20px; height: 5vh;">Label note</div>
-            <div fxLayout="row" style="margin-left: 20px; margin-right:20px; height: 5vh;" fxFlex="100">
-              <div fxFlex=80>
-                <input type=text class=input placeholder="Enter label name" [(ngModel)]="searchLabel" >
-              </div>
-              <div fxFlex=20>
-                <mat-icon><small>search</small></mat-icon>
-              </div>
-            </div>
-            <!-- <div> -->
-            <a *ngFor="let data of labelList" class=buttonicon>
-              <div fxLayout=row>
-                <!-- <div fxFlex="10"></div> -->
-                <div fxFlex="10" style="margin-left: 20px; margin-right:20px; height: 5vh;" class="label-icon">
-                  <i class="material-icons">
-                    check_box_outline_blank
-                  </i>
-                </div>
-                <div fxFlex="60" class="side_label">{{data}}</div>
-              </div>
-            </a>
-            <!-- </div> -->
-          </mat-menu>
           <!-- 
             @description: Undo Button
           -->
@@ -149,7 +97,12 @@
     </div>
   </mat-card>
 </div>
-<div fxLayoutAlign="center center" *ngIf="!listcard">
+<!-- end of note card -->
+
+<!-- 
+  @description: Opening Note ListCard
+-->
+<div fxLayoutAlign="center center" *ngIf=!listcard>
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
       <div>
@@ -222,6 +175,9 @@
     </div>
   </mat-card>
 </div>
+
+<!-- end of note listcard -->
+
 <div style="height:10vh;"></div>
 <div fxLayoutAlign="center center">
   <app-allnote></app-allnote>

@@ -1,0 +1,40 @@
+<div fxLayoutAlign="center center" fxLayout="column">
+  <div>
+    <mat-card>
+      <div style="width :700px;">TYPES</div>
+      <hr>
+      <div fxLayout="row">
+        <mat-card style="width :200px; height: 140px;">Simple card</mat-card>
+        <mat-card style="width :200px; height: 140px;">Simple card</mat-card>
+        <mat-card style="width :200px; height: 140px;">Simple card</mat-card>
+        <mat-card style="width :200px; height: 140px;"></mat-card>
+      </div>
+    </mat-card>
+  </div>
+  <div style="height:4vh;"></div>
+  <div>
+    <mat-card>
+      <div style="width :812px;">Peoples</div>
+      <hr>
+      <div fxLayout="row" fxLayoutGap="5">
+        <mat-card mat-card-avatar class="addimage1">Simple card</mat-card>
+        <mat-card mat-card-avatar class="addimage1">Simple card</mat-card>
+        <mat-card mat-card-avatar class="addimage1">Simple card</mat-card>
+        <mat-card mat-card-avatar class="addimage1"></mat-card>
+      </div>
+    </mat-card>
+  </div>
+  <div style="height:4vh;"></div>
+  <div>
+    <mat-card>
+      <div style="width :812px;">Colors</div>
+      <hr>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngFor="let colors of colorsArray">
+        <div *ngFor="let color of colors">
+          <button style="outline:none;" [ngStyle]="{ 'background-color': color.hexcode }" matTooltip="{{ color.name }}"
+            mat-mini-fab></button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

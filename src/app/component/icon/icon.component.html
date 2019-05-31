@@ -9,101 +9,130 @@
    @since          : 22-04-2019
   -->
 <!-- <div fxLayoutGap="10px"> -->
-  <!-- 
+<!-- 
   @description: Reminder Button
  -->
-  <abbr title="Remind Me">
-    <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menuRemindme" >
-      <i class="material-icons">
-        add_alert
-      </i>
-    </button>
-  </abbr>
-  <!-- 
+<abbr title="Remind Me">
+  <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menuRemindme">
+    <i class="material-icons">
+      add_alert
+    </i>
+  </button>
+</abbr>
+<!-- 
   @description: Collaborator Button
  -->
-  <abbr title="Collaborator" >
-    <button style="outline: none;" mat-icon-button (click)="addCollaborator()">
-      <i class="material-icons">
-        person_add
-      </i>
-    </button>
-  </abbr>
-  <!-- 
+<abbr title="Collaborator">
+  <button style="outline: none;" mat-icon-button (click)="addCollaborator()">
+    <i class="material-icons">
+      person_add
+    </i>
+  </button>
+</abbr>
+<!-- 
   @description: Color Button
  -->
-  <abbr title="Change color">
-    <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menuColor">
-      <i class="material-icons">
-        palette
-      </i>
-    </button>
-  </abbr>
-  <!-- 
+<abbr title="Change color">
+  <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menuColor">
+    <i class="material-icons">
+      palette
+    </i>
+  </button>
+</abbr>
+<!-- 
   @description: matmenu for color start
  -->
-  <mat-menu #menuColor="matMenu" [overlapTrigger]="false">
-    <ng-template matMenuContent>
-      <div>
-        <div fxLayout="row" fxLayoutGap="3px" style="margin-top: 2px" *ngFor="let colors of colorsArray">
-          <div *ngFor="let color of colors">
-            <button [ngStyle]="{ 'background-color': color.hexcode }" (click)="setColor(color.hexcode)"
-              matTooltip="{{ color.name }}" mat-mini-fab></button>
-          </div>
+<mat-menu #menuColor="matMenu" [overlapTrigger]="false">
+  <ng-template matMenuContent>
+    <div>
+      <div fxLayout="row" fxLayoutGap="3px" style="margin-top: 2px" *ngFor="let colors of colorsArray">
+        <div *ngFor="let color of colors">
+          <button [ngStyle]="{ 'background-color': color.hexcode }" (click)="setColor(color.hexcode)"
+            matTooltip="{{ color.name }}" mat-mini-fab></button>
         </div>
       </div>
-    </ng-template>
-  </mat-menu>
-  <!-- 
+    </div>
+  </ng-template>
+</mat-menu>
+<!-- 
   @description: More Button
   -->
-  <abbr title="More">
-    <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menu">
-      <i class="material-icons">
-        more_vert
-      </i>
-    </button>
-  </abbr>
-  <!-- 
+<abbr title="More">
+  <button style="outline: none;" mat-icon-button [matMenuTriggerFor]="menu">
+    <i class="material-icons">
+      more_vert
+    </i>
+  </button>
+</abbr>
+<!-- 
   @description: MatMenu button for more Button
   -->
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)=deleteNotes(note)>
-      <span>Delete Note</span>
-    </button>
-    <button mat-menu-item>
-      <span>Add label</span>
-    </button>
-    <button mat-menu-item>
-      <span>Add drawing</span>
-    </button>
-    <button mat-menu-item>
-      <span>Make a Copy</span>
-    </button>
-    <button mat-menu-item>
-      <span>Show checkboxes</span>
-    </button>
-  </mat-menu>
-  <!-- 
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)=deleteNotes(note)>
+    <span>Delete Note</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="labelmenu" (click)="showLabel()">
+    <span>Add label</span>
+  </button>
+  <button mat-menu-item>
+    <span>Add drawing</span>
+  </button>
+  <button mat-menu-item>
+    <span>Make a Copy</span>
+  </button>
+  <button mat-menu-item>
+    <span>Show checkboxes</span>
+  </button>
+</mat-menu>
+<!-- 
+  @description: add Label menu starts
+-->
+<mat-menu #labelmenu="matMenu" class="addlabel">
+  <ng-template matMenuContent>
+    <div style="margin-left: 20px; margin-right:20px; height: 5vh;">Label note</div>
+    <div fxLayout="row" style="margin-left: 20px; margin-right:20px; height: 5vh;" fxFlex="100">
+      <div fxFlex=80>
+        <input type=text class=input placeholder="Enter label name" [(ngModel)]="searchLabel">
+      </div>
+      <div fxFlex=20>
+        <mat-icon><small>search</small></mat-icon>
+      </div>
+    </div>
+    <a *ngFor="let data of labelList | filterpipe : searchLabel">
+      <div fxLayout=row>
+        <!-- <div fxFlex="10"></div> -->
+        <div fxFlex="10" style="margin-left: 20px; margin-right:20px; height: 5vh;" class="label-icon"
+          (click)="addLabel(data)">
+          <i class="material-icons">
+            check_box_outline_blank
+          </i>
+        </div>
+        <div fxFlex="60" class="side_label">{{data}}</div>
+      </div>
+    </a>
+  </ng-template>
+</mat-menu>
+
+<!-- 
   @description: Add Image Button
  -->
-  <abbr title="Add Image">
-    <button style="outline: none;" mat-icon-button>
-      <i class="material-icons">
-        crop_original
-      </i>
-    </button>
-  </abbr>
-  <!-- 
+<abbr title="Add Image">
+  <button style="outline: none;" mat-icon-button>
+    <i class="material-icons">
+      crop_original
+    </i>
+  </button>
+</abbr>
+<!-- 
   @description: Archieve Button
  -->
-  <abbr title="Archive">
-    <button style="outline: none;" mat-icon-button (click)=archive(note)>
-      <i class="material-icons">
-        archive
-      </i>
-    </button>
-  </abbr>
+<abbr title="Archive">
+  <button style="outline: none;" mat-icon-button (click)=archive(note)>
+    <i class="material-icons">
+      archive
+    </i>
+  </button>
+</abbr>
 <!-- </div> -->
 <!-- 
   @description: Remind Me start
@@ -116,7 +145,7 @@
         <div fxFlex="60">Later today</div>
         <div fxFlex="40" fxLayoutAlign="end">8:00 PM</div>
       </div>
-      <div mat-menu-item class="menu" fxLayout="row"  (click)=tomorrow()>
+      <div mat-menu-item class="menu" fxLayout="row" (click)=tomorrow()>
         <div fxFlex="60">Tomorrow</div>
         <div fxFlex="40" fxLayoutAlign="end">8:00 AM</div>
       </div>

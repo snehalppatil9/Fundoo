@@ -60,14 +60,18 @@ export class NavbarComponent implements OnInit {
   isLargeScreen() {
     this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
+  searchmatcards() {
+    this.router.navigateByUrl('/searchmatcards');
+  }
   /**
    * @description displaying the sidenavbar notes button functunality
    */
   addNote() {
     this.labelName = "Notes";
-    this.dataService.allNote.subscribe((response) => {
-      console.log("response of Notes sidenav bar ======>", response);
-    });
+    this.dataService.allNote
+      .subscribe((response) => {
+        console.log("response of Notes sidenav bar ======>", response);
+      });
   }
   /**
   * @description displaying the sidenavbar reminder button functunality
@@ -120,6 +124,7 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem("Firstname");
         localStorage.removeItem("Lastname");
         localStorage.removeItem("Email");
+        // localStorage.removeItem("userImage");
         this.router.navigate(['/login']);
       }, (error) => {
       });
@@ -174,7 +179,7 @@ export class NavbarComponent implements OnInit {
   */
   search() {
     this.router.navigateByUrl('/search');
-    this.searchValue == null;
+    
   }
   /*
   * @description :  for search note
@@ -182,16 +187,16 @@ export class NavbarComponent implements OnInit {
   newMessage() {
     this.dataService.MessageSearch(this.searchValue)
   }
-  profileImage(event):void {
+  profileImage(event): void {
     const dialogRef = this.dialog.open(ImageCropComponent, {
       width: '400px',
-      data: event 
+      data: event
     });
     dialogRef.afterClosed()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(result => {
-    this.img = environment.Url+localStorage.getItem("userImage")
-    });
-    
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        this.img = environment.Url + localStorage.getItem("userImage")
+      });
+
   }
 }

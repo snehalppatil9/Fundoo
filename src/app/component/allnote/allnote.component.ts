@@ -70,11 +70,11 @@ export class AllnoteComponent implements OnInit {
       })
 
     /* Grid View*/
-    this.dataService.getView().subscribe((response) => {
+    this.dataService.getView()
+    .subscribe((response) => {
       this.view1 = response;
       this.direction = this.view1.data
     });
-
   }
   /**
    * @description : change note Color 
@@ -221,4 +221,5 @@ export class AllnoteComponent implements OnInit {
       console.log(`Dialog closed: ${result}`);
     });
   }
+  
 }

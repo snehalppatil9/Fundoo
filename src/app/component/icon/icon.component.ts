@@ -16,6 +16,8 @@ import { MatSnackBar, MatCard } from '@angular/material';
 import { DataService } from 'src/app/core/services/data/data.service';
 import { Subject } from 'rxjs';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
+import { Label } from '../../core/model/user-model';
+import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
@@ -64,6 +66,7 @@ export class IconComponent implements OnInit {
     ]
   ]
   ngOnInit() {
+    this.showLabel();
   }
   setColor(color) {
     this.onChangeColor.emit(color);
@@ -111,5 +114,27 @@ export class IconComponent implements OnInit {
       console.log('Dialog closed');
     });
   }
+  label: Label[] = [];
+  private labelList = [];
 
+  showLabel() {
+    console.log("@@@@@@@@@@show label@@@@@@@@@");
+    this.noteService.showNoteLabel()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.label = response["data"].details;
+        this.labelList = [];
+        for (let i = 0; i < this.label.length; i++) {
+          this.labelList.push(this.label[i].label);
+        }
+      })
+  }
+    addLabel(label){
+      this.noteService.addLabelToNotes(this.card.id,label.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        console.log("adsdasdasdasdasdsa");
+        
+      });
+  }
 }
