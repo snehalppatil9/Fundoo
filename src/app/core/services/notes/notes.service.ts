@@ -9,10 +9,6 @@ export class NotesService {
   addNote(body) {
     return this.httpservice.postAddNote("notes/addNotes", body);
   }
-  
-  addLabelToNotes(cardId,labelId){
-    return this.httpservice.postData("notes/"+cardId+"addLabelToNotes/"+labelId+"add",{});
-  }
   getNotes(): any {
     return this.httpservice.getData("notes/getNotesList")
   }
@@ -30,6 +26,18 @@ export class NotesService {
   **/
   deleteNoteLabel(labelId) {
     return this.httpservice.postDataForDeleteLabel("noteLabels/" + labelId + "/deleteNoteLabel")
+  }
+  /**
+  * @Purpose: Add Label to Notes
+  **/
+  addLabelToNotes(cardId,labelId){
+    return this.httpservice.postData("notes/"+cardId+"/addLabelToNotes/"+labelId+"/add",{});
+  }
+  /**
+  * @Purpose: Remove Label from note
+  **/
+  removeLabelFromNotes(cardId,labelId){
+    return this.httpservice.postData("notes/"+cardId+"/addLabelToNotes/"+labelId+"/remove",{});
   }
   /**
    * @Purpose : add collaborator note

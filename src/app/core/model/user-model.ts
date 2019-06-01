@@ -1,4 +1,9 @@
 export class UserModel {
+    "firstName":string
+    "lastName": string
+    "username": string
+    "password":  string
+    "cpassword":  string
 }
 export class Note {
     title : string
@@ -6,6 +11,8 @@ export class Note {
     color : string
     id : string
     reminder: [Date]
+    userId : string
+    data : any
     collaberators	:[{}]
     isArchived: boolean
     isDeleted : boolean

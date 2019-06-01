@@ -49,11 +49,15 @@ export class DataService {
   */
   private assignLabel = new BehaviorSubject('default');
   allLabel = this.assignLabel.asObservable();
+  // private messageSourceLabel = new BehaviorSubject('default');
   getAllLabel() {
     this.noteService.showNoteLabels().subscribe(data => {
       console.log(data["data"].details);
       this.assignLabel.next(data["data"].details);
     })
+  }
+  changeMessageLabel(message: string) {
+    this.assignLabel.next(message)
   }
   /*
   * @Description  : Search message note 

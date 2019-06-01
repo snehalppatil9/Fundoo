@@ -98,18 +98,18 @@
         <mat-icon><small>search</small></mat-icon>
       </div>
     </div>
-    <a *ngFor="let data of labelList | filterpipe : searchLabel">
+    <div *ngFor="let data of labelList | filterpipe : searchLabel">
       <div fxLayout=row>
         <!-- <div fxFlex="10"></div> -->
-        <div fxFlex="10" style="margin-left: 20px; margin-right:20px; height: 5vh;" class="label-icon"
-          (click)="addLabel(data)">
-          <i class="material-icons">
-            check_box_outline_blank
-          </i>
+        <div fxFlex="20" style="margin-left: 20px; margin-right:20px; height: 5vh;" class="label-icon">
+          <input *ngIf="data.isChecked==true" type="checkbox" (click)=removeLabel(data) (click)=$event.stopPropagation()
+            checked>
+          <input *ngIf="data.isChecked==false" type="checkbox" (click)=addLabel(data) (click)=$event.stopPropagation()
+            unchecked>
         </div>
-        <div fxFlex="60" class="side_label">{{data}}</div>
+        <div fxFlex="80" class="side_label">{{data.label}}</div>
       </div>
-    </a>
+    </div>
   </ng-template>
 </mat-menu>
 

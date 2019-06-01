@@ -54,6 +54,7 @@ export class NavbarComponent implements OnInit {
       this.view = response;
       this.direction = this.view.data;
     });
+
     this.img = environment.Url + this.image;
     this.isLargeScreen();
   }
@@ -111,6 +112,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("Firstname");
     localStorage.removeItem("Lastname");
     localStorage.removeItem("Email");
+    localStorage.removeItem("userImage");
     this.router.navigateByUrl('/login');
   }
   /**
@@ -124,7 +126,7 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem("Firstname");
         localStorage.removeItem("Lastname");
         localStorage.removeItem("Email");
-        // localStorage.removeItem("userImage");
+        localStorage.removeItem("userImage");
         this.router.navigate(['/login']);
       }, (error) => {
       });

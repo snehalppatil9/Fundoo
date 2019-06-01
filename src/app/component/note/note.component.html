@@ -63,13 +63,16 @@
 <div fxLayoutAlign="center center" *ngIf="!notecard">
   <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
     fxFlex.sm='400px' fxFlex.xs='150px'>
-    <div>
-      <div [ngStyle]="{'background-size':'cover'}"> </div>
+    <!-- <div> -->
+      <!-- <div [ngStyle]="{'background-size':'cover'}"> </div> -->
       <div>
-        <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor" [(ngModel)]="addNotes.title"
+        <div fxFlex="90"  contenteditable="true" class="textarea" [style.backgroundColor]="setColor" [(ngModel)]="addNotes.title"
           [formControl]="title" placeholder="Title">
-        <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
+          <div fxFlex="10">
+          <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
+        </div>
       </div>
+    </div>
       <div>
         <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor"
           [(ngModel)]="addNotes.description" [formControl]="description" placeholder="Take a note...">
@@ -94,7 +97,7 @@
           <button mat-button (click)="addNote()">Close</button>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </mat-card>
 </div>
 <!-- end of note card -->
@@ -130,30 +133,6 @@
         <div class="row" fxLayoutAlign="space-evenly center">
           <app-icon></app-icon>
           <!-- 
-            @description: More Button
-          -->
-          <abbr title="More">
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <i class="material-icons">
-                more_vert
-              </i>
-            </button>
-          </abbr>
-          <!-- 
-            @description: MatMenu button for more Button
-          -->
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <span>Add label</span>
-            </button>
-            <button mat-menu-item>
-              <span>Add drawing</span>
-            </button>
-            <button mat-menu-item>
-              <span>Show checkboxes</span>
-            </button>
-          </mat-menu>
-          <!-- 
             @description: Undo Button
           -->
           <abbr title="Undo">
@@ -178,7 +157,9 @@
 
 <!-- end of note listcard -->
 
-<div style="height:10vh;"></div>
-<div fxLayoutAlign="center center">
+<div style="height:8vh;"></div>
+<div fxLayoutAlign="center center" fxLayout="column">
+  <div class="pinedArray" fxLayout="row"><app-allnote  [pin]="'PINNED'" [note]="pinedArray"></app-allnote></div>
+  <app-allnote [pin]="'OTHERS'" [note]="unpinedArray"></app-allnote>
   <app-allnote></app-allnote>
 </div>

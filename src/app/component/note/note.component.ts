@@ -123,11 +123,20 @@ export class NoteComponent implements OnInit {
       });
 
   }
-  /**
+ /**
   * 
   * @description pin change on note
   */
-  onPinChange(event) {
-    this.isPin = event;
+ onPinChange(event){
+  this.isPin=event;
+}
+
+labels : [];
+cancelLabel(data){
+  for(let i=0;i<this.labels.length;i++){
+    if(this.labels[i]==data){
+      this.labels.splice(i, 1);
+    }
   }
+}
 }

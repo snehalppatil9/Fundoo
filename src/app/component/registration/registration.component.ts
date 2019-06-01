@@ -103,10 +103,15 @@ export class RegistrationComponent implements OnInit {
   * @Description  :  Sending data to database
   */
   submit() {
+  //   let pass = group.controls.password.value;
+  //   let confirmPass = group.controls.confirmPass.value;
+
+  // return pass === confirmPass ? null : { notSame: true }   
     console.log('console@@@@@@@@@@@@@@@@@', this.register);
     try {
      //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
-      if (this.password.value == this.cpassword.value){
+      if (this.password.value === this.cpassword.value)
+      {
       console.log("password and confirmpassword does not match");
       this.UserService.userRegister(this.register).subscribe(
         data => {

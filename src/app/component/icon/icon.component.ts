@@ -35,10 +35,14 @@ export class IconComponent implements OnInit {
   maxDate = new Date(2020, 0, 1);
   isArchive = true;
   @Input() card;
+  private labelArray = [];
+  private Array = [];
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
   @Output() onChangeDate = new EventEmitter()
   @Output() onArchiveEntry = new EventEmitter()
+  @Output() onChangeaddlabeltonotes= new EventEmitter()
+  @Output() popupChange = new EventEmitter();
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackBar: MatSnackBar) {
 
   }
@@ -117,24 +121,71 @@ export class IconComponent implements OnInit {
   label: Label[] = [];
   private labelList = [];
 
+  addLabel(label){
+    if(this.card){
+      this.noteService.addLabelToNotes(this.card.id,label.id)
+       .subscribe((response) => {
+         this.onChangeaddlabeltonotes.emit({});
+        console.log("adsdasdasdasdasdsa");
+        
+      },
+      error=>{
+        console.log("error in add label to notes");
+        
+      });
+    }
+  }
+
+
+
+   /**
+   * 
+   * @description getting label list
+   */
   showLabel() {
-    console.log("@@@@@@@@@@show label@@@@@@@@@");
-    this.noteService.showNoteLabel()
-      .pipe(takeUntil(this.destroy$))
+    this.labelArray = [];
+    this.Array = [];
+    this.noteService.showNoteLabels()
       .subscribe((response) => {
         this.label = response["data"].details;
         this.labelList = [];
-        for (let i = 0; i < this.label.length; i++) {
-          this.labelList.push(this.label[i].label);
+        this.labelList = this.label;
+        for (let i = 0; i < this.labelList.length; i++) {
+          this.labelList[i].isChecked = false;
+          if (this.card) {
+            for (let j = 0; j < this.card.noteLabels.length; j++) {
+              if (this.labelList[i].label == this.card.noteLabels[j].label) {
+                this.Array.push(this.labelList[i])
+                this.labelList[i].isChecked = true;
+              }
+            }
+          }
         }
-      })
-  }
-    addLabel(label){
-      this.noteService.addLabelToNotes(this.card.id,label.id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => {
-        console.log("adsdasdasdasdasdsa");
+      }, (error) => {
+        console.log("error in show label");
         
+      });
+  }
+
+
+   /**
+   * 
+   * @description remove label from list
+   */
+  removeLabel(label) {
+    this.noteService.removeLabelFromNotes(this.card.id, label.id)
+      .subscribe((response) => {
+        this.onChangeaddlabeltonotes.emit({})
+        for (let i = 0; i < this.Array.length; i++) {
+          if (this.Array[i].id == label.id) {
+            this.Array.splice(i, 1);
+            this.popupChange.emit(this.Array)
+            return;
+          }
+        }
+        this.Array.push(label);
+        this.popupChange.emit(this.Array)
+      }, (error) => {
       });
   }
 }

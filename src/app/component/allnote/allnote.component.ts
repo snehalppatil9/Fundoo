@@ -30,10 +30,10 @@ export class AllnoteComponent implements OnInit {
   destory$: Subject<boolean> = new Subject<boolean>();
   view: boolean;
   @Input() note;
+  @Input() pin;
   @Input() searchItem;
   @Output() onChangeColor = new EventEmitter();
   @Output() onChangeDate = new EventEmitter();
-  destroy$: Subject<boolean> = new Subject<boolean>();
   isDelete = true;
   
   setColor: any;
@@ -64,7 +64,7 @@ export class AllnoteComponent implements OnInit {
     console.log('all note ==================>', this.notes);
 
     this.dataService.currentMessageView
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destory$))
       .subscribe(message => {
         this.view = message
       })
@@ -220,6 +220,21 @@ export class AllnoteComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed: ${result}`);
     });
+  }
+  
+
+
+  removeLabel(labelId, cardId){
+    this.noteService.removeLabelFromNotes(cardId,labelId)
+    .pipe(takeUntil(this.destory$))
+    .subscribe((response) =>{
+     
+    },(error) => {
+    }); 
+  }
+
+  showLabel(data){
+    this.dataService.changeMessageLabel(data)
   }
   
 }

@@ -4,7 +4,11 @@ import { MatDialog } from '@angular/material';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
 import { DataService } from 'src/app/core/services/data/data.service';
-import { UserService }  from '../../core/services/user/user.service'
+import { UserService }  from '../../core/services/user/user.service';
+import { Note } from '../../core/model/user-model';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-collaborator',
   templateUrl: './collaborator.component.html',
@@ -12,6 +16,7 @@ import { UserService }  from '../../core/services/user/user.service'
 })
 export class CollaboratorComponent implements OnInit {
   searchValue: any;
+  notes : Note[]=[];
   userList: any[];
   collab = new Collaborator();
   data: any;
@@ -19,8 +24,22 @@ export class CollaboratorComponent implements OnInit {
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  private collaborators=[];
   ngOnInit() {
-    
+    this.dataService.allNote
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(data => {
+      this.notes = data
+      this.notes = this.notes.filter(function (el) {
+        return (el.isArchived === false && el.isDeleted === false);
+        });
+      });
+  console.log('all note data collabrators ==================>', this.notes);
+  
+  for(let i=0;i<this.notes["collaborators"].length;i++){
+    this.collaborators.push(this.data.noteData["collaborators"][i])
+  }
   }
   cancel(){
     this.dialog.closeAll();
@@ -51,6 +70,9 @@ export class CollaboratorComponent implements OnInit {
   // addColll
   addCol(data){
     console.log("AddcollaboratorsNotes data === >",data);
+    console.log("notes data@@@@@@@@@@@@@@@@",this.notes);
+    console.log("this.collaborators@@@@@@@@@@",this.notes["collaberator"]);
+    
     const body ={
       'firstName': this.collab.firstName,
       'lastName': this.collab.lastName,

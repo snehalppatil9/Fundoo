@@ -90,6 +90,24 @@ export class ArchieveComponent implements OnInit {
    } catch (error) {
      this.snackbar.open('error', "", { duration: 3000 });
    }
-  //  setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.dataService.getAllNote(), 30);
  }
+/**
+  * @description : remove label from note
+  */
+ destroy$: Subject<boolean> = new Subject<boolean>();
+ removeLabel(labelId, cardId){
+  this.noteService.removeLabelFromNotes(cardId,labelId)
+  .pipe(takeUntil(this.destroy$))
+  .subscribe((response) =>{
+    // this.anyChanges.emit({});
+  },(error) => {
+  }); 
+}
+/**
+  * @description : Displaying label on note
+  */
+showLabel(data){
+  this.dataService.changeMessageLabel(data)
+}
 }

@@ -15,10 +15,12 @@
     <!-- 
          @Description    :   ngClass for grid and list view
     -->
+    <div  class="pinOthers">{{pin}}</div>
     <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
         *ngFor="let data of notes | pipe | filterpipe : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
-        <div *ngIf="data.isArchived === false && data.isDeleted === false">
+        
+          <div *ngIf="data.isArchived === false && data.isDeleted === false ">
             <mat-card>
                 <!--
                  @Description    :    openDialog for dialog 
@@ -38,10 +40,18 @@
                             </mat-chip>
                         </div>
                     </mat-chip-list>
+                    <mat-chip-list  >
+                        <span *ngFor="let cardData of data.noteLabels">
+                          <mat-chip  class="label" *ngIf="cardData.isDeleted==false" (click)=showLabel(cardData.label)>
+                            <span class="chip">{{cardData.label}}</span><mat-icon *ngIf="!data.isDeleted" (click)=removeLabel(cardData.id,data.id) 
+                            class="cancelIcon">cancel</mat-icon>
+                          </mat-chip>
+                        </span>
+                      </mat-chip-list>
                 </div>
                 <div class="icon">
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
-                        <app-icon [card]='data' (setColor)=entry($event) (onChangeAddLabel)=addLabeltoNotes(data,$event) (reminder)=entry($event)
+                        <app-icon [card]='data' (setColor)=entry($event) (onChange)= entry($event) (onChangeaddlabeltonotes)=entry($event) 
                             (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
                             (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
@@ -51,7 +61,6 @@
             <div style="height:5vh;"></div>
         </div>
     </div>
-
 </div>
 
 
