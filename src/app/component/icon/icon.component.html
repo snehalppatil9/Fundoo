@@ -89,10 +89,10 @@
 -->
 <mat-menu #labelmenu="matMenu" class="addlabel">
   <ng-template matMenuContent>
-    <div style="margin-left: 20px; margin-right:20px; height: 5vh;">Label note</div>
-    <div fxLayout="row" style="margin-left: 20px; margin-right:20px; height: 5vh;" fxFlex="100">
+    <div style="margin-left: 20px; margin-right:20px;">Label note</div>
+    <div fxLayout="row" style="margin-left: 20px; margin-right:20px;" fxFlex="100">
       <div fxFlex=80>
-        <input type=text class=input placeholder="Enter label name" [(ngModel)]="searchLabel">
+        <input type=text class=input placeholder="Enter label name" [(ngModel)]="searchLabel"  (keyup)=newMessage()>
       </div>
       <div fxFlex=20>
         <mat-icon><small>search</small></mat-icon>
@@ -101,7 +101,7 @@
     <div *ngFor="let data of labelList | filterpipe : searchLabel">
       <div fxLayout=row>
         <!-- <div fxFlex="10"></div> -->
-        <div fxFlex="20" style="margin-left: 20px; margin-right:20px; height: 5vh;" class="label-icon">
+        <div fxFlex="20" style="margin-left: 20px; margin-right:20px;" class="label-icon">
           <input *ngIf="data.isChecked==true" type="checkbox" (click)=removeLabel(data) (click)=$event.stopPropagation()
             checked>
           <input *ngIf="data.isChecked==false" type="checkbox" (click)=addLabel(data) (click)=$event.stopPropagation()

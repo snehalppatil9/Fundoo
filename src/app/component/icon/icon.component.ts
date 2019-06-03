@@ -35,8 +35,8 @@ export class IconComponent implements OnInit {
   maxDate = new Date(2020, 0, 1);
   isArchive = true;
   @Input() card;
-  private labelArray = [];
-  private Array = [];
+  labelArray = [];
+  Array = [];
   @Output() onChangeColor = new EventEmitter()
   @Output() onChangeDelete = new EventEmitter()
   @Output() onChangeDate = new EventEmitter()
@@ -71,6 +71,11 @@ export class IconComponent implements OnInit {
   ]
   ngOnInit() {
     this.showLabel();
+    this.dataService.currentMessageSearch
+    .pipe(takeUntil(this.destroy$))
+      .subscribe(message => {
+        this.message = message;
+      })
   }
   setColor(color) {
     this.onChangeColor.emit(color);
@@ -188,4 +193,12 @@ export class IconComponent implements OnInit {
       }, (error) => {
       });
   }
+
+   /*
+  * @description :  for search label
+  */
+ searchLabel : any;
+ newMessage() {
+  this.dataService.MessageSearch(this.searchLabel);
+}
 }

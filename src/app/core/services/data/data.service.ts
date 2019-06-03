@@ -46,25 +46,6 @@ export class DataService {
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         console.log("all note data in data Service ", data.data.data);
-        this.notes = data.data.data;
-        console.log("AFASDSADSAD", this.notes);
-        this.pinedArray = [];
-        this.unpinedArray = []
-        for (let i = this.notes.length; i > 0; i--) {
-          if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
-            if (this.notes[i - 1]["isPined"] == false) {
-              this.pinedArray.push(this.notes[i - 1]);
-              console.log("pinned array@@@@@@@", this.pinedArray);
-
-            }
-            else {
-              this.unpinedArray.push(this.notes[i - 1]);
-              console.log("unpinned array@@@@@@@", this.unpinedArray);
-            }
-          }
-        }
-        (error) => {
-        };
         return this.assignData.next(data.data.data);
       })
   }

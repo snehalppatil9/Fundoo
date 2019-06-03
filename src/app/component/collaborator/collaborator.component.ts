@@ -37,9 +37,7 @@ export class CollaboratorComponent implements OnInit {
       });
   console.log('all note data collabrators ==================>', this.notes);
   
-  for(let i=0;i<this.notes["collaborators"].length;i++){
-    this.collaborators.push(this.data.noteData["collaborators"][i])
-  }
+
   }
   cancel(){
     this.dialog.closeAll();
@@ -66,12 +64,12 @@ export class CollaboratorComponent implements OnInit {
       console.log(error);
     });
   }
-
+  callboratorData:[];
   // addColll
   addCol(data){
     console.log("AddcollaboratorsNotes data === >",data);
-    console.log("notes data@@@@@@@@@@@@@@@@",this.notes);
-    console.log("this.collaborators@@@@@@@@@@",this.notes["collaberator"]);
+    this.callboratorData = data[0];
+    console.log("this.collaboratordata",this.callboratorData);
     
     const body ={
       'firstName': this.collab.firstName,

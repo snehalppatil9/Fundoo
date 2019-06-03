@@ -57,8 +57,7 @@ export class AllnoteComponent implements OnInit {
       .pipe(takeUntil(this.destory$))
       .subscribe(data => {
         this.notes = data;
-        console.log("data in all note .ts file================>",this.notes);
-        
+        console.log("data in all note .ts file================>", this.notes);
         this.notes = this.notes.filter(function (el) {
           return (el.isArchived === false && el.isDeleted === false);
         });
@@ -78,8 +77,8 @@ export class AllnoteComponent implements OnInit {
         this.direction = this.view1.data
       });
   }
-  pinedArray=[];
-  unpinedArray=[];
+  pinedArray = [];
+  unpinedArray = [];
   getNotes() {
     this.noteService.getNoteList()
       .pipe(takeUntil(this.destory$))
@@ -91,11 +90,11 @@ export class AllnoteComponent implements OnInit {
           if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
             if (this.notes[i - 1]["isPined"] == true) {
               this.pinedArray.push(this.notes[i - 1]);
-              console.log("pinned array@@@@@@@", this.pinedArray);
+              // console.log("pinned array@@@@@@@", this.pinedArray);
             }
             else {
               this.unpinedArray.push(this.notes[i - 1]);
-              console.log("unpinned array@@@@@@@", this.unpinedArray);
+              // console.log("unpinned array@@@@@@@", this.unpinedArray);
             }
           }
         }
@@ -125,7 +124,7 @@ export class AllnoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.dataService.getAllNote(), 0);
   }
   /**
   * @description : Delete Note
@@ -150,7 +149,7 @@ export class AllnoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.dataService.getAllNote(), 0);
   }
   /**
   * @description : Add reminder in Note
@@ -175,7 +174,7 @@ export class AllnoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getReminderNotesList(), 30);
+    setTimeout(() => this.dataService.getReminderNotesList(), 0);
   }
   /**
   * @description : Remove reminder in Note
@@ -201,7 +200,7 @@ export class AllnoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getReminderNotesList(), 30);
+    setTimeout(() => this.dataService.getReminderNotesList(), 0);
   }
   /**
   * @description : Archive Note
@@ -227,7 +226,7 @@ export class AllnoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.dataService.getAllNote(), 0);
   }
   /**
    * @Purpose : Open dialog nad edit it
