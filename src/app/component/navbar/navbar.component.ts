@@ -126,7 +126,6 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem("Firstname");
         localStorage.removeItem("Lastname");
         localStorage.removeItem("Email");
-        localStorage.removeItem("userImage");
         this.router.navigate(['/login']);
       }, (error) => {
       });
@@ -181,13 +180,15 @@ export class NavbarComponent implements OnInit {
   */
   search() {
     this.router.navigateByUrl('/search');
-    
-  }
+}
   /*
   * @description :  for search note
   */
   newMessage() {
-    this.dataService.MessageSearch(this.searchValue)
+    this.dataService.MessageSearch(this.searchValue);
+  }
+  clearsearch(){
+    this.searchValue=null;
   }
   profileImage(event): void {
     const dialogRef = this.dialog.open(ImageCropComponent, {

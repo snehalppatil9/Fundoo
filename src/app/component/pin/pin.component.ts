@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./pin.component.scss']
 })
 export class PinComponent implements OnInit {
-  private isPin: boolean = false;
+  isPin: boolean = false;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
   @Input() card;
@@ -20,17 +20,7 @@ export class PinComponent implements OnInit {
       this.isPin = this.card.isPined;
   }
   pin() {
-    // if (this.card) {
-      this.isPin = !this.isPin;
-      let body = {
-        "isPined": this.isPin,
-        "noteIdList": this.card.id
-      }
-      this.noteService.pinChange(body)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((response) => {
-          this.onChange.emit({})
-        });
-    }
-  // }
+    this.isPin = !this.isPin;
+     this.onChange.emit(this.isPin);
+  }
 }

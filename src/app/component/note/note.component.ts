@@ -19,7 +19,7 @@ import { Note } from '../../core/model/user-model'
 import { ImageCropComponent } from '../image-crop/image-crop.component'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatCard } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { Label } from '../../core/model/user-model';
 @Component({
@@ -40,13 +40,16 @@ export class NoteComponent implements OnInit {
   description = new FormControl('')
   image = localStorage.getItem("userImage");
   setColor: any;
-  @Input() Note;
+  // @Input() note;
+  @Input() card;
   reminder: any;
   addNotes: Note = new Note();
   searchLabel: any;
-  img : any;
-  private width;
-  // private imageId;
+  img: any;
+  width;
+  notes: Note[] = [];
+  pinedArray = [];
+  unpinedArray = [];
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
   * @description :  opening the notecard for adding
@@ -61,7 +64,33 @@ export class NoteComponent implements OnInit {
     this.listcard = !(this.listcard);
   }
   ngOnInit() {
+    // this.getNotes();
   }
+
+ 
+  // getNotes() {
+  //   this.noteService.getNoteList()
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe((response) => {
+  //       this.notes = response["data"].data;
+  //       this.pinedArray = [];
+  //       this.unpinedArray = []
+  //       for (let i = this.notes.length; i > 0; i--) {
+  //         if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
+  //           if (this.notes[i - 1]["isPined"] == true) {
+  //             this.pinedArray.push(this.notes[i - 1]);
+  //             console.log("pinned array@@@@@@@", this.pinedArray);
+  //           }
+  //           else {
+  //             this.unpinedArray.push(this.notes[i - 1]);
+  //             console.log("unpinned array@@@@@@@", this.unpinedArray);
+  //           }
+  //         }
+  //       }
+  //     }, (error) => {
+  //     });
+  // }
+
   isLargeScreen() {
     this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
@@ -98,10 +127,10 @@ export class NoteComponent implements OnInit {
       this.snackbar.open('error', "", { duration: 3000 });
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
-    this.addNotes.title=null;
-    this.addNotes.description=null;
+    this.addNotes.title = null;
+    this.addNotes.description = null;
   }
- 
+
   receivecolor($event) {
     this.setColor = $event
   }
@@ -121,22 +150,29 @@ export class NoteComponent implements OnInit {
       .subscribe(result => {
         this.img = environment.Url + localStorage.getItem("userImage");
       });
-
   }
- /**
-  * 
-  * @description pin change on note
-  */
- onPinChange(event){
-  this.isPin=event;
-}
+  /**
+   * 
+   * @description pin change on note
+   */
+  // onPinChange($event) {
+  //   this.isPin = $event;
+  // }
 
-labels : [];
-cancelLabel(data){
-  for(let i=0;i<this.labels.length;i++){
-    if(this.labels[i]==data){
-      this.labels.splice(i, 1);
+  labels: [];
+  cancelLabel(data) {
+    for (let i = 0; i < this.labels.length; i++) {
+      if (this.labels[i] == data) {
+        this.labels.splice(i, 1);
+      }
     }
   }
-}
+
+  @Output() onChange = new EventEmitter;
+  pin() {
+    this.isPin = !this.isPin;
+    this.onChange.emit(this.isPin);
+  }
+
+  
 }

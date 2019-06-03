@@ -16,6 +16,7 @@ export class Note {
     collaberators	:[{}]
     isArchived: boolean
     isDeleted : boolean
+    isPined : boolean
     imageUrl : string
 }
 export class Label{

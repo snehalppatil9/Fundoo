@@ -35,7 +35,6 @@ export class AllnoteComponent implements OnInit {
   @Output() onChangeColor = new EventEmitter();
   @Output() onChangeDate = new EventEmitter();
   isDelete = true;
-  
   setColor: any;
   reminder: any;
 
@@ -44,23 +43,26 @@ export class AllnoteComponent implements OnInit {
   wrap: string = "wrap";
   view1: any;
   archive: any;
-  delete:any;
+  delete: any;
   constructor(private dataService: DataService,
     private noteService: NotesService,
     private snackbar: MatSnackBar,
     public dialog: MatDialog,
-    ) {
+  ) {
 
   }
   ngOnInit() {
+    this.getNotes();
     this.dataService.allNote
       .pipe(takeUntil(this.destory$))
       .subscribe(data => {
-        this.notes = data
+        this.notes = data;
+        console.log("data in all note .ts file================>",this.notes);
+        
         this.notes = this.notes.filter(function (el) {
           return (el.isArchived === false && el.isDeleted === false);
-          });
         });
+      });
     console.log('all note ==================>', this.notes);
 
     this.dataService.currentMessageView
@@ -71,10 +73,34 @@ export class AllnoteComponent implements OnInit {
 
     /* Grid View*/
     this.dataService.getView()
-    .subscribe((response) => {
-      this.view1 = response;
-      this.direction = this.view1.data
-    });
+      .subscribe((response) => {
+        this.view1 = response;
+        this.direction = this.view1.data
+      });
+  }
+  pinedArray=[];
+  unpinedArray=[];
+  getNotes() {
+    this.noteService.getNoteList()
+      .pipe(takeUntil(this.destory$))
+      .subscribe((response) => {
+        this.notes = response["data"].data;
+        this.pinedArray = [];
+        this.unpinedArray = []
+        for (let i = this.notes.length; i > 0; i--) {
+          if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
+            if (this.notes[i - 1]["isPined"] == true) {
+              this.pinedArray.push(this.notes[i - 1]);
+              console.log("pinned array@@@@@@@", this.pinedArray);
+            }
+            else {
+              this.unpinedArray.push(this.notes[i - 1]);
+              console.log("unpinned array@@@@@@@", this.unpinedArray);
+            }
+          }
+        }
+      }, (error) => {
+      });
   }
   /**
    * @description : change note Color 
@@ -108,7 +134,7 @@ export class AllnoteComponent implements OnInit {
     this.delete = $event;
     var body = {
       "isDeleted": this.isDelete,
-      "noteIdList":[data.id]
+      "noteIdList": [data.id]
     }
     console.log('Delete Note......', body);
     try {
@@ -155,28 +181,28 @@ export class AllnoteComponent implements OnInit {
   * @description : Remove reminder in Note
   */
   removeReminder(data, $event) {
-  this.reminder = $event;
-  var body = {
-    "reminder": this.reminder,
-    "noteIdList": [data.id]
+    this.reminder = $event;
+    var body = {
+      "reminder": this.reminder,
+      "noteIdList": [data.id]
+    }
+    console.log('Remove reminder Reminder......', body);
+    try {
+      this.noteService.removeReminder(body)
+        .subscribe(
+          data => {
+            this.snackbar.open('Remove reminder Reminder Successfully.', '', { duration: 3000 });
+            console.log('Remove reminder successfully..........', data);
+          },
+          error => {
+            this.snackbar.open('Error while Remove reminder!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    setTimeout(() => this.dataService.getReminderNotesList(), 30);
   }
-  console.log('Remove reminder Reminder......', body);
-  try {
-    this.noteService.removeReminder(body)
-    .subscribe(
-      data => {
-        this.snackbar.open('Remove reminder Reminder Successfully.', '', { duration: 3000 });
-        console.log('Remove reminder successfully..........', data);
-      },
-      error => {
-        this.snackbar.open('Error while Remove reminder!', 'Error', { duration: 3000 });
-        console.log("Error something wrong: ", error)
-      });
-  } catch (error) {
-    this.snackbar.open('error', "", { duration: 3000 });
-  }
-  setTimeout(() => this.dataService.getReminderNotesList(), 30);
-}
   /**
   * @description : Archive Note
   */
@@ -221,20 +247,30 @@ export class AllnoteComponent implements OnInit {
       console.log(`Dialog closed: ${result}`);
     });
   }
-  
 
 
-  removeLabel(labelId, cardId){
-    this.noteService.removeLabelFromNotes(cardId,labelId)
-    .pipe(takeUntil(this.destory$))
-    .subscribe((response) =>{
-     
-    },(error) => {
-    }); 
+
+  removeLabel(labelId, cardId) {
+    this.noteService.removeLabelFromNotes(cardId, labelId)
+      .pipe(takeUntil(this.destory$))
+      .subscribe((response) => {
+
+      }, (error) => {
+      });
   }
 
-  showLabel(data){
+  showLabel(data) {
     this.dataService.changeMessageLabel(data)
   }
-  
+  isPin: boolean = false;
+  addpin(data, $event) {
+    this.isPin = $event;
+    let body = {
+      "isPined": this.isPin,
+      "noteIdList": [data.id]
+    }
+    this.noteService.pinChange(body)
+      .subscribe((response) => {
+      });
+  }
 }

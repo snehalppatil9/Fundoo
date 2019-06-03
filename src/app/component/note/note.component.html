@@ -63,41 +63,50 @@
 <div fxLayoutAlign="center center" *ngIf="!notecard">
   <mat-card [style.backgroundColor]="setColor" class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px'
     fxFlex.sm='400px' fxFlex.xs='150px'>
-    <!-- <div> -->
+    <div>
       <!-- <div [ngStyle]="{'background-size':'cover'}"> </div> -->
+      <div fxLayout="row">
+        <div fxFlex="90%" data-text="Title" contenteditable="true" class="textarea">
+          <input class="input" [style.backgroundColor]="setColor" [(ngModel)]="addNotes.title" [formControl]="title"
+            placeholder="Title">
+        </div>
+        <div fxFlex="10%">
+          <img *ngIf=!isPin (click)=pin() src="../../../assets/images/pin.svg">
+          <img *ngIf=isPin (click)=pin() src="../../../assets/images/unpin.svg">
+          <!-- <app-pin class=pin (onChange)="onPinChange($event)"></app-pin> -->
+        </div>
+      </div>
       <div>
-        <div fxFlex="90"  contenteditable="true" class="textarea" [style.backgroundColor]="setColor" [(ngModel)]="addNotes.title"
-          [formControl]="title" placeholder="Title">
-          <div fxFlex="10">
-          <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
+        <div fxLayout="row">
+          <div fxFlex="100%" data-text="Description" contenteditable="true" class="textarea">
+            <input class="input" style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor"
+              [(ngModel)]="addNotes.description" [formControl]="description" placeholder="Take a note...">
+          </div>
+        </div>
+        <div>
+          <div class="row" fxLayoutAlign="space-evenly center">
+            <app-icon (onChangeColor)="receivecolor($event)" (onChangeDate)="changeDate($event)"></app-icon>
+            <!-- 
+            @description: Undo Button
+          -->
+            <abbr title="Undo">
+              <button mat-icon-button>
+                <mat-icon class="icon">undo</mat-icon>
+              </button>
+            </abbr>
+            <!-- 
+            @description: Redo Button
+            -->
+            <abbr title="Redo">
+              <button mat-icon-button>
+                <mat-icon class="icon">redo</mat-icon>
+              </button>
+            </abbr>
+            <button mat-button (click)="addNote()">Close</button>
+          </div>
         </div>
       </div>
     </div>
-      <div>
-        <input style="height:5vh; border-style: hidden" [style.backgroundColor]="setColor"
-          [(ngModel)]="addNotes.description" [formControl]="description" placeholder="Take a note...">
-        <div class="row" fxLayoutAlign="space-evenly center">
-          <app-icon (onChangeColor)="receivecolor($event)" (onChangeDate)="changeDate($event)"></app-icon>
-          <!-- 
-            @description: Undo Button
-          -->
-          <abbr title="Undo">
-            <button mat-icon-button>
-              <mat-icon class="icon">undo</mat-icon>
-            </button>
-          </abbr>
-          <!-- 
-            @description: Redo Button
-          -->
-          <abbr title="Redo">
-            <button mat-icon-button>
-              <mat-icon class="icon">redo</mat-icon>
-            </button>
-          </abbr>
-          <button mat-button (click)="addNote()">Close</button>
-        </div>
-      </div>
-    <!-- </div> -->
   </mat-card>
 </div>
 <!-- end of note card -->
@@ -157,9 +166,7 @@
 
 <!-- end of note listcard -->
 
-<div style="height:8vh;"></div>
+<div style="height:10vh;"></div>
 <div fxLayoutAlign="center center" fxLayout="column">
-  <div class="pinedArray" fxLayout="row"><app-allnote  [pin]="'PINNED'" [note]="pinedArray"></app-allnote></div>
-  <app-allnote [pin]="'OTHERS'" [note]="unpinedArray"></app-allnote>
   <app-allnote></app-allnote>
 </div>

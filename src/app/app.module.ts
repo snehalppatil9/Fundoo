@@ -76,6 +76,8 @@ import { ImageCropComponent } from './component/image-crop/image-crop.component'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PinComponent } from './component/pin/pin.component';
 import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component';
+import { ShowLabelnotesComponent } from './component/show-labelnotes/show-labelnotes.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,6 +101,9 @@ import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcar
     ImageCropComponent,
     PinComponent,
     SearchmatcardsComponent,
+    ShowLabelnotesComponent,
+    
+   
     
     
   ],

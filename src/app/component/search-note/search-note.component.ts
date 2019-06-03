@@ -26,8 +26,8 @@ export class SearchNoteComponent implements OnInit {
   getNotes() {
     this.dataService.allNote.
       pipe(takeUntil(this.destroy$))
-      .subscribe((response: any) => {
-        this.notes = response["data"].data
+      .subscribe((response) => {
+        this.notes = response["data"].data;
         this.notesArray = [];
       }, (error) => {
         console.log("Error:", error);

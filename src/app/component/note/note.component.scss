@@ -35,13 +35,12 @@
 .pin{
 float: right;
 }
-.textarea{
+.textarea .input{
     width:90%;
     outline: none;
-    // margin:2%;
+    margin:2%;
 }
-.textarea:empty:before{
-    content: attr(data-text);
+.textarea:empty:before .input{
     opacity: 0.5;
     font-size: 14px;
     width:60%;
@@ -49,7 +48,10 @@ float: right;
     @include margin-top(2px);
 }
 .pinedArray{
-    // width: 32vw;
     display: grid;
-    grid-template-rows: 100px 300px;
+    display: -webkit-flex; /* Safari */
+     -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    display: flex;
+    flex-wrap: wrap;
+    // list-style-position: append($list1: 1, $val: 3, $separator: 0.5);
 }
