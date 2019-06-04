@@ -9,6 +9,24 @@
       <mat-card-title>{{firstName}} {{lastName}} (Owner)</mat-card-title>
       <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>
+    <div *ngFor="let item of collaborators" fxAlign="row" fxFlexLayout="space-between center">
+        <!-- <div>
+        <button mat-mini-fab color="grey" mat-icon-button  aria-label="Example icon-button with a menu">
+        <mat-icon>account_circle</mat-icon></button>
+        <div  class="Collab">
+    <div>{{item.firstName}} {{item.lastName}} </div>
+    <div>{{item.email}}</div>
+      </div>
+        </div> -->
+        <mat-card-header>
+        <div mat-card-avatar class="addPerson">
+            
+            <mat-icon class=icon>person_add</mat-icon>
+          </div>
+          <mat-card-title>{{item.firstName}} {{item.lastName}}</mat-card-title>
+          <mat-card-subtitle>{{item.email}}</mat-card-subtitle>
+          </mat-card-header>
+     </div>
     <mat-card-header>
       <div mat-card-avatar class="addPerson">
         <mat-icon class=icon>person_add</mat-icon>
@@ -17,7 +35,7 @@
         [matMenuTriggerFor]="menu">
         <mat-menu #menu="matMenu">
         <mat-option *ngFor="let data of userList" [value]='data.email'>
-          <button mat-button class=button (click)="addCol(data)">
+          <button mat-button class=button (click)="addCol(id)">
             {{data.firstName}} {{data.lastName}} [{{data.email}}]
           </button>
         </mat-option>

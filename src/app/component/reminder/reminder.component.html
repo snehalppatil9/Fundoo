@@ -12,7 +12,6 @@
                 <div (click)="openDialog(data)">
                     <div>
                         {{data.title}}
-                        <app-pin class=pin [card]='data' (onChange)="entry($event)"></app-pin>
                     </div>
                     <div class="description"> {{data.description }}</div>
                     <mat-chip-list>

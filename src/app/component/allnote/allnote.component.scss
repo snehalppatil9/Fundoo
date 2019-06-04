@@ -2,9 +2,7 @@
 @import '../../core/scss/mixin';
 .cardMain{
     display: flex;
-    // margin-left: 13%;
-    //    position: fixed;
-      width: 71vw;
+    width: 77vw;
 }
 .cardSub{
     border-radius: 5;
@@ -12,15 +10,13 @@
     // padding: 6px;
 }
 .mat-card{
-    width: 18vw;
+    width: 19vw;
+    border-radius: 10px;
 }
 .cardSub2{
     border-radius: 5;
     width: 385px;
     // padding: 6px;
-}
-mat-card{
-    border-radius: 10px;
 }
 .iconButton .material-icons{
     font-size: 15px;

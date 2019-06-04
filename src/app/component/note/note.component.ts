@@ -26,7 +26,7 @@ import { Label } from '../../core/model/user-model';
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss'],
-
+  outputs: ['onNewEntry']
 })
 export class NoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -42,14 +42,14 @@ export class NoteComponent implements OnInit {
   setColor: any;
   // @Input() note;
   @Input() card;
+  @Input() noteData;
   reminder: any;
+  labels1:any;
   addNotes: Note = new Note();
   searchLabel: any;
   img: any;
   width;
-  notes: Note[] = [];
-  pinedArray = [];
-  unpinedArray = [];
+  @Output() onNewEntry = new EventEmitter();
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   /**
   * @description :  opening the notecard for adding
@@ -64,33 +64,7 @@ export class NoteComponent implements OnInit {
     this.listcard = !(this.listcard);
   }
   ngOnInit() {
-    // this.getNotes();
   }
-
- 
-  // getNotes() {
-  //   this.noteService.getNoteList()
-  //     .pipe(takeUntil(this.destroy$))
-  //     .subscribe((response) => {
-  //       this.notes = response["data"].data;
-  //       this.pinedArray = [];
-  //       this.unpinedArray = []
-  //       for (let i = this.notes.length; i > 0; i--) {
-  //         if ((this.notes[i - 1]["isDeleted"] == false) && (this.notes[i - 1]["isArchived"] == false)) {
-  //           if (this.notes[i - 1]["isPined"] == true) {
-  //             this.pinedArray.push(this.notes[i - 1]);
-  //             console.log("pinned array@@@@@@@", this.pinedArray);
-  //           }
-  //           else {
-  //             this.unpinedArray.push(this.notes[i - 1]);
-  //             console.log("unpinned array@@@@@@@", this.unpinedArray);
-  //           }
-  //         }
-  //       }
-  //     }, (error) => {
-  //     });
-  // }
-
   isLargeScreen() {
     this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
@@ -118,6 +92,7 @@ export class NoteComponent implements OnInit {
         data => {
           this.snackbar.open('Note added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
+
         },
         error => {
           this.snackbar.open('Error while adding notes!', 'Error', { duration: 3000 });
@@ -137,6 +112,9 @@ export class NoteComponent implements OnInit {
   changeDate($event) {
     this.reminder = $event;
   }
+  label($event){
+   this.labels1 = $event;
+  }
 
   imageId
   onSelectImage(event, noteId): void {
@@ -155,9 +133,9 @@ export class NoteComponent implements OnInit {
    * 
    * @description pin change on note
    */
-  // onPinChange($event) {
-  //   this.isPin = $event;
-  // }
+  onPinChange($event) {
+    this.isPin = $event;
+  }
 
   labels: [];
   cancelLabel(data) {
@@ -173,6 +151,4 @@ export class NoteComponent implements OnInit {
     this.isPin = !this.isPin;
     this.onChange.emit(this.isPin);
   }
-
-  
 }

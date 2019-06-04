@@ -74,10 +74,9 @@ import { DialogComponent } from './component/dialog/dialog.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { PinComponent } from './component/pin/pin.component';
 import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component';
 import { ShowLabelnotesComponent } from './component/show-labelnotes/show-labelnotes.component';
-
+import { PinComponent }  from './component/pin/pin.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,13 +98,9 @@ import { ShowLabelnotesComponent } from './component/show-labelnotes/show-labeln
     DialogComponent,
     CollaboratorComponent,
     ImageCropComponent,
-    PinComponent,
     SearchmatcardsComponent,
     ShowLabelnotesComponent,
-    
-   
-    
-    
+    PinComponent
   ],
   imports: [
     BrowserModule,

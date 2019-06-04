@@ -30,20 +30,20 @@ export class NotesService {
   /**
   * @Purpose: Add Label to Notes
   **/
-  addLabelToNotes(cardId,labelId){
-    return this.httpservice.postData("notes/"+cardId+"/addLabelToNotes/"+labelId+"/add",{});
+  addLabelToNotes(cardId, labelId) {
+    return this.httpservice.postData("notes/" + cardId + "/addLabelToNotes/" + labelId + "/add", {});
   }
   /**
   * @Purpose: Remove Label from note
   **/
-  removeLabelFromNotes(cardId,labelId){
-    return this.httpservice.postData("notes/"+cardId+"/addLabelToNotes/"+labelId+"/remove",{});
+  removeLabelFromNotes(cardId, labelId) {
+    return this.httpservice.postData("notes/" + cardId + "/addLabelToNotes/" + labelId + "/remove", {});
   }
   /**
    * @Purpose : add collaborator note
   **/
-  addColNote(body) {
-    return this.httpservice.postDataForSearchUser("notes/{id}/AddcollaboratorsNotes", body)
+  addColNote(body, id) {
+    return this.httpservice.postDataForSearchUser("/notes/" + id + "/AddcollaboratorsNotes", body)
   }
   /**
    * @Purpose: Update Note
@@ -85,7 +85,7 @@ export class NotesService {
   getReminderNotesList() {
     return this.httpservice.getData("notes/getReminderNotesList");
   }
-  removeReminder(body){
+  removeReminder(body) {
     return this.httpservice.postData("notes/removeReminderNotes", body);
   }
 
@@ -107,10 +107,10 @@ export class NotesService {
   getTrashNotes() {
     return this.httpservice.getData("notes/getTrashNotesList");
   }
-  deleteforeverNote(body){
+  deleteforeverNote(body) {
     return this.httpservice.postData("notes/deleteForeverNotes", body);
   }
-  pinChange(body){
-    return this.httpservice.postDataforPin("notes/pinUnpinNotes",body);
+  pinChange(body) {
+    return this.httpservice.postDataforPin("notes/pinUnpinNotes", body);
   }
 }

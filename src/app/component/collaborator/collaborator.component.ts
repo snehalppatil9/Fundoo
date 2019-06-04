@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Collaborator } from '../../core/model/user-model'
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
 import { DataService } from 'src/app/core/services/data/data.service';
@@ -19,13 +19,15 @@ export class CollaboratorComponent implements OnInit {
   notes : Note[]=[];
   userList: any[];
   collab = new Collaborator();
-  data: any;
-  constructor( private snackbar : MatSnackBar,private noteService : NotesService, private dataService : DataService, private dialog : MatDialog, private userService : UserService ) { }
+  //@Input() noteData;
+  constructor( private snackbar : MatSnackBar,private noteService : NotesService, private dataService : DataService,@Inject(MAT_DIALOG_DATA) 
+  public data: any, private dialog : MatDialog, private userService : UserService ) { }
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
   destroy$: Subject<boolean> = new Subject<boolean>();
-  private collaborators=[];
+  collaborators=this.data.collaborators
+  id=this.data.id
   ngOnInit() {
     this.dataService.allNote
     .pipe(takeUntil(this.destroy$))
@@ -35,7 +37,7 @@ export class CollaboratorComponent implements OnInit {
         return (el.isArchived === false && el.isDeleted === false);
         });
       });
-  console.log('all note data collabrators ==================>', this.notes);
+  console.log('all note data  ==================>', this.notes);
   
 
   }
@@ -49,8 +51,9 @@ export class CollaboratorComponent implements OnInit {
   }
     /** 
     * 
-  * @description : Search User list
+    * @description : Search User list
     */
+   callboratorData: any[];
   searchUser(){
     let searchWord= {
       'searchWord':this.searchValue
@@ -64,23 +67,20 @@ export class CollaboratorComponent implements OnInit {
       console.log(error);
     });
   }
-  callboratorData:[];
-  // addColll
-  addCol(data){
-    console.log("AddcollaboratorsNotes data === >",data);
-    this.callboratorData = data[0];
+    /** 
+    * 
+    * @description : Add collaborator 
+    */
+  addCol(id:any){
+    console.log("iddddd",id);
+    console.log("Add collaborators Notes data === >",id);
+   // console.log("data.isd=====================>",this.data.noteData['id']);
+    this.callboratorData = this.userList[0];
+    // this.callboratorData = this.userList[data[0]];
     console.log("this.collaboratordata",this.callboratorData);
-    
-    const body ={
-      'firstName': this.collab.firstName,
-      'lastName': this.collab.lastName,
-      'email':this.collab.email,
-      'noteId': [data.id],
-      'userId': this.collab.id
-    }
-    console.log('console for updateNote =======================>', body);
     try {
-      this.noteService.addColNote(body).subscribe(
+      this.noteService.addColNote(this.callboratorData,id)
+      .subscribe(
         data => {
           this.snackbar.open('Note added successfully......!', 'Done...!', { duration: 3000 });
           console.log('Register infor ==========>', data);

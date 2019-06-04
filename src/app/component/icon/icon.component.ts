@@ -9,7 +9,7 @@
  *  @since          : 28-04-2019
  *
  ******************************************************************************/
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,Inject } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
@@ -18,6 +18,7 @@ import { Subject } from 'rxjs';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
 import { Label } from '../../core/model/user-model';
 import { takeUntil } from 'rxjs/operators';
+import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
@@ -35,6 +36,7 @@ export class IconComponent implements OnInit {
   maxDate = new Date(2020, 0, 1);
   isArchive = true;
   @Input() card;
+  @Input() noteData:any;
   labelArray = [];
   Array = [];
   @Output() onChangeColor = new EventEmitter()
@@ -43,7 +45,10 @@ export class IconComponent implements OnInit {
   @Output() onArchiveEntry = new EventEmitter()
   @Output() onChangeaddlabeltonotes= new EventEmitter()
   @Output() popupChange = new EventEmitter();
-  constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackBar: MatSnackBar) {
+  constructor(
+   
+    private dialog: MatDialog,
+    private noteService: NotesService, private dataService: DataService, private snackBar: MatSnackBar) {
 
   }
   colorsArray = [
@@ -115,9 +120,13 @@ export class IconComponent implements OnInit {
   }
 
   /* addCollaborator */
-  addCollaborator() {
+  addCollaborator(noteData) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
-
+      width: '600px',
+      data :{
+        id:noteData.id,
+        collaborators:noteData.collaborators
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed');

@@ -108,6 +108,7 @@ export class HttpService {
     console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token')
       })
     };

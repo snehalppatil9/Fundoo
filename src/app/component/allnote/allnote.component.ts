@@ -30,14 +30,14 @@ export class AllnoteComponent implements OnInit {
   destory$: Subject<boolean> = new Subject<boolean>();
   view: boolean;
   @Input() note;
-  @Input() pin;
+  // @Input() pin;
   @Input() searchItem;
   @Output() onChangeColor = new EventEmitter();
   @Output() onChangeDate = new EventEmitter();
   isDelete = true;
   setColor: any;
   reminder: any;
-
+  isPin: boolean = false;
   /* Grid View*/
   direction: String = "row";
   wrap: string = "wrap";
@@ -57,7 +57,7 @@ export class AllnoteComponent implements OnInit {
       .pipe(takeUntil(this.destory$))
       .subscribe(data => {
         this.notes = data;
-        console.log("data in all note .ts file================>", this.notes);
+        // console.log("data in all note .ts file================>", this.notes);
         this.notes = this.notes.filter(function (el) {
           return (el.isArchived === false && el.isDeleted === false);
         });
@@ -261,7 +261,8 @@ export class AllnoteComponent implements OnInit {
   showLabel(data) {
     this.dataService.changeMessageLabel(data)
   }
-  isPin: boolean = false;
+
+   
   addpin(data, $event) {
     this.isPin = $event;
     let body = {

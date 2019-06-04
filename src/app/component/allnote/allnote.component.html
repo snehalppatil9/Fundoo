@@ -19,8 +19,7 @@
     <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
         *ngFor="let data of pinedArray | pipe | filterpipe : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
-        <div *ngIf="data.isArchived === false && data.isDeleted === false ">
-        <div *ngIf="data.isPined  === true" >
+        <div *ngIf="data.isArchived === false && data.isDeleted === false">
             <mat-card>
                 <!--
                  @Description    :    openDialog for dialog 
@@ -52,7 +51,7 @@
                 </div>
                 <div class="icon">
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3">
-                        <app-icon [card]='data' (setColor)=entry($event) (onChangeaddlabeltonotes)=entry($event)
+                        <app-icon [card]='data' [noteData]="data" (setColor)=entry($event) (onChangeaddlabeltonotes)=addLabel(data,$event)
                             (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
                             (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
@@ -60,18 +59,14 @@
                 </div>
             </mat-card>
             <div style="height:5vh;"></div>
-            </div>
         </div>
     </div>
-
-
 
     <div class="pinOthers">OTHERS</div>
     <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
         *ngFor="let data of unpinedArray | pipe | filterpipe : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false ">
-            <div *ngIf="data.isPined  === false" >
             <mat-card>
                 <!--
                  @Description    :    openDialog for dialog 
@@ -79,7 +74,7 @@
                 <div (click)="openDialog(data)">
                     <div>
                         {{data.title}}
-                        <app-pin class=pin [card]='data' (onChange)=addpin($event)></app-pin>
+                        <app-pin class=pin [card]='data' (onChange)=addpin(data,$event)></app-pin>
                     </div>
                     <div class="description"> {{data.description }}</div>
                     <mat-chip-list>
@@ -103,7 +98,7 @@
                 </div>
                 <div class="icon">
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
-                        <app-icon [card]='data' (setColor)=entry($event) (onChangeaddlabeltonotes)=entry($event)
+                        <app-icon [noteData]="data" [card]='data' (setColor)=entry($event) (onChangeaddlabeltonotes)=entry($event)
                             (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
                             (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
@@ -111,7 +106,6 @@
                 </div>
             </mat-card>
             <div style="height:5vh;"></div>
-            </div>
         </div>
     </div>
 </div>
