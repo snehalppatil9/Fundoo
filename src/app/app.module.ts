@@ -76,7 +76,8 @@ import { ImageCropComponent } from './component/image-crop/image-crop.component'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component';
 import { ShowLabelnotesComponent } from './component/show-labelnotes/show-labelnotes.component';
-import { PinComponent }  from './component/pin/pin.component'
+import { PinComponent }  from './component/pin/pin.component';
+import { LabelnoteComponent } from './component/labelnote/labelnote.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +101,8 @@ import { PinComponent }  from './component/pin/pin.component'
     ImageCropComponent,
     SearchmatcardsComponent,
     ShowLabelnotesComponent,
-    PinComponent
+    PinComponent,
+    LabelnoteComponent
   ],
   imports: [
     BrowserModule,

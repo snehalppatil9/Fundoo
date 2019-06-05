@@ -110,7 +110,7 @@ export class RegistrationComponent implements OnInit {
     console.log('console@@@@@@@@@@@@@@@@@', this.register);
     try {
      //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
-      if (this.password.value === this.cpassword.value)
+      if (this.register.password === this.register.cpassword)
       {
       console.log("password and confirmpassword does not match");
       this.UserService.userRegister(this.register).subscribe(
@@ -126,7 +126,8 @@ export class RegistrationComponent implements OnInit {
         });
       }
       else{
-        console.log("")
+        this.snackbar.open('Register not successfully......!', 'Stop...!', { duration: 3000 });
+        console.log("Error something wrong: ")
       }
     } catch (error) {
       this.snackbar.open('error8888888888888888888888888888888', "", { duration: 3000 });

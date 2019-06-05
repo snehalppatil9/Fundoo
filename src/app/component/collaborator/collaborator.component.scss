@@ -15,7 +15,7 @@ button{
 }
 .btns button{
     margin-bottom: 15px;
-    margin-left: 15px;
+    // margin-left: 15px;
     font-size: 20px;
     height: 35px;
 }
@@ -32,7 +32,11 @@ input{
     outline: none;
     border-style: hidden; 
 }
-.clear{
+.done{
 float: right;
-margin-right: 10px;
+//margin-right: 10px;
+}
+.clear{
+    float: right;
+    // margin-right: 10px;
 }

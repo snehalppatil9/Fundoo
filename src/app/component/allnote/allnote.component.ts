@@ -30,10 +30,10 @@ export class AllnoteComponent implements OnInit {
   destory$: Subject<boolean> = new Subject<boolean>();
   view: boolean;
   @Input() note;
-  // @Input() pin;
   @Input() searchItem;
   @Output() onChangeColor = new EventEmitter();
   @Output() onChangeDate = new EventEmitter();
+  @Output() anyChanges = new EventEmitter();
   isDelete = true;
   setColor: any;
   reminder: any;
@@ -53,16 +53,6 @@ export class AllnoteComponent implements OnInit {
   }
   ngOnInit() {
     this.getNotes();
-    this.dataService.allNote
-      .pipe(takeUntil(this.destory$))
-      .subscribe(data => {
-        this.notes = data;
-        // console.log("data in all note .ts file================>", this.notes);
-        this.notes = this.notes.filter(function (el) {
-          return (el.isArchived === false && el.isDeleted === false);
-        });
-      });
-    console.log('all note ==================>', this.notes);
 
     this.dataService.currentMessageView
       .pipe(takeUntil(this.destory$))
@@ -77,13 +67,20 @@ export class AllnoteComponent implements OnInit {
         this.direction = this.view1.data
       });
   }
+
+  refresh(event){
+    if(event){
+      this.getNotes();
+    }
+  }
+
   pinedArray = [];
   unpinedArray = [];
   getNotes() {
-    this.noteService.getNoteList()
+    this.dataService.allNote
       .pipe(takeUntil(this.destory$))
-      .subscribe((response) => {
-        this.notes = response["data"].data;
+      .subscribe(data => {
+        this.notes = data;
         this.pinedArray = [];
         this.unpinedArray = []
         for (let i = this.notes.length; i > 0; i--) {
@@ -262,7 +259,7 @@ export class AllnoteComponent implements OnInit {
     this.dataService.changeMessageLabel(data)
   }
 
-   
+
   addpin(data, $event) {
     this.isPin = $event;
     let body = {

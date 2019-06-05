@@ -33,7 +33,7 @@
     border: none;
 }
 .pin{
-float: right;
+    float: right;
 }
 .textarea .input{
     width:90%;
@@ -50,8 +50,7 @@ float: right;
 .pinedArray{
     display: grid;
     display: -webkit-flex; /* Safari */
-     -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
     display: flex;
     flex-wrap: wrap;
-    // list-style-position: append($list1: 1, $val: 3, $separator: 0.5);
 }

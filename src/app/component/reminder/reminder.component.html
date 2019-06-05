@@ -2,7 +2,7 @@
     <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
         <!-- 
          @Description    :   ngClass for grid and list view
-    -->
+        -->
         <div class="cardSub" fxFlex="27" fxLayout="row wrap" *ngFor="let data of notes" fxLayoutAlign="center center"
             [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
             <mat-card [ngStyle]="{'background-image':'url(' +data.image+ ')','background-color':data.color}">

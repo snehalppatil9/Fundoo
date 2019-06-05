@@ -26,47 +26,82 @@ import { Label } from '../../core/model/user-model';
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss'],
-  outputs: ['onNewEntry']
 })
 export class NoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
-  notecard: boolean = true;
-  labelcard: boolean = true;
-  listcard: boolean = true;
+ labelcard: boolean = true;
   isAchive: boolean = false;
+  /**
+   * @description :  use for pin/unpin
+   */
   isPin: boolean = false;
+  @Output() onChange = new EventEmitter;
   isDeleted: boolean = false;
   title = new FormControl('')
   description = new FormControl('')
+  itemName = new FormControl('')
   image = localStorage.getItem("userImage");
   setColor: any;
-  // @Input() note;
   @Input() card;
   @Input() noteData;
   reminder: any;
-  labels1:any;
+  labels1: any;
   addNotes: Note = new Note();
   searchLabel: any;
   img: any;
   width;
-  @Output() onNewEntry = new EventEmitter();
+  @Output() anyChanges = new EventEmitter();
+  model = {
+    "item": ""
+  }
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
-  /**
-  * @description :  opening the notecard for adding
+
+
+  ngOnInit() {
+  }
+  listArray :[];
+   /**
+  * 
+  * @description adding a checklist
   */
+ listitem(){
+  if(this.model.item=='') return false;
+  // this.listArray.push({"itemName" : this.model});
+  this.model.item="";
+}
+  /**
+  * @description :  it is used for notecard & list card
+  */
+  notecard: boolean = true;
+  listNote: boolean = true;
+  /**
+   * @description :  opening the notecard for adding
+   */
   noteCardOpen() {
     this.notecard = !(this.notecard);
   }
   /**
-  * @description :  opening the New list card
-  */
+   * @description :  opening the New list card
+   */
   listCardOpen() {
-    this.listcard = !(this.listcard);
+    this.listNote = false;
   }
-  ngOnInit() {
+  showCheckBox(event) {
+    this.listCardOpen();
   }
-  isLargeScreen() {
-    this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+
+ 
+  /**
+  * 
+  * @description pin change on note
+  */
+  onPinChange($event) {
+    this.isPin = $event;
+  }
+  pin() {
+    this.isPin = !this.isPin;
+    this.onChange.emit(this.isPin);
   }
   /**
   * @description :  Adding note in database
@@ -90,6 +125,7 @@ export class NoteComponent implements OnInit {
     try {
       this.noteService.addNote(body).subscribe(
         data => {
+          this.anyChanges.emit({});
           this.snackbar.open('Note added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
 
@@ -105,38 +141,27 @@ export class NoteComponent implements OnInit {
     this.addNotes.title = null;
     this.addNotes.description = null;
   }
-
+  /**
+  * @description : set color to note
+  */
   receivecolor($event) {
     this.setColor = $event
   }
+  /**
+  * @description :  Adding reminder to note
+  */
   changeDate($event) {
     this.reminder = $event;
   }
-  label($event){
-   this.labels1 = $event;
-  }
-
-  imageId
-  onSelectImage(event, noteId): void {
-    this.imageId = noteId
-    const dialogRef = this.dialog.open(ImageCropComponent, {
-      width: '400px',
-      data: event
-    });
-    dialogRef.afterClosed()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(result => {
-        this.img = environment.Url + localStorage.getItem("userImage");
-      });
+  /**
+  * @description :  Adding label to note
+  */
+  label($event) {
+    this.labels1 = $event;
   }
   /**
-   * 
-   * @description pin change on note
-   */
-  onPinChange($event) {
-    this.isPin = $event;
-  }
-
+  * @description :  removing label from note
+  */
   labels: [];
   cancelLabel(data) {
     for (let i = 0; i < this.labels.length; i++) {
@@ -146,9 +171,21 @@ export class NoteComponent implements OnInit {
     }
   }
 
-  @Output() onChange = new EventEmitter;
-  pin() {
-    this.isPin = !this.isPin;
-    this.onChange.emit(this.isPin);
-  }
+  // imageId
+  // onSelectImage(event, noteId): void {
+  //   this.imageId = noteId
+  //   const dialogRef = this.dialog.open(ImageCropComponent, {
+  //     width: '400px',
+  //     data: event
+  //   });
+  //   dialogRef.afterClosed()
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe(result => {
+  //       this.img = environment.Url + localStorage.getItem("userImage");
+  //     });
+  // }
+  // isLargeScreen() {
+  //   this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  // }
+ 
 }

@@ -20,12 +20,12 @@
         *ngFor="let data of pinedArray | pipe | filterpipe : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false">
-            <mat-card>
+            <mat-card  [ngStyle]="{'background-color':data.color}">
                 <!--
                  @Description    :    openDialog for dialog 
                  -->
                 <div (click)="openDialog(data)">
-                    <div>
+                    <div class="title">
                         {{data.title}}
                         <app-pin class=pin [card]='data' (onChange)=addpin($event)></app-pin>
                     </div>
@@ -53,7 +53,7 @@
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3">
                         <app-icon [card]='data' [noteData]="data" (setColor)=entry($event) (onChangeaddlabeltonotes)=addLabel(data,$event)
                             (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
-                            (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)>
+                            (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event) (anyChanges)="refresh($event)">
                         </app-icon>
                     </div>
                 </div>
@@ -67,24 +67,24 @@
         *ngFor="let data of unpinedArray | pipe | filterpipe : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false ">
-            <mat-card>
+            <mat-card  [ngStyle]="{'background-color':data.color}">
                 <!--
                  @Description    :    openDialog for dialog 
                  -->
                 <div (click)="openDialog(data)">
-                    <div>
+                    <div class="title">
                         {{data.title}}
                         <app-pin class=pin [card]='data' (onChange)=addpin(data,$event)></app-pin>
                     </div>
                     <div class="description"> {{data.description }}</div>
                     <mat-chip-list>
-                        <div *ngFor="let cardData of data.reminder" class="reminder">
-                            <mat-chip class="datetime">
+                        <span *ngFor="let cardData of data.reminder">
+                            <mat-chip class="label">
                                 <mat-icon>access_time</mat-icon>
                                 {{cardData | date : 'MMM d, y h:mm a'}}
-                                <mat-icon (click)=removeReminder(data,$event)> cancel</mat-icon>
+                                <mat-icon (click)=removeReminder(data,$event) class="cancelIcon"> cancel</mat-icon>
                             </mat-chip>
-                        </div>
+                        </span>
                     </mat-chip-list>
                     <mat-chip-list>
                         <span *ngFor="let cardData of data.noteLabels">

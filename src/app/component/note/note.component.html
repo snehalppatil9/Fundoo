@@ -8,7 +8,10 @@
    @version        : 1.0
    @since          : 28-04-2019
   -->
-<div fxLayoutAlign="center" *ngIf="notecard">
+<!-- 
+  @description: Take a note Card
+-->
+<div fxLayoutAlign="center" *ngIf="notecard && listNote">
   <mat-card class="card" fxFlex.xl="700px" fxFlex.lg="600px" fxFlex.md="500px" fxFlex.sm="500px" fxFlex.xs="95%">
     <div fxFlex="100">
       <!-- 
@@ -21,14 +24,16 @@
         <!-- 
             @description: New List Button
           -->
-        <div fxFlex="35">
-          <abbr title="New List">
-            <button type="button" mat-button (click)="listCardOpen()">
-              <i class="material-icons">
-                assignment_turned_in
-              </i>
-            </button>
-          </abbr>
+        <div fxLayoutAlign="center" *ngIf="listNote">
+          <div fxFlex="35">
+            <abbr title="New List">
+              <button type="button" mat-button (click)="listCardOpen()">
+                <i class="material-icons">
+                  assignment_turned_in
+                </i>
+              </button>
+            </abbr>
+          </div>
         </div>
         <!-- 
           @description: New Note With Drawing Button
@@ -57,6 +62,8 @@
     </div>
   </mat-card>
 </div>
+<!-- Take a note Card end here -->
+
 <!-- 
   @description: Opening Note Card
 -->
@@ -83,7 +90,8 @@
         </div>
         <div>
           <div class="row" fxLayoutAlign="space-evenly center">
-            <app-icon (onChangeColor)="receivecolor($event)" onChangeaddlabeltonotes="label($event)" (onChangeDate)="changeDate($event)"></app-icon>
+            <app-icon (onChangeColor)="receivecolor($event)" (onChangeaddlabeltonotes)="label($event)"
+              (onChangeDate)="changeDate($event)" (showCheckBox)="showCheckBox($event)"></app-icon>
             <!-- 
             @description: Undo Button
           -->
@@ -112,7 +120,7 @@
 <!-- 
   @description: Opening Note ListCard
 -->
-<div fxLayoutAlign="center center" *ngIf=!listcard>
+<div fxLayoutAlign="center center" *ngIf="!listNote">
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
       <div>
@@ -125,13 +133,23 @@
       </div>
       <mat-divider></mat-divider>
       <div>
+        <div *ngFor="let data of listArray" fxLayout=row class=listInput>
+          <div fxFlex=5%>
+            <mat-checkbox></mat-checkbox>
+          </div>
+          <input fxFlex=85% type=text name=input [(ngModel)]=data.item class=input>
+          <div fxFlex=5%>
+            <mat-icon class=clear>clear</mat-icon>
+          </div>
+        </div>
         <div>
           <button type="button" mat-button>
             <i class="material-icons">
               add
             </i>
           </button>
-          <input style="height:4vh; border-style: hidden" placeholder="List Item">
+          <input style="height:4vh; border-style: hidden" placeholder="List Item" [formControl]="itemName" class=input
+            [(ngModel)]="model.item" (keydown.enter)="listitem()" #>
         </div>
         <mat-divider></mat-divider>
         <!-- 
@@ -163,6 +181,10 @@
 </div>
 <!-- end of note listcard -->
 <div style="height:10vh;"></div>
+<!-- 
+  @description: List of note card selector call here
+-->
 <div fxLayoutAlign="center center" fxLayout="column">
   <app-allnote></app-allnote>
 </div>
+<!-- end list of note card -->

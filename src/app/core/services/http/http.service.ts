@@ -123,14 +123,25 @@ updateProfile(path,body){
   return this.httpclient.post(environment.baseUrl + path, body,httpOptions);
 }
 postDataforPin(path, body) {
-  let httpAuthOptions = {
+  let httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
        'Authorization': localStorage.getItem('token')
     })
   };
-  return this.httpclient.post(environment.baseUrl + path, body, httpAuthOptions);
+  return this.httpclient.post(environment.baseUrl + path, body, httpOptions);
 }
+
+deleteData(path){
+  let httpOptions = {
+    headers: new HttpHeaders({
+      // 'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    })
+  }
+  return this.httpclient.delete(environment.baseUrl+path,httpOptions);
+}
+
 }
 
 

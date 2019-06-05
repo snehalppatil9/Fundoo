@@ -43,7 +43,10 @@ export class NotesService {
    * @Purpose : add collaborator note
   **/
   addColNote(body, id) {
-    return this.httpservice.postDataForSearchUser("/notes/" + id + "/AddcollaboratorsNotes", body)
+    return this.httpservice.postDataForSearchUser("notes/" + id + "/AddcollaboratorsNotes", body)
+  }
+  removeColaborator(noteId,userId){
+    return this.httpservice.deleteData("notes/"+noteId+"/removeCollaboratorsNotes/"+userId);
   }
   /**
    * @Purpose: Update Note
@@ -112,5 +115,9 @@ export class NotesService {
   }
   pinChange(body) {
     return this.httpservice.postDataforPin("notes/pinUnpinNotes", body);
+  }
+
+  getNotelistByLabel(label){
+    return this.httpservice.postData("notes/getNotesListByLabel/"+label,{});
   }
 }

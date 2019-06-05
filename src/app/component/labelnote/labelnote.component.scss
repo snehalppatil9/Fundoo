@@ -1,58 +1,8 @@
-// @import '../../core/scss/colors';
-// @import '../../core/scss/mixin';
-// .cardMain{
-//     display: flex;
-//     // margin-left: 13%;
-//     //    position: fixed;
-//       width: 71vw;
-// }
-// .cardSub{
-//     border-radius: 5;
-//     width: 85px;
-//     // padding: 6px;
-// }
-// .mat-card{
-//     width: 18vw;
-// }
-// .cardSub2{
-//     border-radius: 5;
-//     width: 385px;
-//     // padding: 6px;
-// }
-// .material-icons{
-//     font-size: 20px;
-// }
-// .icon{
-//     visibility:hidden;
-// }
-// .iconButton{
-//     opacity:0.7;
-//     cursor: pointer;
-// }
-// .iconButton:hover{
-//     opacity:1;
-// } 
-// .cardSub:hover .icon {
-//     visibility: visible;
-// }
-// .title{
-//     word-break: break-all;
-//     font-weight: bold;
-// }
-// .description{
-//     word-break: break-all;
-// }
-
-
-
-
 @import '../../core/scss/colors';
 @import '../../core/scss/mixin';
 .cardMain{
     display: flex;
-    // margin-left: 13%;
-    //    position: fixed;
-      width: 71vw;
+    width: 77vw;
 }
 .cardSub{
     border-radius: 5;
@@ -60,15 +10,13 @@
     // padding: 6px;
 }
 .mat-card{
-    width: 18vw;
+    width: 19vw;
+    border-radius: 10px;
 }
 .cardSub2{
     border-radius: 5;
     width: 385px;
     // padding: 6px;
-}
-mat-card{
-    border-radius: 10px;
 }
 .iconButton .material-icons{
     font-size: 15px;
@@ -116,10 +64,6 @@ mat-card{
     opacity:1;
     visibility:visible;
 } 
-.pin{
-    float: right;
-    visibility:hidden;
-}
 .pin:hover{
     opacity:1;
     visibility:visible;
@@ -131,4 +75,10 @@ mat-card{
     @include back-ground-color(rgba(135, 167, 159, 0.465));    
     font-size: 11px;
     color:rgba(0, 0, 0,0.4);
+}
+.pinOthers{
+    font-size: 12px;
+    color:black;
+    width:100%;
+    @include margin-top(5px);
 }

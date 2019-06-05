@@ -9,7 +9,7 @@
  *  @since          : 28-04-2019
  *
  ******************************************************************************/
-import { Component, OnInit, Input, Output, EventEmitter,Inject } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar, MatCard } from '@angular/material';
@@ -18,7 +18,7 @@ import { Subject } from 'rxjs';
 import { CollaboratorComponent } from '../collaborator/collaborator.component'
 import { Label } from '../../core/model/user-model';
 import { takeUntil } from 'rxjs/operators';
-import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
@@ -36,20 +36,19 @@ export class IconComponent implements OnInit {
   maxDate = new Date(2020, 0, 1);
   isArchive = true;
   @Input() card;
-  @Input() noteData:any;
+  @Input() noteData: any;
   labelArray = [];
   Array = [];
-  @Output() onChangeColor = new EventEmitter()
-  @Output() onChangeDelete = new EventEmitter()
-  @Output() onChangeDate = new EventEmitter()
-  @Output() onArchiveEntry = new EventEmitter()
-  @Output() onChangeaddlabeltonotes= new EventEmitter()
+  @Output() onChangeColor = new EventEmitter();
+  @Output() onChangeDelete = new EventEmitter();
+  @Output() onChangeDate = new EventEmitter();
+  @Output() onArchiveEntry = new EventEmitter();
+  @Output() onChangeaddlabeltonotes = new EventEmitter();
   @Output() popupChange = new EventEmitter();
+  @Output() showCheckbox = new EventEmitter();
   constructor(
-   
     private dialog: MatDialog,
     private noteService: NotesService, private dataService: DataService, private snackBar: MatSnackBar) {
-
   }
   colorsArray = [
     [
@@ -77,7 +76,7 @@ export class IconComponent implements OnInit {
   ngOnInit() {
     this.showLabel();
     this.dataService.currentMessageSearch
-    .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.message = message;
       })
@@ -123,9 +122,9 @@ export class IconComponent implements OnInit {
   addCollaborator(noteData) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '600px',
-      data :{
-        id:noteData.id,
-        collaborators:noteData.collaborators
+      data: {
+        id: noteData.id,
+        collaborators: noteData.collaborators
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -135,27 +134,27 @@ export class IconComponent implements OnInit {
   label: Label[] = [];
   private labelList = [];
 
-  addLabel(label){
-    if(this.card){
-      this.noteService.addLabelToNotes(this.card.id,label.id)
-       .subscribe((response) => {
-         this.onChangeaddlabeltonotes.emit({});
-        console.log("adsdasdasdasdasdsa");
-        
-      },
-      error=>{
-        console.log("error in add label to notes");
-        
-      });
+  addLabel(label) {
+    if (this.card) {
+      this.noteService.addLabelToNotes(this.card.id, label.id)
+        .subscribe((response) => {
+          this.onChangeaddlabeltonotes.emit({});
+          console.log("adsdasdasdasdasdsa");
+
+        },
+          error => {
+            console.log("error in add label to notes");
+
+          });
     }
   }
 
 
 
-   /**
-   * 
-   * @description getting label list
-   */
+  /**
+  * 
+  * @description getting label list
+  */
   showLabel() {
     this.labelArray = [];
     this.Array = [];
@@ -177,15 +176,15 @@ export class IconComponent implements OnInit {
         }
       }, (error) => {
         console.log("error in show label");
-        
+
       });
   }
 
 
-   /**
-   * 
-   * @description remove label from list
-   */
+  /**
+  * 
+  * @description remove label from list
+  */
   removeLabel(label) {
     this.noteService.removeLabelFromNotes(this.card.id, label.id)
       .subscribe((response) => {
@@ -203,11 +202,16 @@ export class IconComponent implements OnInit {
       });
   }
 
-   /*
-  * @description :  for search label
-  */
- searchLabel : any;
- newMessage() {
-  this.dataService.MessageSearch(this.searchLabel);
-}
+  /*
+ * @description :  for search label
+ */
+  searchLabel: any;
+  newMessage() {
+    this.dataService.MessageSearch(this.searchLabel);
+  }
+
+
+  showCheckBox() {
+    this.showCheckbox.emit({});
+  }
 }

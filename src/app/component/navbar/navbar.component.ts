@@ -202,4 +202,12 @@ export class NavbarComponent implements OnInit {
       });
 
   }
+
+
+  labelShow:boolean=false;
+  labelValue='';
+  toolbarName(aa){
+    this.labelShow=true
+    this.labelValue=aa
+  }
 }
