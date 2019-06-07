@@ -100,15 +100,15 @@ export class CollaboratorComponent implements OnInit {
 
 
 
-  removeCol(data){
-    console.log("Note iddddd",this.id);
-    console.log("id remove data============>",data);
-    console.log("this.data.UserId================>",data.userId);
-    this.noteService.removeColaborator(this.id,data.userId)
-    .subscribe((response)=>{
-      this.snackbar.open('Removing collaboratoe sucessfully......!', 'Done...!', { duration: 3000 });
-    },(error)=>{
-      this.snackbar.open('Removing collaboratoe unsucessful......!', 'Done...!', { duration: 3000 });
-    });
+  removeCol(data) {
+    console.log("Note iddddd", this.id);
+    console.log("id remove data============>", data);
+    console.log("this.data.UserId================>", data.userId);
+    this.noteService.removeColaborator(this.id, data.userId)
+      .subscribe((response) => {
+        this.snackbar.open('Removing collaboratoe sucessfully......!', 'Done...!', { duration: 3000 });
+      }, (error) => {
+        this.snackbar.open('Removing collaboratoe unsucessful......!', 'Done...!', { duration: 3000 });
+      });
   }
 }

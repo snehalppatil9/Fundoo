@@ -78,7 +78,9 @@
             placeholder="Title">
         </div>
         <div fxFlex="10%">
-          <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
+            <img *ngIf=!isPin (click)=pin() src="../../../assets/images/pin.svg">
+            <img *ngIf=isPin (click)=pin() src="../../../assets/images/unpin.svg">
+          <!-- <app-pin class=pin (onChange)="onPinChange($event)"></app-pin> -->
         </div>
       </div>
       <div>
@@ -91,10 +93,10 @@
         <div>
           <div class="row" fxLayoutAlign="space-evenly center">
             <app-icon (onChangeColor)="receivecolor($event)" (onChangeaddlabeltonotes)="label($event)"
-              (onChangeDate)="changeDate($event)" (showCheckBox)="showCheckBox($event)"></app-icon>
+              (onChangeDate)="changeDate($event)"></app-icon>
             <!-- 
             @description: Undo Button
-          -->
+            -->
             <abbr title="Undo">
               <button mat-icon-button>
                 <mat-icon class="icon">undo</mat-icon>
@@ -133,23 +135,13 @@
       </div>
       <mat-divider></mat-divider>
       <div>
-        <div *ngFor="let data of listArray" fxLayout=row class=listInput>
-          <div fxFlex=5%>
-            <mat-checkbox></mat-checkbox>
-          </div>
-          <input fxFlex=85% type=text name=input [(ngModel)]=data.item class=input>
-          <div fxFlex=5%>
-            <mat-icon class=clear>clear</mat-icon>
-          </div>
-        </div>
         <div>
           <button type="button" mat-button>
             <i class="material-icons">
               add
             </i>
           </button>
-          <input style="height:4vh; border-style: hidden" placeholder="List Item" [formControl]="itemName" class=input
-            [(ngModel)]="model.item" (keydown.enter)="listitem()" #>
+          <input style="height:4vh; border-style: hidden" placeholder="List Item" >
         </div>
         <mat-divider></mat-divider>
         <!-- 

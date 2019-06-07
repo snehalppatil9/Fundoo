@@ -45,30 +45,15 @@ export class NoteComponent implements OnInit {
   @Input() card;
   @Input() noteData;
   reminder: any;
-  labels1: any;
+  labels1: [];
   addNotes: Note = new Note();
   searchLabel: any;
   img: any;
   width;
   @Output() anyChanges = new EventEmitter();
-  model = {
-    "item": ""
-  }
   constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
-
-
   ngOnInit() {
   }
-  listArray :[];
-   /**
-  * 
-  * @description adding a checklist
-  */
- listitem(){
-  if(this.model.item=='') return false;
-  // this.listArray.push({"itemName" : this.model});
-  this.model.item="";
-}
   /**
   * @description :  it is used for notecard & list card
   */
@@ -89,9 +74,6 @@ export class NoteComponent implements OnInit {
   showCheckBox(event) {
     this.listCardOpen();
   }
-
-
- 
   /**
   * 
   * @description pin change on note
@@ -119,6 +101,7 @@ export class NoteComponent implements OnInit {
       "isArchived": this.isAchive,
       "isDeleted": this.isDeleted,
       "isPined": this.isPin,
+      "labelIdList":  this.addNotes.labelIdList
       // "imageUrl":  this.addNotes.imageUrl
     }
     console.log('add note data......', body);

@@ -74,12 +74,12 @@
   <button mat-menu-item [matMenuTriggerFor]="labelmenu" (click)="showLabel()">
     <span>Add label</span>
   </button>
-  <button mat-menu-item>
-    <span>Add drawing</span>
+  <button mat-menu-item routerLink="/askquestion/{{ id }}" >
+    <span>Ask Question</span>
   </button>
-  <button mat-menu-item>
+  <!-- <button mat-menu-item>
     <span>Make a Copy</span>
-  </button>
+  </button> -->
   <button mat-menu-item (click)="showCheckBox()">
     <span>Show checkboxes</span>
   </button>
@@ -98,7 +98,7 @@
         <mat-icon><small>search</small></mat-icon>
       </div>
     </div>
-    <div *ngFor="let data of labelList | filterpipe : searchLabel">
+    <div *ngFor="let data of labelList | filter : searchLabel">
       <div fxLayout=row>
         <!-- <div fxFlex="10"></div> -->
         <div fxFlex="20" style="margin-left: 20px; margin-right:20px;" class="label-icon">

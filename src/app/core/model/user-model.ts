@@ -17,6 +17,7 @@ export class Note {
     isArchived: boolean
     isDeleted: boolean
     isPined: boolean
+    labelIdList : string
     imageUrl: string
 }
 export class Label {

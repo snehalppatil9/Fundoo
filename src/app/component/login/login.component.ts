@@ -45,8 +45,11 @@ export class LoginComponent implements OnInit {
   constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) {
 
   }
-
+  id = localStorage.getItem("Id");
   ngOnInit() {
+    if(this.id != null){
+      this.router.navigateByUrl('/addnote');
+    }
   }
   submit() {
     //console.log('console@@@@@@@@@@@@@@@@@', this.login);

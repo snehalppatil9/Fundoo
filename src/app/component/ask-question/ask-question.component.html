@@ -1,0 +1,27 @@
+<div fxLayoutAlign="center center" style="margin-top:60px;">
+  <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='950px' fxFlex.md='600px' fxFlex.sm='500px' fxFlex.xs='300px'>
+    <div style="height:3vh;"></div>
+    <div fxLayout="row">
+      <div fxFlex="80" fxLayoutAlign="start">
+        <h3>Go Ahead......</h3>
+      </div>
+      <div fxFlex="20"><button class="btn">Close</button></div>
+      <hr>
+      </div>
+      <hr>
+    <div>
+      <div>
+        <h4>Ask a Question</h4>
+      </div>
+      <div>
+        <h5>Make sure that what Your asking is unique,concise and pharsed like a question.</h5>
+      </div>
+    </div>
+    <div style="height:5vh;"></div>
+    <div [froalaEditor]='options'>{{ options }}</div>
+    <div style="height:5vh;"></div>
+    <div fxLayoutAlign="end">
+      <button class="btn1">Submit-Question</button>
+    </div>
+  </mat-card>
+</div>

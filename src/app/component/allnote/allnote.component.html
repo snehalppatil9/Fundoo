@@ -17,10 +17,10 @@
     -->
     <div class="pinOthers">PINNED</div>
     <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
-        *ngFor="let data of pinedArray | pipe | filterpipe : searchItem"
+        *ngFor="let data of pinedArray | pipe | filter : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
-        <div *ngIf="data.isArchived === false && data.isDeleted === false">
-            <mat-card  [ngStyle]="{'background-color':data.color}">
+        <div *ngIf="data.isArchived === false && data.isDeleted === false" class="example-box" cdkDrag>
+            <mat-card [ngStyle]="{'background-color':data.color}">
                 <!--
                  @Description    :    openDialog for dialog 
                  -->
@@ -31,13 +31,13 @@
                     </div>
                     <div class="description"> {{data.description }}</div>
                     <mat-chip-list>
-                        <div *ngFor="let cardData of data.reminder" class="reminder">
-                            <mat-chip class="datetime">
+                        <span *ngFor="let cardData of data.reminder">
+                            <mat-chip class="label">
                                 <mat-icon>access_time</mat-icon>
                                 {{cardData | date : 'MMM d, y h:mm a'}}
-                                <mat-icon (click)=removeReminder(data,$event)> cancel</mat-icon>
+                                <mat-icon (click)=removeReminder(data,$event) class="cancelIcon"> cancel</mat-icon>
                             </mat-chip>
-                        </div>
+                        </span>
                     </mat-chip-list>
                     <mat-chip-list>
                         <span *ngFor="let cardData of data.noteLabels">
@@ -51,9 +51,10 @@
                 </div>
                 <div class="icon">
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3">
-                        <app-icon [card]='data' [noteData]="data" (setColor)=entry($event) (onChangeaddlabeltonotes)=addLabel(data,$event)
-                            (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
-                            (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event) (anyChanges)="refresh($event)">
+                        <app-icon [card]='data' [noteData]="data" (setColor)=entry($event)
+                            (onChangeaddlabeltonotes)=entry($event) (onArchiveEntry)="archiveNote(data,$event)"
+                            (onChangeDate)=addReminder(data,$event) (onChangeColor)=changeColor(data,$event)
+                            (onChangeDelete)=deleteNote(data,$event) (anyChanges)="refresh($event)">
                         </app-icon>
                     </div>
                 </div>
@@ -64,10 +65,10 @@
 
     <div class="pinOthers">OTHERS</div>
     <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
-        *ngFor="let data of unpinedArray | pipe | filterpipe : searchItem"
+        *ngFor="let data of unpinedArray | pipe | filter : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
-        <div *ngIf="data.isArchived === false && data.isDeleted === false ">
-            <mat-card  [ngStyle]="{'background-color':data.color}">
+        <div *ngIf="data.isArchived === false && data.isDeleted === false " class="example-box" cdkDrag>
+            <mat-card [ngStyle]="{'background-color':data.color}">
                 <!--
                  @Description    :    openDialog for dialog 
                  -->
@@ -98,9 +99,10 @@
                 </div>
                 <div class="icon">
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
-                        <app-icon [noteData]="data" [card]='data' (setColor)=entry($event) (onChangeaddlabeltonotes)=entry($event)
-                            (onArchiveEntry)="archiveNote(data,$event)" (onChangeDate)=addReminder(data,$event)
-                            (onChangeColor)=changeColor(data,$event) (onChangeDelete)=deleteNote(data,$event)>
+                        <app-icon [noteData]="data" [card]='data' (setColor)=entry($event)
+                            (onChangeaddlabeltonotes)=entry($event) (onArchiveEntry)="archiveNote(data,$event)"
+                            (onChangeDate)=addReminder(data,$event) (onChangeColor)=changeColor(data,$event)
+                            (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
                     </div>
                 </div>

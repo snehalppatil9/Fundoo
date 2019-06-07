@@ -22,8 +22,8 @@ export class DialogComponent implements OnInit {
    addNotes: Note = new Note();
  
    constructor(
-     public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) 
-     public data: any, 
+     public dialogRef: MatDialogRef<DialogComponent>,
+     @Inject(MAT_DIALOG_DATA) public data: any, 
      private noteService: NotesService, 
      private dataService: DataService, 
      private snackbar: MatSnackBar

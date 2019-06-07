@@ -29,7 +29,8 @@ import { DialogComponent } from './component/dialog/dialog.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component'
 import { PinComponent }  from './component/pin/pin.component'
-import { LabelnoteComponent } from './component/labelnote/labelnote.component'
+import { LabelnoteComponent } from './component/labelnote/labelnote.component';
+import { AskQuestionComponent } from './component/ask-question/ask-question.component'
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
@@ -55,7 +56,8 @@ const routes: Routes = [
       { path: 'imagecrop', component: ImageCropComponent},
       { path: 'searchmatcards', component: SearchmatcardsComponent},
       { path: 'pin', component: PinComponent },
-      { path: 'labelnote/:label', component: LabelnoteComponent }
+      { path: 'labelnote/:label', component: LabelnoteComponent },
+      { path: 'askquestion', component: AskQuestionComponent }
     ]
 
   }

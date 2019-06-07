@@ -24,7 +24,7 @@ export class LabelComponent implements OnInit {
     "newName": ""
   }
   /* Get Id from localstorage*/
-  id = localStorage.getItem('Id');
+  id = localStorage.getItem('token');
   changeText1:boolean;
   changeText: boolean;
   constructor(

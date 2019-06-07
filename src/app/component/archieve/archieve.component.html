@@ -14,7 +14,7 @@
 <div fxLayoutAlign="center center">
     <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
         <div class="cardSub" fxFlex="27" fxLayoutAlign="center center"
-            *ngFor="let data of notes | pipe | filterpipe : searchItem ">
+            *ngFor="let data of notes | pipe | filter : searchItem ">
             <div *ngIf="data.isArchived === true">
                 <mat-card [ngStyle]="{'background-color':data.color}">
                     <div class="title">{{data.title}}</div>

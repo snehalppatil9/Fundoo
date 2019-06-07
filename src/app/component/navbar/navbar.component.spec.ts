@@ -22,4 +22,7 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should be invalid', () => {
+    expect(component).toBeTruthy();
+  });
 });
