@@ -120,4 +120,8 @@ export class NotesService {
   getNotelistByLabel(label){
     return this.httpservice.postData("notes/getNotesListByLabel/"+label,{});
   }
+
+  addMessageQA(body){
+    return this.httpservice.postData("questionAndAnswerNotes/addQuestionAndAnswer",body)
+  }
 }

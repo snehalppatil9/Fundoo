@@ -40,3 +40,6 @@ export class Collaborator {
     "email": string;
     "id": string;
 }
+export class Editor{
+    "message" : string
+}

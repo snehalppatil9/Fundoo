@@ -18,10 +18,11 @@
       </div>
     </div>
     <div style="height:5vh;"></div>
-    <div [froalaEditor]='options'>{{ options }}</div>
+    <textarea [froalaEditor] [(froalaModel)]="addMsg.message"  [formControl]="message"></textarea>
+    <div [froalaView]="addMsg.message"></div>
     <div style="height:5vh;"></div>
     <div fxLayoutAlign="end">
-      <button class="btn1">Submit-Question</button>
+      <button class="btn1" (click)="addMessage()">Submit-Question</button>
     </div>
   </mat-card>
 </div>

@@ -57,7 +57,7 @@ const routes: Routes = [
       { path: 'searchmatcards', component: SearchmatcardsComponent},
       { path: 'pin', component: PinComponent },
       { path: 'labelnote/:label', component: LabelnoteComponent },
-      { path: 'askquestion', component: AskQuestionComponent }
+      { path: 'askquestion/:id', component: AskQuestionComponent }
     ]
 
   }

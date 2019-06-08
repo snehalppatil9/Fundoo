@@ -16,7 +16,7 @@
          @Description    :   ngClass for grid and list view
     -->
     <div class="pinOthers">PINNED</div>
-    <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
+    <div class="cardSub" fxFlex="27" style="height: 30vh;" fxLayout="row wrap" fxLayoutAlign="center center"
         *ngFor="let data of pinedArray | pipe | filter : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false" class="example-box" cdkDrag>
@@ -59,12 +59,12 @@
                     </div>
                 </div>
             </mat-card>
-            <div style="height:5vh;"></div>
         </div>
+        <div style="height:15vh;"></div>
     </div>
-
+    <div style="height:5vh;"></div>
     <div class="pinOthers">OTHERS</div>
-    <div class="cardSub" fxFlex="27" fxLayout="row wrap" fxLayoutAlign="center center"
+    <div class="cardSub" fxFlex="27" style="height: 30vh;" fxLayout="row wrap" fxLayoutAlign="center center"
         *ngFor="let data of unpinedArray | pipe | filter : searchItem"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false " class="example-box" cdkDrag>

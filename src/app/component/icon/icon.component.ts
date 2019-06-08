@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent implements OnInit {
- 
+
   destroy$: Subject<boolean> = new Subject<boolean>();
   message: String
   /**
@@ -46,7 +46,7 @@ export class IconComponent implements OnInit {
   @Output() onChangeaddlabeltonotes = new EventEmitter();
   @Output() popupChange = new EventEmitter();
   @Output() showCheckbox = new EventEmitter();
-  constructor( private router: Router,
+  constructor(private router: Router,
     private dialog: MatDialog,
     private noteService: NotesService, private dataService: DataService, private snackBar: MatSnackBar) {
   }
@@ -132,9 +132,9 @@ export class IconComponent implements OnInit {
       console.log('Dialog closed');
     });
   }
-  
-  askquestion1(noteData){
-    this.router.navigateByUrl('askquestion'+'/'+noteData.id);
+
+  askquestion1(noteData) {
+    this.router.navigateByUrl('askquestion' + '/' + noteData.id);
   }
 
 
