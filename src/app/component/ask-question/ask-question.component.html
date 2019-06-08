@@ -4,7 +4,7 @@
     <div style="height : 5vh;"></div>
     <div fxLayout="row" class="title">
       <div fxFlex="90">{{data.title}}</div>
-      <button  mat-button fxFlex="10" >Close</button>
+      <button mat-button fxFlex="10">Close</button>
     </div>
     <div fxLayout="row" class="description">
       {{data.description}}
@@ -15,28 +15,30 @@
         <h4>Ask a Question</h4>
       </div>
     </div>
+    <div *ngIf="!showfroalaeditor" fxFlexLayout="space-between center" fxAlign="row">
+        <mat-card-header>
+          <div fxFlex="10">
+            <div mat-card-avatar class="addPerson">
+              <mat-icon class=icon>person_add</mat-icon>
+            </div>
+          </div>
+          <div>
+            <mat-card-title>{{data.user.firstName}}</mat-card-title>
+            <mat-card-title>{{ data.questionAndAnswerNotes }}</mat-card-title>
+          </div>
+        </mat-card-header>
+      </div>
     <div style="height:5vh;"></div>
     <div class="textarea" style="margin-left: 30px;">
       <div *ngIf="!showfroalaeditor">
         <h5>Make sure what you are asking is unique,concise phrased like a question.</h5>
       </div>
-      <textarea  *ngIf="!showfroalaeditor" [froalaEditor] [(froalaModel)]="addMsg.message"
+      <textarea *ngIf="!showfroalaeditor" [froalaEditor] [(froalaModel)]="addMsg.message"
         [formControl]="message"></textarea>
     </div>
     <!-- <div style="margin-left: 30px;" [froalaView]="addMsg.message"></div> -->
     <div style="height:5vh;"></div>
-    <div style="margin-left: 30px;" fxFlexLayout="space-between center" fxAlign="row">
-    <mat-card-header>
-      <div  fxFlex="10">
-        <div mat-card-avatar class="addPerson">
-           <mat-icon class=icon>person_add</mat-icon>
-         </div>
-        </div>
-        <div>
-         <mat-card-title >{{data.user.firstName}}</mat-card-title>
-        </div>
-       </mat-card-header>
-      </div>
+    
     <div fxLayoutAlign="end">
       <button mat-button (click)="addMessage()">Submit-Question</button>
     </div>
@@ -46,6 +48,6 @@
         <mat-option>View reply</mat-option>
       </mat-select>
     </mat-form-field>
-  <!-- </div> -->
+    <!-- </div> -->
   </div>
 </div>

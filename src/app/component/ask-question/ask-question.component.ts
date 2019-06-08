@@ -58,12 +58,14 @@ export class AskQuestionComponent implements OnInit {
     this.addMsg.message = null;
   }
   notes: Note[] = [];
+  noteDataList=[];
   getNotesDetail() {
     this.noteService.getNotesDetail(this.noteId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         this.notes = data["data"].data;
-        console.log("data in get notelist ask question=========>", this.notes);
+        this.noteDataList =this.notes;
+        console.log("data in get notelist ask question=========>", this.noteDataList["questionAndAnswerNotes"]);
         this.snackbar.open('Notes Detail.', '', { duration: 3000 });
         console.log('Notes Detail data..........', data);
       },
