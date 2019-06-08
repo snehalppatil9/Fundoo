@@ -9,9 +9,9 @@
    @since          : 22-04-2019
   -->
 <!-- 
-    @Description    :   Dispaly data into the card after add
+    @Description    :   Dispalying pinned data into the card after add
  -->
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
+<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center" >
     <!-- 
          @Description    :   ngClass for grid and list view
     -->
@@ -60,9 +60,12 @@
                 </div>
             </mat-card>
         </div>
-        <div style="height:15vh;"></div>
+        <div style="height:30vh;"></div>
     </div>
-    <div style="height:5vh;"></div>
+<!-- end of pinned data array -->
+    <!-- 
+    @Description    :   Dispalying others data into the card after add
+    -->
     <div class="pinOthers">OTHERS</div>
     <div class="cardSub" fxFlex="27" style="height: 30vh;" fxLayout="row wrap" fxLayoutAlign="center center"
         *ngFor="let data of unpinedArray | pipe | filter : searchItem"
@@ -111,3 +114,4 @@
         </div>
     </div>
 </div>
+<!-- end of others data array -->

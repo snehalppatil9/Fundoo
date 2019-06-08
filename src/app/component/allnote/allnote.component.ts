@@ -19,6 +19,7 @@ import { EventEmitter } from 'events';
 import { DialogComponent } from '../dialog/dialog.component'
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar } from '@angular/material';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-allnote',
   templateUrl: './allnote.component.html',
@@ -68,8 +69,8 @@ export class AllnoteComponent implements OnInit {
       });
   }
 
-  refresh(event){
-    if(event){
+  refresh(event) {
+    if (event) {
       this.getNotes();
     }
   }
@@ -245,7 +246,9 @@ export class AllnoteComponent implements OnInit {
   }
 
 
-
+  /**
+   * @Purpose : Removing label from notes
+   **/
   removeLabel(labelId, cardId) {
     this.noteService.removeLabelFromNotes(cardId, labelId)
       .pipe(takeUntil(this.destory$))
@@ -254,12 +257,15 @@ export class AllnoteComponent implements OnInit {
       }, (error) => {
       });
   }
-
+  /**
+   * @Purpose : show label 
+   **/
   showLabel(data) {
     this.dataService.changeMessageLabel(data)
   }
-
-
+  /**
+   * @Purpose : pin unpin notes 
+   **/
   addpin(data, $event) {
     this.isPin = $event;
     let body = {
@@ -270,19 +276,22 @@ export class AllnoteComponent implements OnInit {
       .subscribe((response) => {
       });
   }
+  /**
+   * @Purpose : add label to notes 
+   **/
+  addLabel(labelId, cardId) {
+    this.noteService.addLabelToNotes(cardId, labelId)
+      .subscribe((response) => {
+        this.snackbar.open('Add label to notes Successfully.', '', { duration: 3000 });
+        console.log("ur in add labels to notes");
+      },
+        error => {
+          this.snackbar.open('Add label to notes unSuccessfully.', '', { duration: 3000 });
+          console.log("error in add label to notes");
+        });
+  }
 
-  addLabel(labelId, cardId){
-   
-      this.noteService.addLabelToNotes(cardId, labelId)
-        .subscribe((response) => {
-          
-          console.log("adsdasdasdasdasdsa");
-
-        },
-          error => {
-            console.log("error in add label to notes");
-
-          });
-    
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.note, event.previousIndex, event.currentIndex);
   }
 }

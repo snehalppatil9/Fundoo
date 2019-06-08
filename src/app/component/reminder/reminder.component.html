@@ -1,29 +1,28 @@
 <div fxLayoutAlign="center center">
     <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
-        <!-- 
-         @Description    :   ngClass for grid and list view
-        -->
-        <div class="cardSub" fxFlex="27" fxLayout="row wrap" *ngFor="let data of notes" fxLayoutAlign="center center"
-            [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
-            <mat-card [ngStyle]="{'background-image':'url(' +data.image+ ')','background-color':data.color}">
-                <!--
-                 @Description    :    openDialog for dialog 
-                 -->
-                <div (click)="openDialog(data)">
-                    <div>
-                        {{data.title}}
+        <div class="cardSub" fxFlex="27" fxLayoutAlign="center center"
+            *ngFor="let data of notes | pipe | filter : searchItem ">
+            <mat-card [ngStyle]="{'background-color':data.color}">
+                <div class="title">{{data.title}}</div>
+                <div class="description"> {{data.description }}</div>
+                <mat-chip-list>
+                    <div *ngFor="let cardData of data.reminder" class="reminder">
+                        <mat-chip class="datetime">
+                            <mat-icon>access_time</mat-icon>
+                            {{cardData | date : 'MMM d, y h:mm a'}}
+                            <mat-icon (click)=removeReminder(data,$event)> cancel</mat-icon>
+                        </mat-chip>
                     </div>
-                    <div class="description"> {{data.description }}</div>
-                    <mat-chip-list>
-                        <div *ngFor="let cardData of data.reminder" class="reminder">
-                            <mat-chip class="datetime">
-                                <mat-icon>access_time</mat-icon>
-                                {{cardData | date : 'MMM d, y h:mm a'}}
-                                <mat-icon (click)=removeReminder(data,$event)> cancel</mat-icon>
-                            </mat-chip>
-                        </div>
-                    </mat-chip-list>
-                </div>
+                </mat-chip-list>
+                <mat-chip-list>
+                    <span *ngFor="let cardData of data.noteLabels">
+                        <mat-chip class="label" *ngIf="cardData.isDeleted==false" (click)=showLabel(cardData.label)>
+                            <span class="chip">{{cardData.label}}</span>
+                            <mat-icon *ngIf="!data.isDeleted" (click)=removeLabel(cardData.id,data.id)
+                                class="cancelIcon">cancel</mat-icon>
+                        </mat-chip>
+                    </span>
+                </mat-chip-list>
                 <div class="icon">
                     <div fxLayout="row" class="iconButton" fxLayoutAlign="space-evenly center" fxLayoutGap="3%">
                         <app-icon [card]='data' (setColor)=entry($event) (reminder)=entry($event)
@@ -33,6 +32,7 @@
                     </div>
                 </div>
             </mat-card>
+            <br /><br />  <br /><br />  <br /><br />  <br /><br />  <br /><br />
             <div style="height:5vh;"></div>
         </div>
     </div>

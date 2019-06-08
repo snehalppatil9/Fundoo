@@ -124,4 +124,8 @@ export class NotesService {
   addMessageQA(body){
     return this.httpservice.postData("questionAndAnswerNotes/addQuestionAndAnswer",body)
   }
+getNotesDetail(noteId){
+  return this.httpservice.getData("notes/getNotesDetail/"+noteId)
+}
+  
 }

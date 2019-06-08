@@ -14,9 +14,9 @@ export class TrashComponent implements OnInit {
 
   constructor(private noteService: NotesService,
     private snackbar: MatSnackBar,
-    private dataService : DataService) { }
+    private dataService: DataService) { }
   destroy$: Subject<boolean> = new Subject<boolean>();
-  notes:Note[]=[];
+  notes: Note[] = [];
   direction: String = "row";
   view1: any;
   ngOnInit() {
@@ -26,22 +26,22 @@ export class TrashComponent implements OnInit {
       this.direction = this.view1.data
     });
   }
-  getTrashList(){
+  getTrashList() {
     this.noteService.getTrashNotes()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((response) =>{
-      this.notes=response["data"].data;
-      console.log("trash data=====================>",this.notes);
-      
-    },(error) =>{
-    });
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.notes = response["data"].data;
+        console.log("trash data=====================>", this.notes);
+
+      }, (error) => {
+      });
   }
   /**
   * @description : Delete Note
   */
-  deleteforeverNotes(data){
+  deleteforeverNotes(data) {
     var body = {
-      "noteIdList":[data.id]
+      "noteIdList": [data.id]
     }
     console.log('Delete Note......', body);
     try {
@@ -62,29 +62,29 @@ export class TrashComponent implements OnInit {
   /**
   * @description : Restore Note
   */
- isDelete = false;
- delete : any;
- Restore(data, $event) {
-  this.delete = $event;
-  var body = {
-    "isDeleted": this.isDelete,
-    "noteIdList":[data.id]
+  isDelete = false;
+  delete: any;
+  Restore(data, $event) {
+    this.delete = $event;
+    var body = {
+      "isDeleted": this.isDelete,
+      "noteIdList": [data.id]
+    }
+    console.log('Delete Note......', body);
+    try {
+      this.noteService.deleteNote(body).subscribe(
+        data => {
+          this.snackbar.open('Note Deleted Successfully.', '', { duration: 3000 });
+          console.log('Note Deleted successfully..........', data);
+        },
+        error => {
+          this.snackbar.open('Error while note delete!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
+    setTimeout(() => this.dataService.getAllNote(), 30);
   }
-  console.log('Delete Note......', body);
-  try {
-    this.noteService.deleteNote(body).subscribe(
-      data => {
-        this.snackbar.open('Note Deleted Successfully.', '', { duration: 3000 });
-        console.log('Note Deleted successfully..........', data);
-      },
-      error => {
-        this.snackbar.open('Error while note delete!', 'Error', { duration: 3000 });
-        console.log("Error something wrong: ", error)
-      });
-  } catch (error) {
-    this.snackbar.open('error', "", { duration: 3000 });
-  }
-  setTimeout(() => this.dataService.getAllNote(), 30);
-}
-  
+
 }

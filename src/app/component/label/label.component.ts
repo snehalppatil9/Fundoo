@@ -5,7 +5,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { Label } from '../../core/model/user-model';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {MatDialogRef} from "@angular/material";
+import { MatDialogRef } from "@angular/material";
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-label',
@@ -18,14 +18,14 @@ export class LabelComponent implements OnInit {
 
   /* Label Model*/
   labels: Label = new Label();
-  private labelList = []
+  labelList = []
   public model: any = {
     "labelName": "",
     "newName": ""
   }
   /* Get Id from localstorage*/
-  id = localStorage.getItem('token');
-  changeText1:boolean;
+  id = localStorage.getItem('Id');
+  changeText1: boolean;
   changeText: boolean;
   constructor(
     private noteService: NotesService,
@@ -34,8 +34,8 @@ export class LabelComponent implements OnInit {
     private dialogRef: MatDialogRef<NavbarComponent>
   ) {
     this.changeText = false;
-    this.changeText1 =false;
-   }
+    this.changeText1 = false;
+  }
 
   ngOnInit() {
     /* Show label*/
@@ -101,7 +101,7 @@ export class LabelComponent implements OnInit {
    */
   clear() {
     this.labels.label = null;
-    this.changeText1=true;
+    this.changeText1 = true;
   }
 
   /**
@@ -109,14 +109,14 @@ export class LabelComponent implements OnInit {
    */
   deleteLabel(labelId) {
     this.noteService.deleteNoteLabel(labelId)
-     .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         console.log("deleteLabel response ===>", response);
         this.showLabel();
       }, (error) => {
         console.log("deleteLabel error ===>", error);
       });
-      }
+  }
 
   /**
    * @description  :  Edit Label 
@@ -136,7 +136,7 @@ export class LabelComponent implements OnInit {
       });
   }
 
-  /* Open and Close editIcon*/ 
+  /* Open and Close editIcon*/
   private labelId
   editIcon(id, labelName) {
     this.labelId = [];
