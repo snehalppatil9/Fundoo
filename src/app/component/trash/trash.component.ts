@@ -57,7 +57,7 @@ export class TrashComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.getTrashList(), 100);
   }
   /**
   * @description : Restore Note
@@ -84,7 +84,7 @@ export class TrashComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.getTrashList(), 100);
   }
 
 }

@@ -35,12 +35,13 @@
 .pin{
     float: right;
 }
-.textarea .input{
+.textarea{
     width:90%;
     outline: none;
     margin:2%;
 }
-.textarea:empty:before .input{
+.textarea:empty:before{
+    content: attr(data-text);
     opacity: 0.5;
     font-size: 14px;
     width:60%;

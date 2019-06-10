@@ -189,6 +189,7 @@ export class NavbarComponent implements OnInit {
   }
   clearsearch(){
     this.searchValue=null;
+    this.router.navigateByUrl('/addnote');
   }
   profileImage(event): void {
     const dialogRef = this.dialog.open(ImageCropComponent, {

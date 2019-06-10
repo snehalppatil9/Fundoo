@@ -53,6 +53,7 @@ import { MatSelectModule } from '@angular/material';
 import {MatChipsModule} from '@angular/material/chips';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 @NgModule({
    imports: [
     BrowserModule,

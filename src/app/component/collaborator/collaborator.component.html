@@ -3,32 +3,31 @@
 <div fxLayoutGap='35px'>
   <div class="margin">
     <mat-card-header>
-      <div mat-card-avatar class="addPerson">
-        <mat-icon class=icon>person_add</mat-icon>
+      <div mat-card-avatar>
+        <div class=nameIcon>{{firstName[0].toUpperCase()}}{{ lastName[0].toUpperCase()}}</div>
       </div>
       <mat-card-title>{{firstName}} {{lastName}} (Owner)</mat-card-title>
       <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>
     <div *ngFor="let item of collaborators" fxAlign="row" fxFlexLayout="space-between center">
-    <mat-card-header>
-       <div mat-card-avatar class="addPerson">
-          <mat-icon class=icon>person_add</mat-icon>
+      <mat-card-header>
+        <div mat-card-avatar>
+          <div class=nameIcon>{{item.firstName[0].toUpperCase()}}{{ item.lastName[0].toUpperCase() }}</div>
         </div>
         <mat-card-title>{{item.firstName}} {{item.lastName}}</mat-card-title>
         <mat-card-subtitle>{{item.email}}</mat-card-subtitle>
-        <div fxLayoutAlign="end end" class="clear">
-          <button type="button" mat-button (click)=removeCol(item)>
+        <!-- <div fxLayoutAlign="end end" class="clear"> -->
+          <button type="button" class="clear" mat-button (click)=removeCol(item)>
             <i class="material-icons">
               clear
             </i>
           </button>
-        </div>
+        <!-- </div> -->
       </mat-card-header>
     </div>
-    
+
     <mat-card-header>
-      <div mat-card-avatar class="addPerson">
-        <mat-icon class=icon>person_add</mat-icon>
+      <div mat-card-avatar>
       </div>
       <input placeholder="person or email to share with" [(ngModel)]="searchValue" (keyup)="searchUser()" matInput
         [matMenuTriggerFor]="menu">

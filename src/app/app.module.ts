@@ -68,7 +68,8 @@ import { AskQuestionComponent } from './component/ask-question/ask-question.comp
    
   ],
   imports: [
-     AngularMaterial
+     AngularMaterial,
+     
   ],
   providers: [],
   bootstrap: [AppComponent]

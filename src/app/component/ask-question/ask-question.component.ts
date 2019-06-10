@@ -15,6 +15,7 @@ import { Subject } from 'rxjs';
 export class AskQuestionComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   showfroalaeditor: boolean = true;
+  showfroalaeditor1 : boolean = true;
   message = new FormControl('');
   @Input() id;
   noteId: '';
@@ -56,16 +57,17 @@ export class AskQuestionComponent implements OnInit {
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
     this.addMsg.message = null;
+    this.showfroalaeditor1= !this.showfroalaeditor1;
   }
   notes: Note[] = [];
   noteDataList=[];
+  
   getNotesDetail() {
     this.noteService.getNotesDetail(this.noteId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         this.notes = data["data"].data;
-        this.noteDataList =this.notes;
-        console.log("data in get notelist ask question=========>", this.noteDataList["questionAndAnswerNotes"]);
+       console.log("data in get notelist ask question=========>", this.noteDataList);
         this.snackbar.open('Notes Detail.', '', { duration: 3000 });
         console.log('Notes Detail data..........', data);
       },

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Collaborator } from '../../core/model/user-model'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { NotesService } from '../../core/services/notes/notes.service';
-import { MatSnackBar, MatCard } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { DataService } from 'src/app/core/services/data/data.service';
 import { UserService } from '../../core/services/user/user.service';
 import { Note } from '../../core/model/user-model';

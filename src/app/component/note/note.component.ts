@@ -9,19 +9,15 @@
  *  @since          : 28-04-2019
  *
  ******************************************************************************/
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 import { NotesService } from '../../core/services/notes/notes.service'
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data/data.service';
 import { Note } from '../../core/model/user-model'
-import { ImageCropComponent } from '../image-crop/image-crop.component'
-import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatDialog, MatCard } from '@angular/material';
-import { environment } from '../../../environments/environment';
-import { Label } from '../../core/model/user-model';
+import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
@@ -31,14 +27,16 @@ export class NoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
  labelcard: boolean = true;
   isAchive: boolean = false;
+  @ViewChild('title') title: ElementRef;
+  @ViewChild('description') description: ElementRef ;
   /**
    * @description :  use for pin/unpin
    */
   isPin: boolean = false;
   @Output() onChange = new EventEmitter;
   isDeleted: boolean = false;
-  title = new FormControl('')
-  description = new FormControl('')
+  // title = new FormControl('')
+  // description = new FormControl('')
   itemName = new FormControl('')
   image = localStorage.getItem("userImage");
   setColor: any;
@@ -94,8 +92,8 @@ export class NoteComponent implements OnInit {
     this.addNotes.reminder = this.reminder;
     // this.addNotes.imageUrl = this.img;
     var body = {
-      "title": this.addNotes.title,
-      "description": this.addNotes.description,
+      "title": this.title.nativeElement.innerHTML,
+      "description": this.description.nativeElement.innerHTML,
       "color": this.addNotes.color,
       "reminder": this.addNotes.reminder,
       "isArchived": this.isAchive,

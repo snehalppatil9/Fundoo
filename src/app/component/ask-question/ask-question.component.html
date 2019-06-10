@@ -15,30 +15,32 @@
         <h4>Ask a Question</h4>
       </div>
     </div>
-    <div *ngIf="!showfroalaeditor" fxFlexLayout="space-between center" fxAlign="row">
-        <mat-card-header>
-          <div fxFlex="10">
-            <div mat-card-avatar class="addPerson">
-              <mat-icon class=icon>person_add</mat-icon>
-            </div>
+    <div *ngIf="!showfroalaeditor1 && !showfroalaeditor" style="margin-left: 20px;" fxFlexLayout="space-between center" fxAlign="row">
+      <mat-card-header>
+        <div fxFlex="5">
+          <div mat-card-avatar>
+            <div class=nameIcon>{{data.user.firstName[0].toUpperCase()}}{{ data.user.lastName[0].toUpperCase()}}</div>
           </div>
-          <div>
-            <mat-card-title>{{data.user.firstName}}</mat-card-title>
-            <mat-card-title>{{ data.questionAndAnswerNotes }}</mat-card-title>
-          </div>
-        </mat-card-header>
-      </div>
+        </div>
+        <div fxLayout="row">
+          <mat-card-title>{{data.user.firstName}} {{data.user.lastName}}</mat-card-title>
+        </div>
+        <div *ngFor="let item of data.questionAndAnswerNotes">
+          {{item.message}}
+        </div>
+      </mat-card-header>
+    </div>
     <div style="height:5vh;"></div>
     <div class="textarea" style="margin-left: 30px;">
-      <div *ngIf="!showfroalaeditor">
+      <div *ngIf="!showfroalaeditor && showfroalaeditor1">
         <h5>Make sure what you are asking is unique,concise phrased like a question.</h5>
       </div>
-      <textarea *ngIf="!showfroalaeditor" [froalaEditor] [(froalaModel)]="addMsg.message"
+      <textarea *ngIf="!showfroalaeditor && showfroalaeditor1" [froalaEditor] [(froalaModel)]="addMsg.message"
         [formControl]="message"></textarea>
     </div>
     <!-- <div style="margin-left: 30px;" [froalaView]="addMsg.message"></div> -->
     <div style="height:5vh;"></div>
-    
+
     <div fxLayoutAlign="end">
       <button mat-button (click)="addMessage()">Submit-Question</button>
     </div>

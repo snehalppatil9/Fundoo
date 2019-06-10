@@ -90,7 +90,7 @@ export class ArchieveComponent implements OnInit {
    } catch (error) {
      this.snackbar.open('error', "", { duration: 3000 });
    }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.getArchiveList(), 30);
  }
 /**
   * @description : remove label from note
