@@ -37,7 +37,8 @@ import { PinComponent }  from './component/pin/pin.component';
 import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 import { AngularMaterial } from './angularmaterial';
 import { FilterPipe } from './filterpipe/filter.pipe';
-import { AskQuestionComponent } from './component/ask-question/ask-question.component'
+import { AskQuestionComponent } from './component/ask-question/ask-question.component';
+import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component'
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { AskQuestionComponent } from './component/ask-question/ask-question.comp
     PinComponent,
     LabelnoteComponent,
     AskQuestionComponent,
+    ComponentlifecycleComponent,
    
   ],
   imports: [

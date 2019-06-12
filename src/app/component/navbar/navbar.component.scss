@@ -7,11 +7,13 @@
 .example-container{
     // width: 400px;  
     height: 750px;
-    overflow: hidden;
+    // overflow: hidden;
+    background-color: white;
 }
 .example-sidenav{
-    width: 380px;  
-    overflow: hidden;
+    width: 355px;  
+    background-color: white;
+    // overflow: hidden;
   }
 .sidebutton button:focus { 
     background-color: #feefc3;
@@ -55,6 +57,7 @@
     position: absolute;
     opacity:0.7;
     margin-top: 8.5px;
+    margin-left: 100px;
 }
 .searchbutton1{
     margin-left: -69px;
@@ -137,14 +140,22 @@
     margin-top: 10px;
     margin-left: -25px;
 }
-.buttonicon {
-    width:95%;
-    text-align: start;
-    margin-left:15px;
-    text-decoration-line: none;
-    color:black;
-    opacity:0.7;
+.buttonicon .btn mat-button{
+    border-radius: 0 25px 25px 0;
+    // border-style: none;
+    box-shadow: none;
+    color: #202124;
+    letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    height: 40px;
 }
+.buttonicon .sideicon{
+    margin-left: 12px;
+}
+
 .label{
     font-weight: 500;
     color: black;

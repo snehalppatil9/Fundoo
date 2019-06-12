@@ -1,4 +1,4 @@
-<div fxLayoutAlign="center">
+<!-- <div fxLayoutAlign="center">
   <div *ngFor="let data of notes" fxFlex.xl="1600px" fxFlex.lg="1200px" fxFlex.md="800px" fxFlex.sm="600px"
     fxFlex.xs="95%">
     <div style="height : 5vh;"></div>
@@ -11,11 +11,11 @@
     </div>
     <hr>
     <div>
-      <div style="margin-left: 30px;" *ngIf="showfroalaeditor" (click)="openEditor()">
+      <div style="margin-left: 30px;" *ngIf="(showfroalaeditor)" (click)="openEditor()">
         <h4>Ask a Question</h4>
       </div>
     </div>
-    <div *ngIf="!showfroalaeditor1 && !showfroalaeditor" style="margin-left: 20px;" fxFlexLayout="space-between center" fxAlign="row">
+    <div *ngIf="(!showfroalaeditor1 && !showfroalaeditor)" style="margin-left: 20px;" fxFlexLayout="space-between center" fxAlign="row">
       <mat-card-header>
         <div fxFlex="5">
           <div mat-card-avatar>
@@ -38,18 +38,90 @@
       <textarea *ngIf="!showfroalaeditor && showfroalaeditor1" [froalaEditor] [(froalaModel)]="addMsg.message"
         [formControl]="message"></textarea>
     </div>
-    <!-- <div style="margin-left: 30px;" [froalaView]="addMsg.message"></div> -->
-    <div style="height:5vh;"></div>
+        <div style="height:5vh;"></div>
 
     <div fxLayoutAlign="end">
-      <button mat-button (click)="addMessage()">Submit-Question</button>
+      <button mat-button *ngIf="!showfroalaeditor && showfroalaeditor1" (click)="addMessage()">Submit-Question</button>
     </div>
-    <!-- <div fxLayout="row" style="margin-left: 30px; margin-right: 30px;"> -->
-    <mat-form-field>
-      <mat-select placeholder="View reply">
-        <mat-option>View reply</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!-- </div> -->
+   
+    
+    <div fxLayoutAlign="start">
+      <button mat-button *ngIf="showfroalaeditor2" (click)="postReplyEditor()">View-Reply</button>
+    </div>
+    <div class="textarea" style="margin-left: 30px;" *ngIf="!showfroalaeditor2" >
+    <textarea [froalaEditor] [(froalaModel)]="replyMsg.message"
+        [formControl]="message"></textarea>
+          <div *ngFor="let item of data.questionAndAnswerNotes">
+          <button mat-button (click)=postReply(item.id)>Submit-Answer</button>
+        </div>
+       
+  </div>
+
+  </div>
+</div> -->
+
+
+
+<div fxLayoutAlign="center">
+  <div *ngFor="let data of notes" fxFlex.xl="1600px" fxFlex.lg="1200px" fxFlex.md="800px" fxFlex.sm="600px"
+    fxFlex.xs="95%">
+    <div style="height : 5vh;"></div>
+    <div fxLayout="row" class="title">
+      <div fxFlex="90">{{data.title}}</div>
+      <button mat-button fxFlex="10" (click)=close()>Close</button>
+    </div>
+    <div fxLayout="row" class="description">
+      {{data.description}}
+    </div>
+    <hr>
+    <div *ngIf="data.questionAndAnswerNotes.length == 1">
+        <mat-card-header>
+          <div fxLayout="row" fxFlex="100">
+            <div fxFlex="5">
+              <div mat-card-avatar>
+                <div class=nameIcon>{{data.user.firstName[0].toUpperCase()}}{{ data.user.lastName[0].toUpperCase()}}</div>
+              </div>
+            </div>
+            <div fxFlex="95">
+              <mat-card-title>{{data.user.firstName}} {{data.user.lastName}}</mat-card-title>
+            </div>
+          </div>
+        </mat-card-header>
+        <div style="margin-left:63px; margin-top: -18px;" *ngFor="let item of data.questionAndAnswerNotes">
+             <h4>{{item.message}}</h4>
+        </div>
+
+         
+    <div fxLayoutAlign="start">
+        <button mat-button *ngIf="showfroalaeditor2" (click)="postReplyEditor()">View-Reply</button>
+      </div>
+      <div class="textarea" style="margin-left: 30px;" *ngIf="!showfroalaeditor2" >
+      <textarea [froalaEditor] [(froalaModel)]="replyMsg.message"
+          [formControl]="message"></textarea>
+    </div>
+    </div>
+    <div *ngIf="data.questionAndAnswerNotes.length != 1">
+        <div style="margin-left: 30px;" *ngIf="showfroalaeditor" (click)="openEditor()">
+            <h4>Ask a Question</h4>
+          </div>
+          <div style="height:5vh;"></div>
+    <div class="textarea" style="margin-left: 30px;">
+      <div *ngIf="!showfroalaeditor && showfroalaeditor1">
+        <h5>Make sure what you are asking is unique,concise phrased like a question.</h5>
+      </div>
+      <textarea *ngIf="!showfroalaeditor && showfroalaeditor1" [froalaEditor] [(froalaModel)]="addMsg.message"
+        [formControl]="message"></textarea>
+    </div>
+        <div style="height:5vh;"></div>
+
+    <div fxLayoutAlign="end">
+      <button mat-button *ngIf="!showfroalaeditor && showfroalaeditor1" (click)="addMessage()">Submit-Question</button>
+    </div>
+    </div>
+
+
+    <div *ngFor="let item of data.questionAndAnswerNotes">
+        <button *ngIf="!showfroalaeditor2" mat-button (click)=postReply(item.id)>Submit-Answer</button>
+    </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ export class UserModel {
     "username": string
     password: string
     cpassword: string
+    
 }
 export class Note {
     title: string
@@ -19,6 +20,7 @@ export class Note {
     isPined: boolean
     labelIdList : string
     imageUrl: string
+    questionAndAnswerNotes :[{}]
 }
 export class Label {
     "label": string;
@@ -41,5 +43,8 @@ export class Collaborator {
     "id": string;
 }
 export class Editor{
+    "message" : string
+}
+export class Reply{
     "message" : string
 }

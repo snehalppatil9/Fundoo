@@ -12,8 +12,8 @@ export class ImageCropComponent implements OnInit {
 
   
   destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor( private NavbarServiceUser : UserService, private dialogRef : MatDialogRef<ImageCropComponent>, 
-  @Inject(MAT_DIALOG_DATA) private data : any ) { }
+  constructor( private userService : UserService, private dialogRef : MatDialogRef<ImageCropComponent>, 
+  @Inject(MAT_DIALOG_DATA) public data : any ) { }
   
   private apiImage;
   private croppedImage;
@@ -33,7 +33,7 @@ export class ImageCropComponent implements OnInit {
     this.apiImage=this.croppedImage.file
     const uploadData = new FormData();
     uploadData.append('file', this.apiImage, this.apiImage.name);
-    this.NavbarServiceUser.addProfileImage(uploadData)
+    this.userService.addProfileImage(uploadData)
     .pipe(takeUntil(this.destroy$))
     .subscribe(res => {
       this.dialogRef.close();

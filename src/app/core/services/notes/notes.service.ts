@@ -127,5 +127,7 @@ export class NotesService {
 getNotesDetail(noteId){
   return this.httpservice.getData("notes/getNotesDetail/"+noteId)
 }
-  
+  viewReply(body,parentId){
+    return this.httpservice.postData("questionAndAnswerNotes/reply/"+parentId,body)
+  }
 }

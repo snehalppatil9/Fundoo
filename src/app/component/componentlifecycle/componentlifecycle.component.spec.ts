@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ComponentlifecycleComponent } from './componentlifecycle.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from '../login/login.component';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -25,24 +27,30 @@ import { LabelnoteComponent } from '../labelnote/labelnote.component';
 import { AngularMaterial } from '../../angularmaterial';
 import { FilterPipe } from '../../filterpipe/filter.pipe';
 import { AskQuestionComponent } from '../ask-question/ask-question.component'
-import { ComponentlifecycleComponent } from '../componentlifecycle/componentlifecycle.component'
-describe('ArchieveComponent', () => {
-  let component: ArchieveComponent;
-  let fixture: ComponentFixture<ArchieveComponent>;
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+describe('ComponentlifecycleComponent', () => {
+  let component: ComponentlifecycleComponent;
+  let fixture: ComponentFixture<ComponentlifecycleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
       imports : [FlexLayoutModule,RouterTestingModule,
-        AngularMaterial
+        AngularMaterial,MatDialogModule
       ],
-      providers : [FilterPipe,PipePipe]
+      providers : [
+        FilterPipe,PipePipe,
+        { provide:  MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }]
+  
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArchieveComponent);
+    fixture = TestBed.createComponent(ComponentlifecycleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

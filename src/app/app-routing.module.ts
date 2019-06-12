@@ -30,13 +30,15 @@ import { ImageCropComponent } from './component/image-crop/image-crop.component'
 import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component'
 import { PinComponent }  from './component/pin/pin.component'
 import { LabelnoteComponent } from './component/labelnote/labelnote.component';
-import { AskQuestionComponent } from './component/ask-question/ask-question.component'
+import { AskQuestionComponent } from './component/ask-question/ask-question.component';
+import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component'
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
+  { path: 'componentcycle', component : ComponentlifecycleComponent},
   {
     path: '',
     component: NavbarComponent,  canActivate: [AuthGuardService],
@@ -58,6 +60,7 @@ const routes: Routes = [
       { path: 'pin', component: PinComponent },
       { path: 'labelnote/:label', component: LabelnoteComponent },
       { path: 'askquestion/:id', component: AskQuestionComponent }
+      
     ]
 
   }

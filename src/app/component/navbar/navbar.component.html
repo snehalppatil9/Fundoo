@@ -11,10 +11,11 @@
 <!-- 
     @Description: Dashboard tool bar
  -->
+
 <mat-toolbar class="navbar" style="height:10vh" fxLayoutAlign="space-evenly center">
-    <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="60" fxFlex.xs="50" fxFlex.sm="70">
-        <div fxFlex="25" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
-            <div fxFlex="30" fxFlex.md="20" fxFlex.xs="20" fxFlex.sm="20">
+    <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="90" fxFlex.xs="50" fxFlex.sm="70">
+        <div fxFlex="15" fxFlex.md="90" fxFlex.xs="80" fxFlex.sm="90">
+            <div fxFlex="35" fxFlex.md="20" fxFlex.xs="20" fxFlex.sm="20">
                 <!-- 
                      @Description: Dashboard first icon menu bar
                  -->
@@ -28,7 +29,7 @@
             <!-- 
                  @Description: Dashboard second icon image
              -->
-            <div fxFlex="30">
+            <div fxFlex="35">
                 <img class="gb_ma gb_Cd" alt="" aria-hidden="true" fxShow fxHide.sm fxShow fxHide.xs
                     src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
                     srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
@@ -37,7 +38,7 @@
             <!-- 
                  @Description: Dashboard Fundoo Label
              -->
-            <div fxFlex="40" style="margin-top:15px;" ngStyle.md="font-size:10px" ngStyle.lg="font-size:25px"
+            <div fxFlex="30" style="margin-top:15px;" ngStyle.md="font-size:10px" ngStyle.lg="font-size:25px"
                 ngStyle.sm="font-style:15px;" ngStyle.xl="font-size:25px">
                 <b>{{labelName}}</b>
             </div>
@@ -45,15 +46,20 @@
         <!-- 
             @Description: Dashboard Search Box
         -->
-        <div fxFlex="50" fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80" fxShow fxHide.sm
+            <div fxFlex="60" fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="100" fxFlex.xl="90" fxShow fxHide.sm
             fxShow fxHide.xs style="margin-top : 9px;" fxLayoutGap=15px>
-            <button style="outline: none" class="searchbutton" mat-icon-button
-                (click)="searchmatcards()">
-                <i class="material-icons">search</i>
-            </button>
-            <input type="text" class="search" [(ngModel)]="searchValue" class="search" (click)="search()"
-                (keyup)=newMessage() placeholder="Search..">
-            <img class="searchbutton1" src="../../../assets/images/clear.svg" (click)="clearsearch()">
+            <div fxFlex="10">
+                <button style="outline: none" class="searchbutton" mat-icon-button (click)="searchmatcards()">
+                    <i class="material-icons">search</i>
+                </button>
+            </div>
+            <div fxFlex="80">
+                <input type="text" class="search" [(ngModel)]="searchValue" class="search" (click)="search()"
+                    (keyup)=newMessage() placeholder="Search..">
+            </div>
+            <div fxFlex="10">
+                <img class="searchbutton1" src="../../../assets/images/clear.svg" (click)="clearsearch()">
+            </div>
         </div>
         <!-- 
             @Description: Dashboard view-list, settings and logout account icons  
@@ -84,6 +90,7 @@
         </div>
     </div>
 </mat-toolbar>
+<mat-divider></mat-divider>
 <!-- 
   @Description  : Logout Card
 -->
@@ -125,15 +132,14 @@
                 <div fxFlex=40>
                     <div class="edit">LABELS</div>
                 </div>
-                <a *ngFor="let data of labelList" class=buttonicon  routerLink="/labelnote/{{data}}" (click)="toolbarName(data)"
-                routerLinkActive=active>
-                    <div fxLayout=row>
-                        <!-- <div fxFlex="10"></div> -->
-                        <div fxFlex="10" class="label-icon">
+                <a class="btn" *ngFor="let data of labelList" routerLink="/labelnote/{{data}}" (click)="toolbarName(data)"
+                    routerLinkActive=active>
+                    <button type="button" class="btn" mat-button>
+                        <div class="sideicon" fxLayout="row" fxLayoutGap="10px">
                             <img src="../../../assets/images/label1.svg">
+                            <h6>{{data}}</h6>
                         </div>
-                        <div fxFlex="60" class="side_label">{{data}}</div>
-                    </div>
+                    </button>
                 </a>
                 <button type="button" (click)="createLabel()" class="btn" mat-button>
                     <div class="sideicon" fxLayout="row" fxLayoutGap="20px">

@@ -17,7 +17,7 @@ import { Subject } from 'rxjs';
 export class CollaboratorComponent implements OnInit {
   searchValue: any;
   notes: Note[] = [];
-  userList: any[];
+  userList: any = [];
   collab = new Collaborator();
   constructor(private snackbar: MatSnackBar, private noteService: NotesService,
     private dataService: DataService,
@@ -77,7 +77,8 @@ export class CollaboratorComponent implements OnInit {
     console.log("iddddd", id);
     console.log("Add collaborators Notes data === >", id);
     // console.log("data.isd=====================>",this.data.noteData['id']);
-    this.callboratorData = this.userList[0];
+    try{
+      this.callboratorData = this.userList[0];
     // this.callboratorData = this.userList[data[0]];
     console.log("this.collaboratordata", this.callboratorData);
     try {
@@ -95,6 +96,10 @@ export class CollaboratorComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+  
+  }catch(error){
+    this.snackbar.open('error', "", { duration: 3000 });
+  }
     setTimeout(() => this.dataService.getAllNote(), 100);
   }
 

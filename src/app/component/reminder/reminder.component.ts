@@ -25,7 +25,12 @@ export class ReminderComponent implements OnInit {
   ngOnInit() {
     this.dataService.allReminder
     .pipe(takeUntil(this.destory$))
-    .subscribe(data => this.notes = data);
+    .subscribe(data => {
+      if(data.length > 0){
+        this.notes = data
+      }
+      
+    });
   console.log('all reminder note ==================>', this.notes);
 
 
@@ -44,7 +49,7 @@ export class ReminderComponent implements OnInit {
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
         this.notes = response["data"].data.reminder;
-        console.log("get reminder note############### ===============>", this.notes);
+        console.log("get reminder note ===============>", this.notes);
 
       }, (error) => {
       });

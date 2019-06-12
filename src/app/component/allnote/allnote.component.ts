@@ -14,7 +14,7 @@ import { DataService } from '../../core/services/data/data.service'
 import { Note } from '../../core/model/user-model'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatDialog, MatCard } from '@angular/material'
+import { MatDialog } from '@angular/material'
 import { EventEmitter } from 'events';
 import { DialogComponent } from '../dialog/dialog.component'
 import { NotesService } from '../../core/services/notes/notes.service';
