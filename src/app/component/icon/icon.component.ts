@@ -53,27 +53,24 @@ export class IconComponent implements OnInit {
 
   colorsArray = [
     [
-      { name: "white", hexcode: "#FFFFFF" },
-      { name: "salmon", hexcode: "#fa8072" },
-      { name: "orange", hexcode: "#FFA500" },
-      { name: "yellow", hexcode: "#FFFF00" },
+    { name: "white",hexcode: "#ffffff" },
+    { name: "lightGreen",hexcode: "#90ee90" },
+    { name: "purple", hexcode: "#800080" },
+    { name: "red", hexcode: "#ff0000" },
     ],
-
     [
-      { name: "green", hexcode: "#008000" },
-      { name: "teal", hexcode: "#008080" },
-      { name: "blue", hexcode: "#0000FF" },
-      { name: "aqua", hexcode: "#00FFFF" },
+    { name: "Teal", hexcode: "#008080" },
+    { name: "pink", hexcode: "#ffc0cb" },
+    { name: "orange", hexcode: "#ffa500" },
+    { name: "blue", hexcode: "#0000ff" },
     ],
-
     [
-      { name: "purple", hexcode: "#800080" },
-      { name: "pink", hexcode: "#FFC0CB" },
-      { name: "red", hexcode: "#FF0000" },
-      { name: "gray", hexcode: "#808080" },
-
+    { name: "brown", hexcode: "#a52a2a" },
+    { name: "yellow", hexcode: "#ffff00" },
+    { name: "darkBlue", hexcode: "#00008b" },
+    { name: "gray", hexcode: "#808080" }
     ]
-  ]
+    ]
   ngOnInit() {
     this.showLabel();
     this.dataService.currentMessageSearch
@@ -155,9 +152,6 @@ export class IconComponent implements OnInit {
           });
     }
   }
-
-
-
   /**
   * 
   * @description getting label list
@@ -169,6 +163,7 @@ export class IconComponent implements OnInit {
       .subscribe((response) => {
         this.label = response["data"].details;
         this.labelList = [];
+        this.label.reverse();
         this.labelList = this.label;
         for (let i = 0; i < this.labelList.length; i++) {
           this.labelList[i].isChecked = false;

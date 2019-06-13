@@ -79,10 +79,10 @@ export class NoteComponent implements OnInit {
   onPinChange($event) {
     this.isPin = $event;
   }
-  pin() {
-    this.isPin = !this.isPin;
-    this.onChange.emit(this.isPin);
-  }
+  // pin() {
+  //   this.isPin = !this.isPin;
+  //   this.onChange.emit(this.isPin);
+  // }
   /**
   * @description :  Adding note in database
   */

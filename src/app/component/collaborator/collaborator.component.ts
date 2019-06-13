@@ -8,7 +8,7 @@ import { UserService } from '../../core/services/user/user.service';
 import { Note } from '../../core/model/user-model';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import { environment } from '../../../environments/environment'
 @Component({
   selector: 'app-collaborator',
   templateUrl: './collaborator.component.html',
@@ -27,10 +27,15 @@ export class CollaboratorComponent implements OnInit {
   firstName = localStorage.getItem("Firstname");
   lastName = localStorage.getItem("Lastname");
   email = localStorage.getItem("Email");
+  image = localStorage.getItem("userImage");
   destroy$: Subject<boolean> = new Subject<boolean>();
   collaborators = this.data.collaborators
   id = this.data.id
+  private img;
+  private width;
   ngOnInit() {
+    this.firstName= localStorage.getItem("Firstname");
+    this.lastName =  localStorage.getItem("Lastname");
     this.dataService.allNote
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
@@ -41,7 +46,11 @@ export class CollaboratorComponent implements OnInit {
       });
     console.log('all note data  ==================>', this.notes);
 
-
+    this.img = environment.Url + this.image;
+    this.isLargeScreen();
+  }
+  isLargeScreen() {
+    this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   }
   cancel() {
     this.dialog.closeAll();

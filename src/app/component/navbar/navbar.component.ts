@@ -158,15 +158,14 @@ export class NavbarComponent implements OnInit {
         this.showLabel();
       })
   }
+
   showLabel() {
     this.noteService.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.label = response["data"].details;
-        this.labelList = [];
-        for (let i = 0; i < this.label.length; i++) {
-          this.labelList.push(this.label[i].label);
-        }
+        this.label.reverse();
+        console.log("this.label reverse ==========>", this.label);
       })
   }
   /*
@@ -180,15 +179,15 @@ export class NavbarComponent implements OnInit {
   */
   search() {
     this.router.navigateByUrl('/search');
-}
+  }
   /*
   * @description :  for search note
   */
   newMessage() {
     this.dataService.MessageSearch(this.searchValue);
   }
-  clearsearch(){
-    this.searchValue=null;
+  clearsearch() {
+    this.searchValue = null;
     this.router.navigateByUrl('/addnote');
   }
   profileImage(event): void {
@@ -205,10 +204,10 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  labelShow:boolean=false;
-  labelValue='';
-  toolbarName(aa){
-    this.labelShow=true
-    this.labelValue=aa
+  labelShow: boolean = false;
+  labelValue = '';
+  toolbarName(aa) {
+    this.labelShow = true
+    this.labelValue = aa
   }
 }

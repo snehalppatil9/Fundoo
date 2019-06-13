@@ -19,6 +19,29 @@ export class AskQuestionComponent implements OnInit {
   showfroalaeditor1 : boolean = true;
   showfroalaeditor2 : boolean = true;
   message = new FormControl('');
+  rating:number; 
+  starList: boolean[] = [true,true,true,true,true];    
+  setStar(data:any,parentId){
+    this.rating=data+1;                               
+    for(var i=0;i<=4;i++){  
+      if(i<=data){  
+        this.starList[i]=false;  
+      }  
+      else{  
+        this.starList[i]=true;  
+      }  
+   }  
+   console.log("rating====>",this.rating);
+   this.noteService.viewReply(this.rating,parentId)
+   .subscribe(data=>
+     {
+       this.notes = data["data"].data;
+       console.log(" rating data notelist ask question=========>", this.notes);
+        this.snackbar.open('Notes Detail.', '', { duration: 3000 });
+        console.log('Notes Detail data..........', data);
+   })
+   
+}  
   @Input() id;
   noteId: '';
   addMsg: Editor = new Editor();
@@ -32,6 +55,7 @@ export class AskQuestionComponent implements OnInit {
   openEditor() {
     this.showfroalaeditor = !this.showfroalaeditor;
   }
+  
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.noteId = params['id'];
@@ -62,7 +86,8 @@ export class AskQuestionComponent implements OnInit {
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
     this.addMsg.message = null;
-    this.showfroalaeditor1= !this.showfroalaeditor1;
+    this.showfroalaeditor2 = !this.showfroalaeditor2;
+
   }
   notes: Note[] = [];
   noteDataList=[];
@@ -97,7 +122,7 @@ export class AskQuestionComponent implements OnInit {
     .subscribe(data=>
       {
         this.notes = data["data"].data;
-        console.log("data in view Reply notelist ask question=========>", this.noteDataList);
+        console.log("data in view Reply notelist ask question=========>", this.notes);
          this.snackbar.open('Notes Detail.', '', { duration: 3000 });
          console.log('Notes Detail data..........', data);
     })

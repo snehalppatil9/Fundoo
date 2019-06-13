@@ -76,16 +76,15 @@ export class LabelComponent implements OnInit {
   /**
    * @description  :  Getting label data 
    */
+  label : Label[] =[];
   showLabel() {
     this.noteService.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((response: any) => {
-        this.labels = response.data.details
-        this.labelList = [];
-        console.log("check showLabel=====>", response);
-      }, (error) => {
-        console.log("Data ====>", error);
-      });
+      .subscribe((response) => {
+        this.label = response["data"].details;
+        this.label.reverse();
+        console.log("this.label reverse ==========>", this.label);
+      })
   }
 
   /**

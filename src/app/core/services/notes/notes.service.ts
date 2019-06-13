@@ -45,8 +45,8 @@ export class NotesService {
   addColNote(body, id) {
     return this.httpservice.postDataForSearchUser("notes/" + id + "/AddcollaboratorsNotes", body)
   }
-  removeColaborator(noteId,userId){
-    return this.httpservice.deleteData("notes/"+noteId+"/removeCollaboratorsNotes/"+userId);
+  removeColaborator(noteId, userId) {
+    return this.httpservice.deleteData("notes/" + noteId + "/removeCollaboratorsNotes/" + userId);
   }
   /**
    * @Purpose: Update Note
@@ -117,17 +117,25 @@ export class NotesService {
     return this.httpservice.postDataforPin("notes/pinUnpinNotes", body);
   }
 
-  getNotelistByLabel(label){
-    return this.httpservice.postData("notes/getNotesListByLabel/"+label,{});
+  getNotelistByLabel(label) {
+    return this.httpservice.postData("notes/getNotesListByLabel/" + label, {});
   }
 
-  addMessageQA(body){
-    return this.httpservice.postData("questionAndAnswerNotes/addQuestionAndAnswer",body)
+
+     /**
+     *  @description  : Question and Answers
+     */
+
+  addMessageQA(body) {
+    return this.httpservice.postData("questionAndAnswerNotes/addQuestionAndAnswer", body)
   }
-getNotesDetail(noteId){
-  return this.httpservice.getData("notes/getNotesDetail/"+noteId)
-}
-  viewReply(body,parentId){
-    return this.httpservice.postData("questionAndAnswerNotes/reply/"+parentId,body)
+  getNotesDetail(noteId) {
+    return this.httpservice.getData("notes/getNotesDetail/" + noteId)
+  }
+  viewReply(body, parentId) {
+    return this.httpservice.postData("questionAndAnswerNotes/reply/" + parentId, body)
+  }
+  addRating(body, parentId) {
+    return this.httpservice.postData("questionAndAnswerNotes/rate/" + parentId, body);
   }
 }

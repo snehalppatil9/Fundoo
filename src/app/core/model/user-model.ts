@@ -23,9 +23,9 @@ export class Note {
     questionAndAnswerNotes :[{}]
 }
 export class Label {
-    "label": string;
-    "isDeleted": false;
-    "userId": string;
+    label : string;
+    isDeleted : false;
+    userId : string;
 }
 export class User {
     "id": string;

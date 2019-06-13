@@ -3,9 +3,9 @@
 <div fxLayoutGap='35px'>
   <div class="margin">
     <mat-card-header>
-      <div mat-card-avatar>
-        <div class=nameIcon>{{firstName[0].toUpperCase()}}{{ lastName[0].toUpperCase()}}</div>
-      </div>
+      <div mat-card-avatar
+      [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'60px','height':'60px'}"
+      class="addimage1" ngStyle.xl="width:60px;height:60px"></div>
       <mat-card-title>{{firstName}} {{lastName}} (Owner)</mat-card-title>
       <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>

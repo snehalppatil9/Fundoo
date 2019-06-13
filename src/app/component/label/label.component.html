@@ -28,7 +28,7 @@
             <mat-icon class="done" (click)=done()>done</mat-icon>
         </div>
     </div>
-    <div *ngFor="let label of labels | pipe | filter : searchItem" style="height:6vh">
+    <div *ngFor="let label of label | filter : searchItem" style="height:6vh">
         <div fxLayout=row>
             <div fxFlex="100" fxLayoutAlign="start start" (mouseover)="changeText=true" (mouseout)="changeText=false">
                 <div fxFlex="20">
