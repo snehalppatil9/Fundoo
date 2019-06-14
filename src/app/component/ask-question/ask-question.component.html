@@ -40,7 +40,7 @@
         <textarea [froalaEditor] [(froalaModel)]="replyMsg.message" [formControl]="message"></textarea>
       </div> -->
 
-<!-- 
+
    <div *ngIf="!data.questionAndAnswerNotes[0]">
       <div style="margin-left: 30px;" *ngIf="showfroalaeditor2" (click)="openEditor()">
         <h4>Ask a Question</h4>
@@ -59,10 +59,10 @@
         <button mat-button *ngIf="!showfroalaeditor && showfroalaeditor1"
           (click)="addMessage()">Submit-Question</button>
       </div>
-    </div> -->
+    </div>
 
 
-    <div *ngFor="let item of data.questionAndAnswerNotes">
+    <div *ngIf="data.questionAndAnswerNotes.length > 0">
       <button mat-button *ngIf="showfroalaeditor2" (click)=postReply(item.id) (click)=postReplyEditor()>View-Replies</button>
     </div>
     <div class="textarea" style="margin-left: 30px;" *ngIf="!showfroalaeditor2">

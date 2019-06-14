@@ -17,11 +17,11 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data/data.service';
 import { Note } from '../../core/model/user-model'
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss'],
+  outputs : ['anyChanges']
 })
 export class NoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -29,6 +29,7 @@ export class NoteComponent implements OnInit {
   isAchive: boolean = false;
   @ViewChild('title') title: ElementRef;
   @ViewChild('description') description: ElementRef ;
+  @ViewChild('listItem') listItem: ElementRef ;
   /**
    * @description :  use for pin/unpin
    */
@@ -40,7 +41,7 @@ export class NoteComponent implements OnInit {
   itemName = new FormControl('')
   image = localStorage.getItem("userImage");
   setColor: any;
-  @Input() card;
+  // @Input() card;
   @Input() noteData;
   reminder: any;
   labels1: [];
@@ -49,9 +50,23 @@ export class NoteComponent implements OnInit {
   img: any;
   width;
   @Output() anyChanges = new EventEmitter();
-  constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
+  constructor(private noteService: NotesService, private dataService: DataService, private snackbar: MatSnackBar, private router: Router) { }
   ngOnInit() {
+    
   }
+  private model : any={
+    "item":""
+  }
+  private listArray=[];
+   /**
+  * 
+  * @description adding a checklist
+  */
+ listitem(){
+  if(this.model.item=='') return false;
+  this.listArray.push({"itemName":this.model.item,"status":"open"});
+  this.model.item="";
+}
   /**
   * @description :  it is used for notecard & list card
   */
@@ -79,10 +94,6 @@ export class NoteComponent implements OnInit {
   onPinChange($event) {
     this.isPin = $event;
   }
-  // pin() {
-  //   this.isPin = !this.isPin;
-  //   this.onChange.emit(this.isPin);
-  // }
   /**
   * @description :  Adding note in database
   */
@@ -118,7 +129,8 @@ export class NoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    // setTimeout(() => this.dataService.getAllNote(), 100);
+    
     this.addNotes.title = null;
     this.addNotes.description = null;
   }

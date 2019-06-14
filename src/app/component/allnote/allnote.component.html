@@ -11,13 +11,15 @@
 <!-- 
     @Description    :   Dispalying pinned data into the card after add
  -->
-<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center" >
+<div *ngIf="pinedArray.length > 0" class="pinOthers">PINNED</div>
+<div style="height : 10vh;"></div>
+<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
     <!-- 
          @Description    :   ngClass for grid and list view
     -->
-    <div class="pinOthers">PINNED</div>
+
     <div class="cardSub3" fxFlex="27" style="height: 30vh;" fxLayout="row wrap" fxLayoutAlign="center center"
-        *ngFor="let data of pinedArray | filter : searchItem"
+        *ngFor="let data of pinedArray | filter : searchItem" (anyChanges)="refresh($event)"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false" class="example-box" cdkDrag>
             <mat-card [ngStyle]="{'background-color':data.color}">
@@ -54,24 +56,37 @@
                         <app-icon [card]='data' [noteData]="data" (setColor)=entry($event)
                             (onChangeaddlabeltonotes)=entry($event) (onArchiveEntry)="archiveNote(data,$event)"
                             (onChangeDate)=addReminder(data,$event) (onChangeColor)=changeColor(data,$event)
-                            (onChangeDelete)=deleteNote(data,$event) (anyChanges)="refresh($event)">
+                            (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
+                    </div>
+                </div>
+                <div *ngIf="data.questionAndAnswerNotes.length > 0">
+                    <hr>
+                    <h4>Question Asked</h4>
+                </div>
+                <div *ngFor="let item of data.questionAndAnswerNotes">
+                    <div fxFlex="93">
+                        <h6>{{item.message}}</h6>
                     </div>
                 </div>
             </mat-card>
         </div>
         <div style="height:30vh;"></div>
     </div>
+</div>
 <!-- end of pinned data array -->
-  
+<div style="height : 10vh;"></div>
+<!-- 
+    @Description    :   Dispalying unpinned data into the card after add
+ -->
 
-
+<div *ngIf="unpinedArray.length > 0" class="pinOthers">OTHERS</div>
+<div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
     <!-- 
     @Description    :   Dispalying others data into the card after add
     -->
-    <div class="pinOthers">OTHERS</div>
     <div class="cardSub" fxFlex="27" style="height: 30vh;" fxLayout="row wrap" fxLayoutAlign="center center"
-        *ngFor="let data of unpinedArray | filter : searchItem"
+        *ngFor="let data of unpinedArray | filter : searchItem" (anyChanges)="refresh($event)"
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
         <div *ngIf="data.isArchived === false && data.isDeleted === false " class="example-box" cdkDrag>
             <mat-card [ngStyle]="{'background-color':data.color}">
@@ -110,6 +125,15 @@
                             (onChangeDate)=addReminder(data,$event) (onChangeColor)=changeColor(data,$event)
                             (onChangeDelete)=deleteNote(data,$event)>
                         </app-icon>
+                    </div>
+                </div>
+                <div *ngIf="data.questionAndAnswerNotes.length > 0">
+                    <hr>
+                    <h4>Question Asked</h4>
+                </div>
+                <div *ngFor="let item of data.questionAndAnswerNotes">
+                    <div fxFlex="93">
+                        <h6>{{item.message}}</h6>
                     </div>
                 </div>
             </mat-card>

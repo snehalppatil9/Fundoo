@@ -132,9 +132,9 @@
                 <div fxFlex=40>
                     <div class="edit">LABELS</div>
                 </div>
-                <a class="btn" *ngFor="let data of label" routerLink="/labelnote/{{data}}" (click)="toolbarName(data)"
+                <a *ngFor="let data of label" routerLink="/labelnote/{{data.label}}" (click)="toolbarName(data)"
                     routerLinkActive=active>
-                    <button type="button" class="btn" mat-button>
+                    <button type="button" class="btnlabel" style="outline : none;" mat-button>
                         <div class="sideicon" fxLayout="row" fxLayoutGap="10px">
                             <img src="../../../assets/images/label1.svg">
                             <h6>{{data.label}}</h6>

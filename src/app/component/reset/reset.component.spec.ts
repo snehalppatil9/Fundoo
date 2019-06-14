@@ -26,10 +26,13 @@ import { AngularMaterial } from '../../angularmaterial';
 import { FilterPipe } from '../../filterpipe/filter.pipe';
 import { AskQuestionComponent } from '../ask-question/ask-question.component'
 import { ComponentlifecycleComponent } from '../componentlifecycle/componentlifecycle.component'
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 describe('ResetComponent', () => {
   let component: ResetComponent;
   let fixture: ComponentFixture<ResetComponent>;
-
+  let de: DebugElement;
+  let el: HTMLElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
@@ -38,7 +41,10 @@ describe('ResetComponent', () => {
       ],
       providers : [FilterPipe,PipePipe]
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(ResetComponent);
+      component = fixture.componentInstance;
+    });
   }));
 
   beforeEach(() => {
@@ -50,4 +56,26 @@ describe('ResetComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should be invalid', () => {
+    component.password.setValue[''];
+    component.cpassword.setValue[''];
+    expect(component.password.valid).toBeFalsy();
+    expect(component.cpassword.valid).toBeFalsy();
+  });
+  it('should be valid', async(() => {
+    component.password.setValue('Asdd12Af');
+    component.cpassword.setValue('Asdd12Af');
+    expect(component.password.valid).toBeTruthy();
+    expect(component.cpassword.valid).toBeTruthy();
+  }));
+  // it('it should call the reset method', async(() => {
+  //   fixture.detectChanges();
+  //   spyOn(component, 'reset');
+  //   el = fixture.debugElement.query(By.css('button')).nativeElement;
+  // }))
+   it('it should call the reset method', async(() => {
+    fixture.detectChanges();
+    spyOn(component, 'reset');
+    el = fixture.debugElement.query(By.css('button')).nativeElement;
+  }))
 });

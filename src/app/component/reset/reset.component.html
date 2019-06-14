@@ -47,7 +47,7 @@
             <mat-label>Enter your new Password</mat-label>
             <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
             <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'"
-              [(ngModel)]="reset.password" [formControl]="password">
+              [(ngModel)]="reset1.password" [formControl]="password">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
         </div>
@@ -57,7 +57,7 @@
             <mat-label>Enter your new confirm Password</mat-label>
             <mat-error *ngIf="password.invalid">{{cpassValidation()}}</mat-error>
             <input matInput placeholder="Enter Last password" [type]="hide ? 'password' : 'text'"
-              [(ngModel)]="reset.cpassword" [formControl]="cpassword">
+              [(ngModel)]="reset1.cpassword" [formControl]="cpassword">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
         </div>

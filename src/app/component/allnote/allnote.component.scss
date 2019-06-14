@@ -58,7 +58,11 @@
 .iconButton:hover{
     opacity:1;
 } 
+
 .cardSub:hover .icon {
+    visibility: visible;
+}
+.cardSub:hover .pin {
     visibility: visible;
 }
 .title{
@@ -94,6 +98,7 @@
 }
 .pin{
     float: right;
+    visibility:hidden;
 }
 .datetime{
     @include back-ground-color(rgba(135, 167, 159, 0.465));    
@@ -101,14 +106,10 @@
     color:rgba(0, 0, 0,0.4);
 }
 .pinOthers{
-    font-size: 16px;
-    width:78%;
-    @include margin-top(5px);
-    color: #5f6368;
-    letter-spacing: .07272727em;
-    font-family: Roboto,Arial,sans-serif;
-    font-weight: 500;
-    line-height: 1rem;
-    text-transform: uppercase;
-  
+    opacity:0.7;
+    margin-left: 150px;
+}
+hr{
+    color: black;
+    border: 0.5px solid;    
 }

@@ -26,10 +26,13 @@ import { AngularMaterial } from '../../angularmaterial';
 import { FilterPipe } from '../../filterpipe/filter.pipe';
 import { AskQuestionComponent } from '../ask-question/ask-question.component'
 import { ComponentlifecycleComponent } from '../componentlifecycle/componentlifecycle.component'
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 describe('ForgotComponent', () => {
   let component: ForgotComponent;
   let fixture: ComponentFixture<ForgotComponent>;
-
+  let de: DebugElement;
+  let el: HTMLElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
@@ -38,7 +41,10 @@ describe('ForgotComponent', () => {
       ],
       providers : [FilterPipe,PipePipe]
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(ForgotComponent);
+      component = fixture.componentInstance;
+    });
   }));
 
   beforeEach(() => {
@@ -50,4 +56,17 @@ describe('ForgotComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should be invalid', () => {
+    component.email.setValue[''];
+    expect(component.email.valid).toBeFalsy();
+  });
+  it('should be valid', async(() => {
+    component.email.setValue('assddf@sdfd.sdfsd');
+    expect(component.email.valid).toBeTruthy();
+  }));
+  it('it should call the forgot method', async(() => {
+    fixture.detectChanges();
+    spyOn(component, 'submit');
+    el = fixture.debugElement.query(By.css('button')).nativeElement;
+  }))
 });

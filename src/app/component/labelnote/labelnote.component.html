@@ -3,7 +3,7 @@
       <!-- 
        @Description    :   ngClass for grid and list view
       -->
-      <div class="cardSub" fxFlex="27" fxLayout="row wrap" *ngFor="let data of labelNotesList | pipe " fxLayoutAlign="center center"
+      <div class="cardSub" fxFlex="27" fxLayout="row wrap" *ngFor="let data of labels" fxLayoutAlign="center center"
           [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
           <mat-card [ngStyle]="{'background-image':'url(' +data.image+ ')','background-color':data.color}">
               <!--

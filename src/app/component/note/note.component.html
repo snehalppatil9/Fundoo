@@ -122,13 +122,14 @@
 <div fxLayoutAlign="center center" *ngIf="!listNote">
   <mat-card class="card" fxFlex.xl='700px' fxFlex.lg='600px' fxFlex.md='500px' fxFlex.sm='400px' fxFlex.xs='150px'>
     <div>
-      <div>
-        <input style="height:8vh; border-style: hidden; font-size: 20px;" [formControl]="title" placeholder="Title">
-        <button type="button" class="icon" mat-button>
-          <i class="material-icons">
-            person_pin_circle
-          </i>
-        </button>
+      <div fxLayout="row">
+        <div fxFlex="90" data-text="Title" contenteditable="true" class="textarea"
+        #title></div>
+      <div fxFlex="10">
+          <!-- <img *ngIf=!isPin (click)=pin() src="../../../assets/images/pin.svg">
+          <img *ngIf=isPin (click)=pin() src="../../../assets/images/unpin.svg"> -->
+        <app-pin class=pin (onChange)="onPinChange($event)"></app-pin>
+      </div>
       </div>
       <mat-divider></mat-divider>
       <div>
@@ -138,7 +139,9 @@
               add
             </i>
           </button>
-          <input style="height:4vh; border-style: hidden" placeholder="List Item" >
+          <!-- <input style="height:4vh; border-style: hidden" placeholder="List Item" > -->
+          <input fxFlex=85% placeholder="List item" #item=ngModel class=input [(ngModel)]="model.item"
+        (keydown.enter)="listitem()">
         </div>
         <mat-divider></mat-divider>
         <!-- 

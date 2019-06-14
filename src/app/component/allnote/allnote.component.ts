@@ -34,7 +34,6 @@ export class AllnoteComponent implements OnInit {
   @Input() searchItem;
   @Output() onChangeColor = new EventEmitter();
   @Output() onChangeDate = new EventEmitter();
-  @Output() anyChanges = new EventEmitter();
   isDelete = true;
   setColor: any;
   reminder: any;
@@ -54,7 +53,6 @@ export class AllnoteComponent implements OnInit {
   }
   ngOnInit() {
     this.getNotes();
-
     this.dataService.currentMessageView
       .pipe(takeUntil(this.destory$))
       .subscribe(message => {
@@ -272,8 +270,12 @@ export class AllnoteComponent implements OnInit {
       "isPined": this.isPin,
       "noteIdList": [data.id]
     }
+    console.log('convert pin to unpin response ====>',body);
+
     this.noteService.pinChange(body)
       .subscribe((response) => {
+        console.log('convert pin to unpin response ====>',response);
+        
       });
   }
   /**

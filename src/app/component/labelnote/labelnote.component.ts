@@ -11,32 +11,28 @@ import { Label } from '../../core/model/user-model'
 })
 export class LabelnoteComponent implements OnInit {
   @Input() label;
-  labelName='';
+  labelName = '';
   labels: Label[] = [];
-  labelNotesList=[];
   destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor(private noteService : NotesService,private route : ActivatedRoute) { }
+  constructor(private noteService: NotesService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) =>{
-      this.labelName=params['label'];
+    this.route.params.subscribe((params: Params) => {
+      this.labelName = params['label'];
       this.labelNotes();
     })
   }
- /**
-  * 
-  * @description getting the notes according to label
-  */
- labelNotes(){
-  this.noteService.getNotelistByLabel(this.labelName)
-  .pipe(takeUntil(this.destroy$))
-  .subscribe((response) =>{
-    this.labels=response["data"].data;
-    this.labelNotesList=[];
-    for(let i=this.labels.length;i>0;i--){
-      this.labelNotesList.push(this.labels[i-1])
-    }
-  },(error) => {
-  });
-}
+  /**
+   * 
+   * @description getting the notes according to label
+   */
+  labelNotes() {
+    this.noteService.getNotelistByLabel(this.labelName)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.labels = response["data"].data;
+        console.log("this.labels in label note================>", this.labels);
+      }, (error) => {
+      });
+  }
 }

@@ -14,6 +14,7 @@ import { Validators, FormControl } from '@angular/forms';
 import { UserService } from '../../core/services/user/user.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { UserModel } from 'src/app/core/model/user-model';
 
 @Component({
   selector: 'app-reset',
@@ -21,7 +22,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit {
-  
+  reset1 : UserModel [] =[];
   //title='FundooNotes';
   hide=true;
   /*
