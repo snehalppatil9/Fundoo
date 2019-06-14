@@ -86,7 +86,7 @@ export class AskQuestionComponent implements OnInit {
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
     this.addMsg.message = null;
-    this.showfroalaeditor2 = !this.showfroalaeditor2;
+    this.showfroalaeditor = !this.showfroalaeditor;
 
   }
   notes: Note[] = [];
@@ -126,6 +126,7 @@ export class AskQuestionComponent implements OnInit {
          this.snackbar.open('Notes Detail.', '', { duration: 3000 });
          console.log('Notes Detail data..........', data);
     })
+    this.showfroalaeditor2 = ! this.showfroalaeditor2;
   }
   close(){
     this.router.navigateByUrl('/addnote');
