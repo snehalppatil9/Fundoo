@@ -17,6 +17,23 @@
     font-weight: bold;
     margin-left: 30px;
 }
+.title1{
+    border-style: hidden;
+    font-size: 20px; 
+    outline: none;  
+    word-break: break-all;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.title2{
+    border-style: hidden;
+    font-size: 20px; 
+    outline: none;  
+    word-break: break-all;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: -18px;
+}
 .description{
     border-style: hidden; 
     outline: none;
@@ -60,7 +77,7 @@
 }
 .mat-card-avatar{
     background-color:#1a73e8;
-     background-size:cover;
+    background-size:cover;
     height:50px;
     width:50px;
     border-radius:50%;
