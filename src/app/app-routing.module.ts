@@ -32,12 +32,14 @@ import { PinComponent }  from './component/pin/pin.component'
 import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 import { AskQuestionComponent } from './component/ask-question/ask-question.component';
 import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component'
+import { AddcartComponent } from './component/addcart/addcart.component';
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
+  { path: 'addcart', component: AddcartComponent },
   { path: 'componentcycle', component : ComponentlifecycleComponent},
   {
     path: '',
@@ -59,7 +61,8 @@ const routes: Routes = [
       { path: 'searchmatcards', component: SearchmatcardsComponent},
       { path: 'pin', component: PinComponent },
       { path: 'labelnote/:label', component: LabelnoteComponent },
-      { path: 'askquestion/:id', component: AskQuestionComponent }
+      { path: 'askquestion/:id', component: AskQuestionComponent },
+     
       
     ]
 
