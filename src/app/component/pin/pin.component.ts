@@ -23,4 +23,8 @@ export class PinComponent implements OnInit {
     this.isPin = !this.isPin;
      this.onChange.emit(this.isPin);
   }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

@@ -33,6 +33,7 @@ import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 import { AskQuestionComponent } from './component/ask-question/ask-question.component';
 import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component'
 import { AddcartComponent } from './component/addcart/addcart.component';
+import { DialogcartComponent } from './component/dialogcart/dialogcart.component';
 const routes: Routes = [
   { path: '', redirectTo:"login", pathMatch: "full"},
   { path: 'login', component: LoginComponent },
@@ -62,7 +63,7 @@ const routes: Routes = [
       { path: 'pin', component: PinComponent },
       { path: 'labelnote/:label', component: LabelnoteComponent },
       { path: 'askquestion/:id', component: AskQuestionComponent },
-     
+     { path : 'opendialogcart', component : DialogcartComponent}
       
     ]
 

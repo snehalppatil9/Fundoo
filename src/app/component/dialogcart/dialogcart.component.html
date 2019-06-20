@@ -1,0 +1,35 @@
+<div class="cart">
+  <mat-toolbar class="navbar">
+    <div fxLayoutAlign="start">Advance Pack Details</div>
+    <div fxLayoutAlign="end">$6.99/Month</div>
+  </mat-toolbar>
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form>
+        <ng-template matStepLabel>feature1</ng-template>
+
+        <div>
+          <button class="btn btn-primary" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form>
+        <ng-template matStepLabel>feature2</ng-template>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>feature3</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

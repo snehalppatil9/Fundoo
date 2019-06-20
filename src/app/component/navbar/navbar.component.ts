@@ -50,10 +50,12 @@ export class NavbarComponent implements OnInit {
     this.labelName = "Fundoo";
     this.showLabel();
     /*For gridView and ListView*/
-    this.dataService.getView().subscribe((response) => {
-      this.view = response;
-      this.direction = this.view.data;
-    });
+    this.dataService.getView()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.view = response;
+        this.direction = this.view.data;
+      });
 
     this.img = environment.Url + this.image;
     this.isLargeScreen();
@@ -70,6 +72,7 @@ export class NavbarComponent implements OnInit {
   addNote() {
     this.labelName = "Notes";
     this.dataService.allNote
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         console.log("response of Notes sidenav bar ======>", response);
       });
@@ -80,6 +83,7 @@ export class NavbarComponent implements OnInit {
   reminder() {
     this.labelName = "Reminder";
     this.dataService.allReminder
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         console.log("response of reminder sidenav bar ======>", response);
       });
@@ -120,6 +124,7 @@ export class NavbarComponent implements OnInit {
   */
   logout() {
     this.noteService.logout()
+    .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         localStorage.removeItem("token");
         localStorage.removeItem("Id");
@@ -209,5 +214,9 @@ export class NavbarComponent implements OnInit {
   toolbarName(aa) {
     this.labelShow = true
     this.labelValue = aa
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

@@ -7,15 +7,17 @@
     overflow: hidden;
     }
 .cardSub{
-        border-radius: 5%;
+        // border-radius: 15px;
+        // border-radius: 20%;
         width: 349px;
-        padding: 38px;
+        padding: 14px;
+        // transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
     }
-    .cardSub2{
-        display: flex;
+.cardSub2{
+    // display: flex;
     border-radius: 5%;
     width: 700px;
-    padding: 38px;
+    padding: 18px;
     }
 .example-box {
     width: 19vw;
@@ -40,10 +42,10 @@
 //                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 //   }
 
-.mat-card{
-    width: 19vw;
-    border-radius: 10px;
-}
+// .mat-card{
+//     width: 19vw;
+//     border-radius: 10px;
+// }
 .iconButton .material-icons{
     font-size: 15px;
 }
@@ -72,6 +74,13 @@
     outline: none;  
     word-break: break-all;
     font-weight: bold;
+}
+.Question{
+    border-style: hidden; 
+    outline: none;
+    font-size: 20px;
+    margin-bottom: 20px;
+    word-break: break-all;
 }
 .description{
     border-style: hidden; 

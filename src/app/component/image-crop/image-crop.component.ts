@@ -41,4 +41,8 @@ export class ImageCropComponent implements OnInit {
     }, error => {
     })
   }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

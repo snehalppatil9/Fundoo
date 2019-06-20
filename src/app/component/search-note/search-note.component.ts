@@ -19,7 +19,7 @@ export class SearchNoteComponent implements OnInit {
     this.getNotes();
 
     this.dataService.currentMessageSearch
-    .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.message = message;
       })
@@ -29,12 +29,15 @@ export class SearchNoteComponent implements OnInit {
       pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.notes = response;
-        console.log("this.notes in search============>",this.notes);
-        
+        console.log("this.notes in search============>", this.notes);
+
         this.notesArray = [];
       }, (error) => {
         console.log("Error:", error);
       });
-   }
-
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

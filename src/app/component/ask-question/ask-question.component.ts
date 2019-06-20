@@ -14,38 +14,23 @@ import { Reply } from '../../core/model/user-model'
   styleUrls: ['./ask-question.component.scss']
 })
 export class AskQuestionComponent implements OnInit {
+
   destroy$: Subject<boolean> = new Subject<boolean>();
   showfroalaeditor: boolean = true;
-  showfroalaeditor1 : boolean = true;
-  showfroalaeditor2 : boolean = true;
+  showfroalaeditor1: boolean = true;
+  showfroalaeditor2: boolean = true;
   message = new FormControl('');
-  rating:number; 
-  starList: boolean[] = [true,true,true,true,true];    
-  setStar(data:any,parentId){
-    this.rating=data+1;                               
-    for(var i=0;i<=4;i++){  
-      if(i<=data){  
-        this.starList[i]=false;  
-      }  
-      else{  
-        this.starList[i]=true;  
-      }  
-   }  
-   console.log("rating====>",this.rating);
-   this.noteService.viewReply(this.rating,parentId)
-   .subscribe(data=>
-     {
-       this.notes = data["data"].data;
-       console.log(" rating data notelist ask question=========>", this.notes);
-        this.snackbar.open('Notes Detail.', '', { duration: 3000 });
-        console.log('Notes Detail data..........', data);
-   })
-   
-}  
+  notes: Note[] = [];
+  noteDataList;
+  parentId = '';
+  ratings: number;
+  rate: number;
+  starList: boolean[] = [true, true, true, true, true];
   @Input() id;
   noteId: '';
   addMsg: Editor = new Editor();
-  replyMsg : Reply = new Reply();
+  replyMsg: Reply = new Reply();
+  like: boolean = true;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private noteService: NotesService,
@@ -55,14 +40,20 @@ export class AskQuestionComponent implements OnInit {
   openEditor() {
     this.showfroalaeditor = !this.showfroalaeditor;
   }
-  
+
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.noteId = params['id'];
-      console.log("this.noteId in ask question================>", this.noteId);
-    })
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        this.noteId = params['id'];
+        console.log("this.noteId in ask question================>", this.noteId);
+      })
+
     this.getNotesDetail();
   }
+  /**
+  * @description : add question on note
+  */
   addMessage() {
     var body = {
       "message": this.addMsg.message,
@@ -71,36 +62,42 @@ export class AskQuestionComponent implements OnInit {
     console.log('add Message data============>', body);
     try {
       this.noteService.addMessageQA(body)
-      .subscribe(
-        data => {
-          this.snackbar.open('Message added successfully.', '', { duration: 3000 });
-          console.log('Add Message data..........', data);
-
-        },
-        error => {
-          this.snackbar.open('Error while adding Message!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Message added successfully.', '', { duration: 3000 });
+            console.log('Add Message data..........', data);
+            this.getNotesDetail();
+            this.dataService.getNotesDetail('');
+          },
+          error => {
+            this.snackbar.open('Error while adding Message!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 30);
+    setTimeout(() => this.noteService.getNotesDetail(this.noteId), 10);
     this.addMsg.message = null;
     this.showfroalaeditor = !this.showfroalaeditor;
 
   }
-  notes: Note[] = [];
-  noteDataList=[];
-  
+  /**
+  * @description : get all notes data
+  */
   getNotesDetail() {
     this.noteService.getNotesDetail(this.noteId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
-        console.log("this.noteId================>",this.noteId);
+        console.log("this.noteId================>", this.noteId);
         this.notes = data["data"].data;
-        console.log("this.notes[questionAndAnswerNotes]",this.notes[0].questionAndAnswerNotes);
-        
-       console.log("this.notes=========>", this.notes);
+        console.log("this.notes[questionAndAnswerNotes]", this.notes[0].questionAndAnswerNotes);
+        this.noteDataList = this.notes[0].questionAndAnswerNotes[0];
+        console.log("this.notes[questionAndAnswerNotes]0000000000000000", this.noteDataList.id);
+        this.parentId = this.noteDataList.id;
+        console.log("ParentId==============>", this.parentId);
+
+        console.log("this.notes=========>", this.notes);
         this.snackbar.open('Notes Detail.', '', { duration: 3000 });
         console.log('Notes Detail data..........', data);
       },
@@ -109,26 +106,105 @@ export class AskQuestionComponent implements OnInit {
           console.log("Error something wrong: ", error)
         });
   }
-  postReplyEditor(){
+  /**
+  * @description : send reply
+  */
+  postReplyEditor() {
     this.showfroalaeditor2 = !this.showfroalaeditor2;
   }
-  postReply(parentId){
-    console.log("parentId================>",parentId);
-    
+  postReply() {
+    console.log("parentId================>", this.parentId);
+
     var body = {
-      "message" : this.replyMsg.message
+      "message": this.replyMsg.message
     }
-    this.noteService.viewReply(body,parentId)
-    .subscribe(data=>
-      {
+    this.noteService.viewReply(body, this.parentId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
         this.notes = data["data"].data;
-        console.log("data in view Reply notelist ask question=========>", this.notes);
-         this.snackbar.open('Notes Detail.', '', { duration: 3000 });
-         console.log('Notes Detail data..........', data);
-    })
-    this.showfroalaeditor2 = ! this.showfroalaeditor2;
+        console.log("data in view Reply notelist ask question=========>", data["data"].data);
+        this.snackbar.open('Notes Detail.', '', { duration: 3000 });
+        console.log('Notes Detail data..........', data);
+        this.getNotesDetail();
+        this.dataService.getNotesDetail('');
+      })
+    this.showfroalaeditor2 = !this.showfroalaeditor2;
   }
-  close(){
+  close() {
     this.router.navigateByUrl('/addnote');
   }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
+  /**
+  * @description : add likes in question and answer
+  */
+  setLikes() {
+    console.log("parentId in setLikes=====>", this.parentId);
+    var body = {
+      "like": this.like
+    }
+    try {
+      this.noteService.addLikes(body, this.parentId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            console.log('like add successfully......!', data);
+            this.getNotesDetail();
+            this.dataService.getNotesDetail('');
+          },
+          error => {
+            console.log("Error while like add ====> ", error)
+          });
+    } catch (error) {
+      console.log("Error while like add ====> ", error)
+    }
+  }
+  /**
+  * @description : add rating in question and answer
+  */
+  setStar(data: any) {
+    this.ratings = data + 1
+    for (var i = 0; i <= 4; i++) {
+      if (i <= data) {
+        this.starList[i] = false;
+
+      }
+      else {
+        this.starList[i] = true;
+      }
+    }
+    console.log('check parentId in rating ====>', this.parentId);
+    var body = {
+      "rate": this.ratings = data + 1
+    }
+    console.log('Rate Question ====>', body)
+    try {
+      this.noteService.addRating(body, this.parentId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            // for (var i = 0; i <= 4; i++) {
+            //   if (i <= data) {
+            //     this.starList[i] = false;
+
+            //   }
+            //   else {
+            //     this.starList[i] = true;
+            //   }
+            // }
+            console.log('Question Rating ====>', this.ratings);
+            console.log('rate add successfully......!', data);
+            this.getNotesDetail();
+            this.dataService.getNotesDetail('');
+          },
+          error => {
+            console.log("Error while rate add ====> ", error)
+          });
+    } catch (error) {
+      console.log("Error while rate add ====> ", error)
+    }
+  }
+  
 }

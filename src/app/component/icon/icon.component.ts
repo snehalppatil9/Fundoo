@@ -53,24 +53,24 @@ export class IconComponent implements OnInit {
 
   colorsArray = [
     [
-    { name: "white",hexcode: "#ffffff" },
-    { name: "lightGreen",hexcode: "#90ee90" },
-    { name: "purple", hexcode: "#800080" },
-    { name: "red", hexcode: "#ff0000" },
+      { name: "white", hexcode: "#ffffff" },
+      { name: "lightGreen", hexcode: "#90ee90" },
+      { name: "purple", hexcode: "#800080" },
+      { name: "red", hexcode: "#ff0000" },
     ],
     [
-    { name: "Teal", hexcode: "#008080" },
-    { name: "pink", hexcode: "#ffc0cb" },
-    { name: "orange", hexcode: "#ffa500" },
-    { name: "blue", hexcode: "#0000ff" },
+      { name: "Teal", hexcode: "#008080" },
+      { name: "pink", hexcode: "#ffc0cb" },
+      { name: "orange", hexcode: "#ffa500" },
+      { name: "blue", hexcode: "#0000ff" },
     ],
     [
-    { name: "brown", hexcode: "#a52a2a" },
-    { name: "yellow", hexcode: "#ffff00" },
-    { name: "darkBlue", hexcode: "#00008b" },
-    { name: "gray", hexcode: "#808080" }
+      { name: "brown", hexcode: "#a52a2a" },
+      { name: "yellow", hexcode: "#ffff00" },
+      { name: "darkBlue", hexcode: "#00008b" },
+      { name: "gray", hexcode: "#808080" }
     ]
-    ]
+  ]
   ngOnInit() {
     this.showLabel();
     this.dataService.currentMessageSearch
@@ -125,7 +125,9 @@ export class IconComponent implements OnInit {
         collaborators: noteData.collaborators
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => {
       console.log('Dialog closed');
     });
   }
@@ -141,6 +143,7 @@ export class IconComponent implements OnInit {
   addLabel(label) {
     if (this.card) {
       this.noteService.addLabelToNotes(this.card.id, label.id)
+        .pipe(takeUntil(this.destroy$))
         .subscribe((response) => {
           this.onChangeaddlabeltonotes.emit({});
           console.log("adsdasdasdasdasdsa");
@@ -160,6 +163,7 @@ export class IconComponent implements OnInit {
     this.labelArray = [];
     this.Array = [];
     this.noteService.showNoteLabels()
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.label = response["data"].details;
         this.labelList = [];
@@ -189,6 +193,7 @@ export class IconComponent implements OnInit {
   */
   removeLabel(label) {
     this.noteService.removeLabelFromNotes(this.card.id, label.id)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.onChangeaddlabeltonotes.emit({})
         for (let i = 0; i < this.Array.length; i++) {
@@ -215,5 +220,9 @@ export class IconComponent implements OnInit {
 
   showCheckBox() {
     this.showCheckbox.emit({});
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

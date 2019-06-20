@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter,Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -11,20 +11,21 @@ import { DataService } from 'src/app/core/services/data/data.service';
   styleUrls: ['./archieve.component.scss']
 })
 export class ArchieveComponent implements OnInit {
-  destory$: Subject<boolean> = new Subject<boolean>();
   notes: Note[] = [];
   @Output() onChangeColor = new EventEmitter();
   setColor: any;
   direction: String = "row";
   wrap: string = "wrap";
   view1: any;
-  constructor(private noteService: NotesService,private snackbar: MatSnackBar,private dataService : DataService) { }
+  constructor(private noteService: NotesService, private snackbar: MatSnackBar, private dataService: DataService) { }
   ngOnInit() {
     this.getArchiveList();
-    this.dataService.getView().subscribe((response) => {
-      this.view1 = response;
-      this.direction = this.view1.data
-    });
+    this.dataService.getView()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.view1 = response;
+        this.direction = this.view1.data
+      });
   }
   /** 
     * 
@@ -32,7 +33,7 @@ export class ArchieveComponent implements OnInit {
     */
   getArchiveList() {
     this.noteService.getArchivedList()
-      .pipe(takeUntil(this.destory$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.notes = response["data"].data;
         console.log("get archive note ===============>", this.notes);
@@ -41,11 +42,11 @@ export class ArchieveComponent implements OnInit {
       });
   }
 
-   /**
-   * @description : change note Color 
-   */
-  
-  changeColor(data,$event) {
+  /**
+  * @description : change note Color 
+  */
+
+  changeColor(data, $event) {
     this.setColor = $event;
     var body = {
       "color": this.setColor,
@@ -53,61 +54,69 @@ export class ArchieveComponent implements OnInit {
     }
     console.log('color change data......', body);
     try {
-      this.noteService.changeColor(body).subscribe(
-        data => {
-          this.snackbar.open('color change successfully.', '', { duration: 3000 });
-          console.log('color change successfully..........', data);
-        },
-        error => {
-          this.snackbar.open('Error while color change!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.changeColor(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('color change successfully.', '', { duration: 3000 });
+            console.log('color change successfully..........', data);
+          },
+          error => {
+            this.snackbar.open('Error while color change!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
     setTimeout(() => this.dataService.getAllNote(), 30);
   }
-/**
-  * @description : Archive Note
-  */
- isArchived = false;
- unArchiveNote(data) {
+  /**
+    * @description : Archive Note
+    */
+  isArchived = false;
+  unArchiveNote(data) {
     var body = {
-     "isArchived": this.isArchived,
-     "noteIdList": [data.id]
-   }
-   console.log('#########Archive Note###########', body);
-   try {
-     this.noteService.archiveNote(body).subscribe(
-       data => {
-         this.snackbar.open('Archive Note Successfully.', '', { duration: 3000 });
-         console.log('Archive Note successfully..........', data);
-       },
-       error => {
-         this.snackbar.open('Error while Archive Note!', 'Error', { duration: 3000 });
-         console.log("Error something wrong: ", error)
-       });
-   } catch (error) {
-     this.snackbar.open('error', "", { duration: 3000 });
-   }
+      "isArchived": this.isArchived,
+      "noteIdList": [data.id]
+    }
+    console.log('#########Archive Note###########', body);
+    try {
+      this.noteService.archiveNote(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Archive Note Successfully.', '', { duration: 3000 });
+            console.log('Archive Note successfully..........', data);
+          },
+          error => {
+            this.snackbar.open('Error while Archive Note!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
+    } catch (error) {
+      this.snackbar.open('error', "", { duration: 3000 });
+    }
     setTimeout(() => this.getArchiveList(), 30);
- }
-/**
-  * @description : remove label from note
-  */
- destroy$: Subject<boolean> = new Subject<boolean>();
- removeLabel(labelId, cardId){
-  this.noteService.removeLabelFromNotes(cardId,labelId)
-  .pipe(takeUntil(this.destroy$))
-  .subscribe((response) =>{
-    // this.anyChanges.emit({});
-  },(error) => {
-  }); 
-}
-/**
-  * @description : Displaying label on note
-  */
-showLabel(data){
-  this.dataService.changeMessageLabel(data)
-}
+  }
+  /**
+    * @description : remove label from note
+    */
+   destroy$: Subject<boolean> = new Subject<boolean>();
+  removeLabel(labelId, cardId) {
+    this.noteService.removeLabelFromNotes(cardId, labelId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        // this.anyChanges.emit({});
+      }, (error) => {
+      });
+  }
+  /**
+    * @description : Displaying label on note
+    */
+  showLabel(data) {
+    this.dataService.changeMessageLabel(data)
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

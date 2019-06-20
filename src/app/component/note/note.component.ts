@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data/data.service';
 import { Note } from '../../core/model/user-model'
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
@@ -25,7 +26,7 @@ import { Subject } from 'rxjs';
 })
 export class NoteComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
- labelcard: boolean = true;
+  labelcard: boolean = true;
   isAchive: boolean = false;
   @ViewChild('title') title: ElementRef;
   @ViewChild('description') description: ElementRef ;
@@ -115,7 +116,9 @@ export class NoteComponent implements OnInit {
     }
     console.log('add note data......', body);
     try {
-      this.noteService.addNote(body).subscribe(
+      this.noteService.addNote(body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
         data => {
           this.anyChanges.emit({});
           this.snackbar.open('Note added successfully.', '', { duration: 3000 });
@@ -129,7 +132,7 @@ export class NoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    // setTimeout(() => this.dataService.getAllNote(), 100);
+     setTimeout(() => this.dataService.getAllNote(), 100);
     
     this.addNotes.title = null;
     this.addNotes.description = null;
@@ -163,7 +166,12 @@ export class NoteComponent implements OnInit {
       }
     }
   }
-
+  refresh($event){
+    if($event){
+      this.anyChanges.emit({});
+    }
+    
+  }
   // imageId
   // onSelectImage(event, noteId): void {
   //   this.imageId = noteId
@@ -180,5 +188,8 @@ export class NoteComponent implements OnInit {
   // isLargeScreen() {
   //   this.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   // }
- 
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

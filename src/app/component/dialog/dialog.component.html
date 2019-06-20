@@ -8,12 +8,16 @@
    @version        : 1.0
    @since          : 22-04-2019
   -->
-<div fxLayoutAlign="center center" class="cardMain">
+<div fxLayoutAlign="center center" class="cardMain" style="border-radius:20px;">
   <div class="card" fxLayoutGap='30px' fxFlex.xl='500px' fxFlex.lg='500px' fxFlex.md='500px' fxFlex.sm='400px'
-      fxFlex.xs='150px'>
+      fxFlex.xs='150px' >
       <div fxLayoutGap='20px'>
-          <input class="title" placeholder="Title" [formControl]="title">
-          <input class="description" placeholder="Take a note..." [formControl]="description">
+          <!-- <input class="title" placeholder="Title" [formControl]="title"> -->
+          <div data-text="Title" contenteditable="true" class="textarea"
+          #title><b><div innerHTML="{{data.title}}"></div></b></div>
+          <div data-text="Description" contenteditable="true" class="textarea"
+          #description><div innerHTML="{{data.description}}"></div>
+          <!-- <input class="description" placeholder="Take a note..." [formControl]="description"> -->
       </div>
       <div>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5">

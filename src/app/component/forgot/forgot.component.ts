@@ -14,6 +14,8 @@ import { Validators, FormControl } from '@angular/forms';
 import { UserService } from '../../core/services/user/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
@@ -21,6 +23,7 @@ import { Router } from '@angular/router';
 })
 export class ForgotComponent implements OnInit {
   model: any;
+  destroy$: Subject<boolean> = new Subject<boolean>();
   email = new FormControl('', [Validators.required, Validators.email, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]);
   //title = 'FundooNotes';
   /*
@@ -45,7 +48,9 @@ export class ForgotComponent implements OnInit {
       this.model = {
         "email": this.email.value
       }
-      this.UserService.userForgot(this.model).subscribe(
+      this.UserService.userForgot(this.model)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
         data => {
           console.log("Response", data);
           // localStorage.setItem('access-token',data.token)
@@ -58,5 +63,9 @@ export class ForgotComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

@@ -165,7 +165,7 @@
               <mat-icon class="icon">redo</mat-icon>
             </button>
           </abbr>
-          <button mat-button (click)="addNote()">Close</button>
+          <button mat-button (onclick)="addNote()">Close</button>
         </div>
       </div>
     </div>
@@ -177,6 +177,6 @@
   @description: List of note card selector call here
 -->
 <div fxLayoutAlign="center center" fxLayout="column">
-  <app-allnote></app-allnote>
+  <app-allnote ngStyle.xs="width:80%;" (anyChanges)="refresh($event)"></app-allnote>
 </div>
 <!-- end list of note card -->

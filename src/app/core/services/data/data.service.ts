@@ -51,7 +51,7 @@ export class DataService {
   }
 
   /*
-  * @Description  : Show Label
+  * @Description  : Show Label/get all labels
   */
   private assignLabel = new BehaviorSubject('default');
   allLabel = this.assignLabel.asObservable();
@@ -88,13 +88,29 @@ export class DataService {
   changeMessageReminder(message: string) {
     this.messageReminder.next(message)
   }
-
+ /*
+  * @Description  : get Reminder list
+  */
   private assignReminder = new BehaviorSubject<any[]>([]);
   allReminder = this.assignReminder.asObservable();
   getReminderNotesList() {
-    this.noteService.getReminderNotesList().subscribe(data => {
+    this.noteService.getReminderNotesList()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(data => {
       console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$", data["data"].data);
       this.assignReminder.next(data["data"].data);
     })
+  }
+  /*
+  * @Description  : Add and send reply questions and answers
+  */
+  private messageQuestion = new BehaviorSubject('default');
+  currentMessageQuestion = this.messageQuestion.asObservable();
+  getNotesDetail(message: string){
+    this.messageQuestion.next(message)
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

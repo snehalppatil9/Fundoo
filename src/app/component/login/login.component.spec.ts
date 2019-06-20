@@ -29,6 +29,7 @@ import { ComponentlifecycleComponent } from '../componentlifecycle/componentlife
 import { UserModel } from 'src/app/core/model/user-model';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { AddcartComponent } from '../addcart/addcart.component'
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
@@ -36,7 +37,7 @@ describe('LoginComponent', () => {
   let el: HTMLElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ComponentlifecycleComponent, ReminderComponent, NavbarComponent, NoteComponent, LabelComponent, ArchieveComponent, TrashComponent, IconComponent, SearchNoteComponent, CollaboratorComponent, ImageCropComponent, DialogComponent, SearchmatcardsComponent, ShowLabelnotesComponent, PinComponent, LabelnoteComponent, AskQuestionComponent, FilterPipe, PipePipe, AllnoteComponent, ForgotComponent, ResetComponent, LoginComponent, RegistrationComponent],
+      declarations: [AddcartComponent,ComponentlifecycleComponent, ReminderComponent, NavbarComponent, NoteComponent, LabelComponent, ArchieveComponent, TrashComponent, IconComponent, SearchNoteComponent, CollaboratorComponent, ImageCropComponent, DialogComponent, SearchmatcardsComponent, ShowLabelnotesComponent, PinComponent, LabelnoteComponent, AskQuestionComponent, FilterPipe, PipePipe, AllnoteComponent, ForgotComponent, ResetComponent, LoginComponent, RegistrationComponent],
       imports: [FlexLayoutModule, RouterTestingModule,
         AngularMaterial
       ],

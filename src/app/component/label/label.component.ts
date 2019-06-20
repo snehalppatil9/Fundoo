@@ -58,7 +58,8 @@ export class LabelComponent implements OnInit {
     }
     console.log('Data after edit label', body);
     try {
-      this.noteService.addLabel(body).pipe(takeUntil(this.destroy$))
+      this.noteService.addLabel(body)
+        .pipe(takeUntil(this.destroy$))
         .subscribe(
           (response) => {
             console.log("Response ====>", response);
@@ -76,7 +77,7 @@ export class LabelComponent implements OnInit {
   /**
    * @description  :  Getting label data 
    */
-  label : Label[] =[];
+  label: Label[] = [];
   showLabel() {
     this.noteService.showNoteLabel()
       .pipe(takeUntil(this.destroy$))
@@ -142,5 +143,8 @@ export class LabelComponent implements OnInit {
     this.labelId = id;
     this.model.newName = labelName
   }
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

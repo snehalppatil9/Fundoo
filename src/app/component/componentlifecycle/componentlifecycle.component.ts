@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComponentlifecycleComponent implements OnInit {
 
-    data: number = 100;
+    data: number = 1000;
     constructor() {
         console.log(`new - data is ${this.data}`);
     }

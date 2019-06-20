@@ -15,6 +15,8 @@ import { UserService } from '../../core/services/user/user.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { UserModel } from 'src/app/core/model/user-model';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-reset',
@@ -25,6 +27,7 @@ export class ResetComponent implements OnInit {
   reset1 : UserModel [] =[];
   //title='FundooNotes';
   hide=true;
+  destroy$: Subject<boolean> = new Subject<boolean>();
   /*
   * validation for password
   */
@@ -63,7 +66,9 @@ export class ResetComponent implements OnInit {
       }
       var data=new FormData();
       data.append('newPassword',this.password.value);
-      this.UserService.userReset(this.model).subscribe(
+      this.UserService.userReset(this.model)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
       data => {
       console.log("Response",data);
       this.snackbar.open('password reset Successfully', 'End now', {duration: 1000});
@@ -77,5 +82,8 @@ export class ResetComponent implements OnInit {
       this.snackbar.open('error',"", {duration: 3000});
     }
   }
-
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 }

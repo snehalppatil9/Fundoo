@@ -34,8 +34,8 @@ export class CollaboratorComponent implements OnInit {
   private img;
   private width;
   ngOnInit() {
-    this.firstName= localStorage.getItem("Firstname");
-    this.lastName =  localStorage.getItem("Lastname");
+    this.firstName = localStorage.getItem("Firstname");
+    this.lastName = localStorage.getItem("Lastname");
     this.dataService.allNote
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
@@ -70,6 +70,7 @@ export class CollaboratorComponent implements OnInit {
       'searchWord': this.searchValue
     }
     this.userService.searchUserList(searchWord)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.userList = [];
         this.userList = response['data'].details;
@@ -86,29 +87,30 @@ export class CollaboratorComponent implements OnInit {
     console.log("iddddd", id);
     console.log("Add collaborators Notes data === >", id);
     // console.log("data.isd=====================>",this.data.noteData['id']);
-    try{
-      this.callboratorData = this.userList[0];
-    // this.callboratorData = this.userList[data[0]];
-    console.log("this.collaboratordata", this.callboratorData);
     try {
-      this.noteService.addColNote(this.callboratorData, id)
-        .subscribe(
-          data => {
-            this.snackbar.open('Collaborator Note added successfully......!', 'Done...!', { duration: 3000 });
-            console.log('Register infor ==========>', data);
-          },
-          error => {
-            this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
-            console.log("Error something wrong: ", error)
-          });
+      this.callboratorData = this.userList[0];
+      // this.callboratorData = this.userList[data[0]];
+      console.log("this.collaboratordata", this.callboratorData);
+      try {
+        this.noteService.addColNote(this.callboratorData, id)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
+            data => {
+              this.snackbar.open('Collaborator Note added successfully......!', 'Done...!', { duration: 3000 });
+              console.log('Register infor ==========>', data);
+            },
+            error => {
+              this.snackbar.open('Error while adding note......!', 'Error', { duration: 3000 });
+              console.log("Error something wrong: ", error)
+            });
+
+      } catch (error) {
+        this.snackbar.open('error', "", { duration: 3000 });
+      }
 
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-  
-  }catch(error){
-    this.snackbar.open('error', "", { duration: 3000 });
-  }
     setTimeout(() => this.dataService.getAllNote(), 100);
   }
 
@@ -119,10 +121,15 @@ export class CollaboratorComponent implements OnInit {
     console.log("id remove data============>", data);
     console.log("this.data.UserId================>", data.userId);
     this.noteService.removeColaborator(this.id, data.userId)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.snackbar.open('Removing collaboratoe sucessfully......!', 'Done...!', { duration: 3000 });
       }, (error) => {
         this.snackbar.open('Removing collaboratoe unsucessful......!', 'Done...!', { duration: 3000 });
       });
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

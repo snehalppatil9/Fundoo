@@ -17,7 +17,9 @@ export class LabelnoteComponent implements OnInit {
   constructor(private noteService: NotesService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
+    this.route.params
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((params: Params) => {
       this.labelName = params['label'];
       this.labelNotes();
     })
@@ -34,5 +36,9 @@ export class LabelnoteComponent implements OnInit {
         console.log("this.labels in label note================>", this.labels);
       }, (error) => {
       });
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

@@ -15,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserModel } from '../../core/model/user-model';
 import { UserService } from '../../core/services/user/user.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
   login: UserModel = new UserModel();
   service: any;
   hide = true;
+  destroy$: Subject<boolean> = new Subject<boolean>();
   email = new FormControl('', [Validators.required, Validators.email, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]);
   //  title = 'FundooNotes';
   /*
@@ -54,7 +57,9 @@ export class LoginComponent implements OnInit {
   submit() {
     //console.log('console@@@@@@@@@@@@@@@@@', this.login);
     try {
-      this.UserService.userLogin(this.login).subscribe(
+      this.UserService.userLogin(this.login)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
         data => {
           // console.log('Response Login Data.......', this.login);
           // console.log('Response data............', data);
@@ -75,5 +80,9 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error occurs in catch block.................', '', { duration: 3000 });
     }
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

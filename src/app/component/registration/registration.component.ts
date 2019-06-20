@@ -15,6 +15,8 @@ import { UserModel } from '../../core/model/user-model';
 import { UserService } from '../../core/services/user/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -24,6 +26,7 @@ export class RegistrationComponent implements OnInit {
   register: UserModel = new UserModel();
   service: any;
   //title='FundooNotes';
+  destroy$: Subject<boolean> = new Subject<boolean>();
   hide = true;
   firstName = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern('[a-zA-Z]+')]);
   lastName = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern('[a-zA-Z]+')]);
@@ -113,7 +116,9 @@ export class RegistrationComponent implements OnInit {
       if (this.register.password === this.register.cpassword)
       {
       console.log("password and confirmpassword does not match");
-      this.UserService.userRegister(this.register).subscribe(
+      this.UserService.userRegister(this.register)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
         data => {
           console.log("Response================>", this.register);
           console.log("Response================>", data);
@@ -132,5 +137,9 @@ export class RegistrationComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error8888888888888888888888888888888', "", { duration: 3000 });
     }
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

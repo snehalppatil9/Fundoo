@@ -19,7 +19,7 @@ import { EventEmitter } from 'events';
 import { DialogComponent } from '../dialog/dialog.component'
 import { NotesService } from '../../core/services/notes/notes.service';
 import { MatSnackBar } from '@angular/material';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-allnote',
   templateUrl: './allnote.component.html',
@@ -28,7 +28,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 export class AllnoteComponent implements OnInit {
   notes: Note[] = [];
   message: string;
-  destory$: Subject<boolean> = new Subject<boolean>();
+  destroy$: Subject<boolean> = new Subject<boolean>();
   view: boolean;
   @Input() note;
   @Input() searchItem;
@@ -54,13 +54,14 @@ export class AllnoteComponent implements OnInit {
   ngOnInit() {
     this.getNotes();
     this.dataService.currentMessageView
-      .pipe(takeUntil(this.destory$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(message => {
         this.view = message
       })
 
     /* Grid View*/
     this.dataService.getView()
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.view1 = response;
         this.direction = this.view1.data
@@ -77,7 +78,7 @@ export class AllnoteComponent implements OnInit {
   unpinedArray = [];
   getNotes() {
     this.dataService.allNote
-      .pipe(takeUntil(this.destory$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         this.notes = data;
         this.pinedArray = [];
@@ -108,15 +109,17 @@ export class AllnoteComponent implements OnInit {
     }
     console.log('color change data......', body);
     try {
-      this.noteService.changeColor(body).subscribe(
-        data => {
-          this.snackbar.open('color change successfully.', '', { duration: 3000 });
-          console.log('color change successfully..........', data);
-        },
-        error => {
-          this.snackbar.open('Error while color change!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.changeColor(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('color change successfully.', '', { duration: 3000 });
+            console.log('color change successfully..........', data);
+          },
+          error => {
+            this.snackbar.open('Error while color change!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
@@ -133,15 +136,17 @@ export class AllnoteComponent implements OnInit {
     }
     console.log('Delete Note......', body);
     try {
-      this.noteService.deleteNote(body).subscribe(
-        data => {
-          this.snackbar.open('Note Deleted Successfully.', '', { duration: 3000 });
-          console.log('Note Deleted successfully..........', data);
-        },
-        error => {
-          this.snackbar.open('Error while note delete!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.deleteNote(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Note Deleted Successfully.', '', { duration: 3000 });
+            console.log('Note Deleted successfully..........', data);
+          },
+          error => {
+            this.snackbar.open('Error while note delete!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
@@ -158,15 +163,17 @@ export class AllnoteComponent implements OnInit {
     }
     console.log('Add update Reminder......', body);
     try {
-      this.noteService.addUpdateReminder(body).subscribe(
-        data => {
-          this.snackbar.open('Add update Reminder Successfully.', '', { duration: 3000 });
-          console.log('Add update Reminder successfully..........', data);
-        },
-        error => {
-          this.snackbar.open('Error while Add update Reminder!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.addUpdateReminder(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Add update Reminder Successfully.', '', { duration: 3000 });
+            console.log('Add update Reminder successfully..........', data);
+          },
+          error => {
+            this.snackbar.open('Error while Add update Reminder!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
@@ -184,6 +191,7 @@ export class AllnoteComponent implements OnInit {
     console.log('Remove reminder Reminder......', body);
     try {
       this.noteService.removeReminder(body)
+        .pipe(takeUntil(this.destroy$))
         .subscribe(
           data => {
             this.snackbar.open('Remove reminder Reminder Successfully.', '', { duration: 3000 });
@@ -210,15 +218,17 @@ export class AllnoteComponent implements OnInit {
     }
     console.log('#########Archive Note###########', body);
     try {
-      this.noteService.archiveNote(body).subscribe(
-        data => {
-          this.snackbar.open('Archive Note Successfully.', '', { duration: 3000 });
-          console.log('Archive Note successfully..........', data);
-        },
-        error => {
-          this.snackbar.open('Error while Archive Note!', 'Error', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      this.noteService.archiveNote(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            this.snackbar.open('Archive Note Successfully.', '', { duration: 3000 });
+            console.log('Archive Note successfully..........', data);
+          },
+          error => {
+            this.snackbar.open('Error while Archive Note!', 'Error', { duration: 3000 });
+            console.log("Error something wrong: ", error)
+          });
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
@@ -238,7 +248,9 @@ export class AllnoteComponent implements OnInit {
       }
     });
     /* Close the dialog*/
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => {
       console.log(`Dialog closed: ${result}`);
     });
   }
@@ -249,7 +261,7 @@ export class AllnoteComponent implements OnInit {
    **/
   removeLabel(labelId, cardId) {
     this.noteService.removeLabelFromNotes(cardId, labelId)
-      .pipe(takeUntil(this.destory$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
 
       }, (error) => {
@@ -270,12 +282,13 @@ export class AllnoteComponent implements OnInit {
       "isPined": this.isPin,
       "noteIdList": [data.id]
     }
-    console.log('convert pin to unpin response ====>',body);
+    console.log('convert pin to unpin response ====>', body);
 
     this.noteService.pinChange(body)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        console.log('convert pin to unpin response ====>',response);
-        
+        console.log('convert pin to unpin response ====>', response);
+
       });
   }
   /**
@@ -283,6 +296,7 @@ export class AllnoteComponent implements OnInit {
    **/
   addLabel(labelId, cardId) {
     this.noteService.addLabelToNotes(cardId, labelId)
+      .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.snackbar.open('Add label to notes Successfully.', '', { duration: 3000 });
         console.log("ur in add labels to notes");
@@ -295,5 +309,9 @@ export class AllnoteComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.note, event.previousIndex, event.currentIndex);
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

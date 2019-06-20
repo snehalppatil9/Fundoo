@@ -138,4 +138,7 @@ export class NotesService {
   addRating(body, parentId) {
     return this.httpservice.postData("questionAndAnswerNotes/rate/" + parentId, body);
   }
+  addLikes(body, parentId){
+    return this.httpservice.postData("questionAndAnswerNotes/like/" + parentId,body)
+  }
 }

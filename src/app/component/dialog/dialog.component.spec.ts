@@ -28,13 +28,14 @@ import { AskQuestionComponent } from '../ask-question/ask-question.component'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ComponentlifecycleComponent } from '../componentlifecycle/componentlifecycle.component'
+import { AddcartComponent } from '../addcart/addcart.component'
 describe('DialogComponent', () => {
   let component: DialogComponent;
   let fixture: ComponentFixture<DialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ComponentlifecycleComponent,ReminderComponent, NavbarComponent, NoteComponent, LabelComponent, ArchieveComponent, TrashComponent, IconComponent, SearchNoteComponent, CollaboratorComponent, ImageCropComponent, DialogComponent, SearchmatcardsComponent, ShowLabelnotesComponent, PinComponent, LabelnoteComponent, AskQuestionComponent, FilterPipe, PipePipe, AllnoteComponent, ForgotComponent, ResetComponent, LoginComponent, RegistrationComponent],
+      declarations: [AddcartComponent,ComponentlifecycleComponent,ReminderComponent, NavbarComponent, NoteComponent, LabelComponent, ArchieveComponent, TrashComponent, IconComponent, SearchNoteComponent, CollaboratorComponent, ImageCropComponent, DialogComponent, SearchmatcardsComponent, ShowLabelnotesComponent, PinComponent, LabelnoteComponent, AskQuestionComponent, FilterPipe, PipePipe, AllnoteComponent, ForgotComponent, ResetComponent, LoginComponent, RegistrationComponent],
       imports: [FlexLayoutModule, RouterTestingModule,
         AngularMaterial,MatDialogModule
       ],

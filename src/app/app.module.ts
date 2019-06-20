@@ -39,7 +39,8 @@ import { AngularMaterial } from './angularmaterial';
 import { FilterPipe } from './filterpipe/filter.pipe';
 import { AskQuestionComponent } from './component/ask-question/ask-question.component';
 import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component';
-import { AddcartComponent } from './component/addcart/addcart.component'
+import { AddcartComponent } from './component/addcart/addcart.component';
+import { DialogcartComponent } from './component/dialogcart/dialogcart.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { AddcartComponent } from './component/addcart/addcart.component'
     AskQuestionComponent,
     ComponentlifecycleComponent,
     AddcartComponent,
+    DialogcartComponent
    
   ],
   imports: [

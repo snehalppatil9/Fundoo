@@ -12,9 +12,9 @@
     @Description: Dashboard tool bar
  -->
 
-<mat-toolbar class="navbar" style="height:10vh" fxLayoutAlign="space-evenly center">
+<mat-toolbar class="navbar" style="height:10vh">
     <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="90" fxFlex.xs="50" fxFlex.sm="70">
-        <div fxFlex="15" fxFlex.md="90" fxFlex.xs="80" fxFlex.sm="90">
+        <div fxFlex="20" fxFlex.md="90" fxFlex.xs="80" fxFlex.sm="90">
             <div fxFlex="35" fxFlex.md="20" fxFlex.xs="20" fxFlex.sm="20">
                 <!-- 
                      @Description: Dashboard first icon menu bar
@@ -38,40 +38,41 @@
             <!-- 
                  @Description: Dashboard Fundoo Label
              -->
-            <div fxFlex="30" style="margin-top:15px;" ngStyle.md="font-size:10px" ngStyle.lg="font-size:25px"
-                ngStyle.sm="font-style:15px;" ngStyle.xl="font-size:25px">
+            <div fxFlex="30" style="margin-top:15px;" ngStyle.md="font-size:25px" ngStyle.lg="font-size:25px"
+                ngStyle.sm="font-style:18px;" ngStyle.xl="font-size:25px">
                 <b>{{labelName}}</b>
             </div>
         </div>
         <!-- 
             @Description: Dashboard Search Box
         -->
-            <div fxFlex="60" fxFlex.xs=40 fxFlex.sm="50" fxFlex.md="70" fxFlex.lg="100" fxFlex.xl="90" fxShow fxHide.sm
+            <div fxFlex="60" fxFlex.xs=40 fxFlex.sm="80" fxFlex.md="90" fxFlex.lg="60" fxFlex.xl="70" fxShow fxHide.md fxShow fxHide.sm
             fxShow fxHide.xs style="margin-top : 9px;" fxLayoutGap=15px>
-            <div fxFlex="10">
+            <div fxFlex="10" fxShow fxHide.md fxShow fxHide.sm >
                 <button style="outline: none" class="searchbutton" mat-icon-button (click)="searchmatcards()">
                     <i class="material-icons">search</i>
                 </button>
             </div>
-            <div fxFlex="80">
+            <div fxFlex="70">
                 <input type="text" class="search" [(ngModel)]="searchValue" class="search" (click)="search()"
                     (keyup)=newMessage() placeholder="Search..">
             </div>
-            <div fxFlex="10">
-                <img class="searchbutton1" src="../../../assets/images/clear.svg" (click)="clearsearch()">
+            <div fxFlex="20" fxShow fxHide.md fxShow fxHide.sm>
+                <img class="searchbutton1" ngStyle.lg="margin-left:-98px;"  ngStyle.xl="margin-left:-98px;" src="../../../assets/images/clear.svg" (click)="clearsearch()">
             </div>
         </div>
         <!-- 
             @Description: Dashboard view-list, settings and logout account icons  
         -->
-        <div fxFlex="5"></div>
+        <!-- <div fxFlex="5"></div> -->
         <div fxFlex="20" fxFlex.md="60" fxFlex.xs="80" fxFlex.sm="90">
-            <div fxFlex="35">
+            <div fxFlex="15" ngStyle.xs="margin-left: 53px;">
                 <button style="margin-top:10px; outline: none" mat-icon-button (click)="refresh()">
                     <i class="material-icons">refresh</i>
                 </button>
             </div>
-            <div fxFlex="35">
+            <div fxFlex="20"></div>
+            <div fxFlex="15" fxShow fxHide.md fxShow fxHide.sm fxShow fxHide.xs>
                 <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=list
                     (click)=View() matTooltip="grid view" fxShow="true">
                     <i class="material-icons">
@@ -82,10 +83,12 @@
                     <i class="material-icons">view_module</i>
                 </button>
             </div>
-            <div fxFlex="30">
+            <div fxFlex="20"></div>
+            <div fxFlex="30" fxFlex.md="20">
                 <div mat-card-avatar
                     [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'60px','height':'60px'}"
-                    class="addimage1" (click)="account()" ngStyle.xl="width:60px;height:60px"></div>
+                    class="addimage1" (click)="account()" ngStyle.xs="width:40px;height:40px;margin-left: 59px;
+                    margin-top: 5px;"></div>
             </div>
         </div>
     </div>
@@ -109,8 +112,8 @@
 <!-- 
 @Description    :  Dashboard side nav bar
 -->
-<mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0 ?'side':'side'" closed>
+<mat-drawer-container class="example-container" >
+    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0 ?'side':'side'" ngStyle.xs="width:50%;" closed>
         <div class="sidebutton">
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh; margin-top:20px;">
                 <button type="button" class="btn" mat-button routerLink="/addnote" (click)="addNote()">
@@ -167,5 +170,5 @@
         </div>
     </mat-drawer>
     <div style="height:7vh"></div>
-    <router-outlet></router-outlet>
+    <router-outlet ngStyle.xs="width:50%;"></router-outlet>
 </mat-drawer-container>

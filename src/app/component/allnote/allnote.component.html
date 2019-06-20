@@ -11,6 +11,7 @@
 <!-- 
     @Description    :   Dispalying pinned data into the card after add
  -->
+ <div>
 <div *ngIf="pinedArray.length > 0" class="pinOthers">PINNED</div>
 <div style="height : 5vh;"></div>
 <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
@@ -18,10 +19,10 @@
          @Description    :   ngClass for grid and list view
     -->
 
-    <div _ngcontent-nft-c12 *ngFor="let data of pinedArray | filter : searchItem" (anyChanges)="refresh($event)"
+    <div  *ngFor="let data of pinedArray | filter : searchItem" 
         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
-        <div *ngIf="data.isArchived === false && data.isDeleted === false" >
-            <mat-card [ngStyle]="{'background-color':data.color}">
+        <!-- <div  > -->
+            <mat-card *ngIf="data.isArchived === false && data.isDeleted === false" [ngStyle]="{'background-color':data.color}" style="border-radius:20px;">
                 <!--
                     @Description    :    openDialog for dialog 
                  -->
@@ -81,7 +82,7 @@
 
             </mat-card>
             <div style="height:3vh;"></div>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 <!-- end of pinned data array -->
@@ -96,10 +97,10 @@
     <!-- 
     @Description    :   Dispalying others data into the card after add
     -->
-    <div fxLayoutAlign="center center" *ngFor="let data of unpinedArray | filter : searchItem"
-        (anyChanges)="refresh($event)" [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
-        <div *ngIf="data.isArchived === false && data.isDeleted === false " class="example-box" cdkDrag>
-            <mat-card [ngStyle]="{'background-color':data.color}">
+    <div *ngFor="let data of unpinedArray | filter : searchItem"
+         [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
+        <!-- <div > -->
+            <mat-card *ngIf="data.isArchived === false && data.isDeleted === false " [ngStyle]="{'background-color':data.color}" style="border-radius:20px;">
                 <!--
                  @Description    :    openDialog for dialog 
                  -->
@@ -159,8 +160,9 @@
                 </div>
             </mat-card>
             <div style="height:3vh;"></div>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 <div style="height : 10vh;"></div>
 <!-- end of others data array -->
+</div>
