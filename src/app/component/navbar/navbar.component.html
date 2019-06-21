@@ -72,19 +72,19 @@
                 </button>
             </div>
             <div fxFlex="20"></div>
-            <div fxFlex="15" fxShow fxHide.md fxShow fxHide.sm fxShow fxHide.xs>
+            <div fxFlex="15" fxShow fxHide.sm fxShow fxHide.xs>
                 <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=list
                     (click)=View() matTooltip="grid view" fxShow="true">
                     <i class="material-icons">
                         view_stream</i>
                 </button>
-                <button mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=grid
+                <button  fxShow fxHide.sm fxShow fxHide.xs mat-icon-button style="margin-top:10px; outline: none;" class="materialicons" *ngIf=grid
                     (click)=View() matTooltip="list view" fxShow="true">
                     <i class="material-icons">view_module</i>
                 </button>
             </div>
             <div fxFlex="20"></div>
-            <div fxFlex="30" fxFlex.md="20">
+            <div fxFlex="30" fxFlex.md="60">
                 <div mat-card-avatar
                     [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'60px','height':'60px'}"
                     class="addimage1" (click)="account()" ngStyle.xs="width:40px;height:40px;margin-left: 59px;
@@ -113,7 +113,7 @@
 @Description    :  Dashboard side nav bar
 -->
 <mat-drawer-container class="example-container" >
-    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0 ?'side':'side'" ngStyle.xs="width:50%;" closed>
+    <mat-drawer #drawer class="example-sidenav" [mode]="width > 0 ?'side':'side'" ngStyle.xs="width:55%;" closed>
         <div class="sidebutton">
             <div fxLayout="column" fxLayoutGap="5px" style="height:15vh; margin-top:20px;">
                 <button type="button" class="btn" mat-button routerLink="/addnote" (click)="addNote()">
@@ -147,7 +147,7 @@
                 <button type="button" (click)="createLabel()" class="btn" mat-button>
                     <div class="sideicon" fxLayout="row" fxLayoutGap="20px">
                         <img src="../../../assets/images/editlabel.svg">
-                        <h5>Edit Labels</h5>
+                        <h5 >Edit Labels</h5>
                     </div>
                 </button>
             </div>

@@ -12,8 +12,8 @@
   <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
   <div fxLayout="row" fxFlex.lg="100%" fxLayoutAlign="center" fxFlex="35">
     <div fxFlex="100%" fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
-    <div fxFlex.lg="96%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
-      <mat-card>
+    <div fxFlex.lg="100%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
+      <mat-card ngStyle.lg="width: 996px;">
         <!--         
          @Description  : Fundoo Notes Title
         -->
@@ -106,25 +106,31 @@
         <!-- 
             @Description  : Validating advance and basic button and displaying the error message 
         -->
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4">
-          <div fxFlex="45">
-            <mat-button-toggle-group appearance="legacy" name="fontStyle" [(ngModel)]="register.service"
-              aria-label="Font Style">
-              <mat-error *ngIf="advance.invalid">{{advancedValidation()}}</mat-error>
-              <mat-button-toggle value="advance" (click)="currentLesson = '1'" [disabled]="currentLesson !== '1'"
-                class="primair">Advanced</mat-button-toggle>
-            </mat-button-toggle-group>
-          </div>
-          <div fxFlex="15">
-            <mat-button-toggle-group appearance="legacy" [(ngModel)]="register.service" name="fontStyle"
-              aria-label="Font Style">
-              <mat-error *ngIf="basic.invalid">{{basicValidation()}}</mat-error>
-              <mat-button-toggle value="basic" (click)="currentLesson = '2'" [disabled]="currentLesson !== '2'"
-                class="primair">Basic</mat-button-toggle>
-            </mat-button-toggle-group>
+        <!-- <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4"> -->
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+          <div class="main1" *ngFor="let data of service">
+            <div class="card">
+              <mat-card class="card3">
+                <h5>ADD TO CART</h5>
+              </mat-card>
+            </div>
+            <div class="card1">
+              <mat-card>
+                <!-- <div style="height:1vh;"></div> -->
+                <h4>${{data.price}} Per Month</h4>
+                <div fxLayoutAlign="start" class="openDialog">
+                  <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
+                </div>
+                <li>Unlimited Wall Space</li>
+                <li>Nice Interface</li>
+                <li>${{data.price}}/Month</li>
+                <li>{{data.description}}</li>
+              </mat-card>
+            </div>
           </div>
         </div>
-        <div style="height:5vh"></div>
+        <!-- </div> -->
+        <div style="height:10vh"></div>
         <div fxLayout="row" fxLayoutGap="25" fxLayoutAlign.md="start end">
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button>
           </div>

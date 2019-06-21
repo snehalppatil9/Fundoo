@@ -4,7 +4,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Note } from '../../core/model/user-model'
 import { NotesService } from 'src/app/core/services/notes/notes.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component'
 @Component({
   selector: 'app-reminder',
   templateUrl: './reminder.component.html',
@@ -19,7 +20,8 @@ export class ReminderComponent implements OnInit {
   view1: any;
   constructor(private dataService: DataService,
     private noteService: NotesService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private dialog : MatDialog
   ) { }
 
   ngOnInit() {
@@ -101,6 +103,26 @@ export class ReminderComponent implements OnInit {
     */
   showLabel(data) {
     this.dataService.changeMessageLabel(data)
+  }
+    /**
+   * @Purpose : Open dialog note edit it
+   **/
+  openDialog(data: any): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '600px',
+      height: '',
+      data: {
+        'title': data.title,
+        'description': data.description,
+        'id': data.id,
+      }
+    });
+    /* Close the dialog*/
+    dialogRef.afterClosed()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => {
+      console.log(`Dialog closed: ${result}`);
+    });
   }
   ngOnDestroy() {
     this.destroy$.next(true);

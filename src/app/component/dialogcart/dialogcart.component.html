@@ -1,34 +1,44 @@
 <div class="cart">
   <mat-toolbar class="navbar">
-    <div fxLayoutAlign="start">Advance Pack Details</div>
-    <div fxLayoutAlign="end">$6.99/Month</div>
+    <div fxLayoutAlign="start">{{dataService.name}} Pack Details</div>
+    <div fxLayoutAlign="end">${{dataService.price}}/Month</div>
   </mat-toolbar>
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form>
-        <ng-template matStepLabel>feature1</ng-template>
-
+        <ng-template matStepLabel>
+          <h5>feature1</h5>
+        </ng-template>
+        <h4>{{dataService.description}}</h4>
+        <div style="height:7vh;"></div>
         <div>
-          <button class="btn btn-primary" mat-button matStepperNext>Next</button>
+          <button class="btn" mat-button matStepperNext>Next</button>
+          <button class="btn1" mat-button (click)=proceedto(dataService.id)>Proceed To Checkout</button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form>
-        <ng-template matStepLabel>feature2</ng-template>
-
+        <ng-template matStepLabel>
+          <h5>feature2</h5>
+        </ng-template>
+        <h4>{{dataService.description}}</h4>
+        <div style="height:7vh;"></div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button class="btn" mat-button matStepperPrevious>Back</button>
+          <button class="btn2" mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>feature3</ng-template>
-      You are now done.
+      <ng-template matStepLabel>
+        <h5>feature3</h5>
+      </ng-template>
+      <h4>{{dataService.description}}</h4>
+      <div style="height:6vh;"></div>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button class="btn" mat-button matStepperPrevious>Back</button>
+        <button class="btn2" mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

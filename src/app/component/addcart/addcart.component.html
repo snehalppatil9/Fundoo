@@ -4,40 +4,23 @@
   <h4>Which fundooNotes service package do you want?</h4>
 </div>
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
-<div class="main1">
+<div class="main1" *ngFor="let data of service">
   <div class="card">
     <mat-card class="card3">
       <h5>ADD TO CART</h5>
     </mat-card>
   </div>
-  <div class="card1">
+  <div class="card1" >
     <mat-card>
       <div style="height:1vh;"></div>
-      <h4>$6.99 Per Month</h4>
+      <h4>${{data.price}} Per Month</h4>
       <div fxLayoutAlign="start" class="openDialog">
-        <button mat-button (click)="openDialogAdvance()">Advance</button>
+        <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
       </div>
       <li>Unlimited Wall Space</li>
       <li>Nice Interface</li>
-      <li>$6.99/Month</li>
-      <li>Ability to add only title and description</li>
-    </mat-card>
-  </div>
-</div>
-<div class="main2">
-  <div class="card3">
-    <mat-card><h5>ADD TO CART</h5></mat-card>
-  </div>
-  <div class="card2">
-   <mat-card>
-      <div style="height:2vh;"></div>
-      <h4>$3.99 Per Month</h4>
-      <div fxLayoutAlign="start">
-        <button mat-button>Basic</button></div>
-        <li>Unlimited Wall Space</li>
-        <li>Nice Interface</li>
-        <li>$3.99/Month</li>
-        <li>Ability to add only title and description</li>
+      <li>${{data.price}}/Month</li>
+      <li>{{data.description}}</li>
     </mat-card>
   </div>
 </div>

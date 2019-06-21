@@ -170,7 +170,7 @@ export class NavbarComponent implements OnInit {
       .subscribe((response) => {
         this.label = response["data"].details;
         this.label.reverse();
-        console.log("this.label reverse ==========>", this.label);
+        console.log("this.label in navbar ==========>", this.label);
       })
   }
   /*

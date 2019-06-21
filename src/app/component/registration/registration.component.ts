@@ -17,6 +17,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Service } from '../../core/model/user-model'
+import { NotesService } from 'src/app/core/services/notes/notes.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -24,6 +26,7 @@ import { Subject } from 'rxjs';
 })
 export class RegistrationComponent implements OnInit {
   register: UserModel = new UserModel();
+  Service: Service[] = [];
   service: any;
   //title='FundooNotes';
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -52,7 +55,7 @@ export class RegistrationComponent implements OnInit {
   /*
   *  @Description  : validation for UserName
   */
- emailValidation() {
+  emailValidation() {
     return this.email.hasError('required') ? 'Enter an userName' :
       this.email.hasError('minLength') ? 'userName must be at least 4 characters long' :
         this.email.hasError('maxLength') ? 'userName must 20 characters long' :
@@ -76,13 +79,13 @@ export class RegistrationComponent implements OnInit {
       this.cpassword.hasError('minLength') ? 'Password must be at least 5 characters long' :
         this.cpassword.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number' : '';
   }
-  advance = new FormControl('',Validators.required);
+  advance = new FormControl('', Validators.required);
   advancedValidation() {
-    return this.advance.hasError('required') ? '' :'';
+    return this.advance.hasError('required') ? '' : '';
   }
   basic = new FormControl('', [Validators.required]);
   basicValidation() {
-    return this.basic.hasError('required') ? '' :'';
+    return this.basic.hasError('required') ? '' : '';
   }
   /*
   *  @Description  : validation for advanced and basic toggle button
@@ -96,47 +99,57 @@ export class RegistrationComponent implements OnInit {
       currentLesson: '1'
     }]
 
-  constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) {
+  constructor(private UserService: UserService, private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) {
     this.currentLesson = this.classes[0].currentLesson
   }
 
   ngOnInit() {
+    this.getService();
   }
   /*
   * @Description  :  Sending data to database
   */
   submit() {
-  //   let pass = group.controls.password.value;
-  //   let confirmPass = group.controls.confirmPass.value;
+    //   let pass = group.controls.password.value;
+    //   let confirmPass = group.controls.confirmPass.value;
 
-  // return pass === confirmPass ? null : { notSame: true }   
+    // return pass === confirmPass ? null : { notSame: true }   
     console.log('console@@@@@@@@@@@@@@@@@', this.register);
     try {
-     //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
-      if (this.register.password === this.register.cpassword)
-      {
-      console.log("password and confirmpassword does not match");
-      this.UserService.userRegister(this.register)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        data => {
-          console.log("Response================>", this.register);
-          console.log("Response================>", data);
-          this.snackbar.open('Register successfully......!', 'Continue with Login..!', { duration: 1000 });
-          this.router.navigateByUrl('login');
-        },
-        error => {
-          this.snackbar.open('Register not successfully......!', 'Stop...!', { duration: 3000 });
-          console.log("Error something wrong: ", error)
-        });
+      //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
+      if (this.register.password === this.register.cpassword) {
+        console.log("password and confirmpassword does not match");
+        this.UserService.userRegister(this.register)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
+            data => {
+              console.log("Response================>", this.register);
+              console.log("Response================>", data);
+              this.snackbar.open('Register successfully......!', 'Continue with Login..!', { duration: 1000 });
+              this.router.navigateByUrl('login');
+            },
+            error => {
+              this.snackbar.open('Register not successfully......!', 'Stop...!', { duration: 3000 });
+              console.log("Error something wrong: ", error)
+            });
       }
-      else{
+      else {
         this.snackbar.open('Register not successfully......!', 'Stop...!', { duration: 3000 });
         console.log("Error something wrong: ")
       }
     } catch (error) {
       this.snackbar.open('error8888888888888888888888888888888', "", { duration: 3000 });
     }
+  }
+  getService() {
+    this.noteService.getService()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.service = response["data"].data;
+        console.log("get reminder note ===============>", this.service);
+
+      }, (error) => {
+      });
   }
   ngOnDestroy() {
     this.destroy$.next(true);

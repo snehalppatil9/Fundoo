@@ -41,7 +41,7 @@ import { AskQuestionComponent } from './component/ask-question/ask-question.comp
 import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component';
 import { AddcartComponent } from './component/addcart/addcart.component';
 import { DialogcartComponent } from './component/dialogcart/dialogcart.component';
-
+import { ProductPurchaseComponent } from './component/product-purchase/product-purchase.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +70,9 @@ import { DialogcartComponent } from './component/dialogcart/dialogcart.component
     AskQuestionComponent,
     ComponentlifecycleComponent,
     AddcartComponent,
-    DialogcartComponent
+    DialogcartComponent,
+    ProductPurchaseComponent,
+    
    
   ],
   imports: [

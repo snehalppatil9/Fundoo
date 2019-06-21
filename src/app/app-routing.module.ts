@@ -28,23 +28,26 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
 import { DialogComponent } from './component/dialog/dialog.component';
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component'
-import { PinComponent }  from './component/pin/pin.component'
+import { PinComponent } from './component/pin/pin.component'
 import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 import { AskQuestionComponent } from './component/ask-question/ask-question.component';
 import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component'
 import { AddcartComponent } from './component/addcart/addcart.component';
 import { DialogcartComponent } from './component/dialogcart/dialogcart.component';
+import { ProductPurchaseComponent } from './component/product-purchase/product-purchase.component';
+
 const routes: Routes = [
-  { path: '', redirectTo:"login", pathMatch: "full"},
+  { path: '', redirectTo: "login", pathMatch: "full" },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegistrationComponent },
+  { path: 'register/:[data]', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
   { path: 'addcart', component: AddcartComponent },
-  { path: 'componentcycle', component : ComponentlifecycleComponent},
+  { path: 'componentcycle', component: ComponentlifecycleComponent },
+  { path: 'productpurchase', component: ProductPurchaseComponent },
   {
     path: '',
-    component: NavbarComponent,  canActivate: [AuthGuardService],
+    component: NavbarComponent, canActivate: [AuthGuardService],
     children: [
       { path: 'addnote', component: NoteComponent },
       { path: 'reminder', component: ReminderComponent },
@@ -52,19 +55,20 @@ const routes: Routes = [
       { path: 'archieve', component: ArchieveComponent },
       { path: 'trash', component: TrashComponent },
       { path: 'icon', component: IconComponent },
-      { path: 'search', component: SearchNoteComponent},
-      { path: 'archive',  component : ArchieveComponent },
-      { path: 'trash' , component : TrashComponent },
-      { path: 'dialog', component: DialogComponent},
-      { path: 'collaborator', component: CollaboratorComponent},
-      { path: 'reminder', component: ReminderComponent},
-      { path: 'imagecrop', component: ImageCropComponent},
-      { path: 'searchmatcards', component: SearchmatcardsComponent},
+      { path: 'search', component: SearchNoteComponent },
+      { path: 'archive', component: ArchieveComponent },
+      { path: 'trash', component: TrashComponent },
+      { path: 'dialog', component: DialogComponent },
+      { path: 'collaborator', component: CollaboratorComponent },
+      { path: 'reminder', component: ReminderComponent },
+      { path: 'imagecrop', component: ImageCropComponent },
+      { path: 'searchmatcards', component: SearchmatcardsComponent },
       { path: 'pin', component: PinComponent },
       { path: 'labelnote/:label', component: LabelnoteComponent },
       { path: 'askquestion/:id', component: AskQuestionComponent },
-     { path : 'opendialogcart', component : DialogcartComponent}
+      { path: 'opendialogcart', component: DialogcartComponent },
       
+
     ]
 
   }

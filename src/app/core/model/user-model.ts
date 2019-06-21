@@ -4,7 +4,12 @@ export class UserModel {
     "username": string
     password: string
     cpassword: string
-    
+}
+export class Service {
+    "name": string
+    "description": string
+    "price": number
+    "id": string
 }
 export class Note {
     title: string
@@ -18,14 +23,14 @@ export class Note {
     isArchived: boolean
     isDeleted: boolean
     isPined: boolean
-    labelIdList : string
+    labelIdList: string
     imageUrl: string
-    questionAndAnswerNotes :[{}]
+    questionAndAnswerNotes: [{}]
 }
 export class Label {
-    label : string;
-    isDeleted : false;
-    userId : string;
+    label: string;
+    isDeleted: false;
+    userId: string;
 }
 export class User {
     "id": string;
@@ -42,9 +47,9 @@ export class Collaborator {
     "email": string;
     "id": string;
 }
-export class Editor{
-    "message" : string
+export class Editor {
+    "message": string
 }
-export class Reply{
-    "message" : string
+export class Reply {
+    "message": string
 }

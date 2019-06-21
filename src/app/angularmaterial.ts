@@ -54,6 +54,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
    imports: [
@@ -90,6 +91,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     ImageCropperModule,
     DragDropModule,
     MatStepperModule,
+    MatTabsModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot()
   ],
@@ -97,6 +99,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     BrowserModule,
     DragDropModule,
     MatStepperModule,
+    MatTabsModule,
     AppRoutingModule,
     MatAutocompleteModule,
     BrowserAnimationsModule,

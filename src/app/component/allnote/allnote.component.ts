@@ -235,7 +235,7 @@ export class AllnoteComponent implements OnInit {
     setTimeout(() => this.dataService.getAllNote(), 0);
   }
   /**
-   * @Purpose : Open dialog nad edit it
+   * @Purpose : Open dialog note edit it
    **/
   openDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -249,23 +249,26 @@ export class AllnoteComponent implements OnInit {
     });
     /* Close the dialog*/
     dialogRef.afterClosed()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(result => {
-      console.log(`Dialog closed: ${result}`);
-    });
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        console.log(`Dialog closed: ${result}`);
+      });
   }
-
-
   /**
-   * @Purpose : Removing label from notes
-   **/
+  * @description : remove label from note
+  */
   removeLabel(labelId, cardId) {
     this.noteService.removeLabelFromNotes(cardId, labelId)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => {
-
-      }, (error) => {
-      });
+      .subscribe(
+        data => {
+          this.snackbar.open('Remove Label from Notes Successfully.', '', { duration: 3000 });
+          console.log('Remove Label from Notes Successfully...........', data);
+        },
+        error => {
+          this.snackbar.open('Error while Remove Label!', 'Error', { duration: 3000 });
+          console.log("Error something wrong: ", error)
+        });
   }
   /**
    * @Purpose : show label 

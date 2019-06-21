@@ -8,34 +8,46 @@
    @version        : 1.0
    @since          : 22-04-2019
   -->
-<!-- 
-    @Description    :   Dispaly data into the card after archive
- -->
 <div fxLayoutAlign="center center">
-    <div class="cardMain" fxLayout="{{direction}} wrap" fxLayoutAlign="center center">
-        <div class="cardSub" fxFlex="27" fxLayoutAlign="center center"
-            *ngFor="let data of notes | pipe | filter : searchItem ">
-            <div *ngIf="data.isArchived === true">
-                <mat-card [ngStyle]="{'background-color':data.color}">
-                    <div class="title">{{data.title}}</div>
-                    <div class="description"> {{data.description }}</div>
+    <div class="cardMain" fxLayout="{{direction}} wrap">
+        <!-- 
+         @Description    :   ngClass for grid and list view
+        -->
+        <div *ngFor="let data of notes | pipe | filter : searchItem"
+            [ngClass]=" direction =='row' ? 'cardSub':'cardSub2'">
+            <!-- <div  > -->
+            <mat-card *ngIf="data.isArchived === true" [ngStyle]="{'background-color':data.color}"
+                style="border-radius:20px;">
+                <!--
+                    @Description    :    openDialog for dialog 
+                 -->
+                <div (click)="openDialog(data)">
+                    <div class="title">
+                        <div fxFlex="100">
+                            <div innerHTML="{{data.title}}"></div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <div fxFlex="100" innerHTML="{{data.description }}"></div>
+                    </div>
                     <mat-chip-list>
-                        <div *ngFor="let cardData of data.reminder" class="reminder">
-                            <mat-chip class="datetime">
+                        <span *ngFor="let cardData of data.reminder">
+                            <mat-chip class="label">
                                 <mat-icon>access_time</mat-icon>
                                 {{cardData | date : 'MMM d, y h:mm a'}}
-                                <mat-icon (click)=removeReminder(data,$event)> cancel</mat-icon>
+                                <mat-icon (click)=removeReminder(data,$event) class="cancelIcon"> cancel</mat-icon>
                             </mat-chip>
-                        </div>
-                    </mat-chip-list>
-                    <mat-chip-list  >
-                        <span *ngFor="let cardData of data.noteLabels">
-                          <mat-chip  class="label" *ngIf="cardData.isDeleted==false" (click)=showLabel(cardData.label)>
-                            <span class="chip">{{cardData.label}}</span><mat-icon *ngIf="!data.isDeleted" (click)=removeLabel(cardData.id,data.id) 
-                            class="cancelIcon">cancel</mat-icon>
-                          </mat-chip>
                         </span>
-                      </mat-chip-list>
+                    </mat-chip-list>
+                    <mat-chip-list>
+                        <span *ngFor="let cardData of data.noteLabels">
+                            <mat-chip class="label" *ngIf="cardData.isDeleted==false" (click)=showLabel(cardData.label)>
+                                <span class="chip">{{cardData.label}}</span>
+                                <mat-icon *ngIf="!data.isDeleted" (click)=removeLabel(cardData.id,data.id)
+                                    class="cancelIcon">cancel</mat-icon>
+                            </mat-chip>
+                        </span>
+                    </mat-chip-list>
                     <div class="icon">
                         <abbr title="UnArchive">
                             <button style="outline: none;" mat-icon-button (click)=unArchiveNote(data)>
@@ -45,9 +57,11 @@
                             </button>
                         </abbr>
                     </div>
-                </mat-card>
-                <div style="height:5vh;"></div>
-            </div>
+                </div>
+                <div style="height : 2vh;"></div>
+            </mat-card>
+            <div style="height:3vh;"></div>
+            <!-- </div> -->
         </div>
     </div>
 </div>

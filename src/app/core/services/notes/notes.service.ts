@@ -141,4 +141,10 @@ export class NotesService {
   addLikes(body, parentId){
     return this.httpservice.postData("questionAndAnswerNotes/like/" + parentId,body)
   }
+
+
+
+  getService(){
+    return this.httpservice.getData("user/service")
+  }
 }

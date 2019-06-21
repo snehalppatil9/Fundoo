@@ -4,7 +4,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Note } from '../../core/model/user-model'
 import { DataService } from 'src/app/core/services/data/data.service';
-import { MatSnackBar, MatCard } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-trash',
   templateUrl: './trash.component.html',
@@ -14,7 +15,8 @@ export class TrashComponent implements OnInit {
 
   constructor(private noteService: NotesService,
     private snackbar: MatSnackBar,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    public dialog: MatDialog,) { }
     destroy$: Subject<boolean> = new Subject<boolean>();
   notes: Note[] = [];
   direction: String = "row";
@@ -91,6 +93,26 @@ export class TrashComponent implements OnInit {
       this.snackbar.open('error', "", { duration: 3000 });
     }
     setTimeout(() => this.getTrashList(), 100);
+  }
+  /**
+   * @Purpose : Open dialog note edit it
+   **/
+  openDialog(data: any): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '600px',
+      height: '',
+      data: {
+        'title': data.title,
+        'description': data.description,
+        'id': data.id,
+      }
+    });
+    /* Close the dialog*/
+    dialogRef.afterClosed()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => {
+      console.log(`Dialog closed: ${result}`);
+    });
   }
   ngOnDestroy() {
     this.destroy$.next(true);
