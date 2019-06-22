@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Service } from '../../core/model/user-model';
 import { NotesService } from 'src/app/core/services/notes/notes.service';
-
+import { Service } from '../../core/model/user-model'
 @Component({
-  selector: 'app-product-purchase',
-  templateUrl: './product-purchase.component.html',
-  styleUrls: ['./product-purchase.component.scss']
+  selector: 'app-place-order',
+  templateUrl: './place-order.component.html',
+  styleUrls: ['./place-order.component.scss']
 })
-export class ProductPurchaseComponent implements OnInit {
+export class PlaceOrderComponent implements OnInit {
   destroy$ : Subject<boolean> = new Subject<boolean>();
   dataId : '';
   constructor(private route: ActivatedRoute,private noteService : NotesService,private router : Router) { }
@@ -35,7 +34,7 @@ export class ProductPurchaseComponent implements OnInit {
         }, (error) => {
         }); 
   }
-  toCheckOut(){
-    this.router.navigateByUrl('placeorder/'+this.dataId);
+  placeOrder(){
+    this.router.navigateByUrl('completePayment/'+this.dataId);
   }
 }

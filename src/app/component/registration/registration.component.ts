@@ -9,12 +9,12 @@
  *  @since          : 22-04-2019
  *
  ******************************************************************************/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { UserModel } from '../../core/model/user-model';
 import { UserService } from '../../core/services/user/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Service } from '../../core/model/user-model'
@@ -28,6 +28,7 @@ export class RegistrationComponent implements OnInit {
   register: UserModel = new UserModel();
   Service: Service[] = [];
   service: any;
+  @Input() data;
   //title='FundooNotes';
   destroy$: Subject<boolean> = new Subject<boolean>();
   hide = true;
@@ -99,12 +100,19 @@ export class RegistrationComponent implements OnInit {
       currentLesson: '1'
     }]
 
-  constructor(private UserService: UserService, private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) {
+  constructor(private UserService: UserService, private route: ActivatedRoute, private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) {
     this.currentLesson = this.classes[0].currentLesson
   }
-
+  dataId: '';
   ngOnInit() {
     this.getService();
+    this.route.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        this.dataId = params['data'];
+        console.log("dataId=====>",this.dataId);
+        
+      })
   }
   /*
   * @Description  :  Sending data to database
@@ -140,6 +148,7 @@ export class RegistrationComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error8888888888888888888888888888888', "", { duration: 3000 });
     }
+    this.router.navigateByUrl('productpurchase/'+this.dataId);
   }
   getService() {
     this.noteService.getService()

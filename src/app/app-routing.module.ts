@@ -35,16 +35,19 @@ import { ComponentlifecycleComponent } from './component/componentlifecycle/comp
 import { AddcartComponent } from './component/addcart/addcart.component';
 import { DialogcartComponent } from './component/dialogcart/dialogcart.component';
 import { ProductPurchaseComponent } from './component/product-purchase/product-purchase.component';
-
+import { PlaceOrderComponent } from './component/place-order/place-order.component';
+import { CompletePaymentComponent } from './component/complete-payment/complete-payment.component'
 const routes: Routes = [
   { path: '', redirectTo: "login", pathMatch: "full" },
   { path: 'login', component: LoginComponent },
-  { path: 'register/:[data]', component: RegistrationComponent },
+  { path: 'register/:data', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
   { path: 'addcart', component: AddcartComponent },
   { path: 'componentcycle', component: ComponentlifecycleComponent },
-  { path: 'productpurchase', component: ProductPurchaseComponent },
+  { path: 'productpurchase/:data', component: ProductPurchaseComponent },
+  { path: 'placeorder/:data', component : PlaceOrderComponent},
+  { path: 'completePayment/:data', component : CompletePaymentComponent},
   {
     path: '',
     component: NavbarComponent, canActivate: [AuthGuardService],

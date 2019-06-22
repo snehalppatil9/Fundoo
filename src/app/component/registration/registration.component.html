@@ -107,16 +107,19 @@
             @Description  : Validating advance and basic button and displaying the error message 
         -->
         <!-- <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4"> -->
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px">
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxHide fxShow.gt-sm>
           <div class="main1" *ngFor="let data of service">
             <div class="card">
-              <mat-card class="card3">
+              <mat-card class="card4" *ngIf="data.id == dataId ">
+                <h5>SELECTED</h5>
+              </mat-card>
+              <mat-card class="card3" *ngIf="data.id != dataId ">
                 <h5>ADD TO CART</h5>
               </mat-card>
             </div>
             <div class="card1">
               <mat-card>
-                <!-- <div style="height:1vh;"></div> -->
+                <!-- <div style="height:1vh;"></div>  -->
                 <h4>${{data.price}} Per Month</h4>
                 <div fxLayoutAlign="start" class="openDialog">
                   <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
@@ -135,8 +138,7 @@
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button>
           </div>
           <div><button mat-button
-              [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid"
-              (click)="submit(register)" routerLink="/login">Next</button></div>
+            (click)="submit(register)">Sign Up</button></div>
         </div>
         <div fxLayoutAlign="end" fxHide fxShow.gt-sm>
           <div class="img">
@@ -151,3 +153,6 @@
   </div>
   <div fxFlex.lg="2%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
 </div>
+
+
+<!-- [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid" -->

@@ -42,6 +42,8 @@ import { ComponentlifecycleComponent } from './component/componentlifecycle/comp
 import { AddcartComponent } from './component/addcart/addcart.component';
 import { DialogcartComponent } from './component/dialogcart/dialogcart.component';
 import { ProductPurchaseComponent } from './component/product-purchase/product-purchase.component';
+import { PlaceOrderComponent } from './component/place-order/place-order.component';
+import { CompletePaymentComponent } from './component/complete-payment/complete-payment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +74,8 @@ import { ProductPurchaseComponent } from './component/product-purchase/product-p
     AddcartComponent,
     DialogcartComponent,
     ProductPurchaseComponent,
+    PlaceOrderComponent,
+    CompletePaymentComponent,
     
    
   ],

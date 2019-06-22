@@ -48,8 +48,7 @@ hr{
     color: white;
 }
 .btn1{
-    // width: 30%;
-    // float: right;
+    width: 229px;
     height: 45px;
     border-radius: 10px;
     font-size: 15px;
@@ -79,4 +78,21 @@ li{
     align-items: center;
     white-space: nowrap;
     position: relative;
+}
+.textarea{
+    // width:90%;
+    // outline: none;
+    margin:2%;
+    border: 1px solid;
+    border-radius: 4px;
+    height: 145px;
+}
+.textarea:empty:before{
+    content: attr(data-text);
+    opacity: 0.5;
+    font-size: 20px;
+    border-radius: 4px;
+    width:60%;
+    height:10%;
+    @include margin-top(2px);
 }

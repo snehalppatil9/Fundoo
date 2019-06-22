@@ -17,7 +17,7 @@ export class DialogcartComponent implements OnInit {
 
   ngOnInit() {
     this.dataService = this.data["data"];
-    console.log("data======>",this.dataService);
+    console.log("dataaaaaaaaaaaaaaaaaaaa======>",this.dataService);
     
   }
   proceedto(dataService1){

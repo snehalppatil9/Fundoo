@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { Service } from 'src/app/core/model/user-model';
+import { Params, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { Service } from '../../core/model/user-model';
 import { NotesService } from 'src/app/core/services/notes/notes.service';
 
 @Component({
-  selector: 'app-product-purchase',
-  templateUrl: './product-purchase.component.html',
-  styleUrls: ['./product-purchase.component.scss']
+  selector: 'app-complete-payment',
+  templateUrl: './complete-payment.component.html',
+  styleUrls: ['./complete-payment.component.scss']
 })
-export class ProductPurchaseComponent implements OnInit {
+export class CompletePaymentComponent implements OnInit {
   destroy$ : Subject<boolean> = new Subject<boolean>();
   dataId : '';
-  constructor(private route: ActivatedRoute,private noteService : NotesService,private router : Router) { }
+  constructor(private route: ActivatedRoute,private noteService : NotesService) { }
 
   ngOnInit() {
     this.route.params
@@ -34,8 +34,5 @@ export class ProductPurchaseComponent implements OnInit {
   
         }, (error) => {
         }); 
-  }
-  toCheckOut(){
-    this.router.navigateByUrl('placeorder/'+this.dataId);
   }
 }
