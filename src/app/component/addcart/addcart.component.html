@@ -4,24 +4,24 @@
   <h4>Which fundooNotes service package do you want?</h4>
 </div>
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
-<div class="main1" *ngFor="let data of service">
-  <div class="card">
-    <mat-card class="card3">
-      <h5>ADD TO CART</h5>
-    </mat-card>
+  <div class="main1" *ngFor="let data of service">
+    <div class="card">
+      <mat-card class="card3">
+        <h5>ADD TO CART</h5>
+      </mat-card>
+    </div>
+    <div class="card1">
+      <mat-card>
+        <div style="height:1vh;"></div>
+        <h4>${{data.price}} Per Month</h4>
+        <div fxLayoutAlign="start" class="openDialog">
+          <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
+        </div>
+        <li>Unlimited Wall Space</li>
+        <li>Nice Interface</li>
+        <li>${{data.price}}/Month</li>
+        <li>{{data.description}}</li>
+      </mat-card>
+    </div>
   </div>
-  <div class="card1" >
-    <mat-card>
-      <div style="height:1vh;"></div>
-      <h4>${{data.price}} Per Month</h4>
-      <div fxLayoutAlign="start" class="openDialog">
-        <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
-      </div>
-      <li>Unlimited Wall Space</li>
-      <li>Nice Interface</li>
-      <li>${{data.price}}/Month</li>
-      <li>{{data.description}}</li>
-    </mat-card>
-  </div>
-</div>
 </div>

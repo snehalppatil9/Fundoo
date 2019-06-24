@@ -100,7 +100,7 @@ export class ArchieveComponent implements OnInit {
   /**
     * @description : remove label from note
     */
-   destroy$: Subject<boolean> = new Subject<boolean>();
+  destroy$: Subject<boolean> = new Subject<boolean>();
   removeLabel(labelId, cardId) {
     this.noteService.removeLabelFromNotes(cardId, labelId)
       .pipe(takeUntil(this.destroy$))

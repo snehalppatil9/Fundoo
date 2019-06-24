@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from '../login/login.component';
-import {RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { RegistrationComponent } from '../registration/registration.component';
 import { ForgotComponent } from '../forgot/forgot.component';
 import { ResetComponent } from '../reset/reset.component';
@@ -20,7 +20,7 @@ import { CollaboratorComponent } from '../collaborator/collaborator.component';
 import { ImageCropComponent } from '../image-crop/image-crop.component';
 import { SearchmatcardsComponent } from '../searchmatcards/searchmatcards.component';
 import { ShowLabelnotesComponent } from '../show-labelnotes/show-labelnotes.component';
-import { PinComponent }  from '../pin/pin.component';
+import { PinComponent } from '../pin/pin.component';
 import { LabelnoteComponent } from '../labelnote/labelnote.component';
 import { AngularMaterial } from '../../angularmaterial';
 import { FilterPipe } from '../../filterpipe/filter.pipe';
@@ -33,13 +33,13 @@ describe('AllnoteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AddcartComponent,ComponentlifecycleComponent, ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
-      imports : [FlexLayoutModule,RouterTestingModule,
+      declarations: [AddcartComponent, ComponentlifecycleComponent, ReminderComponent, NavbarComponent, NoteComponent, LabelComponent, ArchieveComponent, TrashComponent, IconComponent, SearchNoteComponent, CollaboratorComponent, ImageCropComponent, DialogComponent, SearchmatcardsComponent, ShowLabelnotesComponent, PinComponent, LabelnoteComponent, AskQuestionComponent, FilterPipe, PipePipe, AllnoteComponent, ForgotComponent, ResetComponent, LoginComponent, RegistrationComponent],
+      imports: [FlexLayoutModule, RouterTestingModule,
         AngularMaterial
       ],
-      providers : [FilterPipe,PipePipe]
+      providers: [FilterPipe, PipePipe]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -49,7 +49,14 @@ export class DataService {
         return this.assignData.next(data.data.data);
       })
   }
-
+  /*
+  * @Description  : without refresh get notes
+  */
+ private messageNote= new BehaviorSubject('default');
+ currentMessageNote = this.messageNote.asObservable();
+ getNotes(message: string){
+   this.messageNote.next(message)
+ }
   /*
   * @Description  : Show Label/get all labels
   */

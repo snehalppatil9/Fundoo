@@ -55,19 +55,19 @@ export class IconComponent implements OnInit {
     [
       { name: "white", hexcode: "#ffffff" },
       { name: "lightGreen", hexcode: "#90ee90" },
-      { name: "purple", hexcode: "#800080" },
+      { name: "purple", hexcode: "#c063f2" },
       { name: "red", hexcode: "#ff0000" },
     ],
     [
       { name: "Teal", hexcode: "#008080" },
       { name: "pink", hexcode: "#ffc0cb" },
       { name: "orange", hexcode: "#ffa500" },
-      { name: "blue", hexcode: "#0000ff" },
+      { name: "lightblue", hexcode: "#3ea2ef" },
     ],
     [
       { name: "brown", hexcode: "#a52a2a" },
-      { name: "yellow", hexcode: "#ffff00" },
-      { name: "darkBlue", hexcode: "#00008b" },
+      { name: "yellow", hexcode: "#d6ab2c" },
+      { name: "lightOrange", hexcode: "#ea845b" },
       { name: "gray", hexcode: "#808080" }
     ]
   ]
@@ -79,9 +79,15 @@ export class IconComponent implements OnInit {
         this.message = message;
       })
   }
+  /**
+   * @description : set color here
+   */
   setColor(color) {
     this.onChangeColor.emit(color);
   }
+  /**
+   * @description : delete note / trash note
+   */
   deleteNotes(note) {
     this.onChangeDelete.emit(note);
   }
@@ -112,11 +118,15 @@ export class IconComponent implements OnInit {
     this.onChangeDate.emit(date);
     console.log("sfdsdf", this.onChangeDate.emit(date));
   }
+  /**
+   * @description : Archive note
+   */
   archive(note) {
     this.onArchiveEntry.emit(note);
   }
-
-  /* addCollaborator */
+  /**
+   * @description : addCollaborator 
+   */
   addCollaborator(noteData) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '600px',

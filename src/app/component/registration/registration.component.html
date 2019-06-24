@@ -108,12 +108,12 @@
         -->
         <!-- <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4"> -->
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxHide fxShow.gt-sm>
-          <div class="main1" *ngFor="let data of service">
+          <div class="main1" *ngFor="let data of serviceData">
             <div class="card">
-              <mat-card class="card4" *ngIf="data.id == dataId ">
+              <mat-card class="card4" *ngIf="productData.id == data.id">
                 <h5>SELECTED</h5>
               </mat-card>
-              <mat-card class="card3" *ngIf="data.id != dataId ">
+              <mat-card class="card3" *ngIf="productData.id != data.id">
                 <h5>ADD TO CART</h5>
               </mat-card>
             </div>
@@ -137,7 +137,7 @@
         <div fxLayout="row" fxLayoutGap="25" fxLayoutAlign.md="start end">
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button>
           </div>
-          <div><button mat-button
+          <div><button mat-button [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid"
             (click)="submit(register)">Sign Up</button></div>
         </div>
         <div fxLayoutAlign="end" fxHide fxShow.gt-sm>

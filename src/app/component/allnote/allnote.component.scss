@@ -67,6 +67,12 @@
 .cardSub:hover .pin {
     visibility: visible;
 }
+.cardSub2:hover .icon {
+    visibility: visible;
+}
+.cardSub2:hover .pin {
+    visibility: visible;
+}
 .title{
     width: 100%;
     border-style: hidden;
@@ -118,4 +124,12 @@
     opacity:0.7;
     margin-left: 74px;
 }
-
+mat-chip{
+    background-color: gray;
+}
+.label{
+    font-size: 20px;
+}
+.question{
+    font-size: 20px;
+}

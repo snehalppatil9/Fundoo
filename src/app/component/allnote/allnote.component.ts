@@ -232,7 +232,7 @@ export class AllnoteComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error', "", { duration: 3000 });
     }
-    setTimeout(() => this.dataService.getAllNote(), 0);
+    setTimeout(() => this.dataService.getAllNote(), 30);
   }
   /**
    * @Purpose : Open dialog note edit it
@@ -293,6 +293,7 @@ export class AllnoteComponent implements OnInit {
         console.log('convert pin to unpin response ====>', response);
 
       });
+    setTimeout(() => this.dataService.getAllNote(), 5);
   }
   /**
    * @Purpose : add label to notes 

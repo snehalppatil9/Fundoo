@@ -74,12 +74,9 @@
   <button mat-menu-item [matMenuTriggerFor]="labelmenu" (click)="showLabel()">
     <span>Add label</span>
   </button>
-  <button mat-menu-item routerLink="/askquestion/{{card?.id}}"  routerLinkActive=active>
+  <button mat-menu-item routerLink="/askquestion/{{card.id}}"  routerLinkActive=active>
     <span>Ask Question</span>
   </button>
-  <!-- <button mat-menu-item>
-    <span>Make a Copy</span>
-  </button> -->
   <button mat-menu-item (click)="showCheckBox()">
     <span>Show checkboxes</span>
   </button>

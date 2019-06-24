@@ -80,28 +80,8 @@ export class RegistrationComponent implements OnInit {
       this.cpassword.hasError('minLength') ? 'Password must be at least 5 characters long' :
         this.cpassword.hasError('pattern') ? 'Your password must contain at least one uppercase, one lowercase, and one number' : '';
   }
-  advance = new FormControl('', Validators.required);
-  advancedValidation() {
-    return this.advance.hasError('required') ? '' : '';
-  }
-  basic = new FormControl('', [Validators.required]);
-  basicValidation() {
-    return this.basic.hasError('required') ? '' : '';
-  }
-  /*
-  *  @Description  : validation for advanced and basic toggle button
-  */
-  currentLesson: string;
-  classes = [
-    {
-      name: 'string',
-      level: 'string',
-      code: 'number',
-      currentLesson: '1'
-    }]
-
   constructor(private UserService: UserService, private route: ActivatedRoute, private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) {
-    this.currentLesson = this.classes[0].currentLesson
+
   }
   dataId: '';
   ngOnInit() {
@@ -110,31 +90,35 @@ export class RegistrationComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((params: Params) => {
         this.dataId = params['data'];
-        console.log("dataId=====>",this.dataId);
-        
+        console.log("productId fetched in register=====>", this.dataId);
+
       })
+    this.getCartDetails(this.dataId);
   }
   /*
   * @Description  :  Sending data to database
   */
   submit() {
-    //   let pass = group.controls.password.value;
-    //   let confirmPass = group.controls.confirmPass.value;
-
-    // return pass === confirmPass ? null : { notSame: true }   
-    console.log('console@@@@@@@@@@@@@@@@@', this.register);
+    var body={
+      "firstName": this.firstName.value,
+      "lastName": this.lastName.value,
+      "service": this.service["product"].name,
+      "password" : this.password.value,
+      "email": this.email.value
+    } 
+    console.log('console body registration=========>', body);
     try {
       //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
-      if (this.register.password === this.register.cpassword) {
-        console.log("password and confirmpassword does not match");
-        this.UserService.userRegister(this.register)
+      if (this.password.value === this.cpassword.value) {
+        console.log("password and confirmpassword match");
+        this.UserService.userRegister(body)
           .pipe(takeUntil(this.destroy$))
           .subscribe(
             data => {
               console.log("Response================>", this.register);
               console.log("Response================>", data);
               this.snackbar.open('Register successfully......!', 'Continue with Login..!', { duration: 1000 });
-              this.router.navigateByUrl('login');
+              this.router.navigateByUrl('productpurchase/' + this.dataId)
             },
             error => {
               this.snackbar.open('Register not successfully......!', 'Stop...!', { duration: 3000 });
@@ -148,14 +132,27 @@ export class RegistrationComponent implements OnInit {
     } catch (error) {
       this.snackbar.open('error8888888888888888888888888888888', "", { duration: 3000 });
     }
-    this.router.navigateByUrl('productpurchase/'+this.dataId);
+    // this.router.navigateByUrl('productpurchase/' + this.dataId);
   }
+  productData = '';
+  getCartDetails(cardId) {
+    this.noteService.getCartDetails(cardId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.service = response["data"];
+        console.log("get registration note data for sevice ===============>", this.service);
+        this.productData = this.service["product"];
+        console.log("get registration product data for sevice ===============>", this.productData);
+      }, (error) => {
+      });
+  }
+  serviceData: '';
   getService() {
     this.noteService.getService()
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        this.service = response["data"].data;
-        console.log("get reminder note ===============>", this.service);
+        this.serviceData = response["data"].data;
+        console.log("get product Purchase note ===============>", this.serviceData);
 
       }, (error) => {
       });

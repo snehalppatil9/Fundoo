@@ -145,6 +145,13 @@ export class NotesService {
 
 
   getService(){
-    return this.httpservice.getData("user/service")
+    return this.httpservice.getDataService("user/service")
+  }
+  productCarts(body){
+    return this.httpservice.postDataService("productcarts/addToCart",body)
+
+  }
+  getCartDetails(cartId){
+    return this.httpservice.getDataService("/productcarts/getCartDetails/"+cartId)
   }
 }

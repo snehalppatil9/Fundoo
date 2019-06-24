@@ -123,7 +123,8 @@ export class NoteComponent implements OnInit {
           this.anyChanges.emit({});
           this.snackbar.open('Note added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
-
+          this.dataService.getAllNote();
+          this.dataService.getNotes('');
         },
         error => {
           this.snackbar.open('Error while adding notes!', 'Error', { duration: 3000 });

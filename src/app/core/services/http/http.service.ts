@@ -66,6 +66,8 @@ export class HttpService {
     };
     return this.httpclient.post(environment.baseUrl + path, body, httpAuthOptions);
   }
+
+  
   postDataForShowLabel(path) {
     let httpAuthOptions = {
       headers: new HttpHeaders({
@@ -141,7 +143,25 @@ deleteData(path){
   }
   return this.httpclient.delete(environment.baseUrl+path,httpOptions);
 }
+postDataService(path,body) {
+  let httpAuthOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'Authorization': localStorage.getItem('token')
+    })
+  }
+  return this.httpclient.post(environment.baseUrl + path,body, httpAuthOptions);
+}
 
+getDataService(path){
+let httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    // 'Authorization': localStorage.getItem('token')
+  })
+};
+return this.httpclient.get(environment.baseUrl + path, httpOptions);
+}
 }
 
 

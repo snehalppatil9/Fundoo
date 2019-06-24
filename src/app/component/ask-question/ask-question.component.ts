@@ -98,7 +98,7 @@ export class AskQuestionComponent implements OnInit {
         console.log("ParentId==============>", this.parentId);
 
         console.log("this.notes=========>", this.notes);
-        this.snackbar.open('Notes Detail.', '', { duration: 3000 });
+        // this.snackbar.open('Notes Detail.', '', { duration: 3000 });
         console.log('Notes Detail data..........', data);
       },
         error => {
@@ -150,6 +150,7 @@ export class AskQuestionComponent implements OnInit {
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           data => {
+            this.snackbar.open('like add successfully!', '', { duration: 3000 });
             console.log('like add successfully......!', data);
             this.getNotesDetail();
             this.dataService.getNotesDetail('');
@@ -194,8 +195,9 @@ export class AskQuestionComponent implements OnInit {
             //     this.starList[i] = true;
             //   }
             // }
+            this.snackbar.open('rate add successfully!', '', { duration: 3000 });
             console.log('Question Rating ====>', this.ratings);
-            console.log('rate add successfully......!', data);
+            console.log('rate add successfully!', data);
             this.getNotesDetail();
             this.dataService.getNotesDetail('');
           },
@@ -206,5 +208,5 @@ export class AskQuestionComponent implements OnInit {
       console.log("Error while rate add ====> ", error)
     }
   }
-  
+
 }

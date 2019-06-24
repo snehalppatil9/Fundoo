@@ -11,14 +11,13 @@
           <button mat-button fxFlex="10" (click)=close()>Close</button>
         </div>
         <div fxLayout="row" class="description">
-          <div innerHTML="{{data.description}}"></div>
+          <div fxFlex="85" innerHTML="{{data.description}}"></div>
         </div>
       </div>
       <hr>
       <mat-divider></mat-divider>
       <div style="height : 2vh;"></div>
       <div>
-
         <h4 *ngIf="data.questionAndAnswerNotes.length > 0" style="margin-left:30px;"><strong>Question Asked</strong>
         </h4>
         <div fxLayout="row" class="description">
@@ -50,20 +49,20 @@
           <div fxLayout="row">
             <div fxFlex="5"></div>
             <div fxFlex="95" class="title2" *ngFor="let item of data.questionAndAnswerNotes">
-              <div *ngIf="!item.parentId">
+              <div *ngIf="!item.parentId" fxFlex="100">
                 <small fxLayout="row">
-                  <div class="msg" innerHTML="{{item.message}}">
+                  <div fxFlex="45" class="msg" innerHTML="{{item.message}}">
                   </div>
                   <!-- 
                     @Description :  Printing stars here
                    -->
-                  <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
-                    <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
-                     
-                  </a>
-                  Rating :- {{ratings}} stars
-                  <!-- <a href='https://ui-ex.com/image/heart-svg/1014406.html'> -->
-                  <!-- <a (click)=()> -->
+                  <div fxFlex="25">
+                    <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">
+                      <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
+                    </a>
+                  </div>
+                  <div fxFlex="3"></div>
+                  <h5 fxFlex="17">Rating:-{{ratings}}</h5>
                   <img width="38" height="40" (click)="setLikes()" src='https://ui-ex.com/images/heart-svg-4.png' />
                   <!-- </a> -->
                 </small>

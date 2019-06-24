@@ -54,10 +54,11 @@ li{
 }
 .main1:hover >.card mat-card {
     background-color: orange;
+    transform: scale(1.2); 
 }
 .main1 .card1:hover{
     opacity: 1;
-    transform: 'scale(1.5)' 
+    transform: scale(1.2); 
 }
 
 .card2 mat-card{
