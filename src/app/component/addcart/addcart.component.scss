@@ -15,7 +15,7 @@
     width: 300px;
     height: 400px;
     border: solid rgba(0,0,0,.125);
-    margin-top: -481px;
+    margin-top: -490px;
     margin-left: -56px;
     
 }
@@ -24,7 +24,7 @@
     height: 426px;
     border: solid rgba(0,0,0,.125);
     border-radius: .25rem;
-    margin-top: 147px;
+    margin-top: 90px;
     background-color: #a9a9a9;
    // border: 1px solid;
     // margin-top: 50px;
@@ -53,12 +53,12 @@ li{
     font-size: 21px;
 }
 .main1:hover >.card mat-card {
-    background-color: orange;
-    transform: scale(1.2); 
+    background-color: #ffa500;
+    transform: scale(1.1); 
 }
 .main1 .card1:hover{
     opacity: 1;
-    transform: scale(1.2); 
+    transform: scale(1.1); 
 }
 
 .card2 mat-card{
@@ -84,10 +84,17 @@ li{
 }
 .main2 .card1:hover{
     opacity: 1;
-    transform: 'scale(1.5)' 
+    transform: 'scale(1.0)' 
 }
 .card3 h5{
-    margin-top: 355px;
+    margin-top: 348px;
     color: white;
     font-size: 21px;
+}
+.size .mat-button{
+font-size: 16px;
+width: 10%;
+height: 45px;
+background-color: #1a73e8;
+color: white;
 }

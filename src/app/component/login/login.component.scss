@@ -4,6 +4,7 @@
   padding-right: 40px;
   padding-bottom: 36px;
   padding-left: 40px;
+  width: 380px;
 }
 .mat-form-field input{
 border-radius: 4px;
@@ -20,7 +21,7 @@ z-index: 1;
   color: #1a73e8;
 }
 .mat-card-title .red{
-color: red;
+  color: red;
 }
 .mat-card-title .blue{
   color: blue;
@@ -58,4 +59,61 @@ font-size: 16px;
     outline: none;
     padding: 0;
     z-index: 0;
+}
+.card mat-card{
+  width: 198px;
+  height: 290px;
+  border: solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin-top: 14px;
+  margin-left: 22px;
+  background-color: #a9a9a9;
+ // border: 1px solid;
+  // margin-top: 50px;
+}
+.card {
+border: solid white;  
+}
+.card h5{
+  // margin-top: -20px;
+  // margin-left: 40px;
+  color: white;
+  font-size: 21px;
+}
+
+.card1 mat-card{
+  width: 198px;
+  height: 284px;
+  border: solid rgba(0,0,0,.125);
+  margin-top: -330px;
+  margin-left: -3px;
+}
+.card1 h4 {
+  font-size: -0.5rem;
+}
+.mat-card{
+  padding-top: 20px;
+  padding-right: 14px;
+  padding-bottom: 20px;
+  padding-left: 14px;
+}
+.card4 h5{
+  margin-left: 37px;
+  color: white;
+  font-size: 15px;
+  margin-top: 230px;
+  // background-color: orange;
+}
+.card3 h5{
+  margin-left: 37px;
+  color: white;
+  font-size: 15px;
+  margin-top: 230px;
+  // background-color: gray;
+}
+.main1 .card4{
+  background-color: orange;
+}
+.main1 .card3{
+  background-color: gray;
 }

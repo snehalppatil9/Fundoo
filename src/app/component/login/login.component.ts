@@ -9,14 +9,15 @@
  *  @since          : 22-04-2019
  *
  ******************************************************************************/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserModel } from '../../core/model/user-model';
 import { UserService } from '../../core/services/user/user.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NotesService } from 'src/app/core/services/notes/notes.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,6 +25,7 @@ import { Subject } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   login: UserModel = new UserModel();
+  @Input() dataId;
   service: any;
   hide = true;
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -42,41 +44,72 @@ export class LoginComponent implements OnInit {
   * validation for password
   */
   passValidation() {
-    return this.password.hasError('required') ? 'Password is required' :'';
-      // this.password.hasError('minLength') ? 'Password must be at least 5 characters long' : '';
+    return this.password.hasError('required') ? 'Password is required' : '';
+    // this.password.hasError('minLength') ? 'Password must be at least 5 characters long' : '';
   }
-  constructor(private UserService: UserService, private snackbar: MatSnackBar, private router: Router) {
+  constructor(private noteService: NotesService, private UserService: UserService, private route: ActivatedRoute, private snackbar: MatSnackBar, private router: Router) {
 
   }
   id = localStorage.getItem("Id");
+  cardId = localStorage.getItem("cardId")
   ngOnInit() {
-    if(this.id != null){
+    if (this.id != null) {
       this.router.navigateByUrl('/addnote');
     }
+    if (this.cardId != null) {
+      this.getService();
+      this.getCartDetails(this.cardId);
+    }
+  }
+  serviceData: '';
+  productId: '';
+  getService() {
+    this.noteService.getService()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.serviceData = response["data"].data;
+        console.log("get product Purchase note ===============>", this.serviceData);
+        this.productId = this.serviceData["product"]
+        console.log(this.productId);
+
+      }, (error) => {
+      });
+  }
+  productData = '';
+  getCartDetails(cardId) {
+    this.noteService.getCartDetails(cardId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.service = response["data"];
+        console.log("get registration note data for sevice ===============>", this.service);
+        this.productData = this.service["product"];
+        console.log("get registration product data for sevice ===============>", this.productData);
+      }, (error) => {
+      });
   }
   submit() {
     //console.log('console@@@@@@@@@@@@@@@@@', this.login);
     try {
       this.UserService.userLogin(this.login)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        data => {
-          // console.log('Response Login Data.......', this.login);
-          // console.log('Response data............', data);
-          localStorage.setItem("token",data["id"]);
-          localStorage.setItem("Id",data["userId"]);
-          localStorage.setItem("Firstname",data["firstName"]);
-          localStorage.setItem("Lastname",data["lastName"]);
-          localStorage.setItem("Email",data["email"]);
-          localStorage.setItem("userImage",data["imageUrl"]);
-          //localStorage.clear();
-          this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
-          this.router.navigateByUrl('addnote');
-        },
-        error => {
-          this.snackbar.open('Login not successfully......!', 'Stop...!', { duration: 3000 });
-          console.log('Error something went wrong: ', error);
-        });
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          data => {
+            // console.log('Response Login Data.......', this.login);
+            // console.log('Response data............', data);
+            localStorage.setItem("token", data["id"]);
+            localStorage.setItem("Id", data["userId"]);
+            localStorage.setItem("Firstname", data["firstName"]);
+            localStorage.setItem("Lastname", data["lastName"]);
+            localStorage.setItem("Email", data["email"]);
+            localStorage.setItem("userImage", data["imageUrl"]);
+            //localStorage.clear();
+            this.snackbar.open('Login successfully......!', 'Continue with fundoo account..!', { duration: 1000 });
+            this.router.navigateByUrl('addnote');
+          },
+          error => {
+            this.snackbar.open('Login not successfully......!', 'Stop...!', { duration: 3000 });
+            console.log('Error something went wrong: ', error);
+          });
     } catch (error) {
       this.snackbar.open('error occurs in catch block.................', '', { duration: 3000 });
     }

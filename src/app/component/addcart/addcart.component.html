@@ -1,27 +1,61 @@
-<mat-toolbar class="navbar">FundooNotes</mat-toolbar>
-<div style="height:10vh;"></div>
-<div class="text">
-  <h4>Which fundooNotes service package do you want?</h4>
-</div>
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
-  <div class="main1" *ngFor="let data of service">
-    <div class="card">
-      <mat-card class="card3">
-        <h5>ADD TO CART</h5>
-      </mat-card>
+<div fxLayout="column" fxFlex="100">
+  <mat-toolbar class="navbar" fxLayout="row">
+    <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="90" fxFlex.xs="50" fxFlex.sm="70">
+      <div fxFlex="20">FundooNotes</div>
+      <div fxFlex="50"></div>
+      <div fxFlex="30" fxLayoutAlign="end" fxLayoutGap="5%">
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">refresh</i>
+        </button>
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">shopping_cart</i>
+        </button>
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">brightness_high</i>
+        </button>
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">apps</i>
+        </button>
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">add_alert</i>
+        </button>
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">settings</i>
+        </button>
+      </div>
     </div>
-    <div class="card1">
-      <mat-card>
-        <div style="height:1vh;"></div>
-        <h4>${{data.price}} Per Month</h4>
-        <div fxLayoutAlign="start" class="openDialog">
-          <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
+  </mat-toolbar>
+  <div style="height:5vh;"></div>
+  <div fxLayout="column" class="text" fxFlex="10">
+    <h4>Which fundooNotes service package do you want?</h4>
+  </div>
+  <div fxLayout="column" fxFlex="80">
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="150px">
+      <div class="main1" *ngFor="let data of service">
+        <div class="card">
+          <mat-card class="card3">
+            <h5>ADD TO CART</h5>
+          </mat-card>
         </div>
-        <li>Unlimited Wall Space</li>
-        <li>Nice Interface</li>
-        <li>${{data.price}}/Month</li>
-        <li>{{data.description}}</li>
-      </mat-card>
+        <div class="card1">
+          <mat-card>
+            <div style="height:1vh;"></div>
+            <h4>${{data.price}} Per Month</h4>
+            <div fxLayoutAlign="start" class="openDialog">
+              <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
+            </div>
+            <li>Unlimited Wall Space</li>
+            <li>Nice Interface</li>
+            <li>${{data.price}}/Month</li>
+            <li>{{data.description}}</li>
+          </mat-card>
+        </div>
+      </div>
     </div>
+  </div>
+  <div style="height:15vh;"></div>
+  <div fxLayout="column">
+    <div style="height:5vh;"></div>
+    <div class="size" fxLayoutAlign="center"><button mat-button routerLink="/login">Sign in instead</button></div>
   </div>
 </div>

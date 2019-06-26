@@ -152,6 +152,6 @@ export class NotesService {
 
   }
   getCartDetails(cartId){
-    return this.httpservice.getDataService("/productcarts/getCartDetails/"+cartId)
+    return this.httpservice.getDataService("productcarts/getCartDetails/"+cartId)
   }
 }

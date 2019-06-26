@@ -38,9 +38,9 @@ import { ProductPurchaseComponent } from './component/product-purchase/product-p
 import { PlaceOrderComponent } from './component/place-order/place-order.component';
 import { CompletePaymentComponent } from './component/complete-payment/complete-payment.component'
 const routes: Routes = [
-  { path: '', redirectTo: "login", pathMatch: "full" },
+  { path: '', redirectTo: "addcart", pathMatch: "full" },
   { path: 'login', component: LoginComponent },
-  { path: 'register/:data', component: RegistrationComponent },
+  { path: 'register', component: RegistrationComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
   { path: 'addcart', component: AddcartComponent },

@@ -2,8 +2,9 @@ export class UserModel {
     "firstName": string
     "lastName": string
     "username": string
-    password: string
-    cpassword: string
+    "password": string
+    "cpassword": string
+    "cardId" : string
 }
 export class Service {
     "name": string

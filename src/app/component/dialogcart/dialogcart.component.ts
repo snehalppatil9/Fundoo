@@ -21,27 +21,29 @@ export class DialogcartComponent implements OnInit {
   ngOnInit() {
     this.dataService = this.data["data"];
     console.log("dataservice id in dialog box=====>", this.dataService["id"]);
-
+    this.getDetails();
+  }
+  getDetails() {
     var body = {
       "productId": this.dataService["id"]
     }
-    console.log('hhhhhhhhhhhhhhhhhh',body);
-
+    console.log('hhhhhhhhhhhhhhhhhh', body);
     this.noteService.productCarts(body)
       .subscribe((response) => {
         this.service = response["data"].details;
         console.log("get dialog note Data ===============>", this.service);
         this.productId = this.service['id'];
         console.log("get dialog note productId ===============>", this.productId);
+        localStorage.setItem("cardId", this.productId);
       }, (error) => {
       });
-    console.log("dataaaaaaaaaaaaaaaaaaaa======>", this.dataService);
-
   }
-  // /productcarts/addToCart
-
   proceedto() {
     this.dialogRef.close();
-    this.router.navigateByUrl('register/'+this.productId);
+    this.router.navigateByUrl('register');
+  }
+  Remove() {
+    this.dialogRef.close();
+    this.router.navigateByUrl('addcart');
   }
 }

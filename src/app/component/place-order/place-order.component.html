@@ -47,30 +47,30 @@
   <div fxFlex="4"></div>
   <div fxFlex="70">
     <mat-card>
-      <div *ngFor="let data of service">
-        <div *ngIf="data.id == dataId">
+      <!-- <div *ngFor="let data of service"> -->
+        <div>
           <div fxFlex="12">
-            <mat-card class="card1">${{data.price}} Per Month
-              {{data.name}}
+            <mat-card class="card1">${{productData.price}} Per Month
+              {{productData.name}}
             </mat-card>
           </div>
           <div fxFlex="3"></div>
           <div fxFlex="70" fxLayout="row">
             <div fxFlex="40" fxLayout="column" fxLayoutGap="5%">
               <li>Unlimited Wall Space</li>
-              <li>${{data.price}}/Month</li>
+              <li>${{productData.price}}/Month</li>
             </div>
             <div fxFlex="60" fxLayout="column" fxLayoutGap="5%">
               <li>Nice Interface</li>
-              <li>{{data.description}}</li>
+              <li>{{productData.description}}</li>
             </div>
           </div>
           <div fxFlex="6"></div>
-          <div fxFlex="6" style="font-size:20px;">${{data.price}} Per Month</div>
+          <div fxFlex="6" style="font-size:20px;">${{productData.price}} Per Month</div>
           <div fxFlex="3"></div>
 
         </div>
-      </div>
+      <!-- </div> -->
       <div style="height:5vh"></div>
       <div fxLayout="column">
         <h5>Delivery Address</h5>
@@ -78,26 +78,26 @@
           <div fxFlex="75" contenteditable="true" class="textarea"></div>
           <div fxFlex="5"></div>
           <div fxFlex="20">
-            <div *ngFor="let data of service">
-              <div fxLayout="column" *ngIf="data.id == dataId" fxLayoutAlign="center">
+            <!-- <div> -->
+              <div fxLayout="column" fxLayoutAlign="center">
                 <div style="color : black; font-size: 20px;"><strong>Payment Method</strong></div>
                 <div style="color : red; font-size: 20px;"> Cash on Delivery</div>
               </div>
               <div style="height:2vh;"></div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>
     </mat-card>
   </div>
   <div fxFlex="3"></div>
-  <div *ngFor="let data of service">
-    <mat-card class="card2" *ngIf="data.id == dataId">
+  <div>
+    <mat-card class="card2">
       <div fxLayoutAlign="center" (click)="placeOrder()"><button class="btn1" mat-button>Place Your Order</button></div>
       <div style="height:4vh;"></div>
       <div fxLayout="row" fxLayoutAlign="center">
         <div style="color : black; font-size: 15px;">Subtotal (1 Item) : </div>
-        <div style="color : red; font-size: 15px;"> ${{data.price}}</div>
+        <div style="color : red; font-size: 15px;"> ${{productData.price}}</div>
       </div>
       <div style="height:2vh;"></div>
 

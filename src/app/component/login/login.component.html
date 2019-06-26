@@ -8,64 +8,136 @@
    @version        : 1.0
    @since          : 22-04-2019
   -->
-<div fxLayout="column" fxLayoutGap="3%">
-  <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
-  <div fxLayout="row" fxFlex.lg="70%" fxLayoutAlign="center center" fxFlex="35">
-    <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
-    <div fxFlex.lg="45%" fxFlex.md="50%" fxFlex.sm="60%" fxFlex.xs="100%">
-      <form>
-        <mat-card>
-          <mat-card-title fxLayoutAlign="center center">
-            <span class="lightblue">F</span>
-            <span class="red">u</span>
-            <span class="yellow">n</span>
-            <span class="lightblue">d</span>
-            <span class="green">o</span>
-            <span class="blue">o</span>
-            <span class="yellow">N</span>
-            <span class="red">o</span>
-            <span class="lightblue">t</span>
-            <span class="green">e</span>
-            <span class="red">s</span>
-          </mat-card-title>
-          <div style="height:1vh"></div>
-          <mat-card-title fxLayoutAlign="center my-3">
-            <h3>Sign in</h3>
-          </mat-card-title>
-          <div style="height:1vh"></div>
-          <mat-card-title fxLayoutAlign="center my-3">
-            <h6>to continue to FundooNotes</h6>
-          </mat-card-title>
-          <div style="height:5vh"></div>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Email or Phone</mat-label>
-              <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
-              <input matInput placeholder="Email or Phone" [(ngModel)]="login.email" [formControl]="email">
-            </mat-form-field>
+<div fxFlex="100" fxLayout="column">
+  <div style="height:8vh;"></div>
+  <div fxLayout="row" fxFlex.lg="100%" fxFlex="100" fxLayoutAlign="center center">
+    <div fxLayout="row" fxFlex="70" >
+        <mat-card fxLayout="column" *ngIf="cardId == null" fxFlex="50">
+            <mat-card-title fxLayoutAlign="center center">
+              <span class="lightblue">F</span>
+              <span class="red">u</span>
+              <span class="yellow">n</span>
+              <span class="lightblue">d</span>
+              <span class="green">o</span>
+              <span class="blue">o</span>
+              <span class="yellow">N</span>
+              <span class="red">o</span>
+              <span class="lightblue">t</span>
+              <span class="green">e</span>
+              <span class="red">s</span>
+            </mat-card-title>
+            <div style="height:1vh"></div>
+            <mat-card-title fxLayoutAlign="center my-3">
+              <h3>Sign in</h3>
+            </mat-card-title>
+            <div style="height:1vh"></div>
+            <mat-card-title fxLayoutAlign="center my-3">
+              <h6>to continue to FundooNotes</h6>
+            </mat-card-title>
+            <div style="height:5vh"></div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Email or Phone</mat-label>
+                <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+                <input matInput placeholder="Email or Phone" [(ngModel)]="login.email" [formControl]="email">
+              </mat-form-field>
+            </div>
+            <div style="height:10vh"></div>
+            <div fxLayoutAlign="end" class="eye">
+              <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+                <mat-label>Enter your Password</mat-label>
+                <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
+                <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+                  [(ngModel)]="login.password" [formControl]="password">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </mat-form-field>
+            </div>
+            <div style="height:15vh"></div>
+            <div class="size"><button mat-button routerLink="/forgot">Forgot Password?</button></div>
+            <div style="height:5vh"></div>
+            <div class="size"><button mat-button routerLink="/addcart">
+                <h6>Create Account</h6>
+              </button></div>
+            <div fxLayoutAlign="end">
+              <button mat-button [disabled]="email.invalid || password.invalid" (click)="submit(login)">Next</button></div>
+            <div style="height:3vh"></div>
+          </mat-card>
+      <mat-card fxLayout="column" *ngIf="cardId != null" fxFlex="40">
+        <mat-card-title fxLayoutAlign="center center">
+          <span class="lightblue">F</span>
+          <span class="red">u</span>
+          <span class="yellow">n</span>
+          <span class="lightblue">d</span>
+          <span class="green">o</span>
+          <span class="blue">o</span>
+          <span class="yellow">N</span>
+          <span class="red">o</span>
+          <span class="lightblue">t</span>
+          <span class="green">e</span>
+          <span class="red">s</span>
+        </mat-card-title>
+        <div style="height:1vh"></div>
+        <mat-card-title fxLayoutAlign="center my-3">
+          <h3>Sign in</h3>
+        </mat-card-title>
+        <div style="height:1vh"></div>
+        <mat-card-title fxLayoutAlign="center my-3">
+          <h6>to continue to FundooNotes</h6>
+        </mat-card-title>
+        <div style="height:5vh"></div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Email or Phone</mat-label>
+            <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+            <input matInput placeholder="Email or Phone" [(ngModel)]="login.email" [formControl]="email">
+          </mat-form-field>
+        </div>
+        <div style="height:10vh"></div>
+        <div fxLayoutAlign="end" class="eye">
+          <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
+            <mat-label>Enter your Password</mat-label>
+            <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+              [(ngModel)]="login.password" [formControl]="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+        <div style="height:15vh"></div>
+        <div class="size"><button mat-button routerLink="/forgot">Forgot Password?</button></div>
+        <div style="height:5vh"></div>
+        <div class="size"><button mat-button routerLink="/addcart">
+            <h6>Create Account</h6>
+          </button></div>
+        <div fxLayoutAlign="end">
+          <button mat-button [disabled]="email.invalid || password.invalid" (click)="submit(login)">Next</button></div>
+        <div style="height:3vh"></div>
+      </mat-card>
+      <mat-card *ngIf="cardId != null" fxLayout="column" fxFlex="60" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxHide fxShow.gt-sm >
+          <div class="main1" *ngFor="let data of serviceData">
+            <div class="card">
+              <mat-card class="card4" *ngIf="productData.id == data.id">
+                <h5>SELECTED</h5>
+              </mat-card>
+              <mat-card class="card3" *ngIf="productData.id != data.id">
+                <h5>ADD TO CART</h5>
+              </mat-card>
+            </div>
+            <div class="card1">
+              <mat-card>
+                <h4>${{data.price}} Per Month</h4>
+                <div fxLayoutAlign="start" class="openDialog">
+                  <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
+                </div>
+                <li>Unlimited Wall Space</li>
+                <li>Nice Interface</li>
+                <li>${{data.price}}/Month</li>
+                <li>{{data.description}}</li>
+              </mat-card>
+            </div>
           </div>
-          <div style="height:10vh"></div>
-          <div fxLayoutAlign="end" class="eye">
-            <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
-              <mat-label>Enter your Password</mat-label>
-              <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
-              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password" [formControl]="password"> 
-              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </mat-form-field>
-          </div>
-          <div style="height:15vh"></div>
-          <div class="size"><button mat-button routerLink="/forgot">Forgot Password?</button></div>
-          <div style="height:5vh"></div>
-          <div class="size"><button mat-button routerLink="/register">
-              <h6>Create Account</h6>
-            </button></div>
-          <div fxLayoutAlign="end" >
-            <button mat-button [disabled]="email.invalid || password.invalid" (click)="submit(login)">Next</button></div>
-          <div style="height:3vh"></div>
-        </mat-card>
-      </form>
+        </div>
+      </mat-card>
     </div>
-    <div fxFlex.lg="35%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
   </div>
-  <div fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
 </div>

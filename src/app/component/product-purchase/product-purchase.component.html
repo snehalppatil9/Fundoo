@@ -43,27 +43,27 @@
   </div>
 </div>
 <hr>
-<div *ngFor="let data of service">
-  <div *ngIf="data.id == dataId">
+<!-- <div *ngFor="let data of productData"> -->
+  <div>
     <div fxFlex="4"></div>
     <div fxFlex="10">
-      <mat-card class="card1">${{data.price}} Per Month
-        {{data.name}}
+      <mat-card class="card1">${{productData.price}} Per Month
+        {{productData.name}}
       </mat-card>
     </div>
     <div fxFlex="3"></div>
     <div fxFlex="40" fxLayout="row">
       <div fxFlex="40" fxLayout="column" fxLayoutGap="5%">
         <li>Unlimited Wall Space</li>
-        <li>${{data.price}}/Month</li>
+        <li>${{productData.price}}/Month</li>
       </div>
       <div fxFlex="60" fxLayout="column" fxLayoutGap="5%">
         <li>Nice Interface</li>
-        <li>{{data.description}}</li>
+        <li>{{productData.description}}</li>
       </div>
     </div>
     <div fxFlex="3"></div>
-    <div fxFlex="6" style="font-size:20px;">${{data.price}}</div>
+    <div fxFlex="6" style="font-size:20px;">${{productData.price}}</div>
     <div fxFlex="6"><button mat-button style="font-size:20px;">Per Month</button>
     </div>
     <div fxFlex="5"></div>
@@ -71,21 +71,21 @@
       <mat-card class="card2">
         <div fxLayout="row" fxLayoutAlign="center">
           <div style="color : black; font-size: 15px;">Subtotal (1 Item) : </div>
-          <div style="color : red; font-size: 15px;"> ${{data.price}}</div>
+          <div style="color : red; font-size: 15px;"> ${{productData.price}}</div>
         </div>
         <div style="height:2vh;"></div>
         <div fxLayoutAlign="center"><button class="btn1" (click)="toCheckOut()" mat-button>Proceed To Checkout</button></div>
       </mat-card>
     </div>
   </div>
-</div>
+<!-- </div> -->
 <hr>
-<div *ngFor="let data of service">
+<div>
   <div fxFlex="62"></div>
   <div fxFlex="14">
-    <div fxLayout="row"  *ngIf="data.id == dataId" fxLayoutAlign="center">
+    <div fxLayout="row" fxLayoutAlign="center">
       <div style="color : black; font-size: 20px;">Subtotal (1 Item) : </div>
-      <div style="color : red; font-size: 20px;"> ${{data.price}}</div>
+      <div style="color : red; font-size: 20px;"> ${{productData.price}}</div>
     </div>
     <div style="height:2vh;"></div>
   </div>

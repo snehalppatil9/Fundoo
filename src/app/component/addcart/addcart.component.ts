@@ -5,6 +5,7 @@ import { NotesService } from 'src/app/core/services/notes/notes.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Service } from '../../core/model/user-model'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-addcart',
   templateUrl: './addcart.component.html',
@@ -12,9 +13,12 @@ import { Service } from '../../core/model/user-model'
 })
 export class AddcartComponent implements OnInit {
   @Input() data;
-  constructor(public dialog: MatDialog, private noteService: NotesService) { }
-
+  constructor(public dialog: MatDialog, private noteService: NotesService, public router: Router) { }
+  id = localStorage.getItem('Id');
   ngOnInit() {
+    if (this.id != null) {
+      this.router.navigateByUrl('/addnote');
+    }
     this.getService();
   }
   openDialogAdvance(data): void {
@@ -25,7 +29,6 @@ export class AddcartComponent implements OnInit {
         data: data,
       }
     });
-
     dialogRef.afterClosed()
       .subscribe(result => {
         console.log('The dialog was closed');

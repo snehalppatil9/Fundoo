@@ -30,6 +30,7 @@ export class RegistrationComponent implements OnInit {
   service: any;
   @Input() data;
   //title='FundooNotes';
+  
   destroy$: Subject<boolean> = new Subject<boolean>();
   hide = true;
   firstName = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern('[a-zA-Z]+')]);
@@ -83,29 +84,31 @@ export class RegistrationComponent implements OnInit {
   constructor(private UserService: UserService, private route: ActivatedRoute, private noteService: NotesService, private snackbar: MatSnackBar, private router: Router) {
 
   }
-  dataId: '';
+  cardId = localStorage.getItem("cardId") 
   ngOnInit() {
     this.getService();
-    this.route.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((params: Params) => {
-        this.dataId = params['data'];
-        console.log("productId fetched in register=====>", this.dataId);
+    // this.route.params
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((params: Params) => {
+    //     this.dataId = params['data'];
+    //     console.log("productId fetched in register=====>", this.dataId);
 
-      })
-    this.getCartDetails(this.dataId);
+    //   })
+    this.getCartDetails(this.cardId);
   }
   /*
   * @Description  :  Sending data to database
   */
-  submit() {
-    var body={
+  submit(cartId) {
+    console.log("cardId in registration submit button=========>",cartId);
+    var body = {
       "firstName": this.firstName.value,
       "lastName": this.lastName.value,
       "service": this.service["product"].name,
-      "password" : this.password.value,
-      "email": this.email.value
-    } 
+      "password": this.password.value,
+      "email": this.email.value,
+      "cardId": cartId
+    }
     console.log('console body registration=========>', body);
     try {
       //if(this.firstName.value == '' || this.lastName.value == '' || this.email.value == '' || this.service.value=='' || this.password.value == '' || this.cpassword.value == '') throw "Fields are missing"
@@ -118,10 +121,10 @@ export class RegistrationComponent implements OnInit {
               console.log("Response================>", this.register);
               console.log("Response================>", data);
               this.snackbar.open('Register successfully......!', 'Continue with Login..!', { duration: 1000 });
-              this.router.navigateByUrl('productpurchase/' + this.dataId)
+              this.router.navigateByUrl('login')
             },
             error => {
-              this.snackbar.open('Register not successfully......!', 'Stop...!', { duration: 3000 });
+              this.snackbar.open(error.error.error.message, 'Stop...!', { duration: 3000 });
               console.log("Error something wrong: ", error)
             });
       }
@@ -130,9 +133,8 @@ export class RegistrationComponent implements OnInit {
         console.log("Error something wrong: ")
       }
     } catch (error) {
-      this.snackbar.open('error8888888888888888888888888888888', "", { duration: 3000 });
+      this.snackbar.open(error, "", { duration: 3000 });
     }
-    // this.router.navigateByUrl('productpurchase/' + this.dataId);
   }
   productData = '';
   getCartDetails(cardId) {
@@ -156,6 +158,9 @@ export class RegistrationComponent implements OnInit {
 
       }, (error) => {
       });
+  }
+  signIn(dataId){
+    this.router.navigateByUrl('login/'+dataId);
   }
   ngOnDestroy() {
     this.destroy$.next(true);

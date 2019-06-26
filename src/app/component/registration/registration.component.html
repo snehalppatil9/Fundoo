@@ -106,8 +106,7 @@
         <!-- 
             @Description  : Validating advance and basic button and displaying the error message 
         -->
-        <!-- <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="4"> -->
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxHide fxShow.gt-sm>
+       <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxHide fxShow.gt-sm>
           <div class="main1" *ngFor="let data of serviceData">
             <div class="card">
               <mat-card class="card4" *ngIf="productData.id == data.id">
@@ -119,8 +118,7 @@
             </div>
             <div class="card1">
               <mat-card>
-                <!-- <div style="height:1vh;"></div>  -->
-                <h4>${{data.price}} Per Month</h4>
+              <h4>${{data.price}} Per Month</h4>
                 <div fxLayoutAlign="start" class="openDialog">
                   <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
                 </div>
@@ -132,13 +130,12 @@
             </div>
           </div>
         </div>
-        <!-- </div> -->
-        <div style="height:10vh"></div>
+       <div style="height:10vh"></div>
         <div fxLayout="row" fxLayoutGap="25" fxLayoutAlign.md="start end">
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button>
           </div>
-          <div><button mat-button [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid"
-            (click)="submit(register)">Sign Up</button></div>
+          <div><button mat-button 
+            (click)="submit(cardId)">Sign Up</button></div>
         </div>
         <div fxLayoutAlign="end" fxHide fxShow.gt-sm>
           <div class="img">
@@ -148,7 +145,6 @@
         </div>
       </mat-card>
     </div>
-
     <div fxFlex.lg="27%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
   </div>
   <div fxFlex.lg="2%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>

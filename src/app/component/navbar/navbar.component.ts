@@ -207,8 +207,9 @@ export class NavbarComponent implements OnInit {
       });
 
   }
-
-
+  shoppingcart(){
+    this.router.navigateByUrl('productpurchase/'+localStorage.getItem("cardId"));
+  }
   labelShow: boolean = false;
   labelValue = '';
   toolbarName(aa) {
