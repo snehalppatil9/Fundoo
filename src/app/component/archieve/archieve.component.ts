@@ -3,7 +3,8 @@ import { NotesService } from '../../core/services/notes/notes.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Note } from '../../core/model/user-model'
-import { MatSnackBar, MatCard } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 import { DataService } from 'src/app/core/services/data/data.service';
 @Component({
   selector: 'app-archieve',
@@ -17,7 +18,7 @@ export class ArchieveComponent implements OnInit {
   direction: String = "row";
   wrap: string = "wrap";
   view1: any;
-  constructor(private noteService: NotesService, private snackbar: MatSnackBar, private dataService: DataService) { }
+  constructor(public dialog: MatDialog,private noteService: NotesService, private snackbar: MatSnackBar, private dataService: DataService) { }
   ngOnInit() {
     this.getArchiveList();
     this.dataService.getView()
@@ -114,6 +115,20 @@ export class ArchieveComponent implements OnInit {
     */
   showLabel(data) {
     this.dataService.changeMessageLabel(data)
+  }
+  /**
+   * @Purpose : Open dialog note edit it
+   **/
+  openDialog(data: any): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '600px',
+      height: '',
+      data: {
+        'title': data.title,
+        'description': data.description,
+        'id': data.id,
+      }
+    });
   }
   ngOnDestroy() {
     this.destroy$.next(true);

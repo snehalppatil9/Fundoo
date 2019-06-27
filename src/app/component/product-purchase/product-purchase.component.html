@@ -1,11 +1,14 @@
 <mat-toolbar class="navbar" fxLayout="row">
-  <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="90" fxFlex.xs="50" fxFlex.sm="70">
-    <div fxFlex="20">FundooNotes</div>
+  <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="90" fxFlex.xs="100" fxFlex.sm="100">
+    <div fxFlex="20" fxFlex.md="15" fxFlex.xs="10" fxFlex.sm="10" ngstyle.sm="font-size:8px;">FundooNotes</div>
     <div fxFlex="50"></div>
-    <div fxFlex="30" fxLayoutAlign="end" fxLayoutGap="5%">
+    <div fxFlex="30" fxFlex.md="15" fxFlex.xs="10" fxFlex.sm="10" fxLayoutAlign="end" fxLayoutGap="5%">
       <button style="margin-top:-11px; outline: none" mat-icon-button>
         <i class="material-icons">refresh</i>
       </button>
+      <button fxFlex.md="15" fxFlex.xs="10" fxFlex.sm="10" style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">shopping_cart</i>
+        </button>
       <button style="margin-top:-11px; outline: none" mat-icon-button>
         <i class="material-icons">brightness_high</i>
       </button>
@@ -27,13 +30,7 @@
   <div fxFlex="13" class="btn">
     <button mat-button>FundooNotes</button>
   </div>
-  <!-- <div > -->
-  <mat-tab-group>
-    <mat-tab> SIGN IN </mat-tab>
-    <mat-tab> PLACE ORDER </mat-tab>
-    <mat-tab> COMPLETE PAYMENT </mat-tab>
-  </mat-tab-group>
-  <!-- </div> -->
+   <mat-progress-bar mode="determinate" value="30">SIGNIN</mat-progress-bar>
 </div>
 <div style="height:5vh;"></div>
 <div>
@@ -44,40 +41,41 @@
 </div>
 <hr>
 <!-- <div *ngFor="let data of productData"> -->
-  <div>
-    <div fxFlex="4"></div>
-    <div fxFlex="10">
-      <mat-card class="card1">${{productData.price}} Per Month
-        {{productData.name}}
-      </mat-card>
+<div>
+  <div fxFlex="4"></div>
+  <div fxFlex="10">
+    <mat-card class="card1">${{productData.price}} Per Month
+      {{productData.name}}
+    </mat-card>
+  </div>
+  <div fxFlex="3"></div>
+  <div fxFlex="40" fxLayout="row">
+    <div fxFlex="40" fxLayout="column" fxLayoutGap="5%">
+      <li>Unlimited Wall Space</li>
+      <li>${{productData.price}}/Month</li>
     </div>
-    <div fxFlex="3"></div>
-    <div fxFlex="40" fxLayout="row">
-      <div fxFlex="40" fxLayout="column" fxLayoutGap="5%">
-        <li>Unlimited Wall Space</li>
-        <li>${{productData.price}}/Month</li>
-      </div>
-      <div fxFlex="60" fxLayout="column" fxLayoutGap="5%">
-        <li>Nice Interface</li>
-        <li>{{productData.description}}</li>
-      </div>
-    </div>
-    <div fxFlex="3"></div>
-    <div fxFlex="6" style="font-size:20px;">${{productData.price}}</div>
-    <div fxFlex="6"><button mat-button style="font-size:20px;">Per Month</button>
-    </div>
-    <div fxFlex="5"></div>
-    <div>
-      <mat-card class="card2">
-        <div fxLayout="row" fxLayoutAlign="center">
-          <div style="color : black; font-size: 15px;">Subtotal (1 Item) : </div>
-          <div style="color : red; font-size: 15px;"> ${{productData.price}}</div>
-        </div>
-        <div style="height:2vh;"></div>
-        <div fxLayoutAlign="center"><button class="btn1" (click)="toCheckOut()" mat-button>Proceed To Checkout</button></div>
-      </mat-card>
+    <div fxFlex="60" fxLayout="column" fxLayoutGap="5%">
+      <li>Nice Interface</li>
+      <li>{{productData.description}}</li>
     </div>
   </div>
+  <div fxFlex="3"></div>
+  <div fxFlex="6" style="font-size:20px;">${{productData.price}}</div>
+  <div fxFlex="6"><button mat-button style="font-size:20px;">Per Month</button>
+  </div>
+  <div fxFlex="5"></div>
+  <div>
+    <mat-card class="card2">
+      <div fxLayout="row" fxLayoutAlign="center">
+        <div style="color : black; font-size: 15px;">Subtotal (1 Item) : </div>
+        <div style="color : red; font-size: 15px;"> ${{productData.price}}</div>
+      </div>
+      <div style="height:2vh;"></div>
+      <div fxLayoutAlign="center"><button class="btn1" (click)="toCheckOut()" mat-button>Proceed To Checkout</button>
+      </div>
+    </mat-card>
+  </div>
+</div>
 <!-- </div> -->
 <hr>
 <div>

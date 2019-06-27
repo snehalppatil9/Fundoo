@@ -55,10 +55,12 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
    imports: [
     BrowserModule,
+    MatProgressBarModule,
     AppRoutingModule,
     MatAutocompleteModule,
     BrowserAnimationsModule,
@@ -97,6 +99,7 @@ import {MatTabsModule} from '@angular/material/tabs';
   ],
   exports:[
     BrowserModule,
+    MatProgressBarModule,
     DragDropModule,
     MatStepperModule,
     MatTabsModule,

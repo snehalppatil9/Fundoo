@@ -131,6 +131,7 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem("Firstname");
         localStorage.removeItem("Lastname");
         localStorage.removeItem("Email");
+        localStorage.removeItem("cardId");
         this.router.navigate(['/login']);
       }, (error) => {
       });
@@ -208,7 +209,7 @@ export class NavbarComponent implements OnInit {
 
   }
   shoppingcart(){
-    this.router.navigateByUrl('productpurchase/'+localStorage.getItem("cardId"));
+    this.router.navigateByUrl('productpurchase');
   }
   labelShow: boolean = false;
   labelValue = '';

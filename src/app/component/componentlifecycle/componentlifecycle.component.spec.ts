@@ -30,14 +30,17 @@ import { AskQuestionComponent } from '../ask-question/ask-question.component'
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AddcartComponent } from '../addcart/addcart.component'
-
+import { DialogcartComponent } from '../dialogcart/dialogcart.component';
+import { ProductPurchaseComponent } from '../product-purchase/product-purchase.component';
+import { PlaceOrderComponent } from '../place-order/place-order.component';
+import { CompletePaymentComponent } from '../complete-payment/complete-payment.component';
 describe('ComponentlifecycleComponent', () => {
   let component: ComponentlifecycleComponent;
   let fixture: ComponentFixture<ComponentlifecycleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AddcartComponent, ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
+      declarations: [CompletePaymentComponent,PlaceOrderComponent,DialogcartComponent,ProductPurchaseComponent,AddcartComponent,ComponentlifecycleComponent, ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
       imports : [FlexLayoutModule,RouterTestingModule,
         AngularMaterial,MatDialogModule
       ],

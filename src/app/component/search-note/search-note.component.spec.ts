@@ -22,18 +22,23 @@ import { SearchmatcardsComponent } from '../searchmatcards/searchmatcards.compon
 import { ShowLabelnotesComponent } from '../show-labelnotes/show-labelnotes.component';
 import { PinComponent }  from '../pin/pin.component';
 import { LabelnoteComponent } from '../labelnote/labelnote.component';
+import { DialogcartComponent } from '../dialogcart/dialogcart.component'
 import { AngularMaterial } from '../../angularmaterial';
 import { FilterPipe } from '../../filterpipe/filter.pipe';
 import { AskQuestionComponent } from '../ask-question/ask-question.component'
 import { ComponentlifecycleComponent } from '../componentlifecycle/componentlifecycle.component'
 import { AddcartComponent } from '../addcart/addcart.component'
+import { ProductPurchaseComponent } from '../product-purchase/product-purchase.component';
+import { PlaceOrderComponent } from '../place-order/place-order.component';
+import { CompletePaymentComponent } from '../complete-payment/complete-payment.component';
+
 describe('SearchNoteComponent', () => {
   let component: SearchNoteComponent;
   let fixture: ComponentFixture<SearchNoteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddcartComponent,ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
+      declarations: [DialogcartComponent,CompletePaymentComponent,PlaceOrderComponent,ProductPurchaseComponent,AddcartComponent,ComponentlifecycleComponent, ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
       imports : [FlexLayoutModule,RouterTestingModule,
         AngularMaterial
       ],

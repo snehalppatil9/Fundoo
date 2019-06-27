@@ -12,17 +12,11 @@ import { NotesService } from 'src/app/core/services/notes/notes.service';
 })
 export class CompletePaymentComponent implements OnInit {
   destroy$ : Subject<boolean> = new Subject<boolean>();
-  dataId : '';
+  cardId = localStorage.getItem('cardId');
   constructor(private route: ActivatedRoute,private noteService : NotesService) { }
 
   ngOnInit() {
-    this.route.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((params: Params) => {
-        this.dataId = params['data'];
-        console.log("dataId=====>",this.dataId);
-        this.getCartDetails(this.dataId);
-      })
+   this.getCartDetails(this.cardId);
   }
   service : Service[] =[];
   productData = '';

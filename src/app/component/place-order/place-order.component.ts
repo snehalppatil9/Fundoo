@@ -11,17 +11,11 @@ import { Service } from '../../core/model/user-model'
 })
 export class PlaceOrderComponent implements OnInit {
   destroy$ : Subject<boolean> = new Subject<boolean>();
-  dataId : '';
-  constructor(private route: ActivatedRoute,private noteService : NotesService,private router : Router) { }
+  cardId = localStorage.getItem("cardId");
+  constructor(private noteService : NotesService,private router : Router) { }
 
   ngOnInit() {
-    this.route.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((params: Params) => {
-        this.dataId = params['data'];
-        console.log("dataId=====>",this.dataId);
-        this.getCartDetails(this.dataId);
-      })
+    this.getCartDetails(this.cardId);
   }
   service : Service[] =[];
   productData = '';
@@ -37,6 +31,6 @@ export class PlaceOrderComponent implements OnInit {
       });
   }
   placeOrder(){
-    this.router.navigateByUrl('completePayment/'+this.dataId);
+    this.router.navigateByUrl('completePayment');
   }
 }

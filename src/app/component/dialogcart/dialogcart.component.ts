@@ -44,6 +44,7 @@ export class DialogcartComponent implements OnInit {
   }
   Remove() {
     this.dialogRef.close();
+    localStorage.removeItem("cardId");
     this.router.navigateByUrl('addcart');
   }
 }

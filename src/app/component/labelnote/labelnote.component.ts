@@ -5,7 +5,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Label } from '../../core/model/user-model'
 import { DataService } from 'src/app/core/services/data/data.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-labelnote',
   templateUrl: './labelnote.component.html',
@@ -23,7 +24,8 @@ export class LabelnoteComponent implements OnInit {
   constructor(private noteService: NotesService,
     private route: ActivatedRoute,
     private dataService: DataService,
-    private snackbar: MatSnackBar) { }
+    private snackbar: MatSnackBar,
+    private dialog : MatDialog) { }
 
   ngOnInit() {
     
@@ -98,6 +100,20 @@ export class LabelnoteComponent implements OnInit {
           this.snackbar.open('Error while Remove Label!', 'Error', { duration: 3000 });
           console.log("Error something wrong: ", error)
         });
+  }
+   /**
+   * @Purpose : Open dialog note edit it
+   **/
+  openDialog(data: any): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '600px',
+      height: '',
+      data: {
+        'title': data.title,
+        'description': data.description,
+        'id': data.id,
+      }
+    });
   }
   ngOnDestroy() {
     this.destroy$.next(true);

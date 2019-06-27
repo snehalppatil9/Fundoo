@@ -31,7 +31,15 @@ hr{
     color: black;
     margin-right: 418px; 
 }
-
+mat-progress-bar {
+    display: block;
+    height: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 250ms linear;
+    margin-top: 44px;
+    width: 43%;
+}
 .card1{
     padding: 15px;
     background-color: gray;

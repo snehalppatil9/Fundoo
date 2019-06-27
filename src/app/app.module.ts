@@ -33,7 +33,7 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
 import { ImageCropComponent } from './component/image-crop/image-crop.component';
 import { SearchmatcardsComponent } from './component/searchmatcards/searchmatcards.component';
 import { ShowLabelnotesComponent } from './component/show-labelnotes/show-labelnotes.component';
-import { PinComponent }  from './component/pin/pin.component';
+import { PinComponent } from './component/pin/pin.component';
 import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 import { AngularMaterial } from './angularmaterial';
 import { FilterPipe } from './filterpipe/filter.pipe';
@@ -76,12 +76,9 @@ import { CompletePaymentComponent } from './component/complete-payment/complete-
     ProductPurchaseComponent,
     PlaceOrderComponent,
     CompletePaymentComponent,
-    
-   
   ],
   imports: [
-     AngularMaterial,
-     
+    AngularMaterial,DialogcartComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

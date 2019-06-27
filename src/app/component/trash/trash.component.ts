@@ -16,7 +16,7 @@ export class TrashComponent implements OnInit {
   constructor(private noteService: NotesService,
     private snackbar: MatSnackBar,
     private dataService: DataService,
-    public dialog: MatDialog,) { }
+    public dialog: MatDialog) { }
     destroy$: Subject<boolean> = new Subject<boolean>();
   notes: Note[] = [];
   direction: String = "row";

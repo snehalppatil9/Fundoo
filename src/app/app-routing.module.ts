@@ -45,9 +45,9 @@ const routes: Routes = [
   { path: 'resetpassword/:token', component: ResetComponent },
   { path: 'addcart', component: AddcartComponent },
   { path: 'componentcycle', component: ComponentlifecycleComponent },
-  { path: 'productpurchase/:data', component: ProductPurchaseComponent },
-  { path: 'placeorder/:data', component : PlaceOrderComponent},
-  { path: 'completePayment/:data', component : CompletePaymentComponent},
+  { path: 'productpurchase', component: ProductPurchaseComponent },
+  { path: 'placeorder', component : PlaceOrderComponent},
+  { path: 'completePayment', component : CompletePaymentComponent},
   {
     path: '',
     component: NavbarComponent, canActivate: [AuthGuardService],

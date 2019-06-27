@@ -29,6 +29,10 @@ import { ComponentlifecycleComponent } from '../componentlifecycle/componentlife
 import { AddcartComponent } from '../addcart/addcart.component'
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { ProductPurchaseComponent } from '../product-purchase/product-purchase.component';
+import { PlaceOrderComponent } from '../place-order/place-order.component';
+import { CompletePaymentComponent } from '../complete-payment/complete-payment.component';
+import { DialogcartComponent } from '../dialogcart/dialogcart.component'
 describe('ResetComponent', () => {
   let component: ResetComponent;
   let fixture: ComponentFixture<ResetComponent>;
@@ -36,7 +40,7 @@ describe('ResetComponent', () => {
   let el: HTMLElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddcartComponent,ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
+      declarations: [DialogcartComponent,CompletePaymentComponent,PlaceOrderComponent,ProductPurchaseComponent,AddcartComponent,ComponentlifecycleComponent, ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
       imports : [FlexLayoutModule,RouterTestingModule,
         AngularMaterial
       ],

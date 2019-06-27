@@ -29,13 +29,16 @@ import { AskQuestionComponent } from './component/ask-question/ask-question.comp
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ComponentlifecycleComponent } from './component/componentlifecycle/componentlifecycle.component'
-import { AddcartComponent } from './component/addcart/addcart.component'
-
+import { AddcartComponent } from './component/addcart/addcart.component';
+import { DialogcartComponent } from './component/dialogcart/dialogcart.component';
+import { ProductPurchaseComponent } from './component/product-purchase/product-purchase.component';
+import { PlaceOrderComponent } from './component/place-order/place-order.component';
+import { CompletePaymentComponent } from './component/complete-payment/complete-payment.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
      
-      declarations: [ AddcartComponent,AppComponent,ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
+      declarations: [DialogcartComponent,PlaceOrderComponent,CompletePaymentComponent,ProductPurchaseComponent,AddcartComponent,AppComponent,ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
       imports : [FlexLayoutModule,RouterTestingModule,
         AngularMaterial,MatDialogModule
       ],

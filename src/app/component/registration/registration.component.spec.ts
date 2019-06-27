@@ -29,6 +29,10 @@ import { ComponentlifecycleComponent } from '../componentlifecycle/componentlife
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { AddcartComponent } from '../addcart/addcart.component'
+import { ProductPurchaseComponent } from '../product-purchase/product-purchase.component';
+import { PlaceOrderComponent } from '../place-order/place-order.component';
+import { CompletePaymentComponent } from '../complete-payment/complete-payment.component';
+import { DialogcartComponent } from '../dialogcart/dialogcart.component'
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
@@ -36,7 +40,7 @@ describe('RegistrationComponent', () => {
   let el: HTMLElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddcartComponent,ComponentlifecycleComponent,ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
+      declarations: [DialogcartComponent,CompletePaymentComponent,PlaceOrderComponent,ProductPurchaseComponent,AddcartComponent,ComponentlifecycleComponent, ReminderComponent,NavbarComponent,NoteComponent,LabelComponent,ArchieveComponent,TrashComponent,IconComponent,SearchNoteComponent,CollaboratorComponent,ImageCropComponent,DialogComponent,SearchmatcardsComponent,ShowLabelnotesComponent,PinComponent,LabelnoteComponent,AskQuestionComponent,FilterPipe,PipePipe,AllnoteComponent,ForgotComponent,ResetComponent,LoginComponent,RegistrationComponent],
       imports : [FlexLayoutModule,RouterTestingModule,
         AngularMaterial
       ],
@@ -63,14 +67,14 @@ describe('RegistrationComponent', () => {
     component.email.setValue[''];
     component.password.setValue[''];
     component.cpassword.setValue[''];
-    component.advance.setValue[''];
-    component.basic.setValue[''];
+    // component.advance.setValue[''];
+    // component.basic.setValue[''];
     expect(component.firstName.valid).toBeFalsy();
     expect(component.lastName.valid).toBeFalsy();
     expect(component.email.valid).toBeFalsy();
     expect(component.cpassword.valid).toBeFalsy();
-    expect(component.advance.valid).toBeFalsy();
-    expect(component.basic.valid).toBeFalsy();
+    // expect(component.advance.valid).toBeFalsy();
+    // expect(component.basic.valid).toBeFalsy();
     expect(component.password.valid).toBeFalsy();
   });
   it('should be valid', async(() => {
@@ -87,14 +91,14 @@ describe('RegistrationComponent', () => {
     expect(component.password.valid).toBeTruthy();
     expect(component.cpassword.valid).toBeTruthy();
   }));
-  it('should call advance or basic button method', () => {
-    fixture.detectChanges();
-    spyOn(component, 'currentLesson');
-    el = fixture.debugElement.query(By.css('button')).nativeElement;
-    // const advance = spyOn(component, 'currentLesson');
-    // fixture.debugElement.query(By.css('button')).triggerEventHandler('click', null);
-    // expect(advance).toHaveBeenCalled();
-  });
+  // it('should call advance or basic button method', () => {
+  //   fixture.detectChanges();
+  //   spyOn(component, 'currentLesson');
+  //   el = fixture.debugElement.query(By.css('button')).nativeElement;
+  //   // const advance = spyOn(component, 'currentLesson');
+  //   // fixture.debugElement.query(By.css('button')).triggerEventHandler('click', null);
+  //   // expect(advance).toHaveBeenCalled();
+  // });
   it('it should call the login method', async(() => {
     fixture.detectChanges();
     spyOn(component, 'register');
