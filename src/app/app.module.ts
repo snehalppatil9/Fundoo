@@ -44,6 +44,7 @@ import { DialogcartComponent } from './component/dialogcart/dialogcart.component
 import { ProductPurchaseComponent } from './component/product-purchase/product-purchase.component';
 import { PlaceOrderComponent } from './component/place-order/place-order.component';
 import { CompletePaymentComponent } from './component/complete-payment/complete-payment.component';
+import { ProductemptyComponent } from './component/productempty/productempty.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,9 +77,10 @@ import { CompletePaymentComponent } from './component/complete-payment/complete-
     ProductPurchaseComponent,
     PlaceOrderComponent,
     CompletePaymentComponent,
+    ProductemptyComponent,
   ],
   imports: [
-    AngularMaterial,DialogcartComponent
+    AngularMaterial
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -42,7 +42,7 @@ export class AddcartComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.service = response["data"].data;
-        console.log("get reminder note ===============>", this.service);
+        console.log("get addcart details note ===============>", this.service);
 
       }, (error) => {
       });

@@ -46,19 +46,20 @@
         <!-- 
             @Description: Dashboard Search Box
         -->
-        <div fxFlex="60" fxFlex.xs=40 fxFlex.sm="80" fxFlex.md="90" fxFlex.lg="60" fxFlex.xl="70" fxShow fxHide.md
+        <div fxFlex="60" fxFlex.xs=40 fxFlex.sm="80" fxFlex.md="90" fxFlex.lg="70" fxFlex.xl="70" fxShow fxHide.md
             fxShow fxHide.sm fxShow fxHide.xs style="margin-top : 9px;" fxLayoutGap=15px>
-            <div fxFlex="10" fxShow fxHide.md fxShow fxHide.sm>
+            <div fxFlex="5" fxShow fxHide.md fxShow fxHide.sm>
                 <button style="outline: none" class="searchbutton" mat-icon-button (click)="searchmatcards()">
                     <i class="material-icons">search</i>
                 </button>
             </div>
+            <div fxFlex="5"></div>
             <div fxFlex="70">
                 <input type="text" class="search" [(ngModel)]="searchValue" class="search" (click)="search()"
                     (keyup)=newMessage() placeholder="Search..">
             </div>
             <div fxFlex="20" fxShow fxHide.md fxShow fxHide.sm>
-                <img class="searchbutton1" ngStyle.lg="margin-left:-98px;" ngStyle.xl="margin-left:-98px;"
+                <img class="searchbutton1" ngStyle.lg="margin-left:18px;" ngStyle.xl="margin-left:-98px;"
                     src="../../../assets/images/clear.svg" (click)="clearsearch()">
             </div>
         </div>

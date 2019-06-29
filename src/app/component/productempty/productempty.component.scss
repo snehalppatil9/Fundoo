@@ -1,0 +1,33 @@
+@import '../../core/scss/colors';
+@import '../../core/scss/mixin';
+
+.navbar {
+    @include back-ground-color(#fb0);
+    width:100%;
+    font-size: 25px;
+}
+.material-icons{
+    font-size: 30px;
+    height: 25px;
+    // margin-top: -12px;
+}
+.btn .mat-button {
+    @include back-ground-color(#fb0);
+    border-radius: 20px;
+    overflow: hidden;
+    outline: 0;
+    width: 139px;
+    height: 52px;
+    color: white;
+    font-size: 20px;
+    margin-top: 13px;
+    cursor: pointer;
+    position: relative;
+    box-sizing: content-box;
+    -webkit-tap-highlight-color: transparent;
+}
+hr{
+    margin-left: 68px;
+    color: black;
+    margin-right: 418px; 
+}

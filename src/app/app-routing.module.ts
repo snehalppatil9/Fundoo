@@ -37,6 +37,7 @@ import { DialogcartComponent } from './component/dialogcart/dialogcart.component
 import { ProductPurchaseComponent } from './component/product-purchase/product-purchase.component';
 import { PlaceOrderComponent } from './component/place-order/place-order.component';
 import { CompletePaymentComponent } from './component/complete-payment/complete-payment.component'
+import { ProductemptyComponent } from './component/productempty/productempty.component';
 const routes: Routes = [
   { path: '', redirectTo: "addcart", pathMatch: "full" },
   { path: 'login', component: LoginComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'productpurchase', component: ProductPurchaseComponent },
   { path: 'placeorder', component : PlaceOrderComponent},
   { path: 'completePayment', component : CompletePaymentComponent},
+  { path: 'productempty', component : ProductemptyComponent},
   {
     path: '',
     component: NavbarComponent, canActivate: [AuthGuardService],

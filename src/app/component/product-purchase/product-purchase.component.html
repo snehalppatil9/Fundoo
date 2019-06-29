@@ -1,4 +1,4 @@
-<mat-toolbar class="navbar" fxLayout="row">
+<!-- <mat-toolbar class="navbar" fxLayout="row">
   <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="90" fxFlex.xs="100" fxFlex.sm="100">
     <div fxFlex="20" fxFlex.md="15" fxFlex.xs="10" fxFlex.sm="10" ngstyle.sm="font-size:8px;">FundooNotes</div>
     <div fxFlex="50"></div>
@@ -23,6 +23,45 @@
       </button>
     </div>
   </div>
+</mat-toolbar> -->
+<mat-toolbar class="navbar" fxLayout="row">
+  <div fxLayout="row" fxFlex="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.xs="100" fxFlex.sm="100">
+    <div fxFlex="20" ngstyle.lg="font-size: 30px;" ngstyle.sm="font-size: 15px;" ngstyle.xs="font-size: 15px;"
+      ngstyle.md="font-size: 20px;">FundooNotes</div>
+    <div fxFlex="50" fxFlex.xs="40"></div>
+    <div fxFlex="30" fxFlex.xs="40" fxLayoutAlign="end" fxLayoutGap="3%" fxLayoutGap.xs="2%">
+      <div fxFlex="20">
+        <button style="margin-top:-11px; outline: none" routerLink="/addcart" mat-icon-button>
+          <i class="material-icons">refresh</i>
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">shopping_cart</i>
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">brightness_high</i>
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">apps</i>
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">add_alert</i>
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button style="margin-top:-11px; outline: none" mat-icon-button>
+          <i class="material-icons">settings</i>
+        </button>
+      </div>
+    </div>
+  </div>
 </mat-toolbar>
 <div style="height:5vh;"></div>
 <div>
@@ -30,7 +69,7 @@
   <div fxFlex="13" class="btn">
     <button mat-button>FundooNotes</button>
   </div>
-   <mat-progress-bar mode="determinate" value="30">SIGNIN</mat-progress-bar>
+  <mat-progress-bar mode="determinate" value="30">SIGNIN</mat-progress-bar>
 </div>
 <div style="height:5vh;"></div>
 <div>

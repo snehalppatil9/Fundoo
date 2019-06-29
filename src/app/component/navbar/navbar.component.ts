@@ -208,8 +208,15 @@ export class NavbarComponent implements OnInit {
       });
 
   }
+  cardId=localStorage.getItem('cardId')
   shoppingcart(){
-    this.router.navigateByUrl('productpurchase');
+    this.router.navigateByUrl('productempty'); 
+    // if(this.cardId != null){
+    //   this.router.navigateByUrl('productpurchase');
+    // }
+    // else{
+    //   this.router.navigateByUrl('productempty'); 
+    // }
   }
   labelShow: boolean = false;
   labelValue = '';
