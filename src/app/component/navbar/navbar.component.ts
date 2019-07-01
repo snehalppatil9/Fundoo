@@ -20,6 +20,7 @@ import { Subject } from 'rxjs';
 import { Label } from '../../core/model/user-model';
 import { environment } from '../../../environments/environment';
 import { ImageCropComponent } from '../image-crop/image-crop.component'
+import { UserService } from 'src/app/core/services/user/user.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -44,9 +45,10 @@ export class NavbarComponent implements OnInit {
   direction: string;
   private img;
   private width;
-  constructor(private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
+  constructor(private userService : UserService,private dialog: MatDialog, private noteService: NotesService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
+    
     this.labelName = "Fundoo";
     this.showLabel();
     /*For gridView and ListView*/
@@ -208,22 +210,16 @@ export class NavbarComponent implements OnInit {
       });
 
   }
-  cardId=localStorage.getItem('cardId')
-  shoppingcart(){
-    this.router.navigateByUrl('productempty'); 
-    // if(this.cardId != null){
-    //   this.router.navigateByUrl('productpurchase');
-    // }
-    // else{
-    //   this.router.navigateByUrl('productempty'); 
-    // }
-  }
   labelShow: boolean = false;
   labelValue = '';
   toolbarName(aa) {
     this.labelShow = true
     this.labelValue = aa
   }
+ 
+  myCart(){
+    this.router.navigateByUrl('productpurchase');
+   }
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

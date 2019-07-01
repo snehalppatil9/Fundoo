@@ -16,19 +16,18 @@ export class CompletePaymentComponent implements OnInit {
   constructor(private route: ActivatedRoute,private noteService : NotesService) { }
 
   ngOnInit() {
-   this.getCartDetails(this.cardId);
+  this.myCart();
   }
-  service : Service[] =[];
-  productData = '';
-  getCartDetails(cardId) {
-    this.noteService.getCartDetails(cardId)
+  mycartData: '';
+  productData: "";
+  myCart() {
+    this.noteService.myCart()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => {
-        this.service = response["data"];
-        console.log("get purchase note data for sevice ===============>", this.service);
-        this.productData = this.service["product"];
-        console.log("get purchase product data for sevice ===============>", this.productData);
-      }, (error) => {
-      });
+      .subscribe((data) => {
+        this.mycartData = data['data'][0];
+        console.log("My cart data=========>", this.mycartData);
+        this.productData = this.mycartData["product"];
+        console.log("product data============>", this.productData);
+      })
   }
 }

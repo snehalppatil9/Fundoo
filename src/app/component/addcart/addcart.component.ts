@@ -43,7 +43,7 @@ export class AddcartComponent implements OnInit {
       .subscribe((response) => {
         this.service = response["data"].data;
         console.log("get addcart details note ===============>", this.service);
-
+        
       }, (error) => {
       });
   }

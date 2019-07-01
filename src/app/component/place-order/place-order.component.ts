@@ -1,36 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { NotesService } from 'src/app/core/services/notes/notes.service';
-import { Service } from '../../core/model/user-model'
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.scss']
 })
 export class PlaceOrderComponent implements OnInit {
-  destroy$ : Subject<boolean> = new Subject<boolean>();
-  cardId = localStorage.getItem("cardId");
-  constructor(private noteService : NotesService,private router : Router) { }
-
+  @Input() cardId;
+  @ViewChild('address') address: ElementRef;
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  constructor(private noteService: NotesService, private route: ActivatedRoute, private router: Router, private snackbar: MatSnackBar) { }
+  productcardId: '';
   ngOnInit() {
-    this.getCartDetails(this.cardId);
+  this.myCart();
   }
-  service : Service[] =[];
-  productData = '';
-  getCartDetails(cardId) {
-    this.noteService.getCartDetails(cardId)
+  placeOrder() {
+    var body = {
+      "cartId" :  this.mycartData['id'],
+      "address" : this.address.nativeElement.innerHTML
+    }
+    console.log("post body in placr order==========>", body)
+    this.noteService.placeOrder(body)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        this.service = response["data"];
-        console.log("get purchase note data for sevice ===============>", this.service);
-        this.productData = this.service["product"];
-        console.log("get purchase product data for sevice ===============>", this.productData);
+        this.snackbar.open('your order placed successfully.', '', { duration: 3000 });
       }, (error) => {
       });
-  }
-  placeOrder(){
     this.router.navigateByUrl('completePayment');
+  }
+  mycartData: '';
+  productData: "";
+  myCart() {
+    this.noteService.myCart()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data) => {
+        this.mycartData = data['data'][0];
+        console.log("My cart data=========>", this.mycartData);
+        this.productData = this.mycartData["product"];
+        console.log("product data============>", this.productData);
+      })
   }
 }

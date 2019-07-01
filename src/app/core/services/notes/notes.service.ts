@@ -154,4 +154,10 @@ export class NotesService {
   getCartDetails(cartId){
     return this.httpservice.getDataService("productcarts/getCartDetails/"+cartId)
   }
+  placeOrder(body){
+    return this.httpservice.postData("productcarts/placeOrder",body)
+  }
+  myCart(){
+    return this.httpservice.getData("productcarts/myCart");
+  }
 }

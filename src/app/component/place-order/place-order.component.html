@@ -65,80 +65,83 @@
 </mat-toolbar>
 <div style="height:5vh;"></div>
 <div>
-  <div fxFlex="3"></div>
-  <div fxFlex="13" class="btn">
-    <button mat-button>FundooNotes</button>
-  </div>
-  <mat-progress-bar mode="determinate" value="65">SIGNIN</mat-progress-bar>
-</div>
-<div style="height:5vh;"></div>
-<div>
-  <div fxFlex="4"></div>
-  <div fxLayout="column" fxFlex="96">
-    <h3><strong>Review Your Order</strong></h3>
-    <h4><small>By clicking on the 'Place Your and Pay' button You agree to FundooNotes. <a>Privacy Notes</a>and
-        <a>Condition of Use</a> </small></h4>
-  </div>
-</div>
-<hr>
-<div>
-  <div fxFlex="4"></div>
-  <div fxFlex="70">
-    <mat-card>
-      <!-- <div *ngFor="let data of service"> -->
-      <div>
-        <div fxFlex="12">
-          <mat-card class="card1">${{productData.price}} Per Month
-            {{productData.name}}
-          </mat-card>
-        </div>
-        <div fxFlex="3"></div>
-        <div fxFlex="70" fxLayout="row">
-          <div fxFlex="40" fxLayout="column" fxLayoutGap="5%">
-            <li>Unlimited Wall Space</li>
-            <li>${{productData.price}}/Month</li>
-          </div>
-          <div fxFlex="60" fxLayout="column" fxLayoutGap="5%">
-            <li>Nice Interface</li>
-            <li>{{productData.description}}</li>
-          </div>
-        </div>
-        <div fxFlex="6"></div>
-        <div fxFlex="6" style="font-size:20px;">${{productData.price}} Per Month</div>
-        <div fxFlex="3"></div>
-
-      </div>
-      <!-- </div> -->
-      <div style="height:5vh"></div>
-      <div fxLayout="column">
-        <h5>Delivery Address</h5>
-        <div fxFlex="row">
-          <div fxFlex="75" contenteditable="true" class="textarea"></div>
-          <div fxFlex="5"></div>
-          <div fxFlex="20">
-            <!-- <div> -->
-            <div fxLayout="column" fxLayoutAlign="center">
-              <div style="color : black; font-size: 20px;"><strong>Payment Method</strong></div>
-              <div style="color : red; font-size: 20px;"> Cash on Delivery</div>
-            </div>
-            <div style="height:2vh;"></div>
-            <!-- </div> -->
-          </div>
-        </div>
-      </div>
-    </mat-card>
-  </div>
-  <div fxFlex="3"></div>
   <div>
-    <mat-card class="card2">
-      <div fxLayoutAlign="center" (click)="placeOrder()"><button class="btn1" mat-button>Place Your Order</button></div>
-      <div style="height:4vh;"></div>
-      <div fxLayout="row" fxLayoutAlign="center">
-        <div style="color : black; font-size: 15px;">Subtotal (1 Item) : </div>
-        <div style="color : red; font-size: 15px;"> ${{productData.price}}</div>
-      </div>
-      <div style="height:2vh;"></div>
+    <div fxFlex="3"></div>
+    <div fxFlex="13" class="btn">
+      <button mat-button>FundooNotes</button>
+    </div>
+    <mat-progress-bar mode="determinate" value="40">SIGNIN</mat-progress-bar>
+  </div>
+  <div style="height:5vh;"></div>
+  <div>
+    <div fxFlex="4"></div>
+    <div fxLayout="column" fxFlex="96">
+      <h3><strong>Review Your Order</strong></h3>
+      <h4><small>By clicking on the 'Place Your and Pay' button You agree to FundooNotes. <a>Privacy Notes</a>and
+          <a>Condition of Use</a> </small></h4>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <div fxFlex="4"></div>
+    <div fxFlex="70">
+      <mat-card>
+        <!-- <div *ngFor="let data of service"> -->
+        <div>
+          <div fxFlex="12">
+            <mat-card class="card1">${{productData.price}} Per Month
+              {{productData.name}}
+            </mat-card>
+          </div>
+          <div fxFlex="3"></div>
+          <div fxFlex="70" fxLayout="row">
+            <div fxFlex="40" fxLayout="column" fxLayoutGap="5%">
+              <li>Unlimited Wall Space</li>
+              <li>${{productData.price}}/Month</li>
+            </div>
+            <div fxFlex="60" fxLayout="column" fxLayoutGap="5%">
+              <li>Nice Interface</li>
+              <li>{{productData.description}}</li>
+            </div>
+          </div>
+          <div fxFlex="6"></div>
+          <div fxFlex="6" style="font-size:20px;">${{productData.price}} Per Month</div>
+          <div fxFlex="3"></div>
 
-    </mat-card>
+        </div>
+        <!-- </div> -->
+        <div style="height:5vh"></div>
+        <div fxLayout="column">
+          <h5>Delivery Address</h5>
+          <div fxFlex="row">
+            <div fxFlex="75" contenteditable="true" class="textarea" #address></div>
+            <div fxFlex="5"></div>
+            <div fxFlex="20">
+              <!-- <div> -->
+              <div fxLayout="column" fxLayoutAlign="center">
+                <div style="color : black; font-size: 20px;"><strong>Payment Method</strong></div>
+                <div style="color : red; font-size: 20px;"> Cash on Delivery</div>
+              </div>
+              <div style="height:2vh;"></div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex="3"></div>
+    <div>
+      <mat-card class="card2">
+        <div fxLayoutAlign="center" (click)="placeOrder()"><button class="btn1" mat-button>Place Your Order</button>
+        </div>
+        <div style="height:4vh;"></div>
+        <div fxLayout="row" fxLayoutAlign="center">
+          <div style="color : black; font-size: 15px;">Subtotal (1 Item) : </div>
+          <div style="color : red; font-size: 15px;"> ${{productData.price}}</div>
+        </div>
+        <div style="height:2vh;"></div>
+
+      </mat-card>
+    </div>
   </div>
 </div>

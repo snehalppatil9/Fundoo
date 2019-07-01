@@ -10,24 +10,9 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./productempty.component.scss']
 })
 export class ProductemptyComponent implements OnInit {
-  destroy$ : Subject<boolean> = new Subject<boolean>();
-  cardId = localStorage.getItem("cardId")
-  constructor(private noteService : NotesService) { }
+  
+  constructor() { }
 
   ngOnInit() {
-    this.getCartDetails(this.cardId)
-  }
-  service : Service[] =[];
-  productData = '';
-  getCartDetails(cardId) {
-    this.noteService.getCartDetails(cardId)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => {
-        this.service = response["data"];
-        console.log("get product empty note data for sevice ===============>", this.service);
-        this.productData = this.service["product"];
-        console.log("get product empty data for sevice ===============>", this.productData);
-      }, (error) => {
-      });
   }
 }

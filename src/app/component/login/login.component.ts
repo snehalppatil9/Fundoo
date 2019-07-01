@@ -53,26 +53,22 @@ export class LoginComponent implements OnInit {
   id = localStorage.getItem("Id");
   cardId = localStorage.getItem("cardId")
   ngOnInit() {
+    this.getService();
     if (this.id != null) {
       this.router.navigateByUrl('/addnote');
     }
     if (this.cardId != null) {
-      this.getService();
       this.getCartDetails(this.cardId);
     }
   }
   serviceData: '';
-  productId: '';
   getService() {
     this.noteService.getService()
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.serviceData = response["data"].data;
-        console.log("get product Purchase note ===============>", this.serviceData);
-        this.productId = this.serviceData["product"]
-        console.log(this.productId);
-
-      }, (error) => {
+        console.log("get service data in login ===============>", this.serviceData);
+       }, (error) => {
       });
   }
   productData = '';
@@ -95,7 +91,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           data => {
             // console.log('Response Login Data.......', this.login);
-            // console.log('Response data............', data);
+            console.log('Response data............', data);
             localStorage.setItem("token", data["id"]);
             localStorage.setItem("Id", data["userId"]);
             localStorage.setItem("Firstname", data["firstName"]);

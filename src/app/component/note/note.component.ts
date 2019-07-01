@@ -120,7 +120,7 @@ export class NoteComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         data => {
-          this.anyChanges.emit({});
+          // this.anyChanges.emit({});
           this.snackbar.open('Note added successfully.', '', { duration: 3000 });
           console.log('add note data..........', data);
           this.dataService.getAllNote();

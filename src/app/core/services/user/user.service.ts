@@ -34,4 +34,9 @@ export class UserService {
   addProfileImage(body){
     return this.httpService.updateProfile('user/uploadProfileImage',body);
   }
+
+
+
+
+ 
 }

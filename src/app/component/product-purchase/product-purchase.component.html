@@ -63,13 +63,14 @@
     </div>
   </div>
 </mat-toolbar>
+<div *ngIf="showEmptycart && mycartData !=null" fxLayout="column" >
 <div style="height:5vh;"></div>
 <div>
   <div fxFlex="3"></div>
   <div fxFlex="13" class="btn">
     <button mat-button>FundooNotes</button>
   </div>
-  <mat-progress-bar mode="determinate" value="30">SIGNIN</mat-progress-bar>
+  <mat-progress-bar mode="determinate" value="0">SIGNIN</mat-progress-bar>
 </div>
 <div style="height:5vh;"></div>
 <div>
@@ -83,15 +84,15 @@
 <div>
   <div fxFlex="4"></div>
   <div fxFlex="10">
-    <mat-card class="card1">${{productData.price}} Per Month
-      {{productData.name}}
+    <mat-card class="card1">${{mycartData.price}} Per Month
+      {{mycartData.product.name}}
     </mat-card>
   </div>
   <div fxFlex="3"></div>
   <div fxFlex="40" fxLayout="row">
     <div fxFlex="40" fxLayout="column" fxLayoutGap="5%">
       <li>Unlimited Wall Space</li>
-      <li>${{productData.price}}/Month</li>
+      <li>${{mycartData.price}}/Month</li>
     </div>
     <div fxFlex="60" fxLayout="column" fxLayoutGap="5%">
       <li>Nice Interface</li>
@@ -99,7 +100,7 @@
     </div>
   </div>
   <div fxFlex="3"></div>
-  <div fxFlex="6" style="font-size:20px;">${{productData.price}}</div>
+  <div fxFlex="6" style="font-size:20px;">${{mycartData.price}}</div>
   <div fxFlex="6"><button mat-button style="font-size:20px;">Per Month</button>
   </div>
   <div fxFlex="5"></div>
@@ -107,10 +108,10 @@
     <mat-card class="card2">
       <div fxLayout="row" fxLayoutAlign="center">
         <div style="color : black; font-size: 15px;">Subtotal (1 Item) : </div>
-        <div style="color : red; font-size: 15px;"> ${{productData.price}}</div>
+        <div style="color : red; font-size: 15px;"> ${{mycartData.price}}</div>
       </div>
       <div style="height:2vh;"></div>
-      <div fxLayoutAlign="center"><button class="btn1" (click)="toCheckOut()" mat-button>Proceed To Checkout</button>
+      <div fxLayoutAlign="center"><button class="btn1" (click)="toCheckOut(productData.id)" mat-button>Proceed To Checkout</button>
       </div>
     </mat-card>
   </div>
@@ -122,8 +123,15 @@
   <div fxFlex="14">
     <div fxLayout="row" fxLayoutAlign="center">
       <div style="color : black; font-size: 20px;">Subtotal (1 Item) : </div>
-      <div style="color : red; font-size: 20px;"> ${{productData.price}}</div>
+      <div style="color : red; font-size: 20px;"> ${{mycartData.price}}</div>
     </div>
     <div style="height:2vh;"></div>
   </div>
 </div>
+</div>
+<!-- <div fxLayout="column" fxLayoutAlign="center center"  *ngIf ="!showEmptycart">
+  <div style="height:5vh;"></div>
+  <div  class="text" >
+    <h2 ngStyle.xs="font-size:15px;" ngStyle.sm="font-size:20px;"><strong>Your Cart is Empty </strong></h2>
+  </div>
+</div> -->
