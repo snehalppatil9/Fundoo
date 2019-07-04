@@ -10,7 +10,7 @@
   -->
 <div fxFlex="100" fxLayout="column">
   <div style="height:8vh;"></div>
-  <div fxLayout="row" fxFlex.lg="100%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex="100" fxLayoutAlign="center center">
+  <div fxLayout="row" fxFlex.lg="100%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%" fxFlex.xl="100" fxLayoutAlign="center center">
     <div fxLayout="row" fxFlex="70" *ngIf="cardId == null" fxLayoutAlign="center center">
       <mat-card fxLayout="column" fxFlex.xs="100" fxFlex.sm="100" fxFlex.xl="50" fxFlex.lg="50">
         <mat-card-title fxLayoutAlign="center center">
@@ -63,8 +63,8 @@
         <div style="height:3vh"></div>
       </mat-card>
     </div>
-    <div *ngIf="cardId != null" fxLayout="row" fxFlex="70">
-      <mat-card fxLayout="column" fxFlex="40">
+    <div *ngIf="cardId != null" fxLayout="row" fxFlex.lg="80" fxFlex.xl="100" fxFlex.xs="90" fxFlex.sm="90" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center" fxLayout.xs="column wrap" fxLayout.sm="column wrap">  
+      <mat-card fxLayout="column" fxFlex.lg="40" fxFlex.xl="40" fxFlex.xs="30" fxFlex.sm="30">
         <mat-card-title fxLayoutAlign="center center">
           <span class="lightblue">F</span>
           <span class="red">u</span>
@@ -114,8 +114,8 @@
           <button mat-button [disabled]="email.invalid || password.invalid" (click)="submit(login)">Next</button></div>
         <div style="height:3vh"></div>
       </mat-card>
-      <mat-card fxLayout="column" fxFlex="60" fxLayoutAlign="center center">
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxHide fxShow.gt-sm>
+      <mat-card fxLayout="column" fxFlex.lg="60" fxFlex.xl="60" fxFlex.xs="70" fxFlex.sm="70" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxLayoutGap.sm="80px" fxLayoutGap.xs="80px" fxLayout.xs="column wrap" fxLayout.sm="column wrap">
           <div class="main1" *ngFor="let data of serviceData">
             <div class="card">
               <mat-card class="card4" *ngIf="productData.id == data.id">

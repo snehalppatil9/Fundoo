@@ -46,43 +46,35 @@ color: red;
 .size .mat-button{
 font-size: 16px;
 }
-// .main1:hover >.card mat-card {
-//   background-color: orange;
-// }
-// .main1 .card1:hover{
-//   opacity: 1;
-//   transform: 'scale(1.5)' 
-// }
 .card mat-card{
-  width: 198px;
-  height: 290px;
+  // width: 198px;
+  // height: 290px;
+  width: 150px;
+  height: 193px;
   border: solid rgba(0,0,0,.125);
   border-radius: .25rem;
   margin-top: 14px;
   margin-left: 22px;
   background-color: #a9a9a9;
- // border: 1px solid;
-  // margin-top: 50px;
 }
 .card {
 border: solid white;  
 }
 .card h5{
-  // margin-top: -20px;
-  // margin-left: 40px;
   color: white;
   font-size: 21px;
 }
-
 .card1 mat-card{
-  width: 198px;
-  height: 284px;
+  // width: 198px;
+  // height: 284px;
+  width: 150px;
+  height: 187px;
   border: solid rgba(0,0,0,.125);
-  margin-top: -330px;
+  margin-top: -229px;
   margin-left: -3px;
 }
 .card1 h4 {
-  font-size: -0.5rem;
+  font-size: 0.5rem;
 }
 .mat-card{
   padding-top: 20px;
@@ -91,22 +83,23 @@ border: solid white;
   padding-left: 14px;
 }
 .card4 h5{
-  margin-left: 37px;
+  margin-left: 24px;
   color: white;
   font-size: 15px;
-  margin-top: 230px;
-  // background-color: orange;
+  margin-top: 140px;
 }
 .card3 h5{
-  margin-left: 37px;
+  margin-left: 13px;
   color: white;
   font-size: 15px;
-  margin-top: 230px;
-  // background-color: gray;
+  margin-top: 140px;
 }
 .main1 .card4{
   background-color: orange;
 }
 .main1 .card3{
   background-color: gray;
+}
+.card1 li{
+  font-size: 10px;
 }

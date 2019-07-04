@@ -11,36 +11,24 @@ import { NotesService } from 'src/app/core/services/notes/notes.service';
 })
 export class ProductPurchaseComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
-  showEmptycart : boolean = true;
-  mycartData: '';
-  productData: "";
+  showEmptycart: boolean = true;
   constructor(private route: ActivatedRoute, private noteService: NotesService, private router: Router) { }
 
   ngOnInit() {
-
     this.myCart();
   }
-  toCheckOut(cardId) {
+  toCheckOut() {
     this.router.navigateByUrl('placeorder');
   }
+  mycartData: '';
+  productData: "";
   myCart() {
     this.noteService.myCart()
-      .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.mycartData = data['data'][0];
         console.log("My cart data=========>", this.mycartData);
-        if (this.mycartData == null) {
-          console.log(" in myCart");
-          console.log("Data=====>", this.mycartData);
-          // this.showEmptycart = !this.showEmptycart;
-          this.router.navigateByUrl('productempty');
-        }
-        else {
-          console.log("Data=====>", this.mycartData);
-          this.productData = this.mycartData["product"];
-          console.log("product data============>", this.productData);
-          this.router.navigateByUrl('productpurchase');
-        }
+        this.productData = this.mycartData["product"];
+        console.log("product data============>", this.productData);
       })
   }
 }

@@ -24,7 +24,7 @@ export class AddcartComponent implements OnInit {
   openDialogAdvance(data): void {
     const dialogRef = this.dialog.open(DialogcartComponent, {
       width: '850px',
-      height: '350px',
+      height: '300px',
       data: {
         data: data,
       }
@@ -43,9 +43,14 @@ export class AddcartComponent implements OnInit {
       .subscribe((response) => {
         this.service = response["data"].data;
         console.log("get addcart details note ===============>", this.service);
-        
       }, (error) => {
       });
   }
+  productCarts(){
+    
+  }
+
+
+
 }
 

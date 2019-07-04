@@ -28,9 +28,6 @@ export class RegistrationComponent implements OnInit {
   register: UserModel = new UserModel();
   Service: Service[] = [];
   service: any;
-  @Input() data;
-  //title='FundooNotes';
-  
   destroy$: Subject<boolean> = new Subject<boolean>();
   hide = true;
   firstName = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern('[a-zA-Z]+')]);
@@ -87,13 +84,6 @@ export class RegistrationComponent implements OnInit {
   cardId = localStorage.getItem("cardId") 
   ngOnInit() {
     this.getService();
-    // this.route.params
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe((params: Params) => {
-    //     this.dataId = params['data'];
-    //     console.log("productId fetched in register=====>", this.dataId);
-
-    //   })
     this.getCartDetails(this.cardId);
   }
   /*

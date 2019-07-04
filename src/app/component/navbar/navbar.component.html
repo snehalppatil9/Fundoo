@@ -33,7 +33,7 @@
                 <img class="gb_ma gb_Cd" alt="" aria-hidden="true" fxShow fxHide.sm fxShow fxHide.xs
                     src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
                     srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
-                    style="width:50px;height:50px; margin-top:8px;">
+                    style="width:50px;height:50px; margin-top:8px; background-color: white;">
             </div>
             <!-- 
                  @Description: Dashboard Fundoo Label
@@ -91,8 +91,8 @@
             </div>
             <div fxFlex="25" fxFlex.md="60">
                 <div mat-card-avatar
-                    [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'60px','height':'60px'}"
-                    class="addimage1" (click)="account()" ngStyle.xs="width:40px;height:40px;margin-left: 59px;
+                    [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','border-radius':'50px'}"
+                    class="addimage1" (click)="account()" ngStyle.xs="border-radius:30px; margin-left: 59px;
                     margin-top: 5px;"></div>
             </div>
         </div>
@@ -105,7 +105,7 @@
 <mat-card class="account" *ngIf="signoutCard">
     <mat-card-header>
         <div mat-card-avatar [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover',
-        'width':'60px','height':'60px','margin-bottom':'10px'}" class="addimage1" (click)=image.click()></div>
+        'border-radius':'50px','margin-bottom':'10px'}" class="addimage1" (click)=image.click()></div>
         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
         <mat-card-subtitle>{{email}}</mat-card-subtitle>
     </mat-card-header>

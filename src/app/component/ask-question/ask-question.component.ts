@@ -14,7 +14,6 @@ import { Reply } from '../../core/model/user-model'
   styleUrls: ['./ask-question.component.scss']
 })
 export class AskQuestionComponent implements OnInit {
-
   destroy$: Subject<boolean> = new Subject<boolean>();
   showfroalaeditor: boolean = true;
   showfroalaeditor1: boolean = true;
@@ -48,7 +47,6 @@ export class AskQuestionComponent implements OnInit {
         this.noteId = params['id'];
         console.log("this.noteId in ask question================>", this.noteId);
       })
-
     this.getNotesDetail();
   }
   /**
@@ -85,6 +83,7 @@ export class AskQuestionComponent implements OnInit {
   /**
   * @description : get all notes data
   */
+ 
   getNotesDetail() {
     this.noteService.getNotesDetail(this.noteId)
       .pipe(takeUntil(this.destroy$))

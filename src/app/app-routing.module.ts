@@ -46,11 +46,7 @@ const routes: Routes = [
   { path: 'resetpassword/:token', component: ResetComponent },
   { path: 'addcart', component: AddcartComponent },
   { path: 'componentcycle', component: ComponentlifecycleComponent },
-  { path: 'productpurchase', component: ProductPurchaseComponent },
-  { path: 'placeorder', component : PlaceOrderComponent},
-  { path: 'completePayment', component : CompletePaymentComponent},
-  { path: 'productempty', component : ProductemptyComponent},
-  {
+   {
     path: '',
     component: NavbarComponent, canActivate: [AuthGuardService],
     children: [
@@ -72,8 +68,10 @@ const routes: Routes = [
       { path: 'labelnote/:label', component: LabelnoteComponent },
       { path: 'askquestion/:id', component: AskQuestionComponent },
       { path: 'opendialogcart', component: DialogcartComponent },
-      
-
+      { path: 'productpurchase', component: ProductPurchaseComponent },
+      { path: 'placeorder', component : PlaceOrderComponent},
+      { path: 'completePayment', component : CompletePaymentComponent},
+      { path: 'productempty', component : ProductemptyComponent},
     ]
 
   }

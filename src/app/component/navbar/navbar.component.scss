@@ -1,12 +1,13 @@
 @import '../../core/scss/colors';
 @import '../../core/scss/mixin';
 .navbar {
-    background-color: white;
+    @include back-ground-color(#fb0);
     width:100%;
+    // height: 750px;
 }
 .example-container{
     // width: 400px;  
-    height: 750px;
+    height: 87vh;
     // overflow: hidden;
     background-color: white;
 }

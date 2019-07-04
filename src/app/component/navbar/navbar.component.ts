@@ -218,6 +218,7 @@ export class NavbarComponent implements OnInit {
   }
  
   myCart(){
+    // console.log("sfdddddddddddddddddddddd");
     this.router.navigateByUrl('productpurchase');
    }
   ngOnDestroy() {

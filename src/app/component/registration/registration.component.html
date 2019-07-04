@@ -8,7 +8,7 @@
    @version        : 1.0
    @since          : 22-04-2019
   -->
-<div fxLayout="column" fxLayoutGap="3%">
+<div fxLayout="column" fxLayoutGap="3%" *ngIf="productData != null">
   <div fxFlex.lg="30%" fxFlex.md="10%" fxFlex.sm="5%" fxFlex.xs="0%"></div>
   <div fxLayout="row" fxFlex.lg="100%" fxLayoutAlign="center" fxFlex="35">
     <div fxFlex="100%" fxFlex.lg="20%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
@@ -75,11 +75,11 @@
           </div>
         </div>
         <div style="height:1vh"></div>
-        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="4%">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="2%">
           <!-- 
             @Description  : Validating Password and displaying the error message 
           -->
-          <div fxFlex="20">
+          <div fxFlex="24">
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Password</mat-label>
               <mat-error *ngIf="password.invalid">{{passValidation()}}</mat-error>
@@ -90,7 +90,7 @@
           <!-- 
             @Description  : Validating Confirm Password and displaying the error message 
           -->
-          <div fxFlex="18">
+          <div fxFlex="24">
             <mat-form-field appearance="outline" hintLabel="Minimum 8 Characters">
               <mat-label>Confirm</mat-label>
               <mat-error *ngIf="cpassword.invalid">{{cpassValidation()}}</mat-error>
@@ -106,7 +106,8 @@
         <!-- 
             @Description  : Validating advance and basic button and displaying the error message 
         -->
-       <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxHide fxShow.gt-sm>
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="50px" fxLayoutAlign.xs="center" fxLayoutAlign.sm="center"
+          fxLayout.sm="column wrap" fxLayoutGap.xs="70px" fxLayoutGap.sm="70px" fxLayout.xs="column wrap">
           <div class="main1" *ngFor="let data of serviceData">
             <div class="card">
               <mat-card class="card4" *ngIf="productData.id == data.id">
@@ -118,7 +119,7 @@
             </div>
             <div class="card1">
               <mat-card>
-              <h4>${{data.price}} Per Month</h4>
+                <h4>${{data.price}} Per Month</h4>
                 <div fxLayoutAlign="start" class="openDialog">
                   <button mat-button (click)="openDialogAdvance(data)">{{data.name}}</button>
                 </div>
@@ -130,12 +131,13 @@
             </div>
           </div>
         </div>
-       <div style="height:10vh"></div>
+        <div style="height:10vh"></div>
         <div fxLayout="row" fxLayoutGap="25" fxLayoutAlign.md="start end">
           <div class="size"><button mat-button routerLink="/login">Sign in instead</button>
           </div>
-          <div><button mat-button 
-            (click)="submit(cardId)">Sign Up</button></div>
+          <div><button mat-button
+              [disabled]="firstName.invalid || lastName.invalid || email.invalid || password.invalid || cpassword.invalid"
+              (click)="submit(cardId)">Sign Up</button></div>
         </div>
         <div fxLayoutAlign="end" fxHide fxShow.gt-sm>
           <div class="img">
